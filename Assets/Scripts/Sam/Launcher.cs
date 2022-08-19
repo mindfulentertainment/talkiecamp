@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using TMPro;
 using Photon.Realtime;
+using ExitGames.Client.Photon;
 
 public class Launcher : MonoBehaviourPunCallbacks
 {
@@ -37,6 +38,8 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     public GameObject roomTestButton;
 
+
+   
 
 
     public string levelToPlay;
@@ -142,15 +145,14 @@ public class Launcher : MonoBehaviourPunCallbacks
             newPlayerLabel.text = players[i].NickName;
             newPlayerLabel.gameObject.SetActive(true);
             allPlayerNames.Add(newPlayerLabel);
+
         }
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        TMP_Text newPlayerLabel = Instantiate(playerNameLabel, playerNameLabel.transform.parent);
-        newPlayerLabel.text = newPlayer.NickName;
-        newPlayerLabel.gameObject.SetActive(true);
-        allPlayerNames.Add(newPlayerLabel);
+
+        ListAllPlayers();
     }
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
@@ -267,4 +269,7 @@ public class Launcher : MonoBehaviourPunCallbacks
         loadingText.text = "Creating Camp";
         loadingScreen.gameObject.SetActive(true);
     }
+
+
+    
 }
