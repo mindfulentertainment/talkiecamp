@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     private float verticalRotStore;
     private Vector2 mouseInput;
     private Vector3 movDir;
-    private Vector3 movement;
+    private Vector3 direction;
     public float moveSpeed;
     public float runSpeed;
     private float activeSpeed;
@@ -26,13 +26,23 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     public GameObject characterModel;
 
+
+    private Joystick joystick;
+
+    public float speed;
+    public float smoothTurnTime;
+
+    private float smoothTurnVelocity;
+
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
         m_Camera = Camera.main;
+        joystick = UIController.instance.joystick;
     }
     private void Start()
     {
+
         if (photonView.IsMine)
         {
             characterModel.SetActive(false);
@@ -44,52 +54,47 @@ public class PlayerController : MonoBehaviourPunCallbacks
     {
         if (photonView.IsMine)
         {
-            mouseInput = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y")) * mouseSentitivity;
-            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + mouseInput.x, transform.rotation.eulerAngles.z);
 
-            verticalRotStore += mouseInput.y;
-            verticalRotStore = Mathf.Clamp(verticalRotStore, -60, 60);
-            viewPoint.rotation = Quaternion.Euler(-verticalRotStore, viewPoint.rotation.eulerAngles.y, viewPoint.rotation.eulerAngles.z);
 
-            movDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
 
-            if (Input.GetKey(KeyCode.LeftShift) && isGrounded)
-            {
-                activeSpeed = runSpeed;
+            float horizontal = joystick.Horizontal;
+            float vertical = joystick.Vertical;
 
-            }
-            else
-            {
-                activeSpeed = moveSpeed;
 
-            }
-            float yVel = movement.y;
-            movement = ((transform.forward * movDir.z) + (transform.right * movDir.x).normalized) * activeSpeed;
-            movement.y = yVel;
+
+            float yVel = direction.y;
+            direction.y = yVel;
             if (characterController.isGrounded)
             {
-                movement.y = 0;
+                direction.y = 0;
             }
 
             isGrounded = Physics.Raycast(groundCheckPoint.position, Vector3.down, .25f, groundLayers);
 
-            if (Input.GetButtonDown("Jump") && isGrounded)
+
+            
+            direction = new Vector3(horizontal, direction.y, vertical).normalized;
+            direction.y += Physics.gravity.y * Time.deltaTime * gravityMod;
+
+        Vector3 vector3 = new Vector3(direction.x, 0, direction.z);
+        if (vector3.magnitude >= 0.1f)
             {
-                movement.y = JumpForce;
+                float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref smoothTurnVelocity, smoothTurnTime);
+                transform.rotation = Quaternion.Euler(0f, angle, 0f);
+                characterController.Move(direction * speed * Time.deltaTime);
             }
-            movement.y += Physics.gravity.y * Time.deltaTime * gravityMod;
-            characterController.Move(movement * Time.deltaTime);
 
 
         }
     }
-    private void LateUpdate()
+        private void LateUpdate()
     {
-        if (photonView.IsMine)
-        {
-            m_Camera.transform.position = viewPoint.position;
-            m_Camera.transform.rotation = viewPoint.rotation;
-        }
+        //if (photonView.IsMine)
+        //{
+        //    m_Camera.transform.position = viewPoint.position;
+        //    m_Camera.transform.rotation = viewPoint.rotation;
+        //}
 
 
     }
