@@ -13,7 +13,7 @@ public class RolesManager : MonoBehaviourPunCallbacks, IOnEventCallback
     private float roles;
     public override void OnEnable()
     {
-        startGame.interactable = false;
+        startGame.interactable = true;
         PhotonNetwork.AddCallbackTarget(this);
         if (PhotonNetwork.IsMasterClient)
         {
@@ -119,7 +119,7 @@ public class RolesManager : MonoBehaviourPunCallbacks, IOnEventCallback
         mButtons[index].interactable = false;
         mButtons[index].transform.GetChild(1).GetComponent<TMP_Text>().text = playerName;
         mButtons[index].transform.GetChild(1).gameObject.SetActive(true);
-
+       
 
     }
     public void ChangeRole(Button roleSelected = null)
@@ -203,10 +203,7 @@ public class RolesManager : MonoBehaviourPunCallbacks, IOnEventCallback
             }
             
         }
-        if (roles >= 1)
-        {
-            startGame.interactable = true;
-        }
+       
     }
 }
 [System.Serializable]
