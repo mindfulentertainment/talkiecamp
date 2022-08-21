@@ -269,7 +269,7 @@ MonoBehaviour:
   viewPoint: {fileID: 3680391375130324007}
   mouseSentitivity: 1
   moveSpeed: 7
-  runSpeed: 16
+  runSpeed: 14
   JumpForce: 12
   gravityMod: 2.5
   groundCheckPoint: {fileID: 3680391375971635016}
