@@ -527,7 +527,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3306884876114523039, guid: f76b6daf3c440fd4fad964019f407b07, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: RolesSend
+      value: ChangeRole
       objectReference: {fileID: 0}
     - target: {fileID: 3306884876114523039, guid: f76b6daf3c440fd4fad964019f407b07, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -2059,7 +2059,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3306884876114523039, guid: f76b6daf3c440fd4fad964019f407b07, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: RolesSend
+      value: ChangeRole
       objectReference: {fileID: 0}
     - target: {fileID: 3306884876114523039, guid: f76b6daf3c440fd4fad964019f407b07, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -3792,7 +3792,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3306884876114523039, guid: f76b6daf3c440fd4fad964019f407b07, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: RolesSend
+      value: ChangeRole
       objectReference: {fileID: 0}
     - target: {fileID: 3306884876114523039, guid: f76b6daf3c440fd4fad964019f407b07, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -6875,7 +6875,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3306884876114523039, guid: f76b6daf3c440fd4fad964019f407b07, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: RolesSend
+      value: ChangeRole
       objectReference: {fileID: 0}
     - target: {fileID: 3306884876114523039, guid: f76b6daf3c440fd4fad964019f407b07, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

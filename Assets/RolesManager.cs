@@ -29,7 +29,8 @@ public class RolesManager : MonoBehaviourPunCallbacks, IOnEventCallback
     public List<Button> mButtons = new List<Button>();
     public enum EventCodes : byte
     {
-        Dropdownupdate
+        PlayerAction,
+        RoleChanged
 
 
     }
@@ -62,13 +63,15 @@ public class RolesManager : MonoBehaviourPunCallbacks, IOnEventCallback
         {
             EventCodes theEvent = (EventCodes)photonEvent.Code;
             object[] data = (object[])photonEvent.CustomData;
+
             switch (theEvent)
             {
-                case EventCodes.Dropdownupdate:
+                case EventCodes.PlayerAction:
                     RolesRecieve(data);
                     break;
-
-
+                case EventCodes.RoleChanged:
+                    RolesChanged(data);
+                    break;
 
             }
         }
@@ -100,9 +103,41 @@ public class RolesManager : MonoBehaviourPunCallbacks, IOnEventCallback
 
     }
 
-   
-    public void RolesSend(Button roleSelected=null )
+    public void RolesChanged(object[] dataRecived)
     {
+        string playerName = (string)dataRecived[0];
+        int index = (int)dataRecived[2];
+        int prevIndex = (int)dataRecived[3];
+
+        if (prevIndex >= 0)
+        {
+            mButtons[prevIndex].interactable = true;
+            mButtons[prevIndex].transform.GetChild(1).gameObject.SetActive(false);
+        }
+        
+
+        mButtons[index].interactable = false;
+        mButtons[index].transform.GetChild(1).GetComponent<TMP_Text>().text = playerName;
+        mButtons[index].transform.GetChild(1).gameObject.SetActive(true);
+
+
+    }
+    public void ChangeRole(Button roleSelected = null)
+    {
+        object[] package = new object[4];
+        for (int i = 0; i < mButtons.Count; i++)
+        {
+
+            if (mButtons[i] == roleSelected)
+            {
+
+                package[0] = PhotonNetwork.NickName;
+                package[1] = false;
+                package[2] = i;
+                package[3] = mButtons.IndexOf(roleChosen);
+            }
+
+        }
         if (roleSelected != null)
         {
             if (roleChosen != null)
@@ -119,21 +154,21 @@ public class RolesManager : MonoBehaviourPunCallbacks, IOnEventCallback
             PlayerPrefs.SetString("role", role);
             Debug.Log(PlayerPrefs.GetString("role"));
         }
+       
+        PhotonNetwork.RaiseEvent(
+      (byte)EventCodes.RoleChanged, package, new RaiseEventOptions { Receivers = ReceiverGroup.All }, new SendOptions { Reliability = true });
+    }
+
+
+    public void RolesSend()
+    {
+        
 
         object[] package = new object[mButtons.Count];
         for (int i = 0; i < mButtons.Count; i++)
         {
             object[] piece = new object[2];
 
-            if (mButtons[i] == roleSelected)
-            {
-                bool roleChosen = mButtons[i].interactable;
-
-                piece[0] = roleChosen;
-                piece[1] = PhotonNetwork.NickName;
-            }
-            else
-            {
 
                 bool roleChosen = mButtons[i].interactable;
 
@@ -141,18 +176,11 @@ public class RolesManager : MonoBehaviourPunCallbacks, IOnEventCallback
                 string s = (string)mButtons[i].transform.GetChild(1).GetComponent<TMP_Text>().text.ToString();
                 piece[1] = s;
 
-            }
-
-
-
             package[i] = piece;
-        }
-        
+        }     
        
             PhotonNetwork.RaiseEvent(
-            (byte)EventCodes.Dropdownupdate, package, new RaiseEventOptions { Receivers = ReceiverGroup.All }, new SendOptions { Reliability = true });
-
-        
+            (byte)EventCodes.PlayerAction, package, new RaiseEventOptions { Receivers = ReceiverGroup.All }, new SendOptions { Reliability = true });      
     }
     void ResetRoles()
     {
@@ -186,11 +214,13 @@ public class ButtonInfo
 {
     public bool isInteractable;
     public string playerName;
-
+    public int index;
+    public int preIndex;
     public ButtonInfo(string playerName, bool isInteractable)  
     {
         this.isInteractable = isInteractable;
         this.playerName = playerName;
+
      
     }
 }
