@@ -32,19 +32,19 @@ public class PlayerSpawner : MonoBehaviour
    void SpawnPlayer(string playerType )
     {
         Transform spawnPoint = SpawnManager.instance.GetRandomPosition();
-        playerType.ToLower();
+        Debug.Log(playerType);
         switch (playerType)
         {
-            case "chef":
+            case "Chef":
                 player = PhotonNetwork.Instantiate(chef.name, spawnPoint.position, spawnPoint.rotation);
                 break;
-            case "watchmen":
+            case "Watchmen":
                 player = PhotonNetwork.Instantiate(watchmen.name, spawnPoint.position, spawnPoint.rotation);
                 break;
-            case "gatherer":
+            case "Gatherer":
                 player = PhotonNetwork.Instantiate(gatherer.name, spawnPoint.position, spawnPoint.rotation);
                 break;
-            case "builder":
+            case "Builder":
                 player = PhotonNetwork.Instantiate(builder.name, spawnPoint.position, spawnPoint.rotation);
                 break;
 

@@ -38,8 +38,7 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     public GameObject roomTestButton;
 
-
-   
+    public TMP_Text playersAmount;
 
 
     public string levelToPlay;
@@ -114,6 +113,8 @@ public class Launcher : MonoBehaviourPunCallbacks
     }
     public override void OnJoinedRoom()
     {
+        playersAmount.text = PhotonNetwork.PlayerList.Length.ToString()+"/"+4 +" Players";
+
         base.OnLeftRoom();
         CloseMenus();
         roomScreen.SetActive(true );
@@ -151,11 +152,14 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
+        playersAmount.text = PhotonNetwork.PlayerList.Length.ToString() + "/" + 4 + " Players";
 
         ListAllPlayers();
     }
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
+        playersAmount.text = PhotonNetwork.PlayerList.Length.ToString() + "/" + 4 + " Players";
+
         ListAllPlayers();
     }
     public override void OnCreateRoomFailed(short returnCode, string message)

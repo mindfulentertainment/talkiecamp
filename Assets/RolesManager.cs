@@ -9,8 +9,11 @@ using UnityEngine.UI;
 public class RolesManager : MonoBehaviourPunCallbacks, IOnEventCallback
 {
     private Button roleChosen;
+    public Button startGame;
+    private float roles;
     public override void OnEnable()
     {
+        startGame.interactable = false;
         PhotonNetwork.AddCallbackTarget(this);
         if (PhotonNetwork.IsMasterClient)
         {
@@ -92,7 +95,9 @@ public class RolesManager : MonoBehaviourPunCallbacks, IOnEventCallback
 
 
         }
-        
+        CheckRoles();
+
+
     }
 
    
@@ -159,7 +164,22 @@ public class RolesManager : MonoBehaviourPunCallbacks, IOnEventCallback
         
     }
    
-    
+    void CheckRoles()
+    {
+        roles = 0;
+        foreach(var item in mButtons)
+        {
+            if (item.interactable==false)
+            {
+                roles++;
+            }
+            
+        }
+        if (roles == 1)
+        {
+            startGame.interactable = true;
+        }
+    }
 }
 [System.Serializable]
 public class ButtonInfo

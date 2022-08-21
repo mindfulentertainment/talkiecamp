@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 4576411378802999711}
   - component: {fileID: 6938229923327308325}
   m_Layer: 0
-  m_Name: Collector
+  m_Name: Gatherer
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
