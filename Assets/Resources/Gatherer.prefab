@@ -543,7 +543,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8165857363173139245}
   - component: {fileID: 4291794654664249992}
-  - component: {fileID: 484911500780352385}
+  - component: {fileID: 2010583981922275951}
+  - component: {fileID: 1274309185918329384}
+  - component: {fileID: 1348385235252650089}
   m_Layer: 0
   m_Name: GrabSlot
   m_TagString: Untagged
@@ -579,7 +581,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.5
   m_Center: {x: 0, y: 0, z: -0.3}
---- !u!114 &484911500780352385
+--- !u!114 &2010583981922275951
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -588,7 +590,46 @@ MonoBehaviour:
   m_GameObject: {fileID: 7043660603019707309}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d367c16e2e3e02f4f9653fae200c57df, type: 3}
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 1274309185918329384}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &1274309185918329384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7043660603019707309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
+--- !u!114 &1348385235252650089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7043660603019707309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 608a0701e3995364d9a6141731bdabba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerPivot: {fileID: 0}
