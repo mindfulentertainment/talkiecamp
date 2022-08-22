@@ -5,52 +5,31 @@ using Photon.Pun;
 
 public class PlayerController : MonoBehaviourPunCallbacks
 {
-    private Camera m_Camera;
-    public Transform viewPoint;
-    public float mouseSentitivity = 1f;
-    private float verticalRotStore;
-    private Vector2 mouseInput;
-    private Vector3 movDir;
-    private Vector3 direction;
-    public float moveSpeed;
-    public float runSpeed;
-    private float activeSpeed;
-    private CharacterController characterController;
-
-    public float JumpForce = 12f;
+    protected Camera m_Camera;
+    protected Vector3 direction;
+    protected CharacterController characterController;
     public float gravityMod;
-
     public Transform groundCheckPoint;
-    private bool isGrounded;
+    protected bool isGrounded;
     public LayerMask groundLayers;
-
-    public GameObject characterModel;
-
-
-    private Joystick joystick;
 
     public float speed;
     public float smoothTurnTime;
+    protected float smoothTurnVelocity;
 
-    private float smoothTurnVelocity;
+    protected Joystick joystick;
 
-    private void Awake()
+
+
+    protected void Awake()
     {
         characterController = GetComponent<CharacterController>();
         m_Camera = Camera.main;
         joystick = UIController.instance.joystick;
     }
-    private void Start()
-    {
 
-        if (photonView.IsMine)
-        {
-            characterModel.SetActive(false);
-        }
-        
-    }
 
-    private void Update()
+    protected void Update()
     {
         if (photonView.IsMine)
         {
@@ -88,16 +67,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
         }
     }
-        private void LateUpdate()
-    {
-        //if (photonView.IsMine)
-        //{
-        //    m_Camera.transform.position = viewPoint.position;
-        //    m_Camera.transform.rotation = viewPoint.rotation;
-        //}
-
-
-    }
-   
+    
 
 }

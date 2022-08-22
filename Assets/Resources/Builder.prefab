@@ -258,10 +258,11 @@ GameObject:
   - component: {fileID: 3680391375702943387}
   - component: {fileID: 3680391375702943384}
   - component: {fileID: 3680391375702943385}
-  - component: {fileID: 3680391375702943381}
   - component: {fileID: 3680391375702943380}
   - component: {fileID: 4576411378802999711}
+  - component: {fileID: 6659902601662376012}
   - component: {fileID: 6938229923327308325}
+  - component: {fileID: 859951311445383281}
   m_Layer: 0
   m_Name: Builder
   m_TagString: Player
@@ -355,31 +356,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3680391375702943381
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3680391375702943390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 909a82c36bc64d84a8ccc84bd1bf62e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  viewPoint: {fileID: 3680391375130324007}
-  mouseSentitivity: 1
-  moveSpeed: 7
-  runSpeed: 16
-  JumpForce: 12
-  gravityMod: 2.5
-  groundCheckPoint: {fileID: 3680391375971635016}
-  groundLayers:
-    serializedVersion: 2
-    m_Bits: 64
-  characterModel: {fileID: 2572876992269325434}
-  speed: 4
-  smoothTurnTime: 0.1
 --- !u!143 &3680391375702943380
 CharacterController:
   m_ObjectHideFlags: 0
@@ -421,6 +397,25 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &6659902601662376012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3680391375702943390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d49540ea201e3664b9fe9592c5018ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityMod: 2.5
+  groundCheckPoint: {fileID: 3680391375971635016}
+  groundLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  speed: 4
+  smoothTurnTime: 0.1
 --- !u!114 &6938229923327308325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,6 +432,19 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!135 &859951311445383281
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3680391375702943390}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.14
+  m_Center: {x: 0, y: -0.05, z: 0.68}
 --- !u!1 &3680391375971635017
 GameObject:
   m_ObjectHideFlags: 0
