@@ -24,9 +24,22 @@ public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
-        Debug.Log("Left");
+        for (int i = 0; i < allPlayers.Count; i++)
+        {
+            if (allPlayers[i].name == otherPlayer.NickName)
+            {
+                allPlayers.RemoveAt(i);
+            }
+        }    
     }
-
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        UIController.instance.ScreenON();
+        if (PhotonNetwork.IsMasterClient)
+        {
+            StartCoroutine(LoadData());
+        }
+    }
 
     private void Awake()
     {
@@ -49,7 +62,8 @@ public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
         }
         else
         {
-            NewPlayerSend(PhotonNetwork.NickName);
+            StartCoroutine(NewPlayerSend(PhotonNetwork.NickName));
+           
         }
 
 
@@ -92,6 +106,10 @@ public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
     public override void OnLeftRoom()
     {
         base.OnLeftRoom();
+        if (PlayerPrefs.HasKey("role"))
+            {
+            PlayerPrefs.DeleteKey("role");
+        }
         SceneManager.LoadScene(0);
     }
 
@@ -113,12 +131,14 @@ public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
         OnGameStart?.Invoke();
     }
 
-    public void NewPlayerSend(string username)
+    IEnumerator NewPlayerSend(string username)
     {
+
+        yield return new WaitForSeconds(0.1f);
         object[] package = new object[4];
         package[0] = username;
         package[1] = PhotonNetwork.LocalPlayer.ActorNumber;
-        package[2] = 0;
+        package[2] = PlayerPrefs.GetString("role");
         package[3] = 0;
 
         PhotonNetwork.RaiseEvent(
@@ -131,7 +151,7 @@ public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
     }
     public void NewPlayerReceive(object[] dataRecived)
     {
-        PlayerInfo player = new PlayerInfo((string)dataRecived[0], (int)dataRecived[1], (int)dataRecived[2], (int)dataRecived[3]);
+        PlayerInfo player = new PlayerInfo((string)dataRecived[0], (int)dataRecived[1], (string)dataRecived[2], (int)dataRecived[3]);
         allPlayers.Add(player);
         ListPlayersSend();
     }
@@ -144,7 +164,7 @@ public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
 
             piece[0] = allPlayers[i].name;
             piece[1] = allPlayers[i].actor;
-            piece[2] = allPlayers[i].kills;
+            piece[2] = allPlayers[i].role;
             piece[3] = allPlayers[i].deaths;
 
             package[i]= piece;
@@ -159,7 +179,7 @@ public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
         for (int i = 0;i < dataRecived.Length;i++)
         {
             object[] piece = (object[])dataRecived[i];
-            PlayerInfo player = new PlayerInfo((string)piece[0], (int)piece[1], (int)piece[2], (int)piece[3]);
+            PlayerInfo player = new PlayerInfo((string)piece[0], (int)piece[1], (string)piece[2], (int)piece[3]);
             allPlayers.Add(player);
 
             if (PhotonNetwork.LocalPlayer.ActorNumber == player.actor)
@@ -171,7 +191,7 @@ public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
 
     IEnumerator LoadData()
     {
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(1);
         StateManager.Instance.LoadData();
 
     }
@@ -187,14 +207,14 @@ public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
     [System.Serializable]   
     public class PlayerInfo
     {
-        public string name;
-        public int actor, kills, deaths;
+        public string name, role;
+        public int actor, deaths;
 
-        public PlayerInfo(string name,  int actor, int kills, int deaths)
+        public PlayerInfo(string name,  int actor, string role, int deaths)
         {
             this.name = name;
             this.actor = actor;
-            this.kills = kills;
+            this.role = role;
             this.deaths = deaths;
         }
     }

@@ -44,11 +44,14 @@ public class UIController : MonoBehaviour
         MatchManager.OnGameStart -= ScreenOFF;
 
     }
+    public void ScreenON()
+    {
+        LoadingScreen.SetActive(true);
 
+    }
     void ScreenOFF()
     {
         LoadingScreen.SetActive(false);
-        MatchManager.OnGameStart -= ScreenOFF;
 
     }
     void Start()

@@ -45,6 +45,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     public string levelToPlay;
     private void Start()
     {
+
         CloseMenus();
         loadingScreen.SetActive(true);
         loadingText.text = "Finding the land...";
@@ -58,7 +59,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         CloseMenus();
-
+        PlayerPrefs.DeleteKey("role");
         PhotonNetwork.JoinLobby();
         PhotonNetwork.AutomaticallySyncScene = true;
         loadingText.text = "Joining the land...";
@@ -171,12 +172,22 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
+        if (newPlayer.IsLocal)
+        {
+            PlayerPrefs.DeleteKey("role");
+
+        }
         playersAmount.text = PhotonNetwork.PlayerList.Length.ToString() + "/" + 4 + " Players";
 
         ListAllPlayers();
     }
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
+        if (otherPlayer.IsLocal)
+        {
+            PlayerPrefs.DeleteKey("role");
+
+        }
         playersAmount.text = PhotonNetwork.PlayerList.Length.ToString() + "/" + 4 + " Players";
 
         ListAllPlayers();

@@ -18,9 +18,28 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    public Transform GetRandomPosition()
+    public Transform GetRolePosition()
     {
-        Transform newTras = spawnTransform[Random.Range(0, spawnTransform.Length)];
+        string role = PlayerPrefs.GetString("role");
+        Transform newTras;
+
+        switch (role)
+        {
+            case "Chef":
+                newTras = spawnTransform[0];
+                break;
+            case "Watchmen":
+                newTras = spawnTransform[1];
+                break;
+            case "Builder":
+                newTras = spawnTransform[2];
+                break;
+            case "Gatherer":
+                newTras = spawnTransform[3];
+                break;
+            default: newTras = spawnTransform[0]; break;
+
+        }
         return newTras;
     }
    

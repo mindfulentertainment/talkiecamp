@@ -14,7 +14,7 @@ public class PlayerSpawner : MonoBehaviour
     public GameObject watchmen;
     public GameObject gatherer;
     public GameObject builder;
-
+    private List<string> roles = new List<string>() { "Builder", "Gatherer", "Watchmen", "Chef" };
 
 
     private GameObject player;
@@ -25,13 +25,20 @@ public class PlayerSpawner : MonoBehaviour
     {
         if (PhotonNetwork.IsConnected)
         {
-            SpawnPlayer(PlayerPrefs.GetString("role"));
+            if (PlayerPrefs.HasKey("role"))
+            {
+                SpawnPlayer(PlayerPrefs.GetString("role"));
+            }
+            else
+            {
+                StartCoroutine(SetPlayerRandomRole());
+            }
         }
     }
 
    void SpawnPlayer(string playerType )
     {
-        Transform spawnPoint = SpawnManager.instance.GetRandomPosition();
+        Transform spawnPoint = SpawnManager.instance.GetRolePosition();
         Debug.Log(playerType);
         switch (playerType)
         {
@@ -51,5 +58,27 @@ public class PlayerSpawner : MonoBehaviour
         }
     }
 
+    IEnumerator SetPlayerRandomRole()
+    {
+        yield return new WaitForSeconds(0.5f);
+        for (int i = 0; i < MatchManager.instance.allPlayers.Count; i++)
+        {
+            for (int j = 0; j < roles.Count; j++)
+            {
+                if (MatchManager.instance.allPlayers[i].role == roles[j])
+                {
+                    Debug.Log(roles[j]);
+                    roles.RemoveAt(j);
+                    
+                }
+            }
+        }
+           Debug.Log(string.Join(", ", roles));
+        string newRole =roles[Random.Range(0, roles.Count)];
+        Debug.Log(newRole);
+        PlayerPrefs.SetString("role", newRole);
+        SpawnPlayer(newRole);
+
+    }
 
 }
