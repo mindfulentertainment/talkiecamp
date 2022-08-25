@@ -98,6 +98,7 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     public void OpenRoomCreate()
     {
+        PlayerPrefs.DeleteKey("role");
         CloseMenus();
         createRoomScreen.SetActive(true);
     }
@@ -225,6 +226,7 @@ public class Launcher : MonoBehaviourPunCallbacks
    
     public void OpenRoomBrowser()
     {
+        PlayerPrefs.DeleteKey("role");
         CloseMenus();
         roomBrowserScreen.SetActive(true);
     }
