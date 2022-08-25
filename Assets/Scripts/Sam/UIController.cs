@@ -7,6 +7,8 @@ using TMPro;
 public class UIController : MonoBehaviour
 {
     public static UIController instance;
+    public GameObject LoadingScreen;
+
     public Joystick joystick;
     private string role;
     public TMP_Text roleText;
@@ -16,6 +18,13 @@ public class UIController : MonoBehaviour
     public GameObject watchmenUI;
     public GameObject gathererUI;
 
+
+    [Header("Resources")]
+    public TMP_Text meatAmount;
+    public TMP_Text stoneAmount;
+    public TMP_Text woodAmount;
+    public TMP_Text concreteAmount;
+
     [Header("Builder")]
     public GameObject storeButton;
     public GameObject buildingsUI;
@@ -23,8 +32,26 @@ public class UIController : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        LoadingScreen.SetActive(true);
     }
-   void Start()
+
+    private void OnEnable()
+    {
+        MatchManager.OnGameStart += ScreenOFF;
+    }
+    private void OnDisable()
+    {
+        MatchManager.OnGameStart -= ScreenOFF;
+
+    }
+
+    void ScreenOFF()
+    {
+        LoadingScreen.SetActive(false);
+        MatchManager.OnGameStart -= ScreenOFF;
+
+    }
+    void Start()
     {
         role = PlayerPrefs.GetString("role");
         roleText.text = role;
@@ -43,5 +70,13 @@ public class UIController : MonoBehaviour
                 gathererUI.SetActive(true);
                 break;
         }
+    }
+
+    public void ChangeResources(Resource resource)
+    {
+        meatAmount.text = "Meat "+ resource.meat.ToString();
+        stoneAmount.text = "Stone " + resource.stone.ToString();
+        woodAmount.text = "Wood "+ resource.wood.ToString();
+        concreteAmount.text = "Concrete " + resource.concrete.ToString();
     }
 }

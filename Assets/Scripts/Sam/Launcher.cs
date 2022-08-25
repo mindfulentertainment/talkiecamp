@@ -5,6 +5,7 @@ using Photon.Pun;
 using TMPro;
 using Photon.Realtime;
 using ExitGames.Client.Photon;
+using UnityEngine.SceneManagement;
 
 public class Launcher : MonoBehaviourPunCallbacks
 {
@@ -68,6 +69,7 @@ public class Launcher : MonoBehaviourPunCallbacks
         CloseMenus();
         menuButtons.SetActive(true);
         PhotonNetwork.NickName=Random.Range(0, 1000f).ToString();
+        hasNickName=PlayerPrefs.HasKey("playerName");
         if (!hasNickName)
         {
             nameInputScreen.SetActive(true);
@@ -103,11 +105,25 @@ public class Launcher : MonoBehaviourPunCallbacks
         if (!string.IsNullOrEmpty(roomNameInput.text)) {
 
             RoomOptions options =new RoomOptions();
-            options.MaxPlayers = 8;
+            options.MaxPlayers = 4;
 
             PhotonNetwork.CreateRoom(roomNameInput.text,options);
             CloseMenus();
             loadingText.text = "Creating camp...";
+            loadingScreen.SetActive(true);
+        }
+    }
+    public void JoinOwnRoom(CampButton campButton)
+    {
+        if (!string.IsNullOrEmpty(campButton.campName.text))
+        {
+            
+            RoomOptions options = new RoomOptions();
+            options.MaxPlayers = 4;
+
+            PhotonNetwork.CreateRoom(campButton.campName.text, options);
+            CloseMenus();
+            loadingText.text = "Loading " + campButton.campName.text;
             loadingScreen.SetActive(true);
         }
     }
@@ -118,6 +134,9 @@ public class Launcher : MonoBehaviourPunCallbacks
         base.OnLeftRoom();
         CloseMenus();
         roomScreen.SetActive(true );
+        string path = "/resources" + PhotonNetwork.CurrentRoom.Name + ".json";
+        PlayerPrefs.SetString("resources",path);
+
         roomRoomText.text = PhotonNetwork.CurrentRoom.Name;
         ListAllPlayers();
 
@@ -187,6 +206,8 @@ public class Launcher : MonoBehaviourPunCallbacks
     public override void OnLeftRoom()
     {
         base.OnLeftRoom();
+
+        SceneManager.LoadScene(0);
         CloseMenus();
         menuButtons.SetActive(true) ;
     }
@@ -255,14 +276,8 @@ public class Launcher : MonoBehaviourPunCallbacks
     }
     public override void OnMasterClientSwitched(Player newMasterClient)
     {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            startButton.SetActive(true);
-        }
-        else
-        {
-            startButton.SetActive(false);
-        }
+        PhotonNetwork.AutomaticallySyncScene = false;
+        PhotonNetwork.LeaveRoom();
     }
     public void QuickJoin()
     {

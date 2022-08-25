@@ -266,17 +266,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 909a82c36bc64d84a8ccc84bd1bf62e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewPoint: {fileID: 3680391375130324007}
-  mouseSentitivity: 1
-  moveSpeed: 7
-  runSpeed: 14
-  JumpForce: 12
   gravityMod: 2.5
   groundCheckPoint: {fileID: 3680391375971635016}
   groundLayers:
     serializedVersion: 2
     m_Bits: 64
-  characterModel: {fileID: 2572876992269325434}
   speed: 5
   smoothTurnTime: 0.1
 --- !u!143 &3680391375702943380

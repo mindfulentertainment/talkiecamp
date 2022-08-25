@@ -5,21 +5,27 @@ using Photon.Pun;
 using UnityEngine.SceneManagement;
 using Photon.Realtime;
 using ExitGames.Client.Photon;
-
+using System;
+using Newtonsoft.Json;
+using UnityEngine.SceneManagement;
 public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
 {
     public static MatchManager instance;
-
+    public static Action OnGameStart;
     public enum EventCodes : byte
     {
         NewPlayer,
-        ListPlayers
+        ListPlayers,
+        UpdateResources
         
     }
     public List<PlayerInfo> allPlayers = new List<PlayerInfo>();
     private int index;
 
-
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        Debug.Log("Left");
+    }
 
 
     private void Awake()
@@ -30,6 +36,13 @@ public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
 
     void Start()
     {
+        StateManager.Instance.OnResourcesLoad.AddListener(SendResourcesInfo);
+
+        if (PhotonNetwork.IsMasterClient)
+        {
+            StartCoroutine(LoadData());
+        }
+
         if (!PhotonNetwork.IsConnected)
         {
             SceneManager.LoadScene(0);
@@ -67,10 +80,37 @@ public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
                 case EventCodes.ListPlayers:
                     ListPlayersReceive(data);
                     break ;
-              
+
+                case EventCodes.UpdateResources:
+                    ResourcesReceive(data);
+                    break;
 
             }
         }
+    }
+
+    public override void OnLeftRoom()
+    {
+        base.OnLeftRoom();
+        SceneManager.LoadScene(0);
+    }
+
+    public void SendResourcesInfo(Resource resource)
+    {
+        string json = JsonConvert.SerializeObject(resource);
+        object[] package = new object[1];
+        package[0] = json;
+
+        PhotonNetwork.RaiseEvent(
+            (byte)EventCodes.UpdateResources, package, new RaiseEventOptions { Receivers = ReceiverGroup.All }, new SendOptions { Reliability = true });
+    }
+
+    public void ResourcesReceive(object[] dataRecived)
+    {
+        string data = (string)dataRecived[0];
+        Resource resource = JsonConvert.DeserializeObject<Resource>(data);
+        UIController.instance.ChangeResources(resource);
+        OnGameStart?.Invoke();
     }
 
     public void NewPlayerSend(string username)
@@ -83,6 +123,11 @@ public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
 
         PhotonNetwork.RaiseEvent(
             (byte)EventCodes.NewPlayer,package,new RaiseEventOptions { Receivers = ReceiverGroup.MasterClient },new SendOptions {Reliability=true });
+    }
+    public override void OnMasterClientSwitched(Player newMasterClient)
+    {
+        PhotonNetwork.AutomaticallySyncScene = false;
+        PhotonNetwork.LeaveRoom();
     }
     public void NewPlayerReceive(object[] dataRecived)
     {
@@ -123,9 +168,20 @@ public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
             }
         }
     }
-  
- 
-   
+
+    IEnumerator LoadData()
+    {
+        yield return new WaitForEndOfFrame();
+        StateManager.Instance.LoadData();
+
+    }
+
+    public void GoToMenu()
+    {
+        PhotonNetwork.AutomaticallySyncScene = false;
+        PhotonNetwork.LeaveRoom();
+    }
+
 }
 
     [System.Serializable]   
