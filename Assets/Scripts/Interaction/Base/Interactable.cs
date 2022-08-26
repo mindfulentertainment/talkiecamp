@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class Interactable : MonoBehaviour
+public class Interactable : MonoBehaviourPunCallbacks
 {
-   public virtual void OnInteraction()
+    [PunRPC]
+    public virtual void OnInteraction()
     {
         Debug.Log("Interaction");
     }

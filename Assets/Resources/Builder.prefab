@@ -263,6 +263,7 @@ GameObject:
   - component: {fileID: 6659902601662376012}
   - component: {fileID: 6938229923327308325}
   - component: {fileID: 859951311445383281}
+  - component: {fileID: 3917159350395099173}
   m_Layer: 0
   m_Name: Builder
   m_TagString: Player
@@ -445,6 +446,24 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 2.14
   m_Center: {x: 0, y: -0.05, z: 0.68}
+--- !u!114 &3917159350395099173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3680391375702943390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33029150a272139489c3ed0c90ed5e4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDistance: 3
+  InteractionLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  playerPos: {fileID: 3680391375702943390}
+  distance: 0
 --- !u!1 &3680391375971635017
 GameObject:
   m_ObjectHideFlags: 0

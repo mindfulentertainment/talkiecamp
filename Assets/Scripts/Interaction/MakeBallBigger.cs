@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class MakeBallBigger : Interactable
 {
-   
-
+    [PunRPC]
     public override void OnInteraction()
     {
         //Material material = GetComponent<Material>();
