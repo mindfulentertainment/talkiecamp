@@ -18,7 +18,6 @@ public class PlayerMovement : MonoBehaviour
         float vertical = joystick.Vertical;
 
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
-        direction.y += Physics.gravity.y * Time.deltaTime;
 
         if (direction.magnitude >= 0.1f)
         {
@@ -27,6 +26,5 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
             characterController.Move(direction * speed * Time.deltaTime);
         }
-
     }
 }
