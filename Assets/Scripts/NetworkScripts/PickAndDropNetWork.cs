@@ -85,9 +85,9 @@ public class PickAndDropNetWork : MonoBehaviourPunCallbacks
     }
     private void PickItem(PickableItem item)
     {
-        item.Rb.isKinematic = true;
-        item.Rb.velocity = Vector3.zero;
-        item.Rb.angularVelocity = Vector3.zero;
+        //item.Rb.isKinematic = true;
+        //item.Rb.velocity = Vector3.zero;
+        //item.Rb.angularVelocity = Vector3.zero;
 
         item.transform.SetParent(slot);
 
@@ -99,9 +99,9 @@ public class PickAndDropNetWork : MonoBehaviourPunCallbacks
     {
         item.transform.SetParent(null);
 
-        item.Rb.isKinematic = false;
+        //item.Rb.isKinematic = false;
 
-        item.Rb.AddForce(item.transform.forward * 2, ForceMode.VelocityChange);
+        //item.Rb.AddForce(item.transform.forward * 2, ForceMode.VelocityChange);
     }
 
     private PickableItem TryGetClosestInteractable()
