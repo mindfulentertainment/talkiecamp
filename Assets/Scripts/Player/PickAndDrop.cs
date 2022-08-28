@@ -1,13 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using JetBrains.Annotations;
 
 public class PickAndDrop : MonoBehaviour
 {
     [SerializeField] private Transform playerPivot;
-    [SerializeField] private Transform slot;
-    private PickableItem currentPickable;
-    private readonly HashSet<PickableItem> pickables = new HashSet<PickableItem>();
+    private readonly HashSet<SnapZone> snapZones = new HashSet<SnapZone>();
 
     private void Awake()
     {
@@ -17,92 +16,59 @@ public class PickAndDrop : MonoBehaviour
         }
     }
 
+    [CanBeNull]
+    public SnapZone CurrentSnapZone { get; private set; }
+
     private void OnTriggerEnter(Collider other)
     {
-        PickableItem pickedItem = other.gameObject.GetComponent<PickableItem>();
+        SnapZone snapZone = other.gameObject.GetComponent<SnapZone>();
+        if (!snapZone) return;
 
-        if (!pickedItem)
+        Debug.Log("Aquí hay SnapZone");
+
+        if (snapZones.Contains(snapZone))
         {
+            Debug.LogWarning($"[InteractableController] TriggerEnter on a preexisting collider {other.gameObject.name}");
             return;
         }
-
-        if (pickables.Contains(pickedItem))
-        {
-            Debug.LogWarning($"[PickAndDrop] TriggerEnter on a preexisting collider {other.gameObject.name}");
-            return;
-        }
-
-        pickables.Add(pickedItem);
+        snapZones.Add(snapZone);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        PickableItem pickedItem = other.GetComponent<PickableItem>();
-        if (pickedItem)
+        SnapZone snapZone = other.GetComponent<SnapZone>();
+        if (snapZone)
         {
-            pickables.Remove(pickedItem);
+            snapZones.Remove(snapZone);
         }
     }
 
-    private void Update()
+    public void Remove(SnapZone snapZone)
     {
-        PickableItem closeItem = TryGetClosestInteractable();
-
-        if (Input.GetButtonDown("Jump"))
-        {
-            if (currentPickable == null)
-            {
-                currentPickable = closeItem;
-                if (currentPickable != null)
-                {
-                    PickItem(currentPickable);
-                    pickables.Remove(currentPickable);
-                    return;
-                }
-
-                return;
-            }
-
-            if (closeItem == null || closeItem is PickableItem)
-            {
-                DropItem(currentPickable);
-                currentPickable = null;
-                return;
-            }
-        }
+        snapZones.Remove(snapZone);
     }
 
-    private void PickItem(PickableItem item)
+    private void FixedUpdate()
     {
-        item.Rb.isKinematic = true;
-        item.Rb.velocity = Vector3.zero;
-        item.Rb.angularVelocity = Vector3.zero;
+        SnapZone closest = TryGetClosestInteractable();
 
-        item.transform.SetParent(slot);
+        // nothing has changed
+        if (closest == CurrentSnapZone) { return; }
 
-        item.transform.localPosition = Vector3.zero;
-        item.transform.localEulerAngles = Vector3.zero;
+        // something has changed (maybe null)
+        CurrentSnapZone = closest;
     }
 
-    private void DropItem(PickableItem item)
-    {
-        item.transform.SetParent(null);
-
-        item.Rb.isKinematic = false;
-
-        item.Rb.AddForce(item.transform.forward * 2, ForceMode.VelocityChange);
-    }
-
-    private PickableItem TryGetClosestInteractable()
+    private SnapZone TryGetClosestInteractable()
     {
         var minDistance = float.MaxValue;
-        PickableItem closest = null;
-        foreach (var pickedItem in pickables)
+        SnapZone closest = null;
+        foreach (var snapZone in snapZones)
         {
-            var distance = Vector3.Distance(playerPivot.position, pickedItem.gameObject.transform.position);
+            var distance = Vector3.Distance(playerPivot.position, snapZone.gameObject.transform.position);
             if (distance > minDistance) continue;
             minDistance = distance;
-            closest = pickedItem;
+            closest = snapZone;
         }
 
         return closest;
