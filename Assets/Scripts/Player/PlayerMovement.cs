@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
     [SerializeField] CharacterController characterController;
     [SerializeField] Joystick joystick;
+    [SerializeField] Button pickUpButton;
     public float speed;
     public float smoothTurnTime;
     private float smoothTurnVelocity;
@@ -19,16 +21,12 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         pickAndDrop = GetComponentInChildren<PickAndDrop>();
+        pickUpButton.onClick.AddListener(HandlePickUp);
     }
 
     private void Update()
     {
         Movement();
-
-        if (Input.GetButtonDown("Jump"))
-        {
-            HandlePickUp();
-        }
     }
 
     private void Movement()

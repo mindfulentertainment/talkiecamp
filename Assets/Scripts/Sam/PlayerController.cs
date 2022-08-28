@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 using Photon.Pun;
 
@@ -8,6 +9,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     [Header("Movement")]
     protected CharacterController characterController;
     protected Joystick joystick;
+    protected Button pickBtn;
     public float speed;
     public float smoothTurnTime;
     protected float smoothTurnVelocity;
@@ -31,6 +33,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
         characterController = GetComponent<CharacterController>();
         m_Camera = Camera.main;
         joystick = UIController.instance.joystick;
+        pickBtn = UIController.instance.pickBtn;
+        pickBtn.onClick.AddListener(HandleButton);
     }
 
     private void Update()
@@ -38,11 +42,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
         if (photonView.IsMine)
         {
             Movement();
-
-            if (Input.GetButtonDown("Jump"))
-            {
-                photonView.RPC("HandlePickUp", RpcTarget.All);
-            }
         }
     }
 
@@ -72,6 +71,12 @@ public class PlayerController : MonoBehaviourPunCallbacks
             characterController.Move(direction * speed * Time.deltaTime);
         }
     }
+
+    private void HandleButton()
+    {
+        photonView.RPC("HandlePickUp", RpcTarget.All);
+    }
+
     [PunRPC]
     public virtual void HandlePickUp()
     {

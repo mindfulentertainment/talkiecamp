@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -33,6 +35,15 @@ public class PickableItem : SnapZone, IPickable
         gameObject.transform.SetParent(null);
         rb.isKinematic = false;
         collider.enabled = true;
+
+        StartCoroutine(KinematicDisable());
+    }
+
+    IEnumerator KinematicDisable()
+    {
+        yield return new WaitForSeconds(1.5f);
+
+        rb.isKinematic = true;
     }
 
     public override bool TryToDropIntoSlot(IPickable pickableToDrop)

@@ -10,6 +10,7 @@ public class UIController : MonoBehaviour
     public GameObject LoadingScreen;
 
     public Joystick joystick;
+    public Button pickBtn;
     private string role;
     public TMP_Text roleText;
 
