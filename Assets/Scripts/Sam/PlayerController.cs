@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
             if (Input.GetButtonDown("Jump"))
             {
-                HandlePickUp();
+                photonView.RPC("HandlePickUp", RpcTarget.All);
             }
         }
     }
@@ -72,8 +72,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
             characterController.Move(direction * speed * Time.deltaTime);
         }
     }
-
-    private void HandlePickUp()
+    [PunRPC]
+    public virtual void HandlePickUp()
     {
         var snapZone = pickAndDropNetWork.CurrentSnapZone;
 
