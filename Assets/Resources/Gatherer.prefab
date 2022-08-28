@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4364798581011278327}
   - component: {fileID: 4107989865090466517}
   - component: {fileID: 4805144336521266467}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: er
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3202146270564424292}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3680391375130324007}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ViewPoint
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -161,7 +161,9 @@ GameObject:
   - component: {fileID: 3680391375702943380}
   - component: {fileID: 4576411378802999711}
   - component: {fileID: 6938229923327308325}
-  m_Layer: 0
+  - component: {fileID: 5109504661103796118}
+  - component: {fileID: 8827289013043625243}
+  m_Layer: 2
   m_Name: Gatherer
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -271,6 +273,7 @@ MonoBehaviour:
   groundLayers:
     serializedVersion: 2
     m_Bits: 64
+  role: Gatherer
   speed: 5
   smoothTurnTime: 0.1
 --- !u!143 &3680391375702943380
@@ -330,6 +333,33 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &5109504661103796118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3680391375702943390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33029150a272139489c3ed0c90ed5e4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDistance: 3
+  distance: 0
+--- !u!135 &8827289013043625243
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3680391375702943390}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.14
+  m_Center: {x: 0, y: -0.05, z: 0.68}
 --- !u!1 &3680391375971635017
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,7 +369,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3680391375971635016}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -372,7 +402,7 @@ GameObject:
   - component: {fileID: 3680391376018546869}
   - component: {fileID: 3680391376018546870}
   - component: {fileID: 3680391376018546871}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -455,7 +485,7 @@ GameObject:
   - component: {fileID: 3272784828590820451}
   - component: {fileID: 6851099134189002528}
   - component: {fileID: 5867600327487613874}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: w
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -540,7 +570,7 @@ GameObject:
   - component: {fileID: 2010583981922275951}
   - component: {fileID: 1274309185918329384}
   - component: {fileID: 1348385235252650089}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GrabSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}

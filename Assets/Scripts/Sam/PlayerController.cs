@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     public Transform groundCheckPoint;
     protected bool isGrounded;
     public LayerMask groundLayers;
-
+    public string role;  
     public float speed;
     public float smoothTurnTime;
     protected float smoothTurnVelocity;
@@ -67,6 +67,41 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
         }
     }
-    
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+        
+        if (other.gameObject.CompareTag("Store"))
+        {
+            if (photonView.IsMine)
+            {
+                if (LayerMask.LayerToName(other.gameObject.layer) == role)
+                {
+                    UIController.instance.storeButton.SetActive(true);
+                }
+                else
+                {
+                    string message = "Only " + LayerMask.LayerToName(other.gameObject.layer) + " can interact with this, tell him!!";
+
+                    UIController.instance.ShowCaption(message);
+
+                }
+            }
+            
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Store"))
+        {
+            if (photonView.IsMine)
+            {
+                UIController.instance.storeButton.SetActive(false);
+                UIController.instance.HideCaption();
+            }
+        }
+    }
+
 
 }

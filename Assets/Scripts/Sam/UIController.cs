@@ -19,6 +19,12 @@ public class UIController : MonoBehaviour
     public GameObject gathererUI;
 
 
+    [Header("Message")]
+    public GameObject messageScreen;
+    public TMP_Text message;
+    public TMP_Text caption;
+    Coroutine fade;
+
     [Header("Resources")]
     public TMP_Text meatAmount;
     public TMP_Text stoneAmount;
@@ -81,5 +87,36 @@ public class UIController : MonoBehaviour
         stoneAmount.text = "Stone " + resource.stone.ToString();
         woodAmount.text = "Wood "+ resource.wood.ToString();
         concreteAmount.text = "Concrete " + resource.concrete.ToString();
+    }
+
+    public void ShowMessage(string message)
+    {
+        this.message.text = message;
+        if (fade != null)
+        {
+            StopCoroutine(fade);
+        }
+        
+        fade=StartCoroutine(FadeScreen(4, messageScreen));
+
+    }
+    IEnumerator FadeScreen(int seconds, GameObject screen)
+    {
+        screen.SetActive(true);
+        yield return new WaitForSeconds(seconds);
+        screen.SetActive(false);
+
+    }
+
+    public void ShowCaption(string message)
+    {
+        caption.text=message;
+        caption.gameObject.SetActive(true);
+    }
+
+    public void HideCaption()
+    {
+        caption.gameObject.SetActive(false);
+
     }
 }

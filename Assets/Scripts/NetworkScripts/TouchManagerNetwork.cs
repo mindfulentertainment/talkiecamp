@@ -8,11 +8,10 @@ public class TouchManagerNetwork : MonoBehaviourPunCallbacks
 
     [Header("Settings for the interaction")]
     [SerializeField] float maxDistance = 3;
-    [SerializeField] LayerMask InteractionLayer;
-    [SerializeField] GameObject playerPos;
+    string role;
+    GameObject player;
     [SerializeField]  float distance;
 
-    private Interactable currentInteractable;
     Ray GenerateTouchRay(Vector3 touchPos)
     {
         // calculamos  el  ray  desde el punto mas cercano a la camara hasta el mas lejano 
@@ -28,8 +27,12 @@ public class TouchManagerNetwork : MonoBehaviourPunCallbacks
         Debug.DrawRay(touchposN, touchposF - touchposN, Color.green);
         return touchRay;
     }
+    private void Awake()
+    {
+        player = this.gameObject;
+        role =this.gameObject.GetComponent<PlayerController>().role;
+    }
 
-    
     void Update()
     {
 
@@ -43,25 +46,34 @@ public class TouchManagerNetwork : MonoBehaviourPunCallbacks
                 Ray touchRay = GenerateTouchRay(Input.mousePosition);
                 RaycastHit hit;
 
-                if (Physics.Raycast(touchRay.origin, touchRay.direction, out hit, InteractionLayer))
+                if (Physics.Raycast(touchRay.origin, touchRay.direction, out hit))
                 {
-                     currentInteractable = hit.collider.GetComponent<Interactable>(); // objecto con el que choca el rayo 
+                   
+                    Interactable currentInteractable = hit.collider.GetComponent<Interactable>(); // objecto con el que choca el rayo 
                     if (currentInteractable != null)
                     {
-                        Debug.Log("stuff");
 
-                        distance = Vector3.Distance(playerPos.transform.position, currentInteractable.transform.position); //se calcula la distancia del player y el objeto 
+                        distance = Vector3.Distance(player.transform.position, currentInteractable.transform.position); //se calcula la distancia del player y el objeto 
 
                         // se verifica si la distancia es la requerida 
                         if (distance <= maxDistance)
                         {
-                            Debug.Log(hit.collider.GetComponent<PhotonView>().name);
-                            hit.collider.GetComponent<PhotonView>().RPC("OnInteraction", RpcTarget.All);
+                            if (LayerMask.LayerToName(hit.collider.gameObject.layer) == role)
+                            {
+                                hit.collider.GetComponent<PhotonView>().RPC("OnInteraction", RpcTarget.All);
+
+                            }
+                            else
+                            {
+                                string message ="Only " + LayerMask.LayerToName(hit.collider.gameObject.layer) + " can interact with this, tell him!!";
+                                UIController.instance.ShowMessage(message);
+                            }
+
                         }
-      
-                        else Debug.Log("out of range");
 
                     }
+
+
                 }
             }
         }

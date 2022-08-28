@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1715709224167883102}
   - component: {fileID: 8042506992530970418}
   - component: {fileID: 278922530283748489}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GrabSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3202146270564424292}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,7 +141,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3680391375130324007}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ViewPoint
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -179,7 +179,9 @@ GameObject:
   - component: {fileID: 3680391375702943380}
   - component: {fileID: 4576411378802999711}
   - component: {fileID: 6938229923327308325}
-  m_Layer: 0
+  - component: {fileID: 6467052328759802850}
+  - component: {fileID: 9145084995737171016}
+  m_Layer: 2
   m_Name: Chef
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -289,6 +291,7 @@ MonoBehaviour:
   groundLayers:
     serializedVersion: 2
     m_Bits: 64
+  role: Chef
   speed: 4
   smoothTurnTime: 0.1
 --- !u!143 &3680391375702943380
@@ -348,6 +351,33 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &6467052328759802850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3680391375702943390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33029150a272139489c3ed0c90ed5e4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDistance: 3
+  distance: 0
+--- !u!135 &9145084995737171016
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3680391375702943390}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.14
+  m_Center: {x: 0, y: -0.05, z: 0.68}
 --- !u!1 &3680391375971635017
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,7 +387,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3680391375971635016}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -390,7 +420,7 @@ GameObject:
   - component: {fileID: 3680391376018546869}
   - component: {fileID: 3680391376018546870}
   - component: {fileID: 3680391376018546871}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -473,7 +503,7 @@ GameObject:
   - component: {fileID: 6629364323565254711}
   - component: {fileID: 4251708731911433132}
   - component: {fileID: 8323153752872736506}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -556,7 +586,7 @@ GameObject:
   - component: {fileID: 1421810590344100684}
   - component: {fileID: 2251147258376828146}
   - component: {fileID: 7610550166293306921}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
