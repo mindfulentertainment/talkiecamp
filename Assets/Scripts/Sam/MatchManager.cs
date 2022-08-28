@@ -30,7 +30,7 @@ public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
             {
                 allPlayers.RemoveAt(i);
             }
-        }    
+        }
     }
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {

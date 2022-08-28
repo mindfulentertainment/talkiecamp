@@ -100,7 +100,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPivot: {fileID: 0}
-  slot: {fileID: 6629364323565254711}
 --- !u!1 &2572876992269325434
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,14 +285,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 909a82c36bc64d84a8ccc84bd1bf62e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 4
+  smoothTurnTime: 0.1
+  slot: {fileID: 8096066563384535366}
   gravityMod: 2.5
   groundCheckPoint: {fileID: 3680391375971635016}
   groundLayers:
     serializedVersion: 2
     m_Bits: 64
   role: Chef
-  speed: 4
-  smoothTurnTime: 0.1
 --- !u!143 &3680391375702943380
 CharacterController:
   m_ObjectHideFlags: 0
