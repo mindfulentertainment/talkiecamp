@@ -17,19 +17,8 @@ public class Basket : SnapZone
             if (CurrentPickable.gameObject != null)
             {
                 CurrentPickable.gameObject.TryGetComponent(out element);
-                if (element != null)
-                {
-                    switch (element.type)
-                    {
-                        case Element.ElementType.wood:
-                            DataManager.instance.IncreaseWood(element.GetAmount());
-                            break;
+                DataManager.instance.IncreaseElement(element);
 
-                        case Element.ElementType.stone:
-                            break;
-                    }
-
-                }
                 CurrentPickable.gameObject.transform.SetParent(Slot);
                 CurrentPickable.gameObject.transform.SetPositionAndRotation(Slot.position, Quaternion.identity);
                 CurrentPickable.gameObject.SetActive(false);

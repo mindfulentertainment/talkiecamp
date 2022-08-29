@@ -34,9 +34,24 @@ public class DataManager : MonoBehaviour
         UIController.instance.ChangeResources(resource);
     }
 
-    public void IncreaseWood(int amount)
+    public void IncreaseElement(Element element)
     {
-        resource.wood += amount;
+
+
+        if (element != null)
+        {
+            switch (element.type)
+            {
+                case Element.ElementType.wood:
+                    resource.wood += element.GetAmount();
+
+                    break;
+
+                case Element.ElementType.stone:
+                    break;
+            }
+
+        }
         UIController.instance.ChangeResources(resource);
 
     }
