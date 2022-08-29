@@ -58,10 +58,14 @@ public class PickAndDropNetWork : MonoBehaviourPunCallbacks
         SnapZone closest = null;
         foreach (var snapZone in snapZones)
         {
-            var distance = Vector3.Distance(playerPivot.position, snapZone.gameObject.transform.position);
-            if (distance > minDistance) continue;
-            minDistance = distance;
-            closest = snapZone;
+            if (snapZone != null)
+            {
+                var distance = Vector3.Distance(playerPivot.position, snapZone.gameObject.transform.position);
+                if (distance > minDistance) continue;
+                minDistance = distance;
+                closest = snapZone;
+            }
+           
         }
 
         return closest;

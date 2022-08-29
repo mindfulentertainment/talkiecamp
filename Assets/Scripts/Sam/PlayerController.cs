@@ -77,7 +77,11 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     private void HandleButton()
     {
-        photonView.RPC("HandlePickUp", RpcTarget.All);
+        if (photonView.IsMine)
+        {
+            photonView.RPC("HandlePickUp", RpcTarget.AllBufferedViaServer);
+
+        }
     }
 
     [PunRPC]
@@ -101,8 +105,12 @@ public class PlayerController : MonoBehaviourPunCallbacks
             // SnapZone only (not a IPickable)
             _currentPickable = snapZone?.TryToPickUpFromSlot(_currentPickable);
 
-            _currentPickable?.gameObject.transform.SetPositionAndRotation(slot.position, Quaternion.identity);
-            _currentPickable?.gameObject.transform.SetParent(slot);
+            if (_currentPickable != null)
+            {
+                _currentPickable?.gameObject.transform.SetPositionAndRotation(slot.position, Quaternion.identity);
+                _currentPickable?.gameObject.transform.SetParent(slot);
+            }
+           
             return;
         }
 
@@ -111,9 +119,13 @@ public class PlayerController : MonoBehaviourPunCallbacks
         // no snap zone in range or at most a Pickable in range (we ignore it)
         if (snapZone == null || snapZone is IPickable)
         {
-            _currentPickable.Drop();
-            _currentPickable = null;
-            return;
+            if (_currentPickable != null)
+            {
+                _currentPickable.Drop();
+                _currentPickable = null;
+                return;
+            }
+           
         }
 
         // we carry a pickable and we have an snap zone in range
@@ -123,8 +135,16 @@ public class PlayerController : MonoBehaviourPunCallbacks
         // or simply it already have something on it
         //Debug.Log($"[PlayerController] {_currentPickable.gameObject.name} trying to drop into {interactable.gameObject.name} ");
 
-        bool dropSuccess = snapZone.TryToDropIntoSlot(_currentPickable);
-        if (!dropSuccess) return;
+        if (_currentPickable != null)
+        {
+            if (snapZone != null)
+            {
+                    bool dropSuccess = snapZone.TryToDropIntoSlot(_currentPickable);
+                if (!dropSuccess) return;
+
+            }
+        }
+        
 
         _currentPickable = null;
     }

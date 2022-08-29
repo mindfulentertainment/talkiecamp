@@ -33,4 +33,11 @@ public class DataManager : MonoBehaviour
         resource.bread++;
         UIController.instance.ChangeResources(resource);
     }
+
+    public void IncreaseWood(int amount)
+    {
+        resource.wood += amount;
+        UIController.instance.ChangeResources(resource);
+
+    }
 }
