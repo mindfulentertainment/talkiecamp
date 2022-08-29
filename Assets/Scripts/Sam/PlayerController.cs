@@ -34,7 +34,10 @@ public class PlayerController : MonoBehaviourPunCallbacks
         m_Camera = Camera.main;
         joystick = UIController.instance.joystick;
         pickBtn = UIController.instance.pickBtn;
-        pickBtn.onClick.AddListener(HandleButton);
+        if (photonView.IsMine)
+        {
+            pickBtn.onClick.AddListener(HandleButton);
+        }
     }
 
     private void Update()
