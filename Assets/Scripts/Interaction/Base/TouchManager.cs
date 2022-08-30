@@ -14,7 +14,7 @@ public class TouchManager : MonoBehaviour
     [SerializeField]  float distance;
 
     private Interactable currentInteractable;
-    Ray GenerateTouchRay(Vector3 touchPos)
+    public static Ray GenerateTouchRay(Vector3 touchPos)
     {
         // calculamos  el  ray  desde el punto mas cercano a la camara hasta el mas lejano 
         Vector3 touchposFar = new Vector3(touchPos.x, touchPos.y, Camera.main.farClipPlane);
@@ -43,8 +43,8 @@ public class TouchManager : MonoBehaviour
 
                 if (Physics.Raycast(touchRay.origin, touchRay.direction, out hit, InteractionLayer)){
                      currentInteractable = hit.collider.GetComponent<Interactable>(); // objecto con el que choca el rayo 
-                if (currentInteractable != null)
-                {
+                  if (currentInteractable != null)
+                  {
                     distance = Vector3.Distance(playerPos.transform.position, currentInteractable.transform.position); //se calcula la distancia del player y el objeto 
 
                     // se verifica si la distancia es la requerida 
@@ -52,7 +52,7 @@ public class TouchManager : MonoBehaviour
                         currentInteractable.OnInteraction();
                     else Debug.Log("out of range");
 
-                }
+                  }
                 }
             }
        // }
