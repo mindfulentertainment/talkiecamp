@@ -21,7 +21,11 @@ public class StateManager : MonoBehaviour
     {
         Instance = this;
     }
-   
+    private void Start()
+    {
+        StartCoroutine(SaveDataPeriodically());
+    }
+
     public void SerializeJson()
     {
         string path = PlayerPrefs.GetString("resources");
@@ -52,6 +56,16 @@ public class StateManager : MonoBehaviour
     }
 
 
+    IEnumerator SaveDataPeriodically()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(30);
+            SerializeJson();
+            Debug.Log("Saved");
+
+        }
+    }
     //Initially, there will be three json ---resources.json --buildingsprops.json--- gamestate.json
 }
 

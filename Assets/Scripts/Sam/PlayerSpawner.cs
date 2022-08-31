@@ -81,4 +81,13 @@ public class PlayerSpawner : MonoBehaviour
 
     }
 
+    public void ShowEmoticon(int index)
+    {
+        player.GetComponent<PlayerCallBacks>().Emoticon(index);
+    }
+    void OnGUI()
+    {
+        if (GUI.Button(new Rect(0, 10, 100, 32), "Vibrate!"))
+            Handheld.Vibrate();
+    }
 }
