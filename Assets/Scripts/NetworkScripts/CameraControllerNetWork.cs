@@ -8,9 +8,13 @@ public class CameraControllerNetWork : MonoBehaviourPun
     private Transform target;
     [SerializeField] private float smoothSpeed;
     [SerializeField] private Vector3 offset;
-
+    public static CameraControllerNetWork instance;
     private Vector3 velocity = Vector3.zero;
 
+    private void Awake()
+    {
+        instance = this;
+    }
     private void Start()
     {
         StartCoroutine(GetPlayer());
