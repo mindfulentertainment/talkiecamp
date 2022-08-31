@@ -13,7 +13,7 @@ public class BuildingSystem : MonoBehaviour
     private Grid grid;
     [SerializeField] private Tilemap mainTile;
     [SerializeField] private TileBase selectTile;
-    [SerializeField] LayerMask BuildingZone;
+    
 
     [Header("Buildings ")]
     [SerializeField] GameObject[] buildings;
@@ -25,7 +25,8 @@ public class BuildingSystem : MonoBehaviour
     void Awake()
     {
         currentBuilding = this;
-        grid = gridLayout.gameObject.GetComponent<Grid>();  
+        grid = gridLayout.gameObject.GetComponent<Grid>();
+ 
     }
 
       void Update()
@@ -83,15 +84,7 @@ public class BuildingSystem : MonoBehaviour
 
   
 
-    public static  Vector3 GetMousePosition()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if(Physics.Raycast(ray, out RaycastHit raycastHit))
-        {
-            return raycastHit.point;
-        }
-        else return Vector3.zero;
-    }
+   
 
     public Vector3 SnapCoordinatesToGrid(Vector3 position)
     {
@@ -121,7 +114,7 @@ public class BuildingSystem : MonoBehaviour
         
             GameObject obj = Instantiate(prefab, positon, Quaternion.identity);
             objectoToPlace = obj.GetComponent<PlaceableObject>();
-            obj.AddComponent<ObjectDrag>();
+           // obj.AddComponent<ObjectDrag>();
         
     }
 

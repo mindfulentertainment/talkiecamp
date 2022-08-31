@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6900410752407605467}
   - component: {fileID: 7281984649806106480}
   - component: {fileID: 6707038988876681693}
-  - component: {fileID: 4327272884779051738}
+  - component: {fileID: 5575691245422520180}
   m_Layer: 0
   m_Name: Building
   m_TagString: Placed
@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aced4df9ab02c8489efe01d371102ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4327272884779051738
+--- !u!114 &5575691245422520180
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -69,9 +69,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4275863515306918488}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ae247c36bf31c44cb419ac08fc35c73, type: 3}
+  m_Script: {fileID: 11500000, guid: 90b7930bc817a234caa638dbf75db07d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BuildingZone:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &8721741878739265980
 GameObject:
   m_ObjectHideFlags: 0

@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 271969696}
   - component: {fileID: 271969695}
   - component: {fileID: 271969694}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -288,8 +288,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 0.96126276}
-  m_Center: {x: 0, y: 0, z: -0.015111248}
+  m_Size: {x: 1.003716, y: 1, z: 0.5548289}
+  m_Center: {x: 0.0018572913, y: 0, z: 0.18810582}
 --- !u!23 &271969695
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -687,7 +687,7 @@ GameObject:
   - component: {fileID: 662706647}
   - component: {fileID: 662706646}
   - component: {fileID: 662706645}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2008,7 +2008,7 @@ GameObject:
   - component: {fileID: 734367284}
   - component: {fileID: 734367286}
   - component: {fileID: 734367285}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6956,7 +6956,7 @@ GameObject:
   - component: {fileID: 857810502}
   - component: {fileID: 857810501}
   - component: {fileID: 857810500}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7053,7 +7053,7 @@ GameObject:
   - component: {fileID: 1091278781}
   - component: {fileID: 1091278783}
   - component: {fileID: 1091278782}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12375,7 +12375,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1693471670
 Transform:
   m_ObjectHideFlags: 0
@@ -12481,7 +12481,7 @@ GameObject:
   - component: {fileID: 1749161676}
   - component: {fileID: 1749161678}
   - component: {fileID: 1749161677}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17612,9 +17612,6 @@ MonoBehaviour:
   gridLayout: {fileID: 2054412144}
   mainTile: {fileID: 714949819}
   selectTile: {fileID: 0}
-  BuildingZone:
-    serializedVersion: 2
-    m_Bits: 256
   buildings:
   - {fileID: 6585599092314432306, guid: 63dc46b2529ba5a42a9811dd3e764721, type: 3}
   - {fileID: 4275863515306918488, guid: c466263ccd1e1d144a3f493adc4caf32, type: 3}
@@ -17630,7 +17627,7 @@ GameObject:
   - component: {fileID: 2107880358}
   - component: {fileID: 2107880357}
   - component: {fileID: 2107880356}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17657,7 +17654,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2107880355}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
