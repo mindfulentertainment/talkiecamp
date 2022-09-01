@@ -28,58 +28,94 @@ public class BuildingSystem : MonoBehaviour
         grid = gridLayout.gameObject.GetComponent<Grid>();
  
     }
-
-      void Update()
+    private void Start()
     {
-
-
-                if (!objectoToPlace)
-                {
-                    return;
-                }
-                if (Input.GetKeyDown(KeyCode.G))
-                {
-                    objectoToPlace.Rotate();
-                }
-                else if (Input.GetKeyDown(KeyCode.Space))
-                {
-
-                    if (CanBePlaced(objectoToPlace))
-                    {
-
-                        objectoToPlace.Place();
-                        Vector3Int start = gridLayout.WorldToCell(objectoToPlace.GetStartPosition());
-                        print(start);
-                        TakeArea(start, objectoToPlace.size);
-                        mainTile.color = Color.red;
-                        Debug.Log("placed");
-                        objectoToPlace.gameObject.tag = ("Placed");
-
-
-                    }
-                    else
-                    {
-                        Destroy(objectoToPlace.gameObject);
-                        Debug.Log("destroy");
-                    }
-
-                }
-                else if (Input.GetKeyDown(KeyCode.Escape))
-                {
-                    Destroy(objectoToPlace.gameObject);
-                }
-
-               
-            
-        
     }
 
-    
+
+
+
+    //  void Update()
+    //{
+
+
+    //            if (!objectoToPlace)
+    //            {
+    //                return;
+    //            }
+
+
+    //            if (Input.GetKeyDown(KeyCode.G))
+    //            {
+    //                objectoToPlace.Rotate();
+    //            }
+    //            else if (Input.GetKeyDown(KeyCode.Space))
+    //            {
+
+    //                if (CanBePlaced(objectoToPlace))
+    //                {
+
+    //                    objectoToPlace.Place();
+    //                    Vector3Int start = gridLayout.WorldToCell(objectoToPlace.GetStartPosition());
+    //                    print(start);
+    //                    TakeArea(start, objectoToPlace.size);
+    //                    mainTile.color = Color.red;
+    //                    Debug.Log("placed");
+    //                    objectoToPlace.gameObject.tag = ("Placed");
+    //                    CameraControllerNetWork.instance.CenterPlayer();
+    //                    UIController.instance.joystick.gameObject.SetActive(false);
+
+
+
+    //        }
+    //        else
+    //                {
+    //                    Destroy(objectoToPlace.gameObject);
+    //                    Debug.Log("destroy");
+    //                }
+
+    //            }
+    //            else if (Input.GetKeyDown(KeyCode.Escape))
+    //            {
+    //                Destroy(objectoToPlace.gameObject);
+    //            }
+
+
+
+
+    //}
+
+    public void PlaceObject()
+    {
+        if (!objectoToPlace)
+        {
+            return;
+        }
+
+        if (CanBePlaced(objectoToPlace))
+        {
+
+            objectoToPlace.Place();
+            Vector3Int start = gridLayout.WorldToCell(objectoToPlace.GetStartPosition());
+ 
+            TakeArea(start, objectoToPlace.size);
+            Debug.Log("placed");
+           
+            CameraControllerNetWork.instance.CenterPlayer();
+            UIController.instance.joystick.gameObject.SetActive(true);
+
+            UIController.instance.pickBtn.onClick.RemoveListener(PlaceObject);
+
+            
+
+        }
+
+    }
 
     public void  OnClickBuilding(int num)
     {
+        UIController.instance.pickBtn.onClick.AddListener(PlaceObject);
         InitializeWithObject(buildings[num]);
-       
     }
 
   
@@ -110,12 +146,15 @@ public class BuildingSystem : MonoBehaviour
     public void InitializeWithObject(GameObject prefab)
     {
       
-            Vector3 positon = SnapCoordinatesToGrid(Vector3.zero);
+            Vector3 positon = SnapCoordinatesToGrid(grid.transform.position);
         
             GameObject obj = Instantiate(prefab, positon, Quaternion.identity);
-            objectoToPlace = obj.GetComponent<PlaceableObject>();
-           // obj.AddComponent<ObjectDrag>();
-        
+        UIController.instance.joystick.gameObject.SetActive(false);
+        CameraControllerNetWork.instance.ChangeTarget(obj.transform);
+        objectoToPlace = obj.GetComponent<PlaceableObject>();
+
+        // obj.AddComponent<ObjectDrag>();
+
     }
 
     private bool CanBePlaced (PlaceableObject placeableObject)
