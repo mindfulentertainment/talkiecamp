@@ -13,6 +13,9 @@ public class UIController : MonoBehaviour
     public Button pickBtn;
     private string role;
     public TMP_Text roleText;
+    public GameObject resourcesBar;
+    public GameObject sideBar;
+    public TMP_Text btn_description;
 
     public GameObject builderUI;
     public GameObject chefUI;
@@ -35,7 +38,8 @@ public class UIController : MonoBehaviour
     [Header("Builder")]
     public GameObject storeButton;
     public GameObject buildingsUI;
-
+    public Button cancel;
+    public Button rotate;
     private void Awake()
     {
         instance = this;
@@ -80,6 +84,24 @@ public class UIController : MonoBehaviour
                 gathererUI.SetActive(true);
                 break;
         }
+    }
+
+    public void StartBuilding()
+    {
+        resourcesBar.SetActive(false); 
+        sideBar.SetActive(false);
+        cancel.gameObject.SetActive(true);
+        rotate.gameObject.SetActive(true);
+        btn_description.text = "Construir";
+    }
+    public void StopBuilding()
+    {
+        resourcesBar.SetActive(true);
+        sideBar.SetActive(true);
+        storeButton.SetActive(true);
+        btn_description.text = "";
+        cancel.gameObject.SetActive(false);
+        rotate.gameObject.SetActive(false);
     }
 
     public void ChangeResources(Resource resource)

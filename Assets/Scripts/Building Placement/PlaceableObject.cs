@@ -6,7 +6,7 @@ public class PlaceableObject : MonoBehaviour
 {
     public bool placed { get; private set; }
     public Vector3Int size { get; private set; }
-
+    public string type;
     private Vector3[] vertices;
 
     private void GetColliderVertexPositionLocal()
@@ -49,7 +49,7 @@ public class PlaceableObject : MonoBehaviour
 
     public void Rotate()
     {
-        transform.Rotate(new Vector3(0, 90, 0));
+        transform.Rotate(new Vector3(0, 45, 0));
         size = new Vector3Int(size.y, size.x, 8);
         Vector3[] Vertices = new Vector3[vertices.Length];
 

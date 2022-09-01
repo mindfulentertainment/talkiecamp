@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
     public LayerMask groundLayers;
     public string role;
 
+    protected  bool isBuilding;
+   
     protected void Awake()
     {
         pickAndDropNetWork = GetComponentInChildren<PickAndDropNetWork>();
@@ -157,7 +159,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         {
             if (photonView.IsMine)
             {
-                if (LayerMask.LayerToName(other.gameObject.layer) == role)
+                if (LayerMask.LayerToName(other.gameObject.layer) == role&& !isBuilding)
                 {
                     UIController.instance.storeButton.SetActive(true);
                 }
@@ -172,6 +174,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
             
         }
     }
+
+    
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Store"))
@@ -180,9 +184,11 @@ public class PlayerController : MonoBehaviourPunCallbacks
             {
                 UIController.instance.storeButton.SetActive(false);
                 UIController.instance.HideCaption();
+                isBuilding = false;
             }
         }
     }
+
 
 
 }

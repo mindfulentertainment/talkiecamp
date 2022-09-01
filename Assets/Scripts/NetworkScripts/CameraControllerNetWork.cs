@@ -12,8 +12,10 @@ public class CameraControllerNetWork : MonoBehaviourPun
     public static CameraControllerNetWork instance;
     private Vector3 velocity = Vector3.zero;
     private Camera m_camera;
+    Coroutine m_Coroutine;
     private void Awake()
     {
+        Application.targetFrameRate = 300;
         m_camera = Camera.main;
         instance = this;
     }
@@ -34,16 +36,19 @@ public class CameraControllerNetWork : MonoBehaviourPun
 
     public void ChangeTarget(Transform pos)
     {
+        if (m_Coroutine != null)
+        {
+            StopCoroutine(m_Coroutine);
+        }
         target = pos;
         smoothSpeed = 0.8f;
         m_camera.fieldOfView = 22;
-        UIController.instance.joystick.gameObject.SetActive(false);
     }
 
     public void CenterPlayer()
     {
         target = player;
-        StartCoroutine(CameraTransition());
+        m_Coroutine= StartCoroutine(CameraTransition());
     }
    
     IEnumerator CameraTransition()
@@ -52,7 +57,7 @@ public class CameraControllerNetWork : MonoBehaviourPun
         while (isFinished)
         {
 
-            m_camera.fieldOfView = Mathf.Lerp(m_camera.fieldOfView, 7, 0.01f);
+            m_camera.fieldOfView = Mathf.Lerp(m_camera.fieldOfView, 7, Time.deltaTime);
             smoothSpeed = Mathf.Lerp(smoothSpeed, 0.25f, 0.01f);
             if (m_camera.fieldOfView <= 7.1f)
             {

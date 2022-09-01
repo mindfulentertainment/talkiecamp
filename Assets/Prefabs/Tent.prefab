@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4607599447355945393}
+  - component: {fileID: -434621053234270060}
+  - component: {fileID: 567432406934352256}
   - component: {fileID: 550855837459528765}
-  - component: {fileID: 4405240226839141771}
-  - component: {fileID: 1547961146368653870}
+  - component: {fileID: 1445864964093927848}
   m_Layer: 0
   m_Name: Tent
   m_TagString: Placed
@@ -35,6 +36,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-434621053234270060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6585599092314432306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aced4df9ab02c8489efe01d371102ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: Tent
+--- !u!114 &567432406934352256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6585599092314432306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90b7930bc817a234caa638dbf75db07d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BuildingZone:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!65 &550855837459528765
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -48,40 +77,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4405240226839141771
-MonoBehaviour:
+--- !u!135 &1445864964093927848
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6585599092314432306}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
---- !u!114 &1547961146368653870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6585599092314432306}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ea9835a71c7074468d7b3d16b43bf27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  serializedVersion: 2
+  m_Radius: 14.6
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &7068997525864743597
 PrefabInstance:
   m_ObjectHideFlags: 0

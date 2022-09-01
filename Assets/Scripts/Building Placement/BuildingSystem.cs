@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Photon.Realtime;
+using Photon.Pun;
 
 public class BuildingSystem : MonoBehaviour
 {
@@ -18,72 +20,12 @@ public class BuildingSystem : MonoBehaviour
     [Header("Buildings ")]
     [SerializeField] GameObject[] buildings;
     //public GameObject building2;
-
-    
-
-
     void Awake()
     {
         currentBuilding = this;
         grid = gridLayout.gameObject.GetComponent<Grid>();
  
     }
-    private void Start()
-    {
-    }
-
-
-
-
-    //  void Update()
-    //{
-
-
-    //            if (!objectoToPlace)
-    //            {
-    //                return;
-    //            }
-
-
-    //            if (Input.GetKeyDown(KeyCode.G))
-    //            {
-    //                objectoToPlace.Rotate();
-    //            }
-    //            else if (Input.GetKeyDown(KeyCode.Space))
-    //            {
-
-    //                if (CanBePlaced(objectoToPlace))
-    //                {
-
-    //                    objectoToPlace.Place();
-    //                    Vector3Int start = gridLayout.WorldToCell(objectoToPlace.GetStartPosition());
-    //                    print(start);
-    //                    TakeArea(start, objectoToPlace.size);
-    //                    mainTile.color = Color.red;
-    //                    Debug.Log("placed");
-    //                    objectoToPlace.gameObject.tag = ("Placed");
-    //                    CameraControllerNetWork.instance.CenterPlayer();
-    //                    UIController.instance.joystick.gameObject.SetActive(false);
-
-
-
-    //        }
-    //        else
-    //                {
-    //                    Destroy(objectoToPlace.gameObject);
-    //                    Debug.Log("destroy");
-    //                }
-
-    //            }
-    //            else if (Input.GetKeyDown(KeyCode.Escape))
-    //            {
-    //                Destroy(objectoToPlace.gameObject);
-    //            }
-
-
-
-
-    //}
 
     public void PlaceObject()
     {
@@ -100,9 +42,13 @@ public class BuildingSystem : MonoBehaviour
  
             TakeArea(start, objectoToPlace.size);
             Debug.Log("placed");
-           
+
+            PhotonNetwork.Instantiate(objectoToPlace.type,objectoToPlace.transform.position, objectoToPlace.transform.rotation);
+
+            Destroy(objectoToPlace.gameObject);
             CameraControllerNetWork.instance.CenterPlayer();
             UIController.instance.joystick.gameObject.SetActive(true);
+            UIController.instance.StopBuilding();
 
             UIController.instance.pickBtn.onClick.RemoveListener(PlaceObject);
 
@@ -150,11 +96,29 @@ public class BuildingSystem : MonoBehaviour
         
             GameObject obj = Instantiate(prefab, positon, Quaternion.identity);
         UIController.instance.joystick.gameObject.SetActive(false);
+        UIController.instance.StartBuilding();
+        UIController.instance.cancel.onClick.AddListener(Cancel);
+        UIController.instance.rotate.onClick.AddListener(Rotate);
         CameraControllerNetWork.instance.ChangeTarget(obj.transform);
         objectoToPlace = obj.GetComponent<PlaceableObject>();
 
         // obj.AddComponent<ObjectDrag>();
 
+    }
+
+
+    public void Cancel()
+    {
+        Destroy(objectoToPlace.gameObject);
+        CameraControllerNetWork.instance.CenterPlayer();
+        UIController.instance.joystick.gameObject.SetActive(true);
+        UIController.instance.StopBuilding();
+
+        UIController.instance.pickBtn.onClick.RemoveListener(PlaceObject);
+    }
+    public void Rotate()
+    {
+       objectoToPlace.Rotate();
     }
 
     private bool CanBePlaced (PlaceableObject placeableObject)
