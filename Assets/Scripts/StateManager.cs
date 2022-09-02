@@ -95,8 +95,24 @@ public class Resource
 public class BuildingHistory
 {
     public string buildingName;
-    public Vector3 position;
-    public Quaternion rotation;
+    public float x;
+    public float y;
+    public float z;
+
+    public float q_x;
+    public float q_y;
+    public float q_z;
+    public float q_w;
+
+
+    public Vector3 GetPosition()
+    {
+        return new Vector3(x, y, z);
+    }
+    public Quaternion GetRotation()
+    {
+        return new Quaternion(q_x, q_y, q_z, q_w);
+    }
 }
 
 public class Buildings

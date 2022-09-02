@@ -133,7 +133,7 @@ public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
         Buildings BuildingHistory= JsonConvert.DeserializeObject<Buildings>(buildingData);
         UIController.instance.ChangeResources(resource);
         DataManager.instance.buildings = BuildingHistory;
-        
+        DataManager.instance.resource = resource;
        OnGameStart?.Invoke();
     }
 

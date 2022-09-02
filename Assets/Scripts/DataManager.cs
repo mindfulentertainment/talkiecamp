@@ -9,6 +9,8 @@ public class DataManager : MonoBehaviour
 
     public Buildings buildings= new Buildings();
     public Resource resource = new Resource();
+
+
     private void Awake()
     {
         instance = this;
@@ -34,15 +36,18 @@ public class DataManager : MonoBehaviour
         }
         this.resource=resource;
         UIController.instance.ChangeResources(resource);
-
         if (PhotonNetwork.IsMasterClient)
         {
             foreach (var item in buildings.buildings)
             {
-                PhotonNetwork.Instantiate(item.buildingName,item.position,item.rotation);
+
+                PhotonNetwork.Instantiate(item.buildingName, item.GetPosition(), item.GetRotation());
+                
             }
-           
         }
+           
+           
+        
     }
   
   

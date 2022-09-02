@@ -13,12 +13,24 @@ public class Place : MonoBehaviourPun
     {
         var photonV = GetComponent<PhotonView>();
         Destroy(photonV);
-        UseMaterials();
-        BuildingHistory newBuilding = new BuildingHistory();
-        newBuilding.buildingName = PlaceInfo.name;
-        newBuilding.position=transform.position;
-        newBuilding.rotation = transform.rotation;
-        DataManager.instance.buildings.buildings.Add(newBuilding);
+        
+        Debug.Log(Time.timeSinceLevelLoad);
+        if (Time.timeSinceLevelLoad > 3)
+        {
+            UseMaterials();
+            BuildingHistory newBuilding = new BuildingHistory();
+            newBuilding.buildingName = PlaceInfo.name;
+            newBuilding.x = transform.position.x;
+            newBuilding.y = transform.position.y;
+            newBuilding.z = transform.position.z;
+            newBuilding.q_x = transform.rotation.x;
+            newBuilding.q_y = transform.rotation.y;
+            newBuilding.q_z = transform.rotation.z;
+            newBuilding.q_w = transform.rotation.w;
+
+            DataManager.instance.buildings.buildings.Add(newBuilding);
+        }
+
 
     }
 
