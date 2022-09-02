@@ -33,7 +33,7 @@ public class UIController : MonoBehaviour
     public TMP_Text meatAmount;
     public TMP_Text stoneAmount;
     public TMP_Text woodAmount;
-    public TMP_Text concreteAmount;
+    public TMP_Text fabricAmount;
 
     [Header("Builder")]
     public GameObject storeButton;
@@ -109,7 +109,7 @@ public class UIController : MonoBehaviour
         meatAmount.text = "Meat "+ resource.meat.ToString();
         stoneAmount.text = "Stone " + resource.stone.ToString();
         woodAmount.text = "Wood "+ resource.wood.ToString();
-        concreteAmount.text = "Concrete " + resource.concrete.ToString();
+        fabricAmount.text = "Fabric " + resource.fabric.ToString();
     }
 
     public void ShowMessage(string message)

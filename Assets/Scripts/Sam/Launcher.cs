@@ -136,8 +136,10 @@ public class Launcher : MonoBehaviourPunCallbacks
         base.OnLeftRoom();
         CloseMenus();
         roomScreen.SetActive(true );
-        string path = "/resources" + PhotonNetwork.CurrentRoom.Name + ".json";
-        PlayerPrefs.SetString("resources",path);
+        string resourcesPath = "/resources" + PhotonNetwork.CurrentRoom.Name + ".json";
+        PlayerPrefs.SetString("resources",resourcesPath);
+        string buildingsPath = "/buildings" + PhotonNetwork.CurrentRoom.Name + ".json";
+        PlayerPrefs.SetString("buildings", buildingsPath);
 
         roomRoomText.text = PhotonNetwork.CurrentRoom.Name;
         ListAllPlayers();

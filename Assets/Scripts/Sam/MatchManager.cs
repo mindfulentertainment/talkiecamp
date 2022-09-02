@@ -113,11 +113,13 @@ public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
         SceneManager.LoadScene(0);
     }
 
-    public void SendResourcesInfo(Resource resource)
+    public void SendResourcesInfo(Resource resource, Buildings buildingHistory)
     {
-        string json = JsonConvert.SerializeObject(resource);
-        object[] package = new object[1];
-        package[0] = json;
+        string jsonResources = JsonConvert.SerializeObject(resource);
+        string jsonBuildings = JsonConvert.SerializeObject(buildingHistory);
+        object[] package = new object[2];
+        package[0] = jsonResources;
+        package[1] = jsonBuildings;
 
         PhotonNetwork.RaiseEvent(
             (byte)EventCodes.UpdateResources, package, new RaiseEventOptions { Receivers = ReceiverGroup.All }, new SendOptions { Reliability = true });
@@ -125,10 +127,14 @@ public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
 
     public void ResourcesReceive(object[] dataRecived)
     {
-        string data = (string)dataRecived[0];
-        Resource resource = JsonConvert.DeserializeObject<Resource>(data);
+        string resourceData = (string)dataRecived[0];
+        string buildingData = (string)dataRecived[1];
+        Resource resource = JsonConvert.DeserializeObject<Resource>(resourceData);
+        Buildings BuildingHistory= JsonConvert.DeserializeObject<Buildings>(buildingData);
         UIController.instance.ChangeResources(resource);
-        OnGameStart?.Invoke();
+        DataManager.instance.buildings = BuildingHistory;
+        
+       OnGameStart?.Invoke();
     }
 
     IEnumerator NewPlayerSend(string username)

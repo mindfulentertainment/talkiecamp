@@ -58,8 +58,11 @@ public class JsonDataService : IDataService
         try
         {
             T data;
+            var settings = new JsonSerializerSettings();
 
-            data = JsonConvert.DeserializeObject<T>(File.ReadAllText(path));
+            settings.ReferenceLoopHandling = ReferenceLoopHandling.Serialize;
+
+            data = JsonConvert.DeserializeObject<T>(File.ReadAllText(path), settings);
 
             return data;
         }

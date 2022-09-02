@@ -65,13 +65,22 @@ public class CampManager : MonoBehaviour
         Debug.LogError("Could not save file! ");
 
     }
+    public void CreateBuildings(string campName)
+    {
+        string path = "/buildings" + campName + ".json";
+        Resource resource = new Resource();
+        if (DataService.SaveData(path, resource, false)) return;
 
+        Debug.LogError("Could not save file! ");
+
+    }
     public void CreateCamp()
     {
         Camp camp = new Camp(Launcher.instance.roomNameInput.text); 
         camps.Add(camp);
         SerializeJson(camps);
         CreateResources(camp.campName);
+        CreateBuildings(camp.campName);
     }
 }
 

@@ -7,10 +7,23 @@ public  class Element: MonoBehaviour
 {
     public int amount;
 
+    public Element(ElementType element, int amount)
+    {
+        this.amount = amount;
+        this.type=element;
+    }
+
+
     public enum ElementType
     {
         wood,
-        stone
+        stone,
+        fabric,
+        meat,
+        connection,
+        hamburguer,
+        sandwich,
+        soup
 
     }
     public ElementType type;

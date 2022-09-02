@@ -10,7 +10,7 @@ public class StateManager : MonoBehaviour
 {
     public static StateManager Instance;
 
-    public UnityEvent<Resource> OnResourcesLoad = new UnityEvent<Resource>();
+    public UnityEvent<Resource, Buildings> OnResourcesLoad = new UnityEvent<Resource, Buildings>();
     private IDataService DataService = new JsonDataService();
 
     
@@ -28,9 +28,10 @@ public class StateManager : MonoBehaviour
 
     public void SerializeJson()
     {
-        string path = PlayerPrefs.GetString("resources");
-
-        if (DataService.SaveData(path, DataManager.instance.resource, false)) return;
+        string pathResources = PlayerPrefs.GetString("resources");
+        string pathBuildings= PlayerPrefs.GetString("buildings");
+        if (DataService.SaveData(pathResources, DataManager.instance.resource, false))
+        if (DataService.SaveData(pathBuildings, DataManager.instance.buildings, false))return ;
 
         Debug.LogError("Could not save file! ");
 
@@ -39,14 +40,15 @@ public class StateManager : MonoBehaviour
 
     public void LoadData()
     {
-        string path = PlayerPrefs.GetString("resources");
+        string resourcesPath = PlayerPrefs.GetString("resources");
+        string buildingsPath = PlayerPrefs.GetString("buildings");
 
         try
         {
-            string output = JsonConvert.SerializeObject(path);
-            Resource data = DataService.LoadData<Resource>(path, false);
-            OnResourcesLoad?.Invoke(data);
-            Debug.Log("loadiing");
+            Resource resource = DataService.LoadData<Resource>(resourcesPath, false);
+            Buildings buildingHistory = DataService.LoadData<Buildings>(buildingsPath, false);
+            OnResourcesLoad?.Invoke(resource, buildingHistory);
+            Debug.Log("loading");
 
         }
         catch (Exception e)
@@ -60,7 +62,7 @@ public class StateManager : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(30);
+            yield return new WaitForSeconds(10);
             SerializeJson();
             Debug.Log("Saved");
 
@@ -71,19 +73,49 @@ public class StateManager : MonoBehaviour
 
 public class Resource
 {
+
+    public Resource() { }
+    public Resource(int stone, int fabric, int wood, Food food) {
+
+        this.stone = stone;
+        this.fabric = fabric;
+        this.wood = wood;
+        this.food = food;
+    }
+
     public int stone;
-    public int concrete;
+    public int fabric;
     public int wood;
-    public Food[] food;
+    public Food food;
     public int meat;
-    public int bread;
-    public int leaf;
-    public int water;
-    public int cheese;
+    public int connection;
 
 }
+
+public class BuildingHistory
+{
+    public string buildingName;
+    public Vector3 position;
+    public Quaternion rotation;
+}
+
+public class Buildings
+{
+    public List<BuildingHistory> buildings=new List<BuildingHistory>();
+}
+
+
 public class Food
 {
+
+    public Food() { }
+
+    public Food(int hamburguer, int sandwich, int soup)
+    {
+        this.hamburguer = hamburguer;
+        this.sandwich = sandwich;
+        this.soup = soup;
+    }
     public int hamburguer;
     public int sandwich;
     public int juice;
