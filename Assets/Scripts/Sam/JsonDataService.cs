@@ -11,18 +11,15 @@ public class JsonDataService : IDataService
     public bool SaveData<T>(string RelativePath, T Data, bool Encrypted)
     {
         string path = Application.persistentDataPath + RelativePath;
-        Debug.Log(path);
         try
         {
 
             if (File.Exists(path))
             {
-                Debug.Log("Data exists. Deleting old file and writing a new one!");
                 File.Delete(path);
             }
             else
             {
-                Debug.Log("Writing file for the first time!");
             }
             using FileStream stream = File.Create(path); //Create a new .json file
 

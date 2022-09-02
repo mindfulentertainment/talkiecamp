@@ -59,7 +59,7 @@ public class PlaceableObject : MonoBehaviour
 
         }
 
-        Vertices = vertices;
+        vertices= Vertices ;
     }
 
     public virtual void Place()

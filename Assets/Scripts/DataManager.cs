@@ -28,7 +28,6 @@ public class DataManager : MonoBehaviour
     {
         if(buildingHistory == null)
         {
-            Debug.Log("ssssssssssssssnuulkl");
         }
         for (int i = 0; i < buildingHistory.buildings.Count; i++)
         {

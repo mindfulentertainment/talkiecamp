@@ -16,7 +16,6 @@ public class CampManager : MonoBehaviour
     {
         if (DataService.SaveData(campJson, camps, false)) return;
 
-        Debug.LogError("Could not save file! ");
 
     }
     private void Start()
@@ -27,7 +26,6 @@ public class CampManager : MonoBehaviour
     public void LoadData()
     {
         string path = Application.persistentDataPath + campJson;
-        Debug.Log(path);
         if (!File.Exists(path)) return;
         try
         {
@@ -62,7 +60,6 @@ public class CampManager : MonoBehaviour
         Resource resource = new Resource();
         if (DataService.SaveData(path, resource, false)) return;
 
-        Debug.LogError("Could not save file! ");
 
     }
     public void CreateBuildings(string campName)
@@ -71,7 +68,6 @@ public class CampManager : MonoBehaviour
         Resource resource = new Resource();
         if (DataService.SaveData(path, resource, false)) return;
 
-        Debug.LogError("Could not save file! ");
 
     }
     public void CreateCamp()

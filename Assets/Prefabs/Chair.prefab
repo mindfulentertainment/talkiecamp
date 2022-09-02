@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6900410752407605467}
-  - component: {fileID: -3799304939516304985}
-  - component: {fileID: -517089530669159650}
+  - component: {fileID: 3960517125369665449}
+  - component: {fileID: 7341628151038993179}
+  - component: {fileID: 9206150567415517861}
   m_Layer: 0
   m_Name: Chair
   m_TagString: Placed
@@ -34,7 +35,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-3799304939516304985
+--- !u!114 &3960517125369665449
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,20 +44,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4275863515306918488}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Script: {fileID: 11500000, guid: 6aced4df9ab02c8489efe01d371102ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
---- !u!114 &-517089530669159650
+  type: Chair
+--- !u!114 &7341628151038993179
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -65,10 +57,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 4275863515306918488}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ea9835a71c7074468d7b3d16b43bf27, type: 3}
+  m_Script: {fileID: 11500000, guid: 90b7930bc817a234caa638dbf75db07d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlaceInfo: {fileID: 11400000, guid: 18d936d3cb0e5e9419f8c6a55f4b28c1, type: 2}
+  BuildingZone:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!65 &9206150567415517861
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4275863515306918488}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.2447758, y: 1.3559318, z: 3.8633184}
+  m_Center: {x: 0.0055394173, y: 0.17796588, z: -0.016419888}
 --- !u!1 &8721741878739265980
 GameObject:
   m_ObjectHideFlags: 0
@@ -80,8 +87,7 @@ GameObject:
   - component: {fileID: 3322337847896576507}
   - component: {fileID: 4060060935579799126}
   - component: {fileID: 1424830730906695242}
-  - component: {fileID: 6142363717224097166}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,16 +159,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6142363717224097166
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8721741878739265980}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
