@@ -86,11 +86,8 @@ public class Resource
     public int stone;
     public int fabric;
     public int wood;
-<<<<<<< Updated upstream
-    public Food food;
-=======
+
     public Food food= new Food();
->>>>>>> Stashed changes
     public int meat;
     public int connection;
 
