@@ -54,8 +54,7 @@ public class DataManager : MonoBehaviour
     {
 
 
-        if (element != null)
-        {
+       
             switch (element.type)
             {
                 case Element.ElementType.wood:
@@ -90,7 +89,7 @@ public class DataManager : MonoBehaviour
                     break;
             }
 
-        }
+        
         UIController.instance.ChangeResources(resource);
 
     }

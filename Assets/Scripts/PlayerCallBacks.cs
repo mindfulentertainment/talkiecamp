@@ -17,4 +17,14 @@ public class PlayerCallBacks : MonoBehaviourPun
         GetComponentInChildren<EmotionDisplay>().GiveEmotion(index);
 
     }
+
+    [PunRPC]
+    public void StartDanceFloor(int random1)
+    {
+        
+            DanceFloorGame.instance.ResetGame(random1);
+
+      
+
+    }
 }

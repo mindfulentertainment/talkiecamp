@@ -20,7 +20,10 @@ public class CampManager : MonoBehaviour
     }
     private void Start()
     {
+
         LoadData();
+        Destroy(button.gameObject);
+
     }
 
     public void LoadData()
@@ -46,12 +49,12 @@ public class CampManager : MonoBehaviour
 
 
             }
+
         }
         catch (Exception e)
         {
             Debug.LogError(e.Message);
         }
-        Destroy(button);
 
     }
     public void CreateResources(string campName)

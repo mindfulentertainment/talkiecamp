@@ -31,9 +31,16 @@ public class UIController : MonoBehaviour
 
     [Header("Resources")]
     public TMP_Text meatAmount;
+    public TMP_Text hamburguersAmount;
+    public TMP_Text soupAmount;
+    public TMP_Text sandwichesAmount;
     public TMP_Text stoneAmount;
     public TMP_Text woodAmount;
     public TMP_Text fabricAmount;
+<<<<<<< Updated upstream
+=======
+    public TMP_Text connectionAmount;
+>>>>>>> Stashed changes
 
     [Header("Builder")]
     public GameObject storeButton;
@@ -106,10 +113,23 @@ public class UIController : MonoBehaviour
 
     public void ChangeResources(Resource resource)
     {
+<<<<<<< Updated upstream
         meatAmount.text = "Meat "+ resource.meat.ToString();
         stoneAmount.text = "Stone " + resource.stone.ToString();
         woodAmount.text = "Wood "+ resource.wood.ToString();
         fabricAmount.text = "Fabric " + resource.fabric.ToString();
+=======
+        meatAmount.text = "Carne "+ resource.meat.ToString();
+        stoneAmount.text = "Piedra " + resource.stone.ToString();
+        woodAmount.text = "Madera "+ resource.wood.ToString();
+        fabricAmount.text = "Tela " + resource.fabric.ToString();
+        connectionAmount.text = "Interacción " + resource.connection.ToString();
+        hamburguersAmount.text = "Hamburguesas " + resource.food.hamburguer.ToString();
+        sandwichesAmount.text = "Sánduches " + resource.food.sandwich.ToString();
+        soupAmount.text = "Sopas " + resource.food.soup.ToString();
+
+
+>>>>>>> Stashed changes
     }
 
     public void ShowMessage(string message)

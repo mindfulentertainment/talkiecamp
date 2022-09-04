@@ -7,6 +7,10 @@ TagManager:
   - Placed
   - Store
   - Floor
+<<<<<<< Updated upstream
+=======
+  - Piece
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX

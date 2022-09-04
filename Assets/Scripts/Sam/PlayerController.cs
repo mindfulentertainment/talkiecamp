@@ -54,8 +54,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     {
         float horizontal = joystick.Horizontal;
         float vertical = joystick.Vertical;
-        float yVel = direction.y;
-        direction.y = yVel;
+
 
         if (characterController.isGrounded)
         {
