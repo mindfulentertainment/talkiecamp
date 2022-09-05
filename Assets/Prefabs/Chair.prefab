@@ -62,7 +62,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BuildingZone:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 2112
 --- !u!65 &9206150567415517861
 BoxCollider:
   m_ObjectHideFlags: 0

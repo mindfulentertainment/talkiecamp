@@ -11,7 +11,13 @@ public class MiniGamesController : MonoBehaviour
             other.GetComponent<Piece>().CheckIn();
         }
     }
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Piece"))
+        {
+            other.GetComponent<Piece>().Sound();
+        }
+    }
 
     private void OnTriggerExit(Collider other)
     {

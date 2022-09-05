@@ -68,7 +68,7 @@ public class DanceFloorGame : MonoBehaviour
                 else
                 {
                     info.gameObject.SetActive(true);
-                    info.text = "Se requiere de 2 jugadores";
+                    info.text = "Se requiere de " +maxPlayers+" jugadores";
                 }
             }
         }
@@ -102,12 +102,12 @@ public class DanceFloorGame : MonoBehaviour
 
                 }
             }
-            info.gameObject.SetActive(false);
-            startGame.gameObject.SetActive(false);
+            
 
 
         }
-
+        info.gameObject.SetActive(false);
+        startGame.gameObject.SetActive(false);
     }
 
 
@@ -181,6 +181,8 @@ public class DanceFloorGame : MonoBehaviour
 
         if (CheckWin(random))
         {
+            Element element = new Element(Element.ElementType.connection, (int)(5/timeToLerp));
+            DataManager.instance.IncreaseElement(element);
             StartTheGame();
         }
         else

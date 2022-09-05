@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37b6bdbf4faed3b4a95c27cd3510f1b8, type: 3}
   m_Name: 4
   m_EditorClassIdentifier: 
-  targetPiece: 000000000100000100
+  targetPiece: 000000010000000100
   pattern: {fileID: 719329999, guid: eb26d535901cbcd4c9b715c4d3e05ea5, type: 3}

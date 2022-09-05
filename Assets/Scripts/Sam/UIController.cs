@@ -80,13 +80,13 @@ public class UIController : MonoBehaviour
             case "Chef":
                 chefUI.SetActive(true);
                 break;
-            case "Watchmen":
+            case "Vigilante":
                 watchmenUI.SetActive(true);
                 break;
-            case "Builder":
+            case "Constructor":
                 builderUI.SetActive(true);
                 break;
-            case "Gatherer":
+            case "Recolector":
                 gathererUI.SetActive(true);
                 break;
         }
@@ -113,14 +113,14 @@ public class UIController : MonoBehaviour
     public void ChangeResources(Resource resource)
     {
 
-        meatAmount.text = "Carne "+ resource.meat.ToString();
-        stoneAmount.text = "Piedra " + resource.stone.ToString();
-        woodAmount.text = "Madera "+ resource.wood.ToString();
-        fabricAmount.text = "Tela " + resource.fabric.ToString();
-        connectionAmount.text = "Interacción " + resource.connection.ToString();
-        hamburguersAmount.text = "Hamburguesas " + resource.food.hamburguer.ToString();
-        sandwichesAmount.text = "Sánduches " + resource.food.sandwich.ToString();
-        soupAmount.text = "Sopas " + resource.food.soup.ToString();
+        meatAmount.text = resource.meat.ToString();
+        stoneAmount.text =  resource.stone.ToString();
+        woodAmount.text =  resource.wood.ToString();
+        fabricAmount.text = resource.fabric.ToString();
+        connectionAmount.text =  resource.connection.ToString();
+        hamburguersAmount.text = resource.food.hamburguer.ToString();
+        sandwichesAmount.text =  resource.food.sandwich.ToString();
+        soupAmount.text = resource.food.soup.ToString();
 
     }
 

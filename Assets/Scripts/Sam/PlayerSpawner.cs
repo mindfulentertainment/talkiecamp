@@ -14,7 +14,7 @@ public class PlayerSpawner : MonoBehaviour
     public GameObject watchmen;
     public GameObject gatherer;
     public GameObject builder;
-    private List<string> roles = new List<string>() { "Builder", "Gatherer", "Watchmen", "Chef" };
+    private List<string> roles = new List<string>() { "Constructor", "Recolector", "Vigilante", "Chef" };
 
 
     public GameObject player;
