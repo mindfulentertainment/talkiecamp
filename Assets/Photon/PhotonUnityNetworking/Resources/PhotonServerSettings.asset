@@ -41,6 +41,7 @@ MonoBehaviour:
   - ShowEmoticon
   - ShowEmoji
   - StartDanceFloor
+  - ChangeTree
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

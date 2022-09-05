@@ -13,9 +13,11 @@ public class PlayerController : MonoBehaviourPunCallbacks
     public float speed;
     public float smoothTurnTime;
     protected float smoothTurnVelocity;
+    [SerializeField] Animator animator;
 
     [Header("PickUpObjects")]
     [SerializeField] private Transform slot;
+   
     private PickAndDropNetWork pickAndDropNetWork;
     private IPickable _currentPickable;
 
@@ -69,11 +71,13 @@ public class PlayerController : MonoBehaviourPunCallbacks
         Vector3 vector3 = new Vector3(direction.x, 0, direction.z);
         if (vector3.magnitude >= 0.1f)
         {
+            animator.SetBool("isRunning", true);
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref smoothTurnVelocity, smoothTurnTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
             characterController.Move(direction * speed * Time.deltaTime);
         }
+        else animator.SetBool("isRunning", false);
     }
 
     private void HandleButton()

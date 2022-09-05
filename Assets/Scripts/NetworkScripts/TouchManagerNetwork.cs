@@ -37,7 +37,7 @@ public class TouchManagerNetwork : MonoBehaviourPunCallbacks
     {
 
         
-          if (Input.GetMouseButtonDown(0))
+          if (Input.GetMouseButton(0))
           {
                 if (photonView.IsMine)
             {
@@ -60,7 +60,7 @@ public class TouchManagerNetwork : MonoBehaviourPunCallbacks
                         {
                             if (LayerMask.LayerToName(hit.collider.gameObject.layer) == role)
                             {
-                                hit.collider.GetComponent<PhotonView>().RPC("OnInteraction", RpcTarget.All);
+                                hit.collider.GetComponent<Interactable>().OnInteraction();
 
                             }
                             else
