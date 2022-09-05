@@ -48,7 +48,10 @@ public class OrderManager : MonoBehaviour
 
             order.Setup(GetRandomOrderData());
             _orders.Add(order);
-            //Debug.Log();
+            foreach (var item in order.Ingredients)
+            {
+                Debug.Log(item.ToString());
+            }
             OnOrderSpawned?.Invoke(order);
         }
     }

@@ -44,15 +44,19 @@ public class Plate : SnapZone, IPickable
 
     public void RemoveAllIngredients()
     {
+        DisableIngredients();
         _ingredients.Clear();
+    }
+
+    private void DisableIngredients()
+    {
+        
     }
 
     public void Pick()
     {
         rb.isKinematic = true;
         collider.enabled = false;
-        rb.velocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
     }
 
     public void Drop()
@@ -78,8 +82,14 @@ public class Plate : SnapZone, IPickable
         switch (pickableToDrop)
         {
             case Ingredient ingredient:
-                Debug.Log("[Plate] Trying to dropping Ingredient into Plate! Not implemented");
-                break;
+                if (ingredient.Type == IngredientType.Bun ||
+                    ingredient.Type == IngredientType.Tomato ||
+                    ingredient.Type == IngredientType.Lettuce ||
+                    ingredient.Type == IngredientType.Ham)
+                {
+                    return TryDrop(pickableToDrop);
+                }
+                return false;
             case Plate plate:
                 //Debug.Log("[Plate] Trying to drop something from a plate into other plate! We basically swap contents");
                 if (this.IsEmpty() == false) return false;
@@ -89,7 +99,7 @@ public class Plate : SnapZone, IPickable
             default:
                 Debug.LogWarning("[Plate] Drop not recognized", this);
                 break;
-        }
+        } 
         return false;
     }
 
@@ -98,21 +108,32 @@ public class Plate : SnapZone, IPickable
         // We can pickup Ingredients from plates with other plates (effectively swapping content) or from Pans
 
         if (playerHoldPickable == null) return null;
+        if (!(playerHoldPickable is Plate plate)) return null;
+        if (!plate.IsEmpty()) return null;
+        if (this.IsEmpty()) return null;
 
-        switch (playerHoldPickable)
-        {
-            case Ingredient ingredient:
-                //TODO: we can pickup some ingredients into plate, not all of them.
-                break;
-            // swap plate ingredients
-            case Plate plate:
-                if (plate.IsEmpty())
-                {
-                    if (this.IsEmpty()) return null;
-                    plate.AddIngredients(this._ingredients);
-                }
-                break;
-        }
+        plate.AddIngredients(this._ingredients);
+
         return null;
+    }
+
+    private bool TryDrop(IPickable pickable)
+    {
+        if (Ingredients.Count >= MaxNumberIngredients) return false;
+
+        var ingredient = pickable as Ingredient;
+        if (ingredient == null)
+        {
+            Debug.LogWarning("[CookingPot] Can only drop ingredients into this object", this);
+            return false;
+        }
+
+        Ingredients.Add(ingredient);
+
+        ingredient.gameObject.transform.SetParent(Slot);
+        ingredient.gameObject.transform.SetPositionAndRotation(Slot.position, Quaternion.identity);
+
+        //UpdateIngredientsUI();
+        return true;
     }
 }

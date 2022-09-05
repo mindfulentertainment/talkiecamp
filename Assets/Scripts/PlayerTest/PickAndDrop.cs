@@ -24,8 +24,6 @@ public class PickAndDrop : MonoBehaviour
         SnapZone snapZone = other.gameObject.GetComponent<SnapZone>();
         if (!snapZone) return;
 
-        Debug.Log("Aquí hay SnapZone");
-
         if (snapZones.Contains(snapZone))
         {
             Debug.LogWarning($"[InteractableController] TriggerEnter on a preexisting collider {other.gameObject.name}");

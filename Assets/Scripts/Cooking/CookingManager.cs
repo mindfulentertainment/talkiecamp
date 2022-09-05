@@ -48,10 +48,6 @@ public class CookingManager : MonoBehaviour
     [SerializeField] private MealData mealData;
     [SerializeField] Button orderButton;
 
-
-    public delegate void LevelStart();
-    public static event LevelStart OnLevelStart;
-
     private const float TimeToReturnPlateSeconds = 3f;
     private readonly WaitForSeconds _timeToReturnPlate = new WaitForSeconds(TimeToReturnPlateSeconds);
 
