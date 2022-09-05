@@ -45,13 +45,13 @@ public class PlayerSpawner : MonoBehaviour
             case "Chef":
                 player = PhotonNetwork.Instantiate(chef.name, spawnPoint.position, spawnPoint.rotation);
                 break;
-            case "Watchmen":
+            case "Vigilante":
                 player = PhotonNetwork.Instantiate(watchmen.name, spawnPoint.position, spawnPoint.rotation);
                 break;
-            case "Gatherer":
+            case "Recolector":
                 player = PhotonNetwork.Instantiate(gatherer.name, spawnPoint.position, spawnPoint.rotation);
                 break;
-            case "Builder":
+            case "Constructor":
                 player = PhotonNetwork.Instantiate(builder.name, spawnPoint.position, spawnPoint.rotation);
                 break;
 

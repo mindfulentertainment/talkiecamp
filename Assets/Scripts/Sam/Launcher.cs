@@ -48,7 +48,7 @@ public class Launcher : MonoBehaviourPunCallbacks
 
         CloseMenus();
         loadingScreen.SetActive(true);
-        loadingText.text = "Finding the land...";
+        loadingText.text = "Buscando tierra plana...";
 
         PhotonNetwork.ConnectUsingSettings();
 
@@ -62,7 +62,7 @@ public class Launcher : MonoBehaviourPunCallbacks
         PlayerPrefs.DeleteKey("role");
         PhotonNetwork.JoinLobby();
         PhotonNetwork.AutomaticallySyncScene = true;
-        loadingText.text = "Joining the land...";
+        loadingText.text = "Tierra a la vista...";
 
     }
     public override void OnJoinedLobby()
@@ -111,7 +111,7 @@ public class Launcher : MonoBehaviourPunCallbacks
 
             PhotonNetwork.CreateRoom(roomNameInput.text,options);
             CloseMenus();
-            loadingText.text = "Creating camp...";
+            loadingText.text = "Creando campamento...";
             loadingScreen.SetActive(true);
         }
     }
@@ -125,13 +125,13 @@ public class Launcher : MonoBehaviourPunCallbacks
 
             PhotonNetwork.CreateRoom(campButton.campName.text, options);
             CloseMenus();
-            loadingText.text = "Loading " + campButton.campName.text;
+            loadingText.text = "Uniéndose a " + campButton.campName.text;
             loadingScreen.SetActive(true);
         }
     }
     public override void OnJoinedRoom()
     {
-        playersAmount.text = PhotonNetwork.PlayerList.Length.ToString()+"/"+4 +" Players";
+        playersAmount.text = PhotonNetwork.PlayerList.Length.ToString()+"/"+4 +" Jugadores";
 
         base.OnLeftRoom();
         CloseMenus();
@@ -180,7 +180,7 @@ public class Launcher : MonoBehaviourPunCallbacks
             PlayerPrefs.DeleteKey("role");
 
         }
-        playersAmount.text = PhotonNetwork.PlayerList.Length.ToString() + "/" + 4 + " Players";
+        playersAmount.text = PhotonNetwork.PlayerList.Length.ToString() + "/" + 4 + " Jugadores";
 
         ListAllPlayers();
     }
@@ -191,14 +191,14 @@ public class Launcher : MonoBehaviourPunCallbacks
             PlayerPrefs.DeleteKey("role");
 
         }
-        playersAmount.text = PhotonNetwork.PlayerList.Length.ToString() + "/" + 4 + " Players";
+        playersAmount.text = PhotonNetwork.PlayerList.Length.ToString() + "/" + 4 + " Jugadores";
 
         ListAllPlayers();
     }
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
         base.OnCreateRoomFailed(returnCode, message);
-        errorText.text = "Failed to create  camp: " + message;
+        errorText.text = "Error al crear campamento: " + message;
         CloseMenus();
         errorScreen.SetActive(true);
     }
@@ -214,7 +214,7 @@ public class Launcher : MonoBehaviourPunCallbacks
         PhotonNetwork.LeaveRoom();
 
         CloseMenus();
-        loadingText.text = "Leaving camp...";
+        loadingText.text = "Dejándo el campamento...";
         loadingScreen.SetActive(true);
     }
     public override void OnLeftRoom()
@@ -265,7 +265,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.JoinRoom(inputInfo.Name);
         CloseMenus();
-        loadingText.text = "Joining Camp";
+        loadingText.text = "Uniéndose al campamento";
         loadingScreen.SetActive(true);
     }
     public void StartGame()
@@ -300,7 +300,7 @@ public class Launcher : MonoBehaviourPunCallbacks
         options.MaxPlayers = 8;
         PhotonNetwork.CreateRoom("Test",options);
         CloseMenus();
-        loadingText.text = "Creating Camp";
+        loadingText.text = "Creando  campamento";
         loadingScreen.gameObject.SetActive(true);
     }
 

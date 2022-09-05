@@ -4,13 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Placed
   - Store
   - Floor
-<<<<<<< Updated upstream
-=======
+  - Placed
   - Piece
->>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
@@ -18,10 +15,10 @@ TagManager:
   - 
   - Water
   - UI
-  - BuildingZone
-  - Builder
   - 
-  - Gatherer
+  - 
+  - 
+  - 
   - 
   - 
   - 
