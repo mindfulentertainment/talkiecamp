@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using System;
 
 public class Place : MonoBehaviourPun
 {
 
     public PlaceInfo PlaceInfo;
     Food food;
+    public static Action<string> OnPlaceBuild;
     Resource resource;
     private void OnEnable()
     {
@@ -30,7 +32,7 @@ public class Place : MonoBehaviourPun
 
             DataManager.instance.buildings.buildings.Add(newBuilding);
         }
-
+        OnPlaceBuild?.Invoke(PlaceInfo.placeName);
 
     }
 
@@ -40,12 +42,17 @@ public class Place : MonoBehaviourPun
         food = new Food(PlaceInfo.hamburguers, PlaceInfo.sandwiches, PlaceInfo.soups);
 
         resource = new Resource(PlaceInfo.stone, PlaceInfo.fabric, PlaceInfo.wood, food);
+        resource.connection = PlaceInfo.conexion;
         if (resource.stone > 0)
         {
             Element element = new Element(Element.ElementType.stone, resource.stone);
             DataManager.instance.DecreaseElement(element);
         }
-
+        if (resource.connection > 0)
+        {
+            Element element = new Element(Element.ElementType.connection, resource.connection);
+            DataManager.instance.DecreaseElement(element);
+        }
 
         if (resource.wood > 0)
         {

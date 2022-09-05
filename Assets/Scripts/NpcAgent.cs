@@ -7,25 +7,46 @@ using TMPro;
 public class NpcAgent : MonoBehaviour
 {
     [SerializeField] TMP_Text m_Text;
-    [SerializeField] TutorialQuest[] m_Quest;
     public TutorialAction[] tutorialAction;
+    public static NpcAgent instance;
+    public GameObject[] interactables;
+    public GameObject basket;
+    public GameObject store;
+    public GameObject floor;
+    public GameObject[] interactablesGatherer;
+    public GameObject tutorial;
 
-    static int index = 0;
+    private void Awake()
+    {
+        instance = this;
+    }
+     int index = 0;
     private void Start()
     {
         tutorialAction[index].Init();
-
+        UIController.instance.roleText.gameObject.SetActive(false);
+        UIController.instance.pickBtn.gameObject.SetActive(false);
+        UIController.instance.joystick.gameObject.SetActive(false);
+        UIController.instance.emoticonBtn.gameObject.SetActive(false);
+        UIController.instance.resourcesBtn.gameObject.SetActive(false);
+        floor.GetComponent<Collider>().enabled = false;
     }
-
     private void Update()
     {
 
-        m_Text.text = m_Quest[index].tutorialDescription;
-        tutorialAction[index].Tick();
+        m_Text.text = tutorialAction[index].GetDescription();
     }
-    public static void Next()
+    public void Next()
     {
 
         index++;
+        tutorialAction[index].Init();
+    }
+
+    public void EndTutorial()
+    {
+        floor.GetComponent<Collider>().enabled = true;
+
+        tutorial.gameObject.SetActive(false );
     }
 }

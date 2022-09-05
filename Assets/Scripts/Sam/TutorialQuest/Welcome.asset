@@ -12,7 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cdafd0f565b9d54b83977d145302578, type: 3}
   m_Name: Welcome
   m_EditorClassIdentifier: 
-  tutorialAction: {fileID: 0}
-  tutorialDescription: "Bienvenidos  viajeros a Talkie Camp. El objetivo de esta
-    gran aventura es construir el mejor campemento haciendo uso de la cooperaci\xF3n. 
-    Les ensa\xF1er\xE9 como funciona todo por aqui, vale?"
+  tutorialDescription:
+  - "Bienvenidos  viajeros a Talkie Camp. El objetivo de esta gran aventura es construir
+    el mejor campemento haciendo uso de la cooperaci\xF3n.  Les ensa\xF1er\xE9 como
+    funciona todo por aqui, vale?"
+  - En la esquina izquierda, puedes saber cual rol eres.
+  - Ahora puedes moverte por el mapa haciendo uso del Joystick en la parte inferior
+    izquierda
+  - Con el boton pueden recoger cosas del suelo. Intenten agarrar los troncos  y
+    llevarlos a la canasta.
+  - Excelente
+  - "Ahora, puedes revisar con el bot\xF3n de inventario los recursos que vas consiguiendo.
+    \xBFVes como ya tenemos madera?"
+  - "Puedes hacerle saber tus emociones a otros jugadores enviadoles un emoji. Toca
+    el bot\xF3n Emoji."
+  - "Ahora, cada jugadores tiene unas acciones \xFAnicas que explicar\xE9 una por
+    una: :D"

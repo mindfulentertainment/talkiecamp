@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName ="Tutorial Quest")]
 public class TutorialQuest : ScriptableObject
 {
-    public string tutorialDescription;
+    public string[] tutorialDescription;
 }
 
 

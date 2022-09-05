@@ -28,6 +28,8 @@ public class UIController : MonoBehaviour
     public TMP_Text message;
     public TMP_Text caption;
     Coroutine fade;
+    public GameObject emoticonBtn;
+    public GameObject resourcesBtn;
 
     [Header("Resources")]
     public TMP_Text meatAmount;

@@ -17,6 +17,7 @@ public class PlaceButton : MonoBehaviour
     private TMP_Text sandwich;
     private TMP_Text hamburguer;
     private TMP_Text soup;
+    private TMP_Text interaction;
     private bool firstCheck=true;
 
     Resource resource;
@@ -40,7 +41,7 @@ public class PlaceButton : MonoBehaviour
          food = new Food(PlaceInfo.hamburguers,PlaceInfo.sandwiches,PlaceInfo.soups);
       
          resource= new Resource(PlaceInfo.stone, PlaceInfo.fabric, PlaceInfo.wood, food);
-
+        resource.connection = PlaceInfo.conexion;
         if (resource.stone > 0)
         {
             GameObject instance = Instantiate(m_resource, m_resource.transform.parent);
@@ -69,7 +70,14 @@ public class PlaceButton : MonoBehaviour
             fabric.text = resource.fabric.ToString();
 
         }
+        if (resource.connection > 0)
+        {
+            GameObject instance = Instantiate(m_resource, m_resource.transform.parent);
+            instance.transform.GetChild(0).GetComponent<TMP_Text>().text = "Interacción";
+            interaction = instance.transform.GetChild(1).GetComponent<TMP_Text>();
+            interaction.text = resource.connection.ToString();
 
+        }
         if (food.sandwich> 0)
         {
             GameObject instance = Instantiate(m_resource, m_resource.transform.parent);
@@ -151,20 +159,7 @@ public class PlaceButton : MonoBehaviour
 
                 }
             }
-            if (fabric!=null)
-            {
-                if (gameResources.food.sandwich >= food.sandwich)
-                {
-                    fabric.color = Color.green;
-
-                }
-                else
-                {
-                    fabric.color = Color.red;
-                    buildButton.interactable = false;
-
-                }
-            }
+          
             if (hamburguer != null)
             {
                 if (gameResources.food.hamburguer >= food.hamburguer)
@@ -207,7 +202,21 @@ public class PlaceButton : MonoBehaviour
 
                 }
             }
+            if (interaction != null)
+            {
 
+                if (gameResources.connection>= resource.connection)
+                {
+                    interaction.color = Color.green;
+
+                }
+                else
+                {
+                    interaction.color = Color.red;
+                    buildButton.interactable = false;
+
+                }
+            }
         }
        
         
