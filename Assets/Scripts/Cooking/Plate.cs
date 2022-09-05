@@ -50,7 +50,10 @@ public class Plate : SnapZone, IPickable
 
     private void DisableIngredients()
     {
-        
+        foreach (var item in _ingredients)
+        {
+            Destroy(item.gameObject, 2f);
+        }
     }
 
     public void Pick()

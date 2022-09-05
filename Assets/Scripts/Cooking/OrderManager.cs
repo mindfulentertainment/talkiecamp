@@ -83,13 +83,25 @@ public class OrderManager : MonoBehaviour
 
             List<IngredientType> orderIngredients = order.Ingredients.Select(x => x.type).ToList();
 
-            if (plateIngredients.Count != orderIngredients.Count) continue;
+            if (plateIngredients.Count != orderIngredients.Count)
+            {
+                Debug.Log("Orden erronea");
+
+                continue;
+            }
 
             var intersection = plateIngredients.Except(orderIngredients).ToList();
 
-            if (intersection.Count != 0) continue; // doesn't match any plate
+            // doesn't match any plate
+            if (intersection.Count != 0)
+            {
+                Debug.Log("Orden erronea");
+
+                continue;
+            }
 
             DeactivateSendBackToPool(order);
+            Debug.Log("Orden correcta");
             OnOrderDelivered?.Invoke(order);
             //ordersPanelUI.RegroupPanelsLeft();
             return;

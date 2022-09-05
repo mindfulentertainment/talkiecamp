@@ -57,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 _currentPickable.Pick();
                 pickAndDrop.Remove(_currentPickable as SnapZone);
-                _currentPickable.gameObject.transform.SetPositionAndRotation(slot.transform.position,Quaternion.identity);
+                _currentPickable.gameObject.transform.SetPositionAndRotation(slot.transform.position, Quaternion.identity);
                 _currentPickable.gameObject.transform.SetParent(slot);
                 return;
             }
