@@ -290,6 +290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   smoothTurnTime: 0.1
+  animator: {fileID: 0}
   slot: {fileID: 8096066563384535366}
   gravityMod: 2.5
   groundCheckPoint: {fileID: 3680391375971635016}
@@ -297,6 +298,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   role: Chef
+  snap: {fileID: 0}
 --- !u!143 &3680391375702943380
 CharacterController:
   m_ObjectHideFlags: 0

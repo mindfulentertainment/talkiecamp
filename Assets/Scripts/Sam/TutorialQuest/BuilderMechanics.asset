@@ -15,5 +15,8 @@ MonoBehaviour:
   tutorialDescription:
   - El constuctor puede acceder al almacen y debe comunicarle a los jugadores los
     elementos que necesita.
-  - "Ve al almacen y construye una pista de baile. Posicionala dentro del recuadro
+  - "Constructor, ve al almacen y construye una carpa.  Posicionala dentro del recuadro
     y haz click en el bot\xF3n de interacci\xF3n."
+  - Muy bien viajeros, el campamento, es todo vuestro
+  - "Oh... Una cosa, en Talkie Camp amamos la din\xE1nimas sociales. Escuch\xE9 que
+    se acerca un concurso de baile, deber\xEDan construir una pista de baile y practicar..."

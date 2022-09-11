@@ -33,7 +33,11 @@ public class Place : MonoBehaviourPun
             DataManager.instance.buildings.buildings.Add(newBuilding);
         }
         OnPlaceBuild?.Invoke(PlaceInfo.placeName);
-
+        Vector3 keyVector= new Vector3(gameObject.transform.position.x, 0.01f, gameObject.transform.position.z);
+        string key= keyVector.ToString();
+        Collider col = DataManager.instance.keyValuePairs[key];
+        col.enabled = false;
+        col.gameObject.GetComponentInChildren<MeshRenderer>().material = DataManager.instance.unavailable;
     }
 
     void UseMaterials()

@@ -28,9 +28,15 @@ public class PlayerController : MonoBehaviourPunCallbacks
     protected bool isGrounded;
     public LayerMask groundLayers;
     public string role;
-
+    bool isRunning;
     protected  bool isBuilding;
-   
+    public Transform snap;
+
+
+    public Transform GetSnap()
+    {
+        return snap;
+    }
     protected void Awake()
     {
         pickAndDropNetWork = GetComponentInChildren<PickAndDropNetWork>();
@@ -62,7 +68,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         {
             direction.y = 0;
         }
-
+        Debug.Log(isGrounded);
         isGrounded = Physics.Raycast(groundCheckPoint.position, Vector3.down, .25f, groundLayers);
 
         direction = new Vector3(horizontal, direction.y, vertical).normalized;
@@ -75,23 +81,41 @@ public class PlayerController : MonoBehaviourPunCallbacks
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref smoothTurnVelocity, smoothTurnTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
-            characterController.Move(direction * speed * Time.deltaTime);
+            isRunning = true;
         }
-        else animator.SetBool("isRunning", false);
+        else {
+
+            animator.SetBool("isRunning", false);
+            isRunning = false;
+
+        }
+
+
+        characterController.Move(direction * speed * Time.deltaTime);
+
     }
 
     private void HandleButton()
     {
         if (photonView.IsMine)
         {
-            photonView.RPC("HandlePickUp", RpcTarget.AllBufferedViaServer);
+            if (!isRunning)
+            {
+
+                float x =snap.position.x;
+                float y =snap.position.y;
+                float z =snap.position.z;
+                photonView.RPC("HandlePickUp", RpcTarget.AllViaServer,x,y,z) ;
+
+            }
 
         }
     }
 
     [PunRPC]
-    public virtual void HandlePickUp()
+    public virtual void HandlePickUp(float x, float y, float z)
     {
+        Vector3 pos = new Vector3(x,y,z);
         var snapZone = pickAndDropNetWork.CurrentSnapZone;
 
         // empty hands, try to pick
@@ -126,7 +150,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         {
             if (_currentPickable != null)
             {
-                _currentPickable.Drop();
+                _currentPickable.Drop(pos);
                 _currentPickable = null;
                 return;
             }
@@ -176,20 +200,30 @@ public class PlayerController : MonoBehaviourPunCallbacks
             }
             
         }
+
+        if (other.gameObject.CompareTag("Obstacle"))
+        {
+            if (photonView.IsMine)
+            {
+                string message = "Parece que aqui faltan unas escaleras";
+
+                UIController.instance.ShowCaption(message);
+            }
+
+        }
     }
 
     
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Store"))
-        {
+        
             if (photonView.IsMine)
             {
                 UIController.instance.storeButton.SetActive(false);
                 UIController.instance.HideCaption();
                 isBuilding = false;
             }
-        }
+        
     }
 
 

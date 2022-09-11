@@ -9,7 +9,7 @@ public class PickableItem : SnapZone, IPickable
 {
     private Rigidbody rb;
     private Collider collider;
-
+    bool isTaken;
     protected override void Awake()
     {
         base.Awake();
@@ -24,26 +24,28 @@ public class PickableItem : SnapZone, IPickable
 
     public void Pick()
     {
-        rb.isKinematic = true;
-        collider.enabled = false;
-        rb.velocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
+        
+            rb.isKinematic = true;
+            collider.enabled = false;
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            isTaken = true;
+            StopAllCoroutines();
+        
+     
     }
 
-    public void Drop()
+    public void Drop(Vector3 pos)
     {
-        gameObject.transform.SetParent(null);
-        rb.isKinematic = false;
-        collider.enabled = true;
+        
+            isTaken = false;
 
-        StartCoroutine(KinematicDisable());
-    }
-
-    IEnumerator KinematicDisable()
-    {
-        yield return new WaitForSeconds(1.5f);
-
-        rb.isKinematic = true;
+            gameObject.transform.SetParent(null);
+            transform.position = pos;
+            rb.isKinematic = true;
+            collider.enabled = true;
+       
+      
     }
 
     public override bool TryToDropIntoSlot(IPickable pickableToDrop)

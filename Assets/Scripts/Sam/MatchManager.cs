@@ -49,11 +49,12 @@ public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
 
     void Start()
     {
-        StateManager.Instance.OnResourcesLoad.AddListener(SendResourcesInfo);
 
         if (PhotonNetwork.IsMasterClient)
         {
             StartCoroutine(LoadData());
+            StateManager.Instance.OnResourcesLoad.AddListener(SendResourcesInfo);
+
         }
 
         if (!PhotonNetwork.IsConnected)
@@ -134,7 +135,7 @@ public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
         UIController.instance.ChangeResources(resource);
         DataManager.instance.buildings = BuildingHistory;
         DataManager.instance.resource = resource;
-       OnGameStart?.Invoke();
+        OnGameStart?.Invoke();
     }
 
     IEnumerator NewPlayerSend(string username)

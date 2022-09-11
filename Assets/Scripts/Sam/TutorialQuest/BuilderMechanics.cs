@@ -8,7 +8,6 @@ public class BuilderMechanics : TutorialAction
     {
        NpcAgent.instance.store.gameObject.SetActive(true);
         StartCoroutine(End());
-        Place.OnPlaceBuild += Dance;
     }
     
     IEnumerator End()
@@ -16,25 +15,29 @@ public class BuilderMechanics : TutorialAction
         yield return new WaitForSeconds(6);
         textIndex++;
        
-    }
-    IEnumerator ContinueToDance()
-    {
-        textIndex++;
-        yield return new WaitForSeconds(20);
+        bool hasTent = false;
+        while (!hasTent)
+        {
+            foreach (var item in DataManager.instance.buildings.buildings)
+            {
+                Debug.Log(item.buildingName);
+                if (item.buildingName == "Tent")
+                {
+
+                    hasTent = true;
+                }
+            }
+
+            yield return null;
+        }
         textIndex++;
         yield return new WaitForSeconds(10);
+        textIndex++;
+        yield return new WaitForSeconds(10);
+
         NpcAgent.instance.EndTutorial();
-
     }
-    void Dance(string building)
-    {
-        if(building == "DanceFloor")
-        {
-            StartCoroutine(ContinueToDance());
-            Place.OnPlaceBuild -= Dance;
 
-        }
-    }
     public override void Tick()
     {
     }

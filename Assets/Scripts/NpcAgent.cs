@@ -12,10 +12,9 @@ public class NpcAgent : MonoBehaviour
     public GameObject[] interactables;
     public GameObject basket;
     public GameObject store;
-    public GameObject floor;
     public GameObject[] interactablesGatherer;
     public GameObject tutorial;
-
+    public GameObject map;
     private void Awake()
     {
         instance = this;
@@ -24,12 +23,7 @@ public class NpcAgent : MonoBehaviour
     private void Start()
     {
         tutorialAction[index].Init();
-        UIController.instance.roleText.gameObject.SetActive(false);
-        UIController.instance.pickBtn.gameObject.SetActive(false);
-        UIController.instance.joystick.gameObject.SetActive(false);
-        UIController.instance.emoticonBtn.gameObject.SetActive(false);
-        UIController.instance.resourcesBtn.gameObject.SetActive(false);
-        floor.GetComponent<Collider>().enabled = false;
+        map.SetActive(false);
     }
     private void Update()
     {
@@ -45,8 +39,9 @@ public class NpcAgent : MonoBehaviour
 
     public void EndTutorial()
     {
-        floor.GetComponent<Collider>().enabled = true;
-
+        
         tutorial.gameObject.SetActive(false );
+        UIController.instance.storeButton.SetActive(false);
+        map.SetActive(true);
     }
 }

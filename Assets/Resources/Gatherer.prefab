@@ -232,6 +232,37 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &3214701426726217169
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3146076263479553032}
+  m_Layer: 2
+  m_Name: GameObject (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3146076263479553032
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3214701426726217169}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0.06, y: -0.91, z: 1.32}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3680391375702943386}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3680391375130324004
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,12 +307,12 @@ GameObject:
   - component: {fileID: 3680391375702943381}
   - component: {fileID: 3680391375702943380}
   - component: {fileID: 4576411378802999711}
-  - component: {fileID: 6938229923327308325}
   - component: {fileID: 5109504661103796118}
   - component: {fileID: 8827289013043625243}
   - component: {fileID: 4472988592361973067}
   - component: {fileID: 1748367267048557555}
   - component: {fileID: 2579279665838748004}
+  - component: {fileID: 509739277938245644}
   m_Layer: 2
   m_Name: Gatherer
   m_TagString: Player
@@ -308,6 +339,7 @@ Transform:
   - {fileID: 5399312677572116583}
   - {fileID: 7628990797387515137}
   - {fileID: 6875261978569443188}
+  - {fileID: 3146076263479553032}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -341,12 +373,13 @@ MonoBehaviour:
   smoothTurnTime: 0.1
   animator: {fileID: 1748367267048557555}
   slot: {fileID: 8165857363173139245}
-  gravityMod: 2.5
+  gravityMod: 7
   groundCheckPoint: {fileID: 3680391375971635016}
   groundLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 2112
   role: Gatherer
+  snap: {fileID: 3146076263479553032}
 --- !u!143 &3680391375702943380
 CharacterController:
   m_ObjectHideFlags: 0
@@ -382,29 +415,13 @@ MonoBehaviour:
   prefixField: -1
   Synchronization: 3
   OwnershipTransfer: 0
-  observableSearch: 0
+  observableSearch: 2
   ObservedComponents:
-  - {fileID: 6938229923327308325}
   - {fileID: 2579279665838748004}
+  - {fileID: 509739277938245644}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &6938229923327308325
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3680391375702943390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
-  m_UseLocal: 1
 --- !u!114 &5109504661103796118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -488,6 +505,19 @@ MonoBehaviour:
   m_SynchronizeLayers:
   - SynchronizeType: 2
     LayerIndex: 0
+--- !u!114 &509739277938245644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3680391375702943390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35144820bcc25444bb8f0fd767d9423e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SmoothingDelay: 5
 --- !u!1 &3680391375971635017
 GameObject:
   m_ObjectHideFlags: 0
@@ -606,7 +636,6 @@ GameObject:
   - component: {fileID: 8165857363173139245}
   - component: {fileID: 4291794654664249992}
   - component: {fileID: 2010583981922275951}
-  - component: {fileID: 1274309185918329384}
   - component: {fileID: 1348385235252650089}
   m_Layer: 2
   m_Name: GrabSlot
@@ -641,8 +670,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.5
-  m_Center: {x: 0, y: 0, z: -0.3}
+  m_Radius: 1.86
+  m_Center: {x: 0, y: 0, z: -1.1}
 --- !u!114 &2010583981922275951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -661,27 +690,10 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents:
-  - {fileID: 1274309185918329384}
+  ObservedComponents: []
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &1274309185918329384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7043660603019707309}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
-  m_UseLocal: 1
 --- !u!114 &1348385235252650089
 MonoBehaviour:
   m_ObjectHideFlags: 0

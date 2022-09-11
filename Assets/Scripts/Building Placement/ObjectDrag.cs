@@ -5,6 +5,7 @@ using UnityEngine;
 public class ObjectDrag : MonoBehaviour
 {
     private Vector3 offSet;
+    private Vector3 lastPoint;
     public LayerMask BuildingZone;
     // static  BuildingSystem buildingSystem;
 
@@ -13,9 +14,10 @@ public class ObjectDrag : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit raycastHit, 1000f, BuildingZone))
         {
+            lastPoint = raycastHit.point;
             return raycastHit.point;
         }
-        else return Vector3.zero;
+        return lastPoint;
     }
     private void OnMouseDown()
     {

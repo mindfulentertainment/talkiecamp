@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     public float smoothTurnTime;
     private float smoothTurnVelocity;
+    public Transform snap;
 
     [Header("PickUpObjects")]
     [SerializeField] private Transform slot;
@@ -75,7 +76,8 @@ public class PlayerMovement : MonoBehaviour
         // no snap zone in range or at most a Pickable in range (we ignore it)
         if (snapZone == null || snapZone is IPickable)
         {
-            _currentPickable.Drop();
+            Vector3 myVector = new Vector3(snap.transform.position.x, snap.transform.position.y, snap.transform.position.z);  
+            _currentPickable.Drop(myVector);
             _currentPickable = null;
             return;
         }

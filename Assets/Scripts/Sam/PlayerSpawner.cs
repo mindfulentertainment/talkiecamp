@@ -89,8 +89,7 @@ public class PlayerSpawner : MonoBehaviour
     //{
     //    if (GUI.Button(new Rect(0, 10, 100, 32), "Vibrate!"))
     //    {
-    //        Handheld.Vibrate();
-    //        CameraShake.Shake(0.25f, 0.5f);
+    //      
     //    }
            
     //}

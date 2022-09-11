@@ -6,12 +6,13 @@ using Photon.Pun;
 public class Builder : PlayerController
 {
     [PunRPC]
-    public override void HandlePickUp()
+    public override void HandlePickUp(float x, float y, float z)
     {
-        base.HandlePickUp();    
+        base.HandlePickUp(x,y,z);    
     }
-    private void OnEnable()
+    public override void OnEnable()
     {
+        base.OnEnable();
         UIController.instance.storeButton.GetComponent<Button>().onClick.AddListener(StartToBuild);
     }
 

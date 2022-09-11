@@ -8,6 +8,8 @@ TagManager:
   - Floor
   - Placed
   - Piece
+  - Obstacle
+  - Stairs
   layers:
   - Default
   - TransparentFX
@@ -22,7 +24,7 @@ TagManager:
   - 
   - BuildingZone
   - 
-  - 
+  - Stairs
   - 
   - 
   - 

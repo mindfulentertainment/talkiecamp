@@ -13,7 +13,6 @@ public class UIController : MonoBehaviour
     public Button pickBtn;
     private string role;
     public TMP_Text roleText;
-    public GameObject resourcesBar;
     public GameObject sideBar;
     public TMP_Text btn_description;
 
@@ -96,20 +95,21 @@ public class UIController : MonoBehaviour
 
     public void StartBuilding()
     {
-        resourcesBar.SetActive(false); 
         sideBar.SetActive(false);
         cancel.gameObject.SetActive(true);
         rotate.gameObject.SetActive(true);
         btn_description.text = "Construir";
+        DataManager.instance.gridHexagones.SetActive(true);
     }
     public void StopBuilding()
     {
-        resourcesBar.SetActive(true);
         sideBar.SetActive(true);
         storeButton.SetActive(true);
         btn_description.text = "";
         cancel.gameObject.SetActive(false);
         rotate.gameObject.SetActive(false);
+        DataManager.instance.gridHexagones.SetActive(false);
+
     }
 
     public void ChangeResources(Resource resource)

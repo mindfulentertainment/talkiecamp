@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 4607599447355945393}
   - component: {fileID: -434621053234270060}
   - component: {fileID: 567432406934352256}
-  - component: {fileID: 550855837459528765}
-  - component: {fileID: 1445864964093927848}
+  - component: {fileID: 1853789931386223490}
   m_Layer: 0
   m_Name: Tent
   m_TagString: Placed
@@ -64,21 +63,8 @@ MonoBehaviour:
   BuildingZone:
     serializedVersion: 2
     m_Bits: 2112
---- !u!65 &550855837459528765
+--- !u!65 &1853789931386223490
 BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6585599092314432306}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!135 &1445864964093927848
-SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -88,7 +74,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 14.6
+  m_Size: {x: 4, y: 4, z: 4}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &7068997525864743597
 PrefabInstance:
@@ -168,21 +154,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b65fb7c6cba9cf8448b15d21a1048077, type: 3}
   m_PrefabInstance: {fileID: 7068997525864743597}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7988108218302054396 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b65fb7c6cba9cf8448b15d21a1048077, type: 3}
-  m_PrefabInstance: {fileID: 7068997525864743597}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &6443103072908692643
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7988108218302054396}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 21.22999, y: 10.50419, z: 22.03355}
-  m_Center: {x: 0, y: 0, z: 0}

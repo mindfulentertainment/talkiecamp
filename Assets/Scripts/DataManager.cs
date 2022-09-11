@@ -6,14 +6,23 @@ using Photon.Pun;
 public class DataManager : MonoBehaviour
 {
     public static DataManager instance;
-
+    public Material available;
+    public Material unavailable;
     public Buildings buildings= new Buildings();
     public Resource resource = new Resource();
-
-
+    public Dictionary<string,Collider> keyValuePairs = new Dictionary<string,Collider>();
+    public GameObject gridHexagones;
     private void Awake()
     {
         instance = this;
+        foreach (Transform hexagone in gridHexagones.transform)
+        {
+            keyValuePairs.Add(hexagone.position.ToString(), hexagone.gameObject.GetComponent<Collider>());
+            if (hexagone.gameObject.GetComponent<Collider>().enabled == false)
+            {
+                hexagone.gameObject.GetComponentInChildren<MeshRenderer>().material = unavailable;
+            }
+        }
     }
     private void Start()
     {

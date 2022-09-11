@@ -28,13 +28,13 @@ public class SpawnManager : MonoBehaviour
             case "Chef":
                 newTras = spawnTransform[0];
                 break;
-            case "Watchmen":
+            case "Vigilante":
                 newTras = spawnTransform[1];
                 break;
-            case "Builder":
+            case "Constructor":
                 newTras = spawnTransform[2];
                 break;
-            case "Gatherer":
+            case "Recolector":
                 newTras = spawnTransform[3];
                 break;
             default: newTras = spawnTransform[0]; break;

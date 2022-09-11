@@ -136,6 +136,10 @@ public class DanceFloorGame : MonoBehaviour
 
     public void ResetGame(int random)
     {
+        Element element = new Element(Element.ElementType.connection, 3);
+        DataManager.instance.IncreaseElement(element);
+        Handheld.Vibrate();
+        CameraShake.Shake(0.25f, 0.5f);
         info.gameObject.SetActive(false);
         startGame.gameObject.SetActive(false);
         isPlaying = true;
@@ -181,9 +185,11 @@ public class DanceFloorGame : MonoBehaviour
 
         if (CheckWin(random))
         {
-            Element element = new Element(Element.ElementType.connection, (int)(5/timeToLerp));
-            DataManager.instance.IncreaseElement(element);
-            StartTheGame();
+            if (PhotonNetwork.IsMasterClient)
+            {
+                StartTheGame();
+
+            }
         }
         else
         {

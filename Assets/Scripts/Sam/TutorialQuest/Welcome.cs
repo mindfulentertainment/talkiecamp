@@ -7,6 +7,11 @@ public class Welcome : TutorialAction
     public override void Init()
     {
         Debug.Log("Started");
+        UIController.instance.roleText.gameObject.SetActive(false);
+        UIController.instance.pickBtn.gameObject.SetActive(false);
+        UIController.instance.joystick.gameObject.SetActive(false);
+        UIController.instance.emoticonBtn.gameObject.SetActive(false);
+        UIController.instance.resourcesBtn.gameObject.SetActive(false);
         StartCoroutine(End());
     }
     public override void Tick()

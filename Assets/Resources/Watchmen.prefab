@@ -364,6 +364,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   smoothTurnTime: 0.1
+  animator: {fileID: 0}
   slot: {fileID: 2195409838787421983}
   gravityMod: 2.5
   groundCheckPoint: {fileID: 3680391375971635016}
@@ -371,6 +372,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   role: Watchmen
+  snap: {fileID: 0}
 --- !u!143 &3680391375702943380
 CharacterController:
   m_ObjectHideFlags: 0
