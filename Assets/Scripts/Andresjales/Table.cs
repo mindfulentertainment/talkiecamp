@@ -6,7 +6,12 @@ public class Table : SnapZone
     {
         if (CurrentPickable == null) return TryDropIfNotOccupied(pickableToDrop);
 
-        return false;
+        return CurrentPickable switch
+        {
+            Ingredient ingredient => ingredient.TryToDropIntoSlot(pickableToDrop),
+            Plate plate => plate.TryToDropIntoSlot(pickableToDrop),
+            _ => false
+        };
     }
 
     public override IPickable TryToPickUpFromSlot(IPickable playerHoldPickable)
