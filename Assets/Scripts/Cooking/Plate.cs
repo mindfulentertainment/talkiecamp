@@ -62,21 +62,16 @@ public class Plate : SnapZone, IPickable
         collider.enabled = false;
     }
 
-    public void Drop()
+    public void Drop(Vector3 pos)
     {
+
         gameObject.transform.SetParent(null);
-        rb.isKinematic = false;
-        collider.enabled = true;
-
-        StartCoroutine(KinematicDisable());
-    }
-
-    IEnumerator KinematicDisable()
-    {
-        yield return new WaitForSeconds(1.5f);
-
+        transform.position = pos;
         rb.isKinematic = true;
+        collider.enabled = true;
     }
+
+
 
     public override bool TryToDropIntoSlot(IPickable pickableToDrop)
     {
