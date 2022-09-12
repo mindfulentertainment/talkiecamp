@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   placeName: Silla
   wood: 10
-  stone: 5
+  stone: 0
   fabric: 0
   meat: 0
   hamburguers: 0

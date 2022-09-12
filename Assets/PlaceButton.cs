@@ -20,6 +20,14 @@ public class PlaceButton : MonoBehaviour
     private TMP_Text interaction;
     private bool firstCheck=true;
 
+    public Sprite stoneSprite;
+    public Sprite woodSprite;
+    public Sprite fabricSprite;
+    public Sprite sandwichSprite;
+    public Sprite hamburguerSprite;
+    public Sprite soupSprite;
+    public Sprite interactionSprite;
+
     Resource resource;
     Food food;
     private void Awake()
@@ -48,8 +56,9 @@ public class PlaceButton : MonoBehaviour
             instance.transform.GetChild(0).GetComponent<TMP_Text>().text = "Piedra";
             stone = instance.transform.GetChild(1).GetComponent<TMP_Text>();
             stone.text = resource.stone.ToString();
+            instance.transform.GetChild(2).GetComponent<Image>().sprite = stoneSprite;
 
-            
+
         }
 
 
@@ -60,6 +69,8 @@ public class PlaceButton : MonoBehaviour
 
             wood = instance.transform.GetChild(1).GetComponent<TMP_Text>();
             wood.text = resource.wood.ToString();
+            instance.transform.GetChild(2).GetComponent<Image>().sprite = woodSprite;
+
         }
 
         if (resource.fabric > 0)
@@ -68,6 +79,7 @@ public class PlaceButton : MonoBehaviour
             instance.transform.GetChild(0).GetComponent<TMP_Text>().text="Tela";
             fabric = instance.transform.GetChild(1).GetComponent<TMP_Text>();
             fabric.text = resource.fabric.ToString();
+            instance.transform.GetChild(2).GetComponent<Image>().sprite = fabricSprite;
 
         }
         if (resource.connection > 0)
@@ -76,6 +88,7 @@ public class PlaceButton : MonoBehaviour
             instance.transform.GetChild(0).GetComponent<TMP_Text>().text = "Interacción";
             interaction = instance.transform.GetChild(1).GetComponent<TMP_Text>();
             interaction.text = resource.connection.ToString();
+            instance.transform.GetChild(2).GetComponent<Image>().sprite = interactionSprite;
 
         }
         if (food.sandwich> 0)
@@ -85,6 +98,8 @@ public class PlaceButton : MonoBehaviour
 
             sandwich = instance.transform.GetChild(1).GetComponent<TMP_Text>();
             sandwich.text = food.sandwich.ToString();
+            instance.transform.GetChild(2).GetComponent<Image>().sprite = sandwichSprite;
+
         }
         if (food.hamburguer > 0)
         {
@@ -93,6 +108,8 @@ public class PlaceButton : MonoBehaviour
 
             hamburguer = instance.transform.GetChild(1).GetComponent<TMP_Text>();
             hamburguer.text = food.hamburguer.ToString();
+            instance.transform.GetChild(2).GetComponent<Image>().sprite = hamburguerSprite;
+
         }
         if (food.soup > 0)
         {
@@ -101,6 +118,8 @@ public class PlaceButton : MonoBehaviour
 
             soup = instance.transform.GetChild(1).GetComponent<TMP_Text>();
             soup.text = food.soup.ToString();
+            instance.transform.GetChild(2).GetComponent<Image>().sprite = soupSprite;
+
         }
 
         Destroy(m_resource);
