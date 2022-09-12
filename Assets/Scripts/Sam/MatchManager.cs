@@ -59,7 +59,7 @@ public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
 
         if (!PhotonNetwork.IsConnected)
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         }
         else
         {
@@ -111,7 +111,7 @@ public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
             {
             PlayerPrefs.DeleteKey("role");
         }
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     public void SendResourcesInfo(Resource resource, Buildings buildingHistory)

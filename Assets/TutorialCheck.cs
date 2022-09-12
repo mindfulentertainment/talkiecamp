@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Photon.Pun;
 public class TutorialCheck : MonoBehaviour
 {
     [SerializeField] GameObject tutorialContent;
+   
     public bool showTutorial;
     private void OnEnable()
     {
@@ -16,6 +17,22 @@ public class TutorialCheck : MonoBehaviour
     }
     void CheckTutorial()
     {
+        
+        if (PlayerPrefs.HasKey("tutorial"))
+        {
+            if (PlayerPrefs.GetInt("tutorial") == 1)
+            {
+                showTutorial = true;
+            }
+            else
+            {
+                showTutorial = false;
+
+            }
+
+        }
+
+
         if (!CheckTutorialDone())
         {
             if (showTutorial)
@@ -27,6 +44,8 @@ public class TutorialCheck : MonoBehaviour
         }
 
     }
+
+
     private bool CheckTutorialDone()
     {
         foreach (var item in  DataManager.instance.buildings.buildings)

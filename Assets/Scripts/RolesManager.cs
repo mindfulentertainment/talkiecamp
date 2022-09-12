@@ -8,11 +8,18 @@ using ExitGames.Client.Photon;
 using UnityEngine.UI;
 public class RolesManager : MonoBehaviourPunCallbacks, IOnEventCallback
 {
+    public static RolesManager Instance;
+    private void Awake()
+    {
+        Instance = this;    
+    }
     private Button roleChosen;
     public Button startGame;
     private float roles;
+    public Toggle tutorialToggle;
     public override void OnEnable()
     {
+        tutorialToggle.onValueChanged.AddListener(TutorialSend);
         startGame.interactable = true;
         PhotonNetwork.AddCallbackTarget(this);
         if (PhotonNetwork.IsMasterClient)
@@ -24,13 +31,15 @@ public class RolesManager : MonoBehaviourPunCallbacks, IOnEventCallback
     public override void OnDisable()
     {
         PhotonNetwork.RemoveCallbackTarget(this);
+        tutorialToggle.onValueChanged.RemoveListener(TutorialSend);
 
     }
     public List<Button> mButtons = new List<Button>();
     public enum EventCodes : byte
     {
         PlayerAction,
-        RoleChanged
+        RoleChanged,
+        tutorialChanged
 
 
     }
@@ -72,7 +81,9 @@ public class RolesManager : MonoBehaviourPunCallbacks, IOnEventCallback
                 case EventCodes.RoleChanged:
                     RolesChanged(data);
                     break;
-
+                case EventCodes.tutorialChanged:
+                    TutorialReceive(data);
+                    break;
             }
         }
     }
@@ -158,8 +169,28 @@ public class RolesManager : MonoBehaviourPunCallbacks, IOnEventCallback
         PhotonNetwork.RaiseEvent(
       (byte)EventCodes.RoleChanged, package, new RaiseEventOptions { Receivers = ReceiverGroup.All }, new SendOptions { Reliability = true });
     }
+    public void TutorialReceive(object[] dataRecived)
+    {
+        bool hasTutorial= (bool)dataRecived[0];
 
+        if (hasTutorial)
+        {
+            PlayerPrefs.SetInt("tutorial", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("tutorial", 0);
+        }
+    }
+    public void TutorialSend(bool value)
+    {
+        bool valueT=value;
 
+        object[] package = new object[1];
+        package[0] = valueT;
+        PhotonNetwork.RaiseEvent(
+           (byte)EventCodes.tutorialChanged, package, new RaiseEventOptions { Receivers = ReceiverGroup.All }, new SendOptions { Reliability = true });
+    }
     public void RolesSend()
     {
         
@@ -203,7 +234,11 @@ public class RolesManager : MonoBehaviourPunCallbacks, IOnEventCallback
             }
             
         }
-       
+
+        if(roles>=2)
+        {
+            startGame.interactable = true;
+        }       
     }
 }
 [System.Serializable]

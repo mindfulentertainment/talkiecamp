@@ -17,7 +17,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     public GameObject loadingScreen;
     public GameObject menuButtons;
     public TMP_Text loadingText;
-
+    public GameObject tutorialToggle;
     public GameObject createRoomScreen;
     public TMP_InputField roomNameInput;
     public GameObject roomScreen;
@@ -113,6 +113,10 @@ public class Launcher : MonoBehaviourPunCallbacks
             CloseMenus();
             loadingText.text = "Creando campamento...";
             loadingScreen.SetActive(true);
+            if (PhotonNetwork.IsMasterClient)
+            {
+                RolesManager.Instance.TutorialSend(RolesManager.Instance.tutorialToggle.isOn);
+            }
         }
     }
     public void JoinOwnRoom(CampButton campButton)
@@ -127,6 +131,12 @@ public class Launcher : MonoBehaviourPunCallbacks
             CloseMenus();
             loadingText.text = "Uniéndose a " + campButton.campName.text;
             loadingScreen.SetActive(true);
+
+            if (PhotonNetwork.IsMasterClient)
+            {
+                RolesManager.Instance.TutorialSend(RolesManager.Instance.tutorialToggle.isOn);
+            }
+
         }
     }
     public override void OnJoinedRoom()
@@ -143,14 +153,18 @@ public class Launcher : MonoBehaviourPunCallbacks
 
         roomRoomText.text = PhotonNetwork.CurrentRoom.Name;
         ListAllPlayers();
-
         if (PhotonNetwork.IsMasterClient)
         {
             startButton.SetActive(true);
+            tutorialToggle.SetActive(true);
+            RolesManager.Instance.TutorialSend(RolesManager.Instance.tutorialToggle.isOn);
+
         }
         else 
         {
             startButton.SetActive(false);
+            tutorialToggle.SetActive(false);
+
         }
     }
     private void ListAllPlayers()
@@ -221,7 +235,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     {
         base.OnLeftRoom();
 
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
         CloseMenus();
         menuButtons.SetActive(true) ;
     }
