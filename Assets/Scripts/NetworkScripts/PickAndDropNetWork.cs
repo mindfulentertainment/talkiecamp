@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using JetBrains.Annotations;
+using UnityEngine.UI;
 
 public class PickAndDropNetWork : MonoBehaviourPunCallbacks
 {
@@ -67,7 +68,7 @@ public class PickAndDropNetWork : MonoBehaviourPunCallbacks
             }
            
         }
-
+       
         return closest;
     }
 

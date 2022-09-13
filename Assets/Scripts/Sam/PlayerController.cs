@@ -6,6 +6,7 @@ using Photon.Pun;
 
 public class PlayerController : MonoBehaviourPunCallbacks
 {
+    
     [Header("Movement")]
     protected CharacterController characterController;
     protected Joystick joystick;
@@ -39,6 +40,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     }
     protected void Awake()
     {
+      
         pickAndDropNetWork = GetComponentInChildren<PickAndDropNetWork>();
         characterController = GetComponent<CharacterController>();
         m_Camera = Camera.main;
@@ -111,6 +113,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
         }
     }
+
+
 
     [PunRPC]
     public virtual void HandlePickUp(float x, float y, float z)
@@ -196,7 +200,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 }
                 else
                 {
-                    string message = "Only " + LayerMask.LayerToName(other.gameObject.layer) + " can interact with this, tell him!!";
+                    string message = "Solo " + LayerMask.LayerToName(other.gameObject.layer) + " puede interactuar con esto";
 
                     UIController.instance.ShowCaption(message);
 
