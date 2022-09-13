@@ -18,19 +18,7 @@ public class TutorialCheck : MonoBehaviour
     void CheckTutorial()
     {
         
-        if (PlayerPrefs.HasKey("tutorial"))
-        {
-            if (PlayerPrefs.GetInt("tutorial") == 1)
-            {
-                showTutorial = true;
-            }
-            else
-            {
-                showTutorial = false;
-
-            }
-
-        }
+     
 
 
         if (!CheckTutorialDone())
