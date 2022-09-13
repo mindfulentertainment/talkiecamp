@@ -19,6 +19,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     public TMP_Text loadingText;
     public GameObject tutorialToggle;
     public GameObject createRoomScreen;
+    public GameObject openCreditsScreen;
     public TMP_InputField roomNameInput;
     public GameObject roomScreen;
     public TMP_Text roomRoomText, playerNameLabel;
@@ -94,6 +95,7 @@ public class Launcher : MonoBehaviourPunCallbacks
         roomScreen.SetActive(false);
         roomBrowserScreen.SetActive(false);
         nameInputScreen.SetActive(false);
+        openCreditsScreen.SetActive(false);
     }
 
     public void OpenRoomCreate()
@@ -101,6 +103,12 @@ public class Launcher : MonoBehaviourPunCallbacks
         PlayerPrefs.DeleteKey("role");
         CloseMenus();
         createRoomScreen.SetActive(true);
+    }
+    public void OpenCreditsPanel()
+    {
+       
+        CloseMenus();
+        openCreditsScreen.SetActive(true);
     }
     public void CreateRoom()
     {

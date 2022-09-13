@@ -125,6 +125,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
             if (_currentPickable != null)
             {
                 _currentPickable.Pick();
+                animator.SetBool("isLifting", true);
                 pickAndDropNetWork.Remove(_currentPickable as SnapZone);
                 _currentPickable.gameObject.transform.SetPositionAndRotation(slot.transform.position, Quaternion.identity);
                 _currentPickable.gameObject.transform.SetParent(slot);
@@ -136,6 +137,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
             if (_currentPickable != null)
             {
+               // animator.SetBool("isLifting", true);
                 _currentPickable?.gameObject.transform.SetPositionAndRotation(slot.position, Quaternion.identity);
                 _currentPickable?.gameObject.transform.SetParent(slot);
             }
@@ -150,6 +152,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         {
             if (_currentPickable != null)
             {
+                animator.SetBool("isLifting", false);
                 _currentPickable.Drop(pos);
                 _currentPickable = null;
                 return;
@@ -168,7 +171,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
         {
             if (snapZone != null)
             {
-                    bool dropSuccess = snapZone.TryToDropIntoSlot(_currentPickable);
+                animator.SetBool("isLifting", false);
+                bool dropSuccess = snapZone.TryToDropIntoSlot(_currentPickable);
                 if (!dropSuccess) return;
 
             }
