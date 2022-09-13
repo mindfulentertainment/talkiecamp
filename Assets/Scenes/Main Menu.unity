@@ -3301,7 +3301,7 @@ PrefabInstance:
       objectReference: {fileID: 532387943, guid: 6b2cd7ebfdf067b48b5b84b39e891d22, type: 3}
     - target: {fileID: 3306884876114523039, guid: f76b6daf3c440fd4fad964019f407b07, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3306884876114523039, guid: f76b6daf3c440fd4fad964019f407b07, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -3312,6 +3312,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3306884876114523039, guid: f76b6daf3c440fd4fad964019f407b07, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3306884876114523039, guid: f76b6daf3c440fd4fad964019f407b07, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1678879536}
@@ -3320,11 +3324,19 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1612757394}
     - target: {fileID: 3306884876114523039, guid: f76b6daf3c440fd4fad964019f407b07, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1356314448}
+    - target: {fileID: 3306884876114523039, guid: f76b6daf3c440fd4fad964019f407b07, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3306884876114523039, guid: f76b6daf3c440fd4fad964019f407b07, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3306884876114523039, guid: f76b6daf3c440fd4fad964019f407b07, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3306884876114523039, guid: f76b6daf3c440fd4fad964019f407b07, type: 3}
@@ -3336,6 +3348,10 @@ PrefabInstance:
       value: PlaySound
       objectReference: {fileID: 0}
     - target: {fileID: 3306884876114523039, guid: f76b6daf3c440fd4fad964019f407b07, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: SaveSound
+      objectReference: {fileID: 0}
+    - target: {fileID: 3306884876114523039, guid: f76b6daf3c440fd4fad964019f407b07, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Luncher, Assembly-CSharp
       objectReference: {fileID: 0}
@@ -3344,11 +3360,19 @@ PrefabInstance:
       value: SFXManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3306884876114523039, guid: f76b6daf3c440fd4fad964019f407b07, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: SoundManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3306884876114523039, guid: f76b6daf3c440fd4fad964019f407b07, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3306884876114523039, guid: f76b6daf3c440fd4fad964019f407b07, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3306884876114523039, guid: f76b6daf3c440fd4fad964019f407b07, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -7565,6 +7589,17 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 3435110207872584888, guid: f877d17f81ffd0f46ad8aa73a082ae71, type: 3}
   m_PrefabInstance: {fileID: 3435110207634421304}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1356314448 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3435110207872584775, guid: f877d17f81ffd0f46ad8aa73a082ae71, type: 3}
+  m_PrefabInstance: {fileID: 3435110207634421304}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 019ed1e51fd1a5d48b66a4cba4e3c198, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1366211605
 GameObject:
   m_ObjectHideFlags: 0
@@ -12430,7 +12465,7 @@ MonoBehaviour:
   m_text: "\nSamuel Palacio\n\nAndres Alvares\n\nAbraham Daguer \n\n\n\n\nAlejandra
     Ibarbo\n\nMaria Alejandra G\xF3mez\n\nStefania Espinal\n\nJuan David Rave\n\n\n\n\nStefania
     Espinal \n\nJesus Coronel \n\nJuan Jose D\xEDaz\n\nManuel Mu\xF1oz\n\nMaria Alejandra
-    G\xF3mez\n\n\n\n\n\nSebastian Galeano\n\nJesus Coronel \n"
+    G\xF3mez\n\n\n\n\n\nSebastian Galeano\n\nJesus Coronel \n\n\n\n\nSacadas de Mixamo\n\n\n\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c2d0a4cce6f76ca41a0f663f8d9f8f8a, type: 2}
   m_sharedMaterial: {fileID: -2034221516829151281, guid: c2d0a4cce6f76ca41a0f663f8d9f8f8a, type: 2}
@@ -12544,7 +12579,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2288044460329407286}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -343.0361, y: 341, z: 7.389764}
+  m_LocalPosition: {x: -343.0361, y: 1012, z: 7.389764}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12593,29 +12628,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Game Programers
-
-
-
-
-
-    Concept Art
-
-
-
-
-
-
-    Modelos 3D
-
-
-
-
-
-
-
-
-    Animatic '
+  m_text: "Game Programers\n\n\n\n\nConcept Art\n\n\n\n\n\nModelos 3D\n\n\n\n\n\n\n\nAnimatic
+    \n\n\n\nAnimaciones\n\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: db49f61e639e6834aa99de6252e66be6, type: 2}
   m_sharedMaterial: {fileID: -2818188996208395490, guid: db49f61e639e6834aa99de6252e66be6, type: 2}

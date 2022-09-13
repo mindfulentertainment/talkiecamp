@@ -12,7 +12,7 @@ public class VideoManager : MonoBehaviour
     {
         if (PlayerPrefs.HasKey("playerName"))
         {
-            SceneManager.LoadScene(1);
+            SkipVideo();
 
         }
         else
@@ -29,4 +29,10 @@ public class VideoManager : MonoBehaviour
 
         SceneManager.LoadScene(1);
     }
+
+    public void SkipVideo()
+    {
+        SceneManager.LoadScene(1);
+    }
+
 }
