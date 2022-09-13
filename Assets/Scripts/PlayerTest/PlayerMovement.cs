@@ -94,4 +94,13 @@ public class PlayerMovement : MonoBehaviour
 
         _currentPickable = null;
     }
+
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Ball"))
+        {
+            other.gameObject.GetComponent<OnPlayerFoot>().GetBall(this.gameObject);
+        }
+    }
 }

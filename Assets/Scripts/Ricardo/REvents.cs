@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 [CreateAssetMenu(fileName = "Events")]
 public class REvents : ScriptableObject
 {
-    public delegate void EventInGame();
-    public event EventInGame GEvent; //aca se declara el evento
+    public Action GEvent; //aca se declara el evento
 
     public void FireEvent() //esta funcion dispara el evento
     {

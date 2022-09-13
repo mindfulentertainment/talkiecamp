@@ -14,4 +14,13 @@ public class ReplicateEvent : MonoBehaviour
             rEvents.FireEvent();
         }
     }
+    //private void OnEnable()
+    //{
+    //    UIController.instance.pickBtn.onClick.AddListener(() => rEvents.FireEvent());
+    //}
+    //private void OnDisable()
+    //{
+    //    UIController.instance.pickBtn.onClick.RemoveListener(() => rEvents.FireEvent());
+
+    //}
 }
