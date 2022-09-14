@@ -9,29 +9,18 @@ public class OnPlayerFoot : MonoBehaviour
     [SerializeField] bool isOnPlayer;
     [SerializeField] Sprite ballInteractionIcon;
     [SerializeField] Rigidbody rb;
-    [SerializeField] REvents shootBall;
+    [SerializeField] REvents shootBall,goalT1,goalT2;
     [SerializeField] GameObject currentPlayer;
     [SerializeField] float shotingForce;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         shootBall.GEvent += ShootBall;
+        goalT1.GEvent += RestartBall;
+        goalT2.GEvent += RestartBall;
     }
-    private void Update()
-    {
-        if (isOnPlayer)
-        {
-
-        }
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("Hit player");
-
-        }
-    }
+    
+    
     public void GetBall(GameObject player)
     {
         if (isOnPlayer == false)
@@ -50,15 +39,25 @@ public class OnPlayerFoot : MonoBehaviour
         {
             rb.isKinematic = false;
             this.gameObject.transform.SetParent(null);
-            rb.AddForce((transform.position - currentPlayer.transform.position) * shotingForce);
+            rb.AddForce(((transform.position - currentPlayer.transform.position).normalized) * shotingForce);
             StartCoroutine(PlayerOn());
         }
+    }
+    void RestartBall()
+    {
+        rb.isKinematic = true;
+        if (isOnPlayer == true)
+        {
+            this.gameObject.transform.SetParent(null);
+            StartCoroutine(PlayerOn());
+        }
+        rb.isKinematic = false;
     }
 
 
     IEnumerator PlayerOn()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1f);
         isOnPlayer = false;
 
     }
