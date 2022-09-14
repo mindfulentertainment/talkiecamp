@@ -10,6 +10,8 @@ public class PlaceButton : MonoBehaviour
     public GameObject m_resource;
     public TMP_Text buildingName;
     public Button buildButton;
+    public int maxInstances;
+
 
     private TMP_Text stone;
     private TMP_Text wood;
@@ -42,6 +44,21 @@ public class PlaceButton : MonoBehaviour
         {
             GetInfo();
         }
+
+        int amount = 0;
+        foreach (var item in DataManager.instance.buildings.buildings)
+        {
+            Debug.Log(item.buildingName);
+            if (item.buildingName == PlaceInfo.name)
+            {
+                amount++;
+            }
+        }
+        if (amount >= maxInstances)
+        {
+            this.gameObject.SetActive(false);
+        }
+
     }
     private void GetInfo()
     {

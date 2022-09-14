@@ -10,7 +10,13 @@ public class PlayerCallBacks : MonoBehaviourPun
     {
         photonView.RPC("ShowEmoji", RpcTarget.AllBuffered, index);
     }
-    
+
+    public void StopDanceFloor()
+    {
+        photonView.RPC("LoseDanceFloor", RpcTarget.AllBufferedViaServer);
+    }
+
+
     [PunRPC]
    public void ShowEmoji(int index)
     {
@@ -27,6 +33,12 @@ public class PlayerCallBacks : MonoBehaviourPun
       
 
     }
+    [PunRPC]
+    public void LoseDanceFloor()
+    {
 
+        DanceFloorGame.instance.Lose();
+
+    }
 
 }

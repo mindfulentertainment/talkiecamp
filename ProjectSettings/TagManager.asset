@@ -11,6 +11,7 @@ TagManager:
   - Obstacle
   - Stairs
   - Ball
+  - NPC
   layers:
   - Default
   - TransparentFX

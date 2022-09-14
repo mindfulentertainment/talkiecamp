@@ -189,40 +189,49 @@ public class PlayerController : MonoBehaviourPunCallbacks
     private void OnTriggerEnter(Collider other)
     {
 
-        
-        if (other.gameObject.CompareTag("Store"))
+        if (photonView.IsMine)
         {
-            if (photonView.IsMine)
+
+            if (other.gameObject.CompareTag("Store"))
             {
-                if (LayerMask.LayerToName(other.gameObject.layer) == role&& !isBuilding)
+                if (photonView.IsMine)
                 {
-                    UIController.instance.storeButton.SetActive(true);
+                    if (LayerMask.LayerToName(other.gameObject.layer) == role && !isBuilding)
+                    {
+                        UIController.instance.storeButton.SetActive(true);
+                    }
+                    else
+                    {
+                        string message = "Solo " + LayerMask.LayerToName(other.gameObject.layer) + " puede interactuar con esto";
+
+                        UIController.instance.ShowCaption(message);
+
+                    }
                 }
-                else
+
+            }
+
+            if (other.gameObject.CompareTag("Obstacle"))
+            {
+                if (photonView.IsMine)
                 {
-                    string message = "Solo " + LayerMask.LayerToName(other.gameObject.layer) + " puede interactuar con esto";
+                    string message = "Parece que aqui faltan unas escaleras";
 
                     UIController.instance.ShowCaption(message);
-
                 }
-            }
-            
-        }
 
-        if (other.gameObject.CompareTag("Obstacle"))
-        {
-            if (photonView.IsMine)
+            }
+
+            if (other.gameObject.CompareTag("Ball"))
             {
-                string message = "Parece que aqui faltan unas escaleras";
-
-                UIController.instance.ShowCaption(message);
+                other.gameObject.GetComponent<OnPlayerFoot>().GetBall(this.gameObject);
             }
 
-        }
+            if (other.gameObject.CompareTag("NPC"))
+            {
+                other.gameObject.GetComponent<NPCPoint>().Enter();
 
-        if (other.gameObject.CompareTag("Ball"))
-        {
-            other.gameObject.GetComponent<OnPlayerFoot>().GetBall(this.gameObject);
+            }
         }
     }
 
@@ -235,8 +244,16 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 UIController.instance.storeButton.SetActive(false);
                 UIController.instance.HideCaption();
                 isBuilding = false;
-            }
-        
+
+                if (other.gameObject.CompareTag("NPC"))
+                {
+                    other.gameObject.GetComponent<NPCPoint>().Exit();
+
+                }
+              }
+
+       
+
     }
 
 

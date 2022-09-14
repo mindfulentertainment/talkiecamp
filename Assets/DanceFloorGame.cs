@@ -19,7 +19,7 @@ public class DanceFloorGame : MonoBehaviour
     int randomPiece;
     public TMP_Text info;
     public List<Piece> pieces;
-    float time = 8;
+    float time = 5;
     int level=0;
     bool isPlaying;
     Piece firstPiece;
@@ -33,7 +33,7 @@ public class DanceFloorGame : MonoBehaviour
     public float speed;
     public Image patternSprite;
 
-    float timeToLerp = 6; //lerp for two seconds.
+    float timeToLerp = 4; //lerp for two seconds.
 
 
 
@@ -193,8 +193,16 @@ public class DanceFloorGame : MonoBehaviour
         }
         else
         {
-            patternSprite.gameObject.SetActive(false);
-            guide.gameObject.SetActive(false);
+
+            PlayerSpawner.instance.player.GetComponent<PlayerCallBacks>().StopDanceFloor();
+            
         }
+    }
+
+    public void Lose()
+    {
+        patternSprite.gameObject.SetActive(false);
+        guide.gameObject.SetActive(false);
+        startGame.gameObject.SetActive(false);
     }
 }
