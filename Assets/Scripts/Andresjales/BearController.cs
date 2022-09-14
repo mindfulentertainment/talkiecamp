@@ -7,21 +7,22 @@ public class BearController : MonoBehaviour
 {
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Transform path;
-    Transform[] nodes;
+    List<Transform> buildings;
     int state = 0;
     int index = 0;
     Transform target;
+    float timer = 0;
 
 
     private void Start()
     {
-        nodes = new Transform[path.childCount];
+        buildings = new List<Transform>();
         for (int i = 0; i < path.childCount; i++)
         {
-            nodes[i] = path.GetChild(i);
+            buildings.Add(path.GetChild(i));
         }
 
-        target = nodes[0];
+        target = buildings[0];
     }
 
     private void Update()
@@ -31,12 +32,24 @@ public class BearController : MonoBehaviour
             float distance = Vector3.Distance(transform.position, target.position);
             if(distance < 3f)
             {
-                index = (index + 1) % nodes.Length;
-                target = nodes[index];
+                timer += Time.deltaTime;
+                AttackBuilding();
+
+                if (timer >= 10)
+                {
+                    index = (index + 1) % buildings.Count;
+                    target = buildings[index];
+                    timer = 0;
+                }
             }
         }
 
+        Debug.Log(timer);
         agent.SetDestination(target.position);
     }
 
+    private void AttackBuilding()
+    {
+        //Destruir contrucciones, por ejemplo cambiar el estado de una construcción a destruida.
+    }
 }
