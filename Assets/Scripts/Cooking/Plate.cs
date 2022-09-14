@@ -58,7 +58,6 @@ public class Plate : SnapZone, IPickable
 
     public void Pick()
     {
-        rb.isKinematic = true;
         collider.enabled = false;
     }
 
@@ -67,7 +66,6 @@ public class Plate : SnapZone, IPickable
 
         gameObject.transform.SetParent(null);
         transform.position = pos;
-        rb.isKinematic = true;
         collider.enabled = true;
     }
 

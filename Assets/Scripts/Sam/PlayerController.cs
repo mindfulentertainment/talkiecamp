@@ -219,6 +219,11 @@ public class PlayerController : MonoBehaviourPunCallbacks
             }
 
         }
+
+        if (other.gameObject.CompareTag("Ball"))
+        {
+            other.gameObject.GetComponent<OnPlayerFoot>().GetBall(this.gameObject);
+        }
     }
 
     

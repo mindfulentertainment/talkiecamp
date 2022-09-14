@@ -22,7 +22,6 @@ public class Ingredient : SnapZone, IPickable
 
     public void Pick()
     {
-        rb.isKinematic = true;
         collider.enabled = false;
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
@@ -32,7 +31,6 @@ public class Ingredient : SnapZone, IPickable
     {
         gameObject.transform.SetParent(null);
         transform.position = pos;
-        rb.isKinematic = true;
         collider.enabled = true;
     }
 
