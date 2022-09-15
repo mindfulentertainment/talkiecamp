@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.07117755, g: 0.2874178, b: 0.508035, a: 1}
+  m_IndirectSpecularColor: {r: 0.07117755, g: 0.28741783, b: 0.508035, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12280,7 +12280,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &2288044459432870214
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12465,7 +12465,7 @@ MonoBehaviour:
   m_text: "\nSamuel Palacio\n\nAndr\xE9s Alvarez\n\nAbraham Daguer \n\nRicardo Morales\n\n\n\n\nAlejandra
     Ibarbo\n\nMaria Alejandra G\xF3mez\n\nStefania Espinal\n\nJuan David Rave\n\n\n\n\nStefania
     Espinal \n\nJesus Coronel \n\nJuan Jose D\xEDaz\n\nManuel Mu\xF1oz\n\nMaria Alejandra
-    G\xF3mez\n\n\n\n\n\nSebastian Galeano\n\nJesus Coronel \n\n\n\n\nSacadas de Mixamo\n\n\n\n\n"
+    G\xF3mez\n\n\n\n\n\nSebastian Galeano\n\nJesus Coronel \n\n\n\n\nTomadas de Mixamo\n\n\n\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c2d0a4cce6f76ca41a0f663f8d9f8f8a, type: 2}
   m_sharedMaterial: {fileID: -2034221516829151281, guid: c2d0a4cce6f76ca41a0f663f8d9f8f8a, type: 2}
@@ -12628,8 +12628,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Game Programers\n\n\n\n\n\nConcept Art\n\n\n\n\n\n\nModelos 3D\n\n\n\n\n\n\n\n\nAnimatic
-    \n\n\n\n\nAnimaciones\n\n\n"
+  m_text: "Game Programers\n\n\n\n\n\nConcept Art\n\n\n\n\n\nModelos 3D\n\n\n\n\n\n\n\nAnimatic
+    \n\n\n\nAnimaciones\n\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: db49f61e639e6834aa99de6252e66be6, type: 2}
   m_sharedMaterial: {fileID: -2818188996208395490, guid: db49f61e639e6834aa99de6252e66be6, type: 2}
@@ -13154,6 +13154,10 @@ PrefabInstance:
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 1356314447}
+    - target: {fileID: 3435110207872584888, guid: f877d17f81ffd0f46ad8aa73a082ae71, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 65f060d23f8216445ac82771a01ad832, type: 3}
     - target: {fileID: 3435110207872584889, guid: f877d17f81ffd0f46ad8aa73a082ae71, type: 3}
       propertyPath: m_RootOrder
       value: 3
