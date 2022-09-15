@@ -31,6 +31,8 @@ public class BearController : MonoBehaviour
         }
 
         target = nodes[0];
+
+        gameObject.SetActive(false);
     }
 
     private void Update()
