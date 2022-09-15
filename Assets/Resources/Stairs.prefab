@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6900410752407605467}
   - component: {fileID: -2223837421682469131}
   - component: {fileID: 7583245175314910899}
+  - component: {fileID: -7695338058155814811}
   m_Layer: 0
   m_Name: Stairs
   m_TagString: Placed
@@ -70,6 +71,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlaceInfo: {fileID: 11400000, guid: 5aa40b409403bf646bb6ceb149e648bd, type: 2}
+--- !u!208 &-7695338058155814811
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4275863515306918488}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &4608332304377756071
 GameObject:
   m_ObjectHideFlags: 0

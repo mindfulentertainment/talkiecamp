@@ -6,46 +6,53 @@ using UnityEngine.AI;
 public class BearController : MonoBehaviour
 {
     [SerializeField] NavMeshAgent agent;
-    [SerializeField] Transform path;
-    List<Transform> buildings;
-    int state = 0;
+    List<Vector3> nodes;
     int index = 0;
-    Transform target;
+    Vector3 target;
     float timer = 0;
 
 
     private void Start()
     {
-        buildings = new List<Transform>();
-        for (int i = 0; i < path.childCount; i++)
+        StateManager.Instance.OnResourcesLoad.AddListener(GetBuildingsInfo);
+    }
+    private void OnDisable()
+    {
+        StateManager.Instance.OnResourcesLoad.RemoveListener(GetBuildingsInfo);
+    }
+
+    void GetBuildingsInfo(Resource resources, Buildings buildings)
+    {
+        nodes = new List<Vector3>();
+
+        foreach (var item in buildings.buildings)
         {
-            buildings.Add(path.GetChild(i));
+            nodes.Add(item.GetPosition());
         }
 
-        target = buildings[0];
+        target = nodes[0];
     }
 
     private void Update()
     {
-        if (state == 0)
+        if (target != null)
         {
-            float distance = Vector3.Distance(transform.position, target.position);
-            if(distance < 3f)
+            float distance = Vector3.Distance(transform.position, target);
+            if (distance < 5f)
             {
                 timer += Time.deltaTime;
                 AttackBuilding();
 
                 if (timer >= 10)
                 {
-                    index = (index + 1) % buildings.Count;
-                    target = buildings[index];
+                    index = (index + 1) % nodes.Count;
+                    target = nodes[index];
                     timer = 0;
                 }
             }
-        }
 
-        Debug.Log(timer);
-        agent.SetDestination(target.position);
+            agent.SetDestination(target);
+        }
     }
 
     private void AttackBuilding()
