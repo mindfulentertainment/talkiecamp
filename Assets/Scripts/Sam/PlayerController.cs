@@ -224,7 +224,10 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
             if (other.gameObject.CompareTag("Ball"))
             {
-                other.gameObject.GetComponent<OnPlayerFoot>().GetBall(this.gameObject);
+                if (photonView.IsMine)
+                {
+                    photonView.RPC("GetBall", RpcTarget.AllBufferedViaServer);
+                }
             }
 
             if (other.gameObject.CompareTag("NPC"))
@@ -256,6 +259,10 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     }
 
+    [PunRPC]
+    public void GetBall()
+    {
+        FootBallScoreManager.Instance.ball.gameObject.GetComponent<OnPlayerFoot>().GetBall(this.gameObject);
 
-
+    }
 }

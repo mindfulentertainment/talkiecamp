@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
-public class OnPlayerFoot : MonoBehaviour
+public class OnPlayerFoot : MonoBehaviourPunCallbacks
 {
 
     [SerializeField] bool isOnPlayer;
@@ -12,6 +13,8 @@ public class OnPlayerFoot : MonoBehaviour
     [SerializeField] REvents shootBall,goalT1,goalT2;
     [SerializeField] GameObject currentPlayer;
     [SerializeField] float shotingForce;
+
+   
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -33,6 +36,10 @@ public class OnPlayerFoot : MonoBehaviour
                                     //UIController.instance.pickBtn.GetComponent<Image>().sprite = ballInteractionIcon;    //cambia el icono de Ui de interaccion
         }
     }
+
+   
+
+
     void ShootBall()
     {
         if (isOnPlayer == true)
@@ -45,6 +52,7 @@ public class OnPlayerFoot : MonoBehaviour
     }
     void RestartBall()
     {
+        rb = FootBallScoreManager.Instance.ball.GetComponent<Rigidbody>();
         rb.isKinematic = true;
         if (isOnPlayer == true)
         {
@@ -57,12 +65,14 @@ public class OnPlayerFoot : MonoBehaviour
 
     IEnumerator PlayerOn()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.8f);
         isOnPlayer = false;
 
     }
-    private void OnDestroy()
+    private void OnDisable()
     {
         shootBall.GEvent -= ShootBall;
+        shootBall.GEvent -= RestartBall;
+        StopAllCoroutines();
     }
 }
