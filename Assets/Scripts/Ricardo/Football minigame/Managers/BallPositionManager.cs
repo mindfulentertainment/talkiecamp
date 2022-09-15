@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class BallPositionManager : MonoBehaviour
 {
-    [SerializeField] Vector3 inicialPos;
+    [SerializeField] Transform inicialPos;
     [SerializeField] GameObject ball;
     [SerializeField] REvents T1Goal, T2Goal, WT1, WT2;
     void Start()
     {
-        ball.transform.position = inicialPos;
+        Reposition();
         T1Goal.GEvent += Reposition;
         T2Goal.GEvent += Reposition;
         WT1.GEvent += EndGame;
@@ -18,11 +18,12 @@ public class BallPositionManager : MonoBehaviour
 
     void Reposition()
     {
-        ball.transform.position = inicialPos;
+        ball.transform.position = inicialPos.position;
+        ball.transform.parent = null;
     }
     void EndGame()
     {
-        ball.SetActive(false);
+        //ball.SetActive(false);
     }
     private void OnDestroy()
     {

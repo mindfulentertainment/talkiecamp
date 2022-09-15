@@ -8,6 +8,9 @@ public class FootBallScoreManager : MonoBehaviour
     [SerializeField] REvents team1G, team2G,winTeam1,winTeam2; 
     [SerializeField] int score1, score2,scoreGoal;
     [SerializeField] TextMeshProUGUI scoreT1, scoreT2;
+    public GameObject ball;
+    public static FootBallScoreManager Instance;
+
     void Start()
     {
         team1G.GEvent += ScoreTeam1;
@@ -15,7 +18,10 @@ public class FootBallScoreManager : MonoBehaviour
         scoreT1.text="00";
         scoreT2.text = "00";
     }
-
+    private void Awake()
+    {
+        Instance=this;
+    }
     void ScoreTeam1()
     {
         score1 += 1;

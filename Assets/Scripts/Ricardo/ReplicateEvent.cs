@@ -1,26 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class ReplicateEvent : MonoBehaviour
+public class ReplicateEvent : MonoBehaviourPunCallbacks
 {
     [SerializeField] REvents rEvents;
 
     // Update is called once per frame
-    void Update()
+    //void Update()
+    //{
+    //    if (Input.GetButtonDown("Jump"))
+    //    {
+    //        rEvents.FireEvent();
+    //    }
+    //}
+    private void Start()
     {
-        if (Input.GetButtonDown("Jump"))
-        {
-            rEvents.FireEvent();
-        }
+        UIController.instance.pickBtn.onClick.AddListener(ReadInput);
     }
-    //private void OnEnable()
-    //{
-    //    UIController.instance.pickBtn.onClick.AddListener(() => rEvents.FireEvent());
-    //}
-    //private void OnDisable()
-    //{
-    //    UIController.instance.pickBtn.onClick.RemoveListener(() => rEvents.FireEvent());
+    private void OnDisable()
+    {
+        UIController.instance.pickBtn.onClick.RemoveListener(ReadInput);
 
-    //}
+    }
+    
+    [PunRPC]
+    public void LaunchBall()
+    {
+        rEvents.FireEvent();
+
+    }
+    void ReadInput()
+    {
+        photonView.RPC("LaunchBall", RpcTarget.All);
+    }
+
 }
