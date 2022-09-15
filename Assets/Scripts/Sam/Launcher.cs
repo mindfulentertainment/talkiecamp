@@ -6,6 +6,7 @@ using TMPro;
 using Photon.Realtime;
 using ExitGames.Client.Photon;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Launcher : MonoBehaviourPunCallbacks
 {
@@ -115,7 +116,7 @@ public class Launcher : MonoBehaviourPunCallbacks
         if (!string.IsNullOrEmpty(roomNameInput.text)) {
 
             RoomOptions options =new RoomOptions();
-            options.MaxPlayers = 4;
+            options.MaxPlayers = 2;
 
             PhotonNetwork.CreateRoom(roomNameInput.text,options);
             CloseMenus();

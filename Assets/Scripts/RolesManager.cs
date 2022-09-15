@@ -19,8 +19,9 @@ public class RolesManager : MonoBehaviourPunCallbacks, IOnEventCallback
     public Toggle tutorialToggle;
     public override void OnEnable()
     {
+        CheckRoles();
         tutorialToggle.onValueChanged.AddListener(TutorialSend);
-        startGame.interactable = true;
+        startGame.interactable = false;
         PhotonNetwork.AddCallbackTarget(this);
         if (PhotonNetwork.IsMasterClient)
         {
@@ -222,9 +223,13 @@ public class RolesManager : MonoBehaviourPunCallbacks, IOnEventCallback
         }
         
     }
-   
+    private void Update()
+    {
+        CheckRoles();
+    }
     void CheckRoles()
     {
+
         roles = 0;
         foreach(var item in mButtons)
         {
@@ -234,11 +239,15 @@ public class RolesManager : MonoBehaviourPunCallbacks, IOnEventCallback
             }
             
         }
-
         if(roles>=2)
         {
             startGame.interactable = true;
-        }       
+        }
+        else
+        {
+            startGame.interactable = false;
+
+        }
     }
 }
 [System.Serializable]

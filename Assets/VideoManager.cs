@@ -10,16 +10,10 @@ public class VideoManager : MonoBehaviour
     public VideoPlayer video;
     private void Start()
     {
-        if (PlayerPrefs.HasKey("playerName"))
-        {
-            SkipVideo();
-
-        }
-        else
-        {
+       
             StartCoroutine(ContinueGame());
 
-        }
+        
     }
 
    IEnumerator ContinueGame()
@@ -27,7 +21,7 @@ public class VideoManager : MonoBehaviour
 
         yield return new WaitForSeconds(video.frameCount/video.frameRate);
 
-        SceneManager.LoadScene(1);
+        SkipVideo();
     }
 
     public void SkipVideo()

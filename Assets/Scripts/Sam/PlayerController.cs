@@ -137,9 +137,12 @@ public class PlayerController : MonoBehaviourPunCallbacks
             }
 
             // SnapZone only (not a IPickable)
-            _currentPickable = snapZone?.TryToPickUpFromSlot(_currentPickable);
+            
+                _currentPickable = snapZone?.TryToPickUpFromSlot(_currentPickable);
 
-            if (_currentPickable != null)
+            
+
+            if (_currentPickable != null )
             {
                // animator.SetBool("isLifting", true);
                 _currentPickable?.gameObject.transform.SetPositionAndRotation(slot.position, Quaternion.identity);

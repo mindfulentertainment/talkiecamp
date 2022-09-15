@@ -8,10 +8,15 @@ using ExitGames.Client.Photon;
 using System;
 using Newtonsoft.Json;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
+
 public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
 {
     public static MatchManager instance;
     public static Action OnGameStart;
+    public UnityEvent<Resource, Buildings> OnResourcesLoadGlobal = new UnityEvent<Resource, Buildings>();
+
+
     public enum EventCodes : byte
     {
         NewPlayer,
@@ -56,6 +61,7 @@ public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
             StateManager.Instance.OnResourcesLoad.AddListener(SendResourcesInfo);
 
         }
+
 
         if (!PhotonNetwork.IsConnected)
         {
@@ -132,6 +138,9 @@ public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
         string buildingData = (string)dataRecived[1];
         Resource resource = JsonConvert.DeserializeObject<Resource>(resourceData);
         Buildings BuildingHistory= JsonConvert.DeserializeObject<Buildings>(buildingData);
+
+        OnResourcesLoadGlobal?.Invoke(resource, BuildingHistory);
+
         UIController.instance.ChangeResources(resource);
         DataManager.instance.buildings = BuildingHistory;
         DataManager.instance.resource = resource;

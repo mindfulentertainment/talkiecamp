@@ -9,7 +9,9 @@ public class Ingredient : SnapZone, IPickable
     [SerializeField] private IngredientData data;
     private Rigidbody rb;
     private Collider collider;
+    bool isTaken = false;
 
+    bool IPickable.isTaken => isTaken;
     public IngredientType Type => data.type;
 
     protected override void Awake()

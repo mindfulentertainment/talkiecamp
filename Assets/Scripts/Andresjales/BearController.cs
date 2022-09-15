@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Photon.Pun;
 
-public class BearController : MonoBehaviour
+public class BearController : MonoBehaviourPunCallbacks
 {
     [SerializeField] NavMeshAgent agent;
     List<Vector3> nodes;
@@ -14,9 +15,9 @@ public class BearController : MonoBehaviour
     bool firstTime=true;
     private void Start()
     {
-        StateManager.Instance.OnResourcesLoad.AddListener(GetBuildingsInfo);
+        MatchManager.instance.OnResourcesLoadGlobal.AddListener(GetBuildingsInfo);
     }
-    private void OnEnable()
+    public override void OnEnable()
     {
 
         Resource r= new Resource();
@@ -33,55 +34,70 @@ public class BearController : MonoBehaviour
         DataManager.instance.OnNewBuilding += GetBuildingsInfo;
 
     }
-    private void OnDisable()
+    public override void OnDisable()
     {
         DataManager.instance.OnNewBuilding -= GetBuildingsInfo;
 
-        StateManager.Instance.OnResourcesLoad.RemoveListener(GetBuildingsInfo);
+        MatchManager.instance.OnResourcesLoadGlobal.RemoveListener(GetBuildingsInfo);
     }
 
     void GetBuildingsInfo(Resource resources, Buildings buildings)
     {
-        nodes = new List<Vector3>();
-
-        foreach (var item in buildings.buildings)
+        if (buildings.buildings.Count>0)
         {
-            nodes.Add(item.GetPosition());
+            nodes = new List<Vector3>();
+
+            foreach (var item in buildings.buildings)
+            {
+                nodes.Add(item.GetPosition());
+            }
+
+            target = nodes[0];
+            if (firstTime)
+            {
+                firstTime = false;
+                gameObject.SetActive(false);
+            }
         }
-
-        target = nodes[0];
-        if (firstTime)
+        else
         {
-            firstTime = false;
             gameObject.SetActive(false);
+
         }
-        
+
+
     }
 
     private void Update()
     {
-        if (target != null)
-        {
-            float distance = Vector3.Distance(transform.position, target);
-            if (distance < 5f)
+        
+            if (target != null)
             {
-                timer += Time.deltaTime;
-                AttackBuilding();
 
-                if (timer >= 10)
+                float distance = Vector3.Distance(transform.position, target);
+                if (distance < 5f)
                 {
-                    index = (index + 1) % nodes.Count;
-                    target = nodes[index];
-                    animator.SetBool("Attack", false);
+                    timer += Time.deltaTime;
+                    AttackBuilding();
 
-                    timer = 0;
+                    if (timer >= 10)
+                    {
+                        index = (index + 1) % nodes.Count;
+                        target = nodes[index];
+                        animator.SetBool("Attack", false);
 
+                        timer = 0;
+
+                    }
                 }
-            }
 
+
+            }
             agent.SetDestination(target);
-        }
+         
+      
     }
+
 
     private void AttackBuilding()
     {

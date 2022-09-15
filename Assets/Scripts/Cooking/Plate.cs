@@ -8,7 +8,9 @@ using UnityEngine.Assertions;
 public class Plate : SnapZone, IPickable
 {
     private const int MaxNumberIngredients = 4;
+    bool isTaken = false;
 
+    bool IPickable.isTaken => isTaken;
     private Rigidbody rb;
     private Collider collider;
     private readonly List<Ingredient> _ingredients = new List<Ingredient>(MaxNumberIngredients);

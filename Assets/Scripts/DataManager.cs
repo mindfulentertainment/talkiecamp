@@ -109,7 +109,7 @@ public class DataManager : MonoBehaviour
     public void DecreaseElement(Element element)
     {
 
-        OnNewBuilding.Invoke(resource, buildings);
+        OnNewBuilding?.Invoke(resource, buildings);
 
 
             switch (element.type)
