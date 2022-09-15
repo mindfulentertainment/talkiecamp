@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 820fcd01dfe4ff24c9af0899811808cb, type: 3}
-  m_Name: FotBall
+  m_Name: FootBall
   m_EditorClassIdentifier: 
-  QuestName: Se acerca el munidal de futbol!
+  QuestName: Se acerca el mundial de futbol!
   QuestDescription: Construye todos los elementos necesarios para jugar futbol con
     tus amigos

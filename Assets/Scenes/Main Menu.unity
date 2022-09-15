@@ -12034,7 +12034,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Creditos
+  m_text: "Cr\xE9ditos"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: db49f61e639e6834aa99de6252e66be6, type: 2}
   m_sharedMaterial: {fileID: -2818188996208395490, guid: db49f61e639e6834aa99de6252e66be6, type: 2}
@@ -12280,7 +12280,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!222 &2288044459432870214
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12462,7 +12462,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\nSamuel Palacio\n\nAndres Alvares\n\nAbraham Daguer \n\n\n\n\nAlejandra
+  m_text: "\nSamuel Palacio\n\nAndr\xE9s Alvarez\n\nAbraham Daguer \n\nRicardo Morales\n\n\n\n\nAlejandra
     Ibarbo\n\nMaria Alejandra G\xF3mez\n\nStefania Espinal\n\nJuan David Rave\n\n\n\n\nStefania
     Espinal \n\nJesus Coronel \n\nJuan Jose D\xEDaz\n\nManuel Mu\xF1oz\n\nMaria Alejandra
     G\xF3mez\n\n\n\n\n\nSebastian Galeano\n\nJesus Coronel \n\n\n\n\nSacadas de Mixamo\n\n\n\n\n"
@@ -12628,8 +12628,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Game Programers\n\n\n\n\nConcept Art\n\n\n\n\n\nModelos 3D\n\n\n\n\n\n\n\nAnimatic
-    \n\n\n\nAnimaciones\n\n\n"
+  m_text: "Game Programers\n\n\n\n\n\nConcept Art\n\n\n\n\n\n\nModelos 3D\n\n\n\n\n\n\n\n\nAnimatic
+    \n\n\n\n\nAnimaciones\n\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: db49f61e639e6834aa99de6252e66be6, type: 2}
   m_sharedMaterial: {fileID: -2818188996208395490, guid: db49f61e639e6834aa99de6252e66be6, type: 2}

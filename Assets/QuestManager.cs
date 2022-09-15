@@ -10,6 +10,7 @@ public class QuestManager : MonoBehaviour
     public QuestInfo[] QuestInfo;
     public TMP_Text tmp_Description;
     public TMP_Text tmp_title;
+    public GameObject bear;
     int actualQuest=0;
     private void OnEnable()
     {
@@ -28,16 +29,25 @@ public class QuestManager : MonoBehaviour
         {
             if (item.buildingName == "DanceFloor")
             {
-                actualQuest++;
             }
-            if(item.buildingName == "Ball" )
+            if(item.buildingName == "Football")
             {
 
                 actualQuest++;
-
+                bear.SetActive(true);
             }
         }
-        tmp_title.text = QuestInfo[actualQuest].QuestName;
-        tmp_Description.text = QuestInfo[actualQuest].QuestDescription;
+        if (actualQuest < 1)
+        {
+            tmp_title.text = QuestInfo[actualQuest].QuestName;
+            tmp_Description.text = QuestInfo[actualQuest].QuestDescription;
+        }
+        else
+        {
+            tmp_title.text = "";
+            tmp_Description.text = "No hay eventos disponibles";
+            
+        }
+     
     }
 }

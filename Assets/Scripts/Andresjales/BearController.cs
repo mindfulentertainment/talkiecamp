@@ -10,14 +10,33 @@ public class BearController : MonoBehaviour
     int index = 0;
     Vector3 target;
     float timer = 0;
-
-
+    [SerializeField] Animator animator;
+    bool firstTime=true;
     private void Start()
     {
         StateManager.Instance.OnResourcesLoad.AddListener(GetBuildingsInfo);
     }
+    private void OnEnable()
+    {
+
+        Resource r= new Resource();
+        if (!firstTime)
+        {
+            GetBuildingsInfo(r, DataManager.instance.buildings);
+            StartCoroutine(Subscribe());
+        }
+    }
+    
+    IEnumerator Subscribe()
+    {
+        yield return new WaitForSeconds(0.3f);
+        DataManager.instance.OnNewBuilding += GetBuildingsInfo;
+
+    }
     private void OnDisable()
     {
+        DataManager.instance.OnNewBuilding -= GetBuildingsInfo;
+
         StateManager.Instance.OnResourcesLoad.RemoveListener(GetBuildingsInfo);
     }
 
@@ -31,8 +50,12 @@ public class BearController : MonoBehaviour
         }
 
         target = nodes[0];
-
-        gameObject.SetActive(false);
+        if (firstTime)
+        {
+            firstTime = false;
+            gameObject.SetActive(false);
+        }
+        
     }
 
     private void Update()
@@ -49,7 +72,10 @@ public class BearController : MonoBehaviour
                 {
                     index = (index + 1) % nodes.Count;
                     target = nodes[index];
+                    animator.SetBool("Attack", false);
+
                     timer = 0;
+
                 }
             }
 
@@ -59,6 +85,9 @@ public class BearController : MonoBehaviour
 
     private void AttackBuilding()
     {
-        //Destruir contrucciones, por ejemplo cambiar el estado de una construcción a destruida.
-    }
+        animator.SetBool("Attack", true);  
+            
+     }
+
+   
 }

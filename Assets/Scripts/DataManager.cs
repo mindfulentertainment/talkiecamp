@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using System;
 
 public class DataManager : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class DataManager : MonoBehaviour
     public Resource resource = new Resource();
     public Dictionary<string,Collider> keyValuePairs = new Dictionary<string,Collider>();
     public GameObject gridHexagones;
+
+    public Action<Resource, Buildings> OnNewBuilding;
+
     private void Awake()
     {
         instance = this;
@@ -105,8 +109,9 @@ public class DataManager : MonoBehaviour
     public void DecreaseElement(Element element)
     {
 
+        OnNewBuilding.Invoke(resource, buildings);
 
-       
+
             switch (element.type)
             {
                 case Element.ElementType.wood:
