@@ -13,6 +13,8 @@ public class FootBallNet : MonoBehaviour
         {
             teamGoal.FireEvent();
             restartBall.FireEvent();
+            Handheld.Vibrate();
+            CameraShake.Shake(0.25f, 0.5f);
         }
     }
 }

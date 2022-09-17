@@ -28,12 +28,29 @@ public class OnPlayerFoot : MonoBehaviourPunCallbacks
     {
         if (isOnPlayer == false)
         {
-            currentPlayer = player; //determina cual es el jugador actual que tiene la pelota
-            isOnPlayer = true;
-            this.gameObject.transform.parent = player.transform; //vuelve la bola en hijo al jugador
-            transform.position = currentPlayer.transform.GetChild(3).position; //snapea la posicion de la bola al lugar del pie
-            rb.isKinematic = true;  //pone kinematico el objeto para que no lo perturben otras fuerzas
-                                    //UIController.instance.pickBtn.GetComponent<Image>().sprite = ballInteractionIcon;    //cambia el icono de Ui de interaccion
+            if (currentPlayer == null)
+            {
+                currentPlayer = player; //determina cual es el jugador actual que tiene la pelota
+                currentPlayer.GetComponent<PlayerWithBall>().haveBall = true;  //le asigna verdadero a un boleano que tenga cada jugador
+                isOnPlayer = true;
+                this.gameObject.transform.parent = player.transform; //vuelve la bola en hijo al jugador
+                transform.position = currentPlayer.transform.GetChild(3).position; //snapea la posicion de la bola al lugar del pie
+                rb.isKinematic = true;  //pone kinematico el objeto para que no lo perturben otras fuerzas
+                                        //UIController.instance.pickBtn.GetComponent<Image>().sprite = ballInteractionIcon;    //cambia el icono de Ui de interaccion
+            }
+            else if (player != currentPlayer) //esto es para que otro jugador le pueda quitar la bola
+            {
+                this.gameObject.transform.SetParent(null);
+                this.gameObject.transform.parent = player.transform;
+                currentPlayer.GetComponent<PlayerWithBall>().haveBall = false;
+                currentPlayer = player; //determina cual es el jugador actual que tiene la pelota
+                currentPlayer.GetComponent<PlayerWithBall>().haveBall = true;  //le asigna verdadero a un boleano que tenga cada jugador
+                isOnPlayer = true;
+                this.gameObject.transform.parent = player.transform; //vuelve la bola en hijo al jugador
+                transform.position = currentPlayer.transform.GetChild(3).position; //snapea la posicion de la bola al lugar del pie
+                rb.isKinematic = true;
+            }
+
         }
     }
 
@@ -42,12 +59,17 @@ public class OnPlayerFoot : MonoBehaviourPunCallbacks
 
     void ShootBall()
     {
-        if (isOnPlayer == true)
+        if (isOnPlayer == true )
         {
-            rb.isKinematic = false;
-            this.gameObject.transform.SetParent(null);
-            rb.AddForce(((transform.position - currentPlayer.transform.position).normalized) * shotingForce);
-            StartCoroutine(PlayerOn());
+            if (currentPlayer.GetComponent<PlayerWithBall>().haveBall == true) //esto se hace para que otro jugador no pueda patear la bola
+            {
+                currentPlayer.GetComponent<PlayerWithBall>().haveBall = false;
+                rb.isKinematic = false;
+                this.gameObject.transform.SetParent(null);
+                rb.AddForce(((transform.position - currentPlayer.transform.position)) * shotingForce);
+                StartCoroutine(PlayerOn());
+            }
+            
         }
     }
     void RestartBall()
