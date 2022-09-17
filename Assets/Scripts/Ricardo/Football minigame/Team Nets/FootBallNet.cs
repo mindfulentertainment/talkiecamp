@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class FootBallNet : MonoBehaviour
 {
-    [SerializeField] REvents teamGoal,restartBall; 
+    [SerializeField] REvents teamGoal,restartBall;
+    [SerializeField] bool net;
     
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Ball"))
         {
-            teamGoal.FireEvent();
-            restartBall.FireEvent();
+            if (net == true)
+            {
+                teamGoal.FireEvent();
+                restartBall.FireEvent();
+                Handheld.Vibrate();
+                CameraShake.Shake(0.25f, 0.5f);
+            }
+            else
+            {
+                restartBall.FireEvent();
+            }
         }
     }
 }

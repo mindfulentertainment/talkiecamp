@@ -46,7 +46,7 @@ public class OnPlayerFoot : MonoBehaviourPunCallbacks
         {
             rb.isKinematic = false;
             this.gameObject.transform.SetParent(null);
-            rb.AddForce(((transform.position - currentPlayer.transform.position).normalized) * shotingForce);
+            rb.AddForce(((transform.position - currentPlayer.transform.position)) * shotingForce);
             StartCoroutine(PlayerOn());
         }
     }
