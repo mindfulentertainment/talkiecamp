@@ -12,6 +12,7 @@ TagManager:
   - Stairs
   - Ball
   - NPC
+  - CallCenter
   layers:
   - Default
   - TransparentFX
