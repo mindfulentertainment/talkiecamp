@@ -1,15 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class PlayerCallingAndHearing : MonoBehaviour
+public class PlayerCallingAndHearing : MonoBehaviourPun
 {
     [SerializeField] REvents hearingCall; //a que llamado escucha
     [SerializeField] GameObject arrowDir;
 
     void Start()
     {
-        hearingCall.GEvent += RecieveCall;
+        if (photonView.IsMine)
+        {
+            hearingCall.GEvent += RecieveCall;
+
+        }
     }
     void RecieveCall()
     {
