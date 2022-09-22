@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerCallingAndHearing : MonoBehaviour
 {
-    public bool recieveCall;
     [SerializeField] REvents hearingCall; //a que llamado escucha
     [SerializeField] GameObject arrowDir;
 
@@ -14,7 +13,6 @@ public class PlayerCallingAndHearing : MonoBehaviour
     }
     void RecieveCall()
     {
-        recieveCall = true;
         arrowDir.SetActive(true);
         Handheld.Vibrate();
         CameraShake.Shake(0.25f, 0.5f);

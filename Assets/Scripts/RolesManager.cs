@@ -239,7 +239,7 @@ public class RolesManager : MonoBehaviourPunCallbacks, IOnEventCallback
             }
             
         }
-        if(roles>=2)
+        if(roles>=0)
         {
             startGame.interactable = true;
         }

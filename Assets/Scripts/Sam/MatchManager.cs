@@ -21,7 +21,8 @@ public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
     {
         NewPlayer,
         ListPlayers,
-        UpdateResources
+        UpdateResources,
+        CallFriend
         
     }
     public List<PlayerInfo> allPlayers = new List<PlayerInfo>();
@@ -104,6 +105,10 @@ public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
 
                 case EventCodes.UpdateResources:
                     ResourcesReceive(data);
+                    break;
+                case EventCodes.CallFriend:
+                    FriendCallReceive(data);
+                    
                     break;
 
             }
@@ -189,6 +194,32 @@ public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
             (byte)EventCodes.ListPlayers, package, new RaiseEventOptions { Receivers = ReceiverGroup.All }, new SendOptions { Reliability = true });
 
     }
+
+
+
+    public void FriendCallReceive(object[] dataRecived)
+    {
+        string callName = (string)dataRecived[0];
+        FriendCalls.instance.CallFriend(callName);
+    }
+    public void CallFriend(REvents call)
+    {
+
+        object[] package = new object[1];
+        package[0] = call.name;
+        PhotonNetwork.RaiseEvent(
+           (byte)EventCodes.CallFriend, package, new RaiseEventOptions { Receivers = ReceiverGroup.All }, new SendOptions { Reliability = true });
+    }
+
+
+
+
+
+
+
+
+
+
     public void ListPlayersReceive(object[] dataRecived)
     {
         allPlayers.Clear();

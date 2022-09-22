@@ -10,6 +10,6 @@ public class CallOtherPlayer : MonoBehaviour
     // Update is called once per frame
     public void CallPlayer()
     {
-        call.FireEvent();
+        MatchManager.instance.CallFriend(call);
     }
 }
