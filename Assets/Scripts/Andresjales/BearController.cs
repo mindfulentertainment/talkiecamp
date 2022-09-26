@@ -7,12 +7,17 @@ using Photon.Pun;
 public class BearController : MonoBehaviourPunCallbacks
 {
     [SerializeField] NavMeshAgent agent;
+    [SerializeField] Animator animator;
+
     List<Vector3> nodes;
     int index = 0;
+    int state = 0; //0 = Attacking, 1 = Trapped
+    float timer = 0; //Temporal, mientras se hace la lógica de la vida de las construcciones
+    float stunTimer = 0;
     Vector3 target;
-    float timer = 0;
-    [SerializeField] Animator animator;
     bool firstTime=true;
+    bool attacking = false;
+
     private void Start()
     {
         MatchManager.instance.OnResourcesLoadGlobal.AddListener(GetBuildingsInfo);
@@ -62,48 +67,58 @@ public class BearController : MonoBehaviourPunCallbacks
         else
         {
             gameObject.SetActive(false);
-
         }
-
-
     }
 
     private void Update()
     {
-        
+        if (state == 0)
+        {
             if (target != null)
             {
-
                 float distance = Vector3.Distance(transform.position, target);
                 if (distance < 5f)
                 {
                     timer += Time.deltaTime;
+                    attacking = true;
                     AttackBuilding();
 
-                    if (timer >= 10)
+                    if (attacking == false)
                     {
                         index = (index + 1) % nodes.Count;
                         target = nodes[index];
-                        animator.SetBool("Attack", false);
-
-                        timer = 0;
-
                     }
                 }
 
-
+                agent.SetDestination(target);
             }
-            agent.SetDestination(target);
-         
-      
+        }
+
+        if (state == 1)
+        {
+            stunTimer += Time.deltaTime;
+        }
     }
 
+    public void CaughtInTrap()
+    {
+        state = 1;
+
+        if (stunTimer >= 20)
+        {
+            state = 0;
+            stunTimer = 0;
+        }
+    }
 
     private void AttackBuilding()
     {
-        animator.SetBool("Attack", true);  
-            
-     }
-
-   
+        animator.SetBool("Attack", true);
+        if (timer >= 10) //building.life <= 0
+        {
+            animator.SetBool("Attack", false);
+            timer = 0;
+            attacking = false;
+        }
+    }   
 }
