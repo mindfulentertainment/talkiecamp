@@ -18,13 +18,17 @@ public class pointToDestination : MonoBehaviour
 
     private void OnEnable()
     {
-        DataManager.instance.OnNewBuilding += CheckMegaphone;
+
+        if (!hasDestiny)
+        {
+            CheckMegaphone(DataManager.instance.buildings);
+
+        }
+
+
     }
-    private void OnDisable()
-    {
-        DataManager.instance.OnNewBuilding -= CheckMegaphone;
-    }
-    void CheckMegaphone(Resource resource, Buildings buildings)
+    
+    void CheckMegaphone(Buildings buildings)
     {
         foreach (var item in buildings.buildings)
         {

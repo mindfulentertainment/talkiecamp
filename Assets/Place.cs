@@ -38,6 +38,7 @@ public class Place : MonoBehaviourPun
         Collider col = DataManager.instance.keyValuePairs[key];
         col.enabled = false;
         col.gameObject.GetComponentInChildren<MeshRenderer>().material = DataManager.instance.unavailable;
+        DataManager.instance.NewBuilding();
     }
 
     void UseMaterials()

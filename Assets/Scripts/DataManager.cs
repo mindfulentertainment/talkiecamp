@@ -106,10 +106,15 @@ public class DataManager : MonoBehaviour
         UIController.instance.ChangeResources(resource);
 
     }
+   
+    public void NewBuilding()
+    {
+        OnNewBuilding?.Invoke(resource, buildings);
+
+    }
     public void DecreaseElement(Element element)
     {
 
-        OnNewBuilding?.Invoke(resource, buildings);
 
 
             switch (element.type)
