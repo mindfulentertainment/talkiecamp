@@ -76,6 +76,7 @@ public class BearController : MonoBehaviourPunCallbacks
         {
             if (target != null)
             {
+                agent.isStopped = false;
                 float distance = Vector3.Distance(transform.position, target);
                 if (distance < 5f)
                 {
@@ -97,18 +98,22 @@ public class BearController : MonoBehaviourPunCallbacks
         if (state == 1)
         {
             stunTimer += Time.deltaTime;
+            agent.isStopped = true;
+            Debug.Log(stunTimer);
+
+            if (stunTimer >= 20)
+            {
+                state = 0;
+                stunTimer = 0;
+                animator.SetBool("Trapped", false);
+            }
         }
     }
 
     public void CaughtInTrap()
     {
         state = 1;
-
-        if (stunTimer >= 20)
-        {
-            state = 0;
-            stunTimer = 0;
-        }
+        animator.SetBool("Trapped", true);
     }
 
     private void AttackBuilding()

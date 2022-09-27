@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         {
             direction.y = 0;
         }
-        Debug.Log(isGrounded);
+        //Debug.Log(isGrounded);
         isGrounded = Physics.Raycast(groundCheckPoint.position, Vector3.down, .25f, groundLayers);
 
         direction = new Vector3(horizontal, direction.y, vertical).normalized;
