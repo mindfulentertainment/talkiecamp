@@ -47,6 +47,8 @@ MonoBehaviour:
   - LaunchBall
   - GetBall
   - ActivateBear
+  - StarFire
+  - Gone
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

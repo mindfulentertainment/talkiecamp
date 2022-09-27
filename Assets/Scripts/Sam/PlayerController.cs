@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         Vector3 vector3 = new Vector3(direction.x, 0, direction.z);
         if (vector3.magnitude >= 0.1f)
         {
-            animator.SetBool("isRunning", true);
+            animator?.SetBool("isRunning", true);
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref smoothTurnVelocity, smoothTurnTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         }
         else {
 
-            animator.SetBool("isRunning", false);
+            animator?.SetBool("isRunning", false);
             isRunning = false;
 
         }
@@ -129,7 +129,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
             if (_currentPickable != null)
             {
                 _currentPickable.Pick();
-                animator.SetBool("isLifting", true);
+                animator?.SetBool("isLifting", true);
                 pickAndDropNetWork.Remove(_currentPickable as SnapZone);
                 _currentPickable.gameObject.transform.SetPositionAndRotation(slot.transform.position, Quaternion.identity);
                 _currentPickable.gameObject.transform.SetParent(slot);
@@ -159,7 +159,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         {
             if (_currentPickable != null)
             {
-                animator.SetBool("isLifting", false);
+                animator?.SetBool("isLifting", false);
                 _currentPickable.Drop(pos);
                 _currentPickable = null;
                 return;
@@ -178,7 +178,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         {
             if (snapZone != null)
             {
-                animator.SetBool("isLifting", false);
+                animator?.SetBool("isLifting", false);
                 bool dropSuccess = snapZone.TryToDropIntoSlot(_currentPickable);
                 if (!dropSuccess) return;
 

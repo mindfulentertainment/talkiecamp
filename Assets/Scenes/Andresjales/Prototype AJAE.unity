@@ -500,7 +500,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 304775585}
-  path: {fileID: 6954252}
+  animator: {fileID: 0}
 --- !u!136 &304775581
 CapsuleCollider:
   m_ObjectHideFlags: 0

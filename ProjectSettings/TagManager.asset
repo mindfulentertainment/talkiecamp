@@ -13,6 +13,7 @@ TagManager:
   - Ball
   - NPC
   - CallCenter
+  - Fire
   layers:
   - Default
   - TransparentFX
@@ -28,7 +29,7 @@ TagManager:
   - Ground
   - Stairs
   - Bear
-  - 
+  - FireStuff
   - 
   - 
   - 

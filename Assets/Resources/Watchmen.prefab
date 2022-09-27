@@ -258,6 +258,8 @@ GameObject:
   - component: {fileID: 7237537877924100887}
   - component: {fileID: 8580093148016771489}
   - component: {fileID: 7057859197413352519}
+  - component: {fileID: 4438552343921820325}
+  - component: {fileID: 6105347455095645512}
   m_Layer: 2
   m_Name: Watchmen
   m_TagString: Player
@@ -366,7 +368,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   smoothTurnTime: 0.1
-  animator: {fileID: 0}
+  animator: {fileID: 6105347455095645512}
   slot: {fileID: 2195409838787421983}
   gravityMod: 2.5
   groundCheckPoint: {fileID: 3680391375971635016}
@@ -487,6 +489,42 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 0
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &4438552343921820325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3680391375702943390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd3110cd532f1dd4c913c5febb5e7c7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireLayer:
+    serializedVersion: 2
+    m_Bits: 16384
+  amountToExtinguish: 0.1
+--- !u!95 &6105347455095645512
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3680391375702943390}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 5619e4857c6bf9944a3d7b5aa3588b0c, type: 3}
+  m_Controller: {fileID: 9100000, guid: 6e61ff3332482134cbc7f98a5d49d05f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3680391375971635017
 GameObject:
   m_ObjectHideFlags: 0
