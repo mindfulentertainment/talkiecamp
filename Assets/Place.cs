@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using System;
+using UnityEngine.UI;
 
 public class Place : MonoBehaviourPun
 {
@@ -11,11 +12,14 @@ public class Place : MonoBehaviourPun
     Food food;
     public static Action<string> OnPlaceBuild;
     Resource resource;
+    public float maxHealth;
+    public float health;
+    public Slider health_Slider;
+    public BuildingHistory buildingHistory;
     private void OnEnable()
     {
         var photonV = GetComponent<PhotonView>();
         Destroy(photonV);
-        
         Debug.Log(Time.timeSinceLevelLoad);
         if (Time.timeSinceLevelLoad > 3)
         {
@@ -36,9 +40,49 @@ public class Place : MonoBehaviourPun
         Vector3 keyVector= new Vector3(gameObject.transform.position.x, 0.01f, gameObject.transform.position.z);
         string key= keyVector.ToString();
         Collider col = DataManager.instance.keyValuePairs[key];
+
+
         col.enabled = false;
         col.gameObject.GetComponentInChildren<MeshRenderer>().material = DataManager.instance.unavailable;
         DataManager.instance.NewBuilding();
+    }
+    private void Start()
+    {
+        DataManager.instance.buildingsDictionary.Add(this.transform.position.ToString(), this.gameObject);
+        health = maxHealth;
+
+        health_Slider.value=health/maxHealth;
+        health_Slider.gameObject.SetActive(false);
+
+    }
+
+
+   
+    public void DamageBuilding(float damage)
+    {
+        health_Slider.gameObject.SetActive(true);
+        health -= damage;
+        health_Slider.value = health / maxHealth;
+        if (health <= 0)
+        {
+            Destroy(this.gameObject,0.5f);
+
+            BuildingHistory bh = null;
+
+            foreach (var item in DataManager.instance.buildings.buildings)
+            {
+                if (item.GetPosition() == buildingHistory.GetPosition())
+                {
+                    bh=item;
+                }
+            }
+            if (bh != null)
+            {
+                DataManager.instance.buildings.buildings.Remove(bh);
+                Debug.Log("ELIMINADO");
+            }
+
+        }
     }
 
     void UseMaterials()

@@ -12,6 +12,8 @@ public class DataManager : MonoBehaviour
     public Buildings buildings= new Buildings();
     public Resource resource = new Resource();
     public Dictionary<string,Collider> keyValuePairs = new Dictionary<string,Collider>();
+    public Dictionary<string, GameObject> buildingsDictionary = new Dictionary<string, GameObject>();
+
     public GameObject gridHexagones;
 
     public Action<Resource, Buildings> OnNewBuilding;
@@ -53,8 +55,8 @@ public class DataManager : MonoBehaviour
             foreach (var item in buildings.buildings)
             {
 
-                PhotonNetwork.Instantiate(item.buildingName, item.GetPosition(), item.GetRotation());
-                
+                GameObject newBuilding=PhotonNetwork.Instantiate(item.buildingName, item.GetPosition(), item.GetRotation());
+                newBuilding.GetComponent<Place>().buildingHistory = item;
             }
         }
            

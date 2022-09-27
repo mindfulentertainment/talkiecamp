@@ -8,11 +8,10 @@ public class BearController : MonoBehaviourPunCallbacks
 {
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Animator animator;
-
+    Coroutine damage;
     List<Vector3> nodes;
     int index = 0;
     int state = 0; //0 = Attacking, 1 = Trapped
-    float timer = 0; //Temporal, mientras se hace la lógica de la vida de las construcciones
     float stunTimer = 0;
     Vector3 target;
     bool firstTime=true;
@@ -80,8 +79,9 @@ public class BearController : MonoBehaviourPunCallbacks
                 float distance = Vector3.Distance(transform.position, target);
                 if (distance < 5f)
                 {
-                    timer += Time.deltaTime;
                     attacking = true;
+                    agent.isStopped = true;
+
                     AttackBuilding();
 
                     if (attacking == false)
@@ -114,16 +114,40 @@ public class BearController : MonoBehaviourPunCallbacks
     {
         state = 1;
         animator.SetBool("Trapped", true);
+        StopCoroutine(damage);
+        damage = null;
     }
 
     private void AttackBuilding()
     {
         animator.SetBool("Attack", true);
-        if (timer >= 10) //building.life <= 0
+        if (damage == null)
         {
+            damage = StartCoroutine(Damage());
+
+        }
+
+
+        if (DataManager.instance.buildingsDictionary[target.ToString()].gameObject.GetComponent<Place>().health<=0) //building.life <= 0
+        {
+
+            StopCoroutine(damage);
+            damage = null;
             animator.SetBool("Attack", false);
-            timer = 0;
             attacking = false;
+            agent.isStopped = false;
+
         }
     }   
+
+    IEnumerator Damage()
+    {
+        while (true)
+        {
+
+            DataManager.instance.buildingsDictionary[target.ToString()].gameObject.GetComponent<Place>().DamageBuilding(10);
+
+            yield return new WaitForSeconds(2.5f);
+        }
+    }
 }

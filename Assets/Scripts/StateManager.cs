@@ -106,6 +106,7 @@ public class BuildingHistory
     public float q_w;
 
 
+
     public Vector3 GetPosition()
     {
         return new Vector3(x, y, z);
