@@ -15,6 +15,7 @@ TagManager:
   - CallCenter
   - Fire
   - Bear
+  - PlayerBody
   layers:
   - Default
   - TransparentFX
