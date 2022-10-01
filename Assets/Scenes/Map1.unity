@@ -7837,6 +7837,18 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3360701644954221, guid: c641864d862bdf44b81171e4d4cb87c1, type: 3}
+      propertyPath: afterLight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3360701644954221, guid: c641864d862bdf44b81171e4d4cb87c1, type: 3}
+      propertyPath: beforeLigh
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3360701644954221, guid: c641864d862bdf44b81171e4d4cb87c1, type: 3}
+      propertyPath: decreaseRate
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 8570340707301422053, guid: c641864d862bdf44b81171e4d4cb87c1, type: 3}
       propertyPath: adjustingBar
       value: 
