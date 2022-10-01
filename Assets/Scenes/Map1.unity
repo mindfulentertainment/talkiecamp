@@ -7777,6 +7777,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3360701113371540, guid: c641864d862bdf44b81171e4d4cb87c1, type: 3}
+      propertyPath: maxWood
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3360701113371547, guid: c641864d862bdf44b81171e4d4cb87c1, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -7825,6 +7829,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: campFire
       objectReference: {fileID: 0}
+    - target: {fileID: 3360701221691058, guid: c641864d862bdf44b81171e4d4cb87c1, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3360701221691058, guid: c641864d862bdf44b81171e4d4cb87c1, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8570340707301422053, guid: c641864d862bdf44b81171e4d4cb87c1, type: 3}
+      propertyPath: adjustingBar
+      value: 
+      objectReference: {fileID: 1391204981}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c641864d862bdf44b81171e4d4cb87c1, type: 3}
 --- !u!1 &284127365
@@ -43045,6 +43061,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3351597327480683738, guid: 476821e9cda9ddf449495e39fac0916f, type: 3}
   m_PrefabInstance: {fileID: 1389497016}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1391204981 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3360701644954221, guid: c641864d862bdf44b81171e4d4cb87c1, type: 3}
+  m_PrefabInstance: {fileID: 283721945}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 612c175280db05a44b3addfc1b9e2dbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1391832755
 PrefabInstance:
   m_ObjectHideFlags: 0

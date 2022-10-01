@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class AdjustingBar : MonoBehaviour
 {
-    [SerializeField] float  valueAdded, decreaseRate,beforeLigh,afterLight;
+    [SerializeField] public float  valueAdded, decreaseRate,beforeLigh,afterLight;
     [SerializeField] REvents increaseFireBar,fireOn,fireOff;
-    [SerializeField] Slider bar;
+    [SerializeField] public Slider bar;
     [SerializeField] Color low, medium, high,off,on;
     [SerializeField] Image barColor, icon;
     
