@@ -19,11 +19,11 @@ public class AdjustingBar : MonoBehaviour
         increaseFireBar.GEvent += IncreaseBar;
     }
 
-  
+
     void Update()
     {
-        
-        bar.value -= decreaseRate;
+
+        bar.value -= decreaseRate * Time.deltaTime;
         if (bar.value <= 0)
         {
             bar.value = 0;
