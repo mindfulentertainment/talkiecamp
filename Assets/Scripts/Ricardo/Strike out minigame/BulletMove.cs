@@ -41,7 +41,9 @@ public class BulletMove : MonoBehaviour
         if (other.CompareTag("PlayerBody"))
         {
             //Debug.Log("Player Out");
-            other.GetComponentInParent<PlayerTP>().TPOut();
+            PlayerTP Tp;
+            other.TryGetComponent(out Tp);
+            Tp?.TPOut();
             StopCoroutine("BulletLife");
             rb.isKinematic = true;
             rb.isKinematic = false;
