@@ -16,6 +16,7 @@ TagManager:
   - Fire
   - Bear
   - PlayerBody
+  - Wood
   layers:
   - Default
   - TransparentFX

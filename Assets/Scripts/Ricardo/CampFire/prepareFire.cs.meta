@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 81acc3e08147fab418322cae373cccdd
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - woodText: {instanceID: 0}
+  - bar: {instanceID: 0}
+  - fire: {instanceID: 0}
+  - fireOn: {fileID: 11400000, guid: 10cefe25723cb4343af47e611fc0811c, type: 2}
+  - fireOff: {fileID: 11400000, guid: 39f50a763eb12c5429f018a2b96161d8, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

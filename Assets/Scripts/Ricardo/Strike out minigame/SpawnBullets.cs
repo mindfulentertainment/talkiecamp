@@ -22,4 +22,8 @@ public class SpawnBullets : MonoBehaviour
             bullet.SetActive(true);
         }
     }
+    private void OnDestroy()
+    {
+        shootBullet.GEvent -= AppearBullet;
+    }
 }

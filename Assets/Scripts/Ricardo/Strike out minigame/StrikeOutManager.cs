@@ -72,6 +72,10 @@ public class StrikeOutManager : MonoBehaviour
             barrier.SetActive(false);
         }
     }
+    private void OnDestroy()
+    {
+        startMatch.GEvent -= StartMatch;
+        playerOut.GEvent -= EndMatch;
+    }
 
-    
 }
