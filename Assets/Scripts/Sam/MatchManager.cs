@@ -22,8 +22,9 @@ public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
         NewPlayer,
         ListPlayers,
         UpdateResources,
-        CallFriend
-        
+        CallFriend,
+        Fire
+
     }
     public List<PlayerInfo> allPlayers = new List<PlayerInfo>();
     private int index;
@@ -109,6 +110,10 @@ public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
                 case EventCodes.CallFriend:
                     FriendCallReceive(data);
                     
+                    break;
+                case EventCodes.Fire:
+                    FireRecieve(data);
+
                     break;
 
             }
@@ -212,6 +217,20 @@ public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
     }
 
 
+    public void FireRecieve(object[] dataRecived)
+    {
+        FireEvent.instance.ReceiveHelp();
+
+    }
+    public void Fire()
+    {
+
+        object[] package = new object[1];
+        package[0] = "Hola";
+
+        PhotonNetwork.RaiseEvent(
+           (byte)EventCodes.Fire, package, new RaiseEventOptions { Receivers = ReceiverGroup.All }, new SendOptions { Reliability = true });
+    }
 
 
 

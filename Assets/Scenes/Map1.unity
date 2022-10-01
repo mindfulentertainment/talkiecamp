@@ -635,6 +635,10 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 935691701654914377, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
+      propertyPath: m_TagString
+      value: Wood
+      objectReference: {fileID: 0}
     - target: {fileID: 935691701704994656, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: m_Name
       value: Tree (8)
@@ -814,6 +818,10 @@ PrefabInstance:
     - target: {fileID: 935691701654914373, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: sceneViewId
       value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 935691701654914377, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
+      propertyPath: m_TagString
+      value: Wood
       objectReference: {fileID: 0}
     - target: {fileID: 935691701704994656, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: m_Name
@@ -1313,7 +1321,7 @@ GameObject:
   - component: {fileID: 54248306}
   m_Layer: 0
   m_Name: PickUp_Logs (1)
-  m_TagString: Untagged
+  m_TagString: Wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2247,6 +2255,10 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 63
       objectReference: {fileID: 0}
+    - target: {fileID: 935691701654914377, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
+      propertyPath: m_TagString
+      value: Wood
+      objectReference: {fileID: 0}
     - target: {fileID: 935691701704994656, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: m_Name
       value: Tree (22)
@@ -2758,6 +2770,14 @@ PrefabInstance:
     - target: {fileID: 935691701654914373, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: sceneViewId
       value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 935691701654914377, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 935691701654914377, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
+      propertyPath: m_TagString
+      value: Wood
       objectReference: {fileID: 0}
     - target: {fileID: 935691701704994656, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: m_Name
@@ -3327,7 +3347,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &118926714
 GameObject:
@@ -3615,6 +3635,10 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 58
       objectReference: {fileID: 0}
+    - target: {fileID: 935691701654914377, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
+      propertyPath: m_TagString
+      value: Wood
+      objectReference: {fileID: 0}
     - target: {fileID: 935691701704994656, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: m_Name
       value: Tree (19)
@@ -3833,7 +3857,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &124640608
 PrefabInstance:
@@ -4833,6 +4857,10 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 935691701654914377, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
+      propertyPath: m_TagString
+      value: Wood
+      objectReference: {fileID: 0}
     - target: {fileID: 935691701704994656, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: m_Name
       value: Tree (5)
@@ -5176,6 +5204,10 @@ PrefabInstance:
     - target: {fileID: 935691701654914373, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: sceneViewId
       value: 48
+      objectReference: {fileID: 0}
+    - target: {fileID: 935691701654914377, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
+      propertyPath: m_TagString
+      value: Wood
       objectReference: {fileID: 0}
     - target: {fileID: 935691701704994656, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: m_Name
@@ -7738,6 +7770,71 @@ Transform:
   m_Father: {fileID: 1550205856}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &283721945
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3360701113371547, guid: c641864d862bdf44b81171e4d4cb87c1, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3360701113371547, guid: c641864d862bdf44b81171e4d4cb87c1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 3360701113371547, guid: c641864d862bdf44b81171e4d4cb87c1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.03232956
+      objectReference: {fileID: 0}
+    - target: {fileID: 3360701113371547, guid: c641864d862bdf44b81171e4d4cb87c1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 20.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 3360701113371547, guid: c641864d862bdf44b81171e4d4cb87c1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3360701113371547, guid: c641864d862bdf44b81171e4d4cb87c1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3360701113371547, guid: c641864d862bdf44b81171e4d4cb87c1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3360701113371547, guid: c641864d862bdf44b81171e4d4cb87c1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3360701113371547, guid: c641864d862bdf44b81171e4d4cb87c1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3360701113371547, guid: c641864d862bdf44b81171e4d4cb87c1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3360701113371547, guid: c641864d862bdf44b81171e4d4cb87c1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3360701113371551, guid: c641864d862bdf44b81171e4d4cb87c1, type: 3}
+      propertyPath: m_Name
+      value: campFire
+      objectReference: {fileID: 0}
+    - target: {fileID: 3360701221691058, guid: c641864d862bdf44b81171e4d4cb87c1, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3360701221691058, guid: c641864d862bdf44b81171e4d4cb87c1, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c641864d862bdf44b81171e4d4cb87c1, type: 3}
 --- !u!1 &284127365
 GameObject:
   m_ObjectHideFlags: 0
@@ -8005,6 +8102,10 @@ PrefabInstance:
     - target: {fileID: 935691701654914373, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: sceneViewId
       value: 37
+      objectReference: {fileID: 0}
+    - target: {fileID: 935691701654914377, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
+      propertyPath: m_TagString
+      value: Wood
       objectReference: {fileID: 0}
     - target: {fileID: 935691701704994656, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: m_Name
@@ -10726,6 +10827,10 @@ PrefabInstance:
     - target: {fileID: 935691701654914373, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: sceneViewId
       value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 935691701654914377, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
+      propertyPath: m_TagString
+      value: Wood
       objectReference: {fileID: 0}
     - target: {fileID: 935691701704994656, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: m_Name
@@ -14529,7 +14634,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &490750633
 GameObject:
@@ -15718,6 +15823,10 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 34
       objectReference: {fileID: 0}
+    - target: {fileID: 935691701654914377, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
+      propertyPath: m_TagString
+      value: Wood
+      objectReference: {fileID: 0}
     - target: {fileID: 935691701704994656, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: m_Name
       value: Tree (10)
@@ -16083,6 +16192,10 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 935691701654914377, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
+      propertyPath: m_TagString
+      value: Wood
+      objectReference: {fileID: 0}
     - target: {fileID: 935691701704994656, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: m_Name
       value: Tree (2)
@@ -16419,6 +16532,10 @@ PrefabInstance:
     - target: {fileID: 935691701654914373, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: sceneViewId
       value: 47
+      objectReference: {fileID: 0}
+    - target: {fileID: 935691701654914377, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
+      propertyPath: m_TagString
+      value: Wood
       objectReference: {fileID: 0}
     - target: {fileID: 935691701704994656, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: m_Name
@@ -21898,6 +22015,10 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 935691701654914377, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
+      propertyPath: m_TagString
+      value: Wood
+      objectReference: {fileID: 0}
     - target: {fileID: 935691701704994656, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: m_Name
       value: Tree (3)
@@ -24282,7 +24403,7 @@ GameObject:
   - component: {fileID: 837307939}
   m_Layer: 0
   m_Name: PickUp_Logs
-  m_TagString: Untagged
+  m_TagString: Wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24892,6 +25013,10 @@ PrefabInstance:
     - target: {fileID: 935691701654914373, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: sceneViewId
       value: 71
+      objectReference: {fileID: 0}
+    - target: {fileID: 935691701654914377, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
+      propertyPath: m_TagString
+      value: Wood
       objectReference: {fileID: 0}
     - target: {fileID: 935691701704994656, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: m_Name
@@ -26213,6 +26338,10 @@ PrefabInstance:
     - target: {fileID: 935691701654914373, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: sceneViewId
       value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 935691701654914377, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
+      propertyPath: m_TagString
+      value: Wood
       objectReference: {fileID: 0}
     - target: {fileID: 935691701704994656, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: m_Name
@@ -27948,7 +28077,7 @@ GameObject:
   - component: {fileID: 923195592}
   m_Layer: 0
   m_Name: PickUp_Logs
-  m_TagString: Untagged
+  m_TagString: Wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28086,6 +28215,10 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 935691701654914377, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
+      propertyPath: m_TagString
+      value: Wood
+      objectReference: {fileID: 0}
     - target: {fileID: 935691701704994656, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: m_Name
       value: Tree (1)
@@ -28173,7 +28306,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &936865839
 PrefabInstance:
@@ -28259,6 +28392,10 @@ PrefabInstance:
     - target: {fileID: 935691701654914373, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: sceneViewId
       value: 62
+      objectReference: {fileID: 0}
+    - target: {fileID: 935691701654914377, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
+      propertyPath: m_TagString
+      value: Wood
       objectReference: {fileID: 0}
     - target: {fileID: 935691701704994656, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: m_Name
@@ -28949,7 +29086,7 @@ Transform:
   - {fileID: 2028585182}
   - {fileID: 1451848091}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &956169915
 GameObject:
@@ -29295,7 +29432,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &968726278
 MonoBehaviour:
@@ -30356,7 +30493,7 @@ GameObject:
   - component: {fileID: 994608599}
   m_Layer: 0
   m_Name: PickUp_Logs (2)
-  m_TagString: Untagged
+  m_TagString: Wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33879,7 +34016,7 @@ Transform:
   - {fileID: 1320512625}
   - {fileID: 115055928}
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1080589354
 GameObject:
@@ -34386,7 +34523,7 @@ GameObject:
   - component: {fileID: 1094522521}
   m_Layer: 0
   m_Name: PickUp_Logs (3)
-  m_TagString: Untagged
+  m_TagString: Wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39207,7 +39344,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1271965569
 MonoBehaviour:
@@ -44313,6 +44450,10 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 44
       objectReference: {fileID: 0}
+    - target: {fileID: 935691701654914377, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
+      propertyPath: m_TagString
+      value: Wood
+      objectReference: {fileID: 0}
     - target: {fileID: 935691701704994656, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: m_Name
       value: Tree (14)
@@ -47615,6 +47756,10 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 67
       objectReference: {fileID: 0}
+    - target: {fileID: 935691701654914377, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
+      propertyPath: m_TagString
+      value: Wood
+      objectReference: {fileID: 0}
     - target: {fileID: 935691701704994656, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: m_Name
       value: Tree (24)
@@ -49500,7 +49645,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1673918877
 PrefabInstance:
@@ -50037,7 +50182,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1694235520
 MonoBehaviour:
@@ -50341,6 +50486,10 @@ PrefabInstance:
     - target: {fileID: 935691701654914373, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: sceneViewId
       value: 43
+      objectReference: {fileID: 0}
+    - target: {fileID: 935691701654914377, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
+      propertyPath: m_TagString
+      value: Wood
       objectReference: {fileID: 0}
     - target: {fileID: 935691701704994656, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: m_Name
@@ -50792,6 +50941,10 @@ PrefabInstance:
     - target: {fileID: 935691701654914373, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: sceneViewId
       value: 59
+      objectReference: {fileID: 0}
+    - target: {fileID: 935691701654914377, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
+      propertyPath: m_TagString
+      value: Wood
       objectReference: {fileID: 0}
     - target: {fileID: 935691701704994656, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: m_Name
@@ -52232,7 +52385,7 @@ Transform:
   - {fileID: 1043283375}
   - {fileID: 1759313029}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1789058831
 MonoBehaviour:
@@ -52287,7 +52440,7 @@ Transform:
   - {fileID: 848789749}
   - {fileID: 1953472540}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1791010906
 GameObject:
@@ -52911,6 +53064,10 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 22
       objectReference: {fileID: 0}
+    - target: {fileID: 935691701654914377, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
+      propertyPath: m_TagString
+      value: Wood
+      objectReference: {fileID: 0}
     - target: {fileID: 935691701704994656, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: m_Name
       value: Tree (4)
@@ -52979,6 +53136,10 @@ PrefabInstance:
     - target: {fileID: 935691701654914373, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: sceneViewId
       value: 51
+      objectReference: {fileID: 0}
+    - target: {fileID: 935691701654914377, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
+      propertyPath: m_TagString
+      value: Wood
       objectReference: {fileID: 0}
     - target: {fileID: 935691701704994656, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: m_Name
@@ -54230,7 +54391,7 @@ RectTransform:
   m_Children:
   - {fileID: 1552241776}
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -54397,6 +54558,10 @@ PrefabInstance:
     - target: {fileID: 935691701654914373, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: sceneViewId
       value: 78
+      objectReference: {fileID: 0}
+    - target: {fileID: 935691701654914377, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
+      propertyPath: m_TagString
+      value: Wood
       objectReference: {fileID: 0}
     - target: {fileID: 935691701704994656, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: m_Name
@@ -54979,6 +55144,10 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 75
       objectReference: {fileID: 0}
+    - target: {fileID: 935691701654914377, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
+      propertyPath: m_TagString
+      value: Wood
+      objectReference: {fileID: 0}
     - target: {fileID: 935691701704994656, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: m_Name
       value: Tree (28)
@@ -55428,7 +55597,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1927372001
 PrefabInstance:
@@ -56242,7 +56411,7 @@ GameObject:
   - component: {fileID: 1944248949}
   m_Layer: 0
   m_Name: PickUp_Logs (4)
-  m_TagString: Untagged
+  m_TagString: Wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56894,7 +57063,7 @@ Transform:
   m_Children:
   - {fileID: 854102459}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1961902650
 MonoBehaviour:
@@ -57742,7 +57911,7 @@ RectTransform:
   - {fileID: 1636422001}
   - {fileID: 980460914}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -58747,6 +58916,10 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 66
       objectReference: {fileID: 0}
+    - target: {fileID: 935691701654914377, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
+      propertyPath: m_TagString
+      value: Wood
+      objectReference: {fileID: 0}
     - target: {fileID: 935691701704994656, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: m_Name
       value: Tree (23)
@@ -58945,7 +59118,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
 --- !u!114 &2027155517
 MonoBehaviour:
@@ -59114,7 +59287,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2031357352
 MonoBehaviour:
@@ -59441,6 +59614,10 @@ PrefabInstance:
     - target: {fileID: 935691701654914373, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: sceneViewId
       value: 74
+      objectReference: {fileID: 0}
+    - target: {fileID: 935691701654914377, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
+      propertyPath: m_TagString
+      value: Wood
       objectReference: {fileID: 0}
     - target: {fileID: 935691701704994656, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: m_Name
@@ -60347,6 +60524,10 @@ PrefabInstance:
     - target: {fileID: 935691701654914373, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: sceneViewId
       value: 33
+      objectReference: {fileID: 0}
+    - target: {fileID: 935691701654914377, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
+      propertyPath: m_TagString
+      value: Wood
       objectReference: {fileID: 0}
     - target: {fileID: 935691701704994656, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: m_Name
@@ -61305,7 +61486,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2094627407
 MonoBehaviour:
@@ -62466,6 +62647,10 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 79
       objectReference: {fileID: 0}
+    - target: {fileID: 935691701654914377, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
+      propertyPath: m_TagString
+      value: Wood
+      objectReference: {fileID: 0}
     - target: {fileID: 935691701704994656, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: m_Name
       value: Tree (30)
@@ -62937,6 +63122,10 @@ PrefabInstance:
     - target: {fileID: 935691701654914373, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: sceneViewId
       value: 29
+      objectReference: {fileID: 0}
+    - target: {fileID: 935691701654914377, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
+      propertyPath: m_TagString
+      value: Wood
       objectReference: {fileID: 0}
     - target: {fileID: 935691701704994656, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: m_Name
@@ -64118,6 +64307,10 @@ PrefabInstance:
     - target: {fileID: 935691701654914373, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: sceneViewId
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 935691701654914377, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
+      propertyPath: m_TagString
+      value: Wood
       objectReference: {fileID: 0}
     - target: {fileID: 935691701704994656, guid: 5271cfe698b62eb40aebb428a1b1e568, type: 3}
       propertyPath: m_Name
@@ -65551,7 +65744,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: -23.173, z: 0}
 --- !u!1 &6499889929421219343
 GameObject:
