@@ -7777,10 +7777,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3360701113371540, guid: c641864d862bdf44b81171e4d4cb87c1, type: 3}
-      propertyPath: maxWood
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3360701113371547, guid: c641864d862bdf44b81171e4d4cb87c1, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -7828,14 +7824,6 @@ PrefabInstance:
     - target: {fileID: 3360701113371551, guid: c641864d862bdf44b81171e4d4cb87c1, type: 3}
       propertyPath: m_Name
       value: campFire
-      objectReference: {fileID: 0}
-    - target: {fileID: 3360701221691058, guid: c641864d862bdf44b81171e4d4cb87c1, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3360701221691058, guid: c641864d862bdf44b81171e4d4cb87c1, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c641864d862bdf44b81171e4d4cb87c1, type: 3}

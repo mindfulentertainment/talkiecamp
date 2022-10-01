@@ -489,7 +489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   woodCount: 0
-  maxWood: 6
+  maxWood: 3
   woodText: {fileID: 3360700516794210}
   bar: {fileID: 3360701566536458}
   fireOn: {fileID: 11400000, guid: 10cefe25723cb4343af47e611fc0811c, type: 2}
