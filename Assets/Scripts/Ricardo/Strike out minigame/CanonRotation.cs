@@ -5,14 +5,16 @@ using UnityEngine;
 public class CanonRotation : MonoBehaviour
 {
     [SerializeField]float angle,angularSpeed,amplitud;
-    
+  
+
     [SerializeField] Vector3 rotation;
 
     void Start()
     {
         angle = 0;
+       
     }
-
+   
     // Update is called once per frame
     void Update()
     {

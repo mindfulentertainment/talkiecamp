@@ -23,7 +23,8 @@ public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
         ListPlayers,
         UpdateResources,
         CallFriend,
-        Fire
+        Fire,
+        StrikeOutGame
 
     }
     public List<PlayerInfo> allPlayers = new List<PlayerInfo>();
@@ -113,6 +114,10 @@ public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
                     break;
                 case EventCodes.Fire:
                     FireRecieve(data);
+
+                    break;
+                case EventCodes.StrikeOutGame:
+                    StartSrikeOutGame(data);
 
                     break;
 
@@ -232,7 +237,20 @@ public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
            (byte)EventCodes.Fire, package, new RaiseEventOptions { Receivers = ReceiverGroup.All }, new SendOptions { Reliability = true });
     }
 
+    public void StartSrikeOutGame(object[] dataRecived)
+    {
+        StrikeOutNetwork.instance.StartGame();
 
+    }
+    public void RequestSrikeOutGameToBegin()
+    {
+
+        object[] package = new object[1];
+        package[0] = "Hola";
+
+        PhotonNetwork.RaiseEvent(
+           (byte)EventCodes.StrikeOutGame, package, new RaiseEventOptions { Receivers = ReceiverGroup.All }, new SendOptions { Reliability = true });
+    }
 
 
 

@@ -8,6 +8,7 @@ public class StrikeOutManager : MonoBehaviour
     [SerializeField] bool activeMatch;
     [SerializeField] REvents startMatch,playerOut,endMatch;
     [SerializeField] GameObject barrier,startButton;
+    [SerializeField] public Transform losingPos;
     void Start()
     {
         players = 0;
@@ -15,6 +16,8 @@ public class StrikeOutManager : MonoBehaviour
         playerOut.GEvent += EndMatch;
         barrier.SetActive(false);
         startButton.SetActive(false);
+        Invoke("AddTp", 2);
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -24,6 +27,7 @@ public class StrikeOutManager : MonoBehaviour
             if (activeMatch == false)
             {
                 players++;
+           
                 startButton.SetActive(true);
                 //Debug.Log(players);
             }
@@ -63,6 +67,7 @@ public class StrikeOutManager : MonoBehaviour
     void EndMatch()
     {
         playerCount--;
+        Debug.Log(playerCount);
         if (playerCount <= 0)
         {
             playerCount = 0;
@@ -76,6 +81,13 @@ public class StrikeOutManager : MonoBehaviour
     {
         startMatch.GEvent -= StartMatch;
         playerOut.GEvent -= EndMatch;
+    }
+
+   
+    void AddTp()
+    {
+        PlayerTP tp = PlayerSpawner.instance.player.AddComponent<PlayerTP>();
+        tp.losingPos = losingPos;
     }
 
 }
