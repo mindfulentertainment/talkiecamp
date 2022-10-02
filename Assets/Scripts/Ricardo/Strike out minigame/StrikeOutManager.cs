@@ -72,7 +72,13 @@ public class StrikeOutManager : MonoBehaviour
     {
         playerCount--;
         Debug.Log(playerCount + "/" + playersList.Count);
-        if (playerCount==playersList.Count)
+        StartCoroutine(End());
+    }
+
+    IEnumerator End()
+    {
+        yield return new WaitForSeconds(2);
+        if (playerCount == playersList.Count)
         {
             Debug.Log("final");
 
@@ -82,7 +88,6 @@ public class StrikeOutManager : MonoBehaviour
 
         }
     }
-
 
     
     private void OnDestroy()
