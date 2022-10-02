@@ -71,7 +71,8 @@ public class StrikeOutManager : MonoBehaviour
     void EndMatch()
     {
         playerCount--;
-        if (playerCount <= 0)
+        Debug.Log(playerCount + "/" + playersList.Count);
+        if (playerCount==playersList.Count)
         {
             Debug.Log("final");
 
