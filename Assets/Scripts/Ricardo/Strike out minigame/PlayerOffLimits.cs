@@ -10,7 +10,11 @@ public class PlayerOffLimits : MonoBehaviour
         if (other.CompareTag("PlayerBody"))
         {
             //Debug.Log("Player Out");
-            other.GetComponentInParent<PlayerTP>().TPOut();
+            var tp = other.GetComponentInParent<PlayerTP>();
+            if (tp != null)
+            {
+                tp.TPOut();
+            }
             playerOut.FireEvent();
         }
     }
