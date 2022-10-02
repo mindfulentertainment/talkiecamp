@@ -80,7 +80,7 @@ public class StrikeOutManager : MonoBehaviour
         yield return new WaitForSeconds(2);
         Debug.Log(playerCount + "/" + playersList.Count);
 
-        if (playerCount == playersList.Count)
+        if (playerCount <= 0)
         {
             Debug.Log("final");
 
