@@ -58,7 +58,7 @@ public class StrikeOutManager : MonoBehaviour
             {
                 startButton.SetActive(false);
                 playerCount = playersList.Count;
-            Debug.Log("PLAYECOUNT" + playerCount);
+                Debug.Log("PLAYECOUNT" + playerCount);
                 
                 activeMatch = true;
                 barrier.SetActive(true);
