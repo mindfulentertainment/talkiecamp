@@ -38,9 +38,10 @@ public class StrikeOutManager : MonoBehaviour
     {
         if (other.CompareTag("PlayerBody"))
         {
+            playersList.Remove(other.gameObject);
+
             if (activeMatch == false)
             {
-                playersList.Remove(other.gameObject);
 
                 if (playersList.Count<=0)
                 {
