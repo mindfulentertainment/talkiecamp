@@ -29,7 +29,7 @@ public class StrikeOutManager : MonoBehaviour
                 players++;
            
                 startButton.SetActive(true);
-                //Debug.Log(players);
+                Debug.Log(players+" Enter");
             }
         }
     }
@@ -44,17 +44,18 @@ public class StrikeOutManager : MonoBehaviour
                 {
                     startButton.SetActive(false);
                 }
-                //Debug.Log(players);
+                Debug.Log(players+" out");
             }
         }
     }
     void StartMatch()
     {
-        
             if (activeMatch == false)
             {
                 startButton.SetActive(false);
                 playerCount = players;
+                Debug.Log(playerCount);
+                
                 activeMatch = true;
                 barrier.SetActive(true);
             }
@@ -67,15 +68,25 @@ public class StrikeOutManager : MonoBehaviour
     void EndMatch()
     {
         playerCount--;
-        Debug.Log(playerCount);
         if (playerCount <= 0)
         {
-            playerCount = 0;
-            players = 0;
+            Debug.Log("final");
+
+            StartCoroutine(ResetGame());
             endMatch.FireEvent();
-            activeMatch = false;
             barrier.SetActive(false);
+            activeMatch = false;
+
         }
+    }
+
+
+    IEnumerator ResetGame()
+    {
+
+        yield return new WaitForSeconds(0.4f);
+        playerCount = 0;
+        players = 0;
     }
     private void OnDestroy()
     {
