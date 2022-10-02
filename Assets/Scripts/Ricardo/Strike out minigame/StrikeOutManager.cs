@@ -26,9 +26,10 @@ public class StrikeOutManager : MonoBehaviour
     {
         if (other.CompareTag("PlayerBody"))
         {
+            playersList.Add(other.gameObject);
+
             if (activeMatch == false)
             {
-                playersList.Add(other.gameObject);
                 startButton.SetActive(true);
                 Debug.Log(players+" Enter");
             }
@@ -57,7 +58,7 @@ public class StrikeOutManager : MonoBehaviour
             {
                 startButton.SetActive(false);
                 playerCount = playersList.Count;
-                
+            Debug.Log("PLAYECOUNT" + playerCount);
                 
                 activeMatch = true;
                 barrier.SetActive(true);
