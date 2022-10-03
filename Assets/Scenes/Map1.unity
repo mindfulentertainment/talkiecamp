@@ -11796,7 +11796,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6890892440826230980, guid: 2df34f2facd66b449bbe851d544fba7e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 6890892440826230980, guid: 2df34f2facd66b449bbe851d544fba7e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -15487,7 +15487,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.9
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -15496,10 +15496,10 @@ Light:
     m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.597
     m_Bias: 0.05
     m_NormalBias: 0.4
-    m_NearPlane: 0.2
+    m_NearPlane: 0.5
     m_CullingMatrixOverride:
       e00: 1
       e01: 0
@@ -15544,14 +15544,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 521575352}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: 0.686611, y: -0.52842766, z: 0.4940921, w: -0.07212872}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 25.033, y: -236.405, z: -118.413}
 --- !u!114 &521575355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22855,6 +22855,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -180
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 11ac1b36c7c1c6043bb5c8ebae047064, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1645822778a786241bb5a4c01aac45e2, type: 2}
     - target: {fileID: -7370156802671013846, guid: 11ac1b36c7c1c6043bb5c8ebae047064, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -59161,6 +59165,7 @@ GameObject:
   - component: {fileID: 2027155517}
   - component: {fileID: 2027155518}
   - component: {fileID: 2027155519}
+  - component: {fileID: 2027155520}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -59329,6 +59334,47 @@ MonoBehaviour:
   sceneViewId: 52
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &2027155520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2027155511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dea07bcc73219784c86d56b1631bd687, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Blur: 0
+  BlurAmount: 0
+  Bloom: 1
+  BloomColor: {r: 1, g: 0.17380881, b: 0, a: 1}
+  BloomAmount: 0.1
+  BloomDiffuse: 0
+  BloomThreshold: 0
+  BloomSoftness: 0
+  LUT: 1
+  LutAmount: 1
+  SourceLut: {fileID: 2800000, guid: e2c7839602869d443853238a1cb59ebb, type: 3}
+  ImageFiltering: 0
+  Color: {r: 1, g: 1, b: 1, a: 1}
+  Contrast: 0
+  Brightness: -0.08
+  Saturation: 0
+  Exposure: 0
+  Gamma: 0
+  Sharpness: 0
+  ChromaticAberration: 0
+  Offset: 0.1
+  FishEyeDistortion: 0
+  GlitchAmount: 0
+  Distortion: 1
+  LensDistortion: 0.1
+  Vignette: 1
+  VignetteColor: {r: 0.735849, g: 0.735849, b: 0.735849, a: 1}
+  VignetteAmount: 0.058
+  VignetteSoftness: 0.656
 --- !u!1001 &2028585181
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -64584,7 +64630,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a69d7e927bf4ef84c84436a5bd3ce33f, type: 2}
+  - {fileID: 2100000, guid: 3f681a5f63e5eab46bcc9f18a2ffd056, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
