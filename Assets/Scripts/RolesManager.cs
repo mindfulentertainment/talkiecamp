@@ -164,7 +164,6 @@ public class RolesManager : MonoBehaviourPunCallbacks, IOnEventCallback
             roleSelected.transform.GetChild(1).GetComponent<TMP_Text>().text = PhotonNetwork.NickName;
             string role = (string)roleChosen.transform.GetChild(0).GetComponent<TMP_Text>().text.ToString();
             PlayerPrefs.SetString("role", role);
-            Debug.Log(PlayerPrefs.GetString("role"));
         }
        
         PhotonNetwork.RaiseEvent(

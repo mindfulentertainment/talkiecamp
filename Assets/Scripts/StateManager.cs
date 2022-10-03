@@ -48,7 +48,6 @@ public class StateManager : MonoBehaviour
             Resource resource = DataService.LoadData<Resource>(resourcesPath, false);
             Buildings buildingHistory = DataService.LoadData<Buildings>(buildingsPath, false);
             OnResourcesLoad?.Invoke(resource, buildingHistory);
-            Debug.Log("loading");
 
         }
         catch (Exception e)
@@ -64,7 +63,6 @@ public class StateManager : MonoBehaviour
         {
             yield return new WaitForSeconds(10);
             SerializeJson();
-            Debug.Log("Saved");
 
         }
     }

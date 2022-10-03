@@ -11,10 +11,9 @@ public class QuestManager : MonoBehaviourPunCallbacks
     public TMP_Text tmp_Description;
     public TMP_Text tmp_title;
     public GameObject bear;
-    int actualQuest=0;
     public override void OnEnable()
     {
-        questButton.onClick.AddListener(UpdgradeQuest); 
+        questButton.onClick.AddListener(UpdgradeQuest);
     }
     public override void OnDisable()
     {
@@ -22,46 +21,54 @@ public class QuestManager : MonoBehaviourPunCallbacks
 
     }
 
+    
     void UpdgradeQuest()
     {
-         actualQuest = 0;
-            foreach (var item in DataManager.instance.buildings.buildings)
+        QuestInfo actualQuestInfo=null;
+
+        for (int i = 0; i < QuestInfo.Length; i++)
+        {
+            if (!CheckConstruction(QuestInfo[i].name))
             {
-                if (item.buildingName == "DanceFloor")
-                {
-                actualQuest++;
-                }
-                if (item.buildingName == "Football")
-                {
 
-                    actualQuest++;
-
-
-                photonView.RPC("ActivateBear", RpcTarget.All);
-                    
-                }
+                actualQuestInfo=QuestInfo[i];
+                break;
             }
-            if (actualQuest <= 1)
-            {
-                tmp_title.text = QuestInfo[actualQuest].QuestName;
-                tmp_Description.text = QuestInfo[actualQuest].QuestDescription;
-            }
-            else
-            {
-                tmp_title.text = "";
-                tmp_Description.text = "No hay eventos disponibles";
 
-            }
-        
-        
-     
+        }
+
+        if (actualQuestInfo != null)
+        {
+            tmp_title.text = actualQuestInfo.QuestName;
+            tmp_Description.text = actualQuestInfo.QuestDescription;
+        }
+        else
+        {
+            tmp_title.text = "";
+            tmp_Description.text = "No hay eventos disponibles";
+
+        }
     }
 
+    bool CheckConstruction(string name)
+    {
+        foreach (var item in DataManager.instance.buildings.buildings)
+        {
+            if (item.buildingName == name)
+            {
+                return true;
+               
+            }
+           
+        }
+
+        return false;
+    }
 
     [PunRPC]
     public void ActivateBear()
     {
-        bear.SetActive(true);
+        //bear.SetActive(true);
 
     }
 }

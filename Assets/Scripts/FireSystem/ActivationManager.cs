@@ -33,7 +33,6 @@ public class ActivationManager : MonoBehaviourPun
     void StarFire()
     {
         FirePs.SetActive(true);
-        Debug.Log("hit");
     }
 
    

@@ -20,7 +20,6 @@ public class Place : MonoBehaviourPun
     {
         var photonV = GetComponent<PhotonView>();
         Destroy(photonV);
-        Debug.Log(Time.timeSinceLevelLoad);
         if (Time.timeSinceLevelLoad > 3)
         {
             UseMaterials();
