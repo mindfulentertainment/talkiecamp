@@ -15,6 +15,7 @@ public class BearController : MonoBehaviourPunCallbacks
     float stunTimer = 0;
     Vector3 target;
     bool firstTime=true;
+    bool rest=false;
     bool attacking = false;
 
     private void Start()
@@ -77,7 +78,7 @@ public class BearController : MonoBehaviourPunCallbacks
             {
                 agent.isStopped = false;
                 float distance = Vector3.Distance(transform.position, target);
-                if (distance < 5f)
+                if (distance < 5f && rest==false)
                 {
                     attacking = true;
                     agent.isStopped = true;
@@ -90,6 +91,17 @@ public class BearController : MonoBehaviourPunCallbacks
                         target = nodes[index];
                     }
                 }
+                if (rest == true)
+                {
+                    if(distance <= 4)
+                    {
+                        
+                            agent.isStopped=true;
+                        this.gameObject.SetActive(false);
+
+                        return;
+                    }
+                }
 
                 agent.SetDestination(target);
             }
@@ -99,25 +111,32 @@ public class BearController : MonoBehaviourPunCallbacks
         {
             stunTimer += Time.deltaTime;
             agent.isStopped = true;
-            Debug.Log(stunTimer);
 
-            if (stunTimer >= 20)
+            if (stunTimer >= 10)
             {
                 state = 0;
                 stunTimer = 0;
                 animator.SetBool("Trapped", false);
+                animator.SetBool("Attack", false);
+
+                target = BearManager.instance.restPos.position;
             }
         }
     }
 
     public void CaughtInTrap()
     {
+        photonView.RPC("FreezeBear", RpcTarget.AllViaServer);
+    }
+    [PunRPC]
+    public void FreezeBear()
+    {
         state = 1;
         animator.SetBool("Trapped", true);
         StopCoroutine(damage);
         damage = null;
+        rest = true;
     }
-
     private void AttackBuilding()
     {
         animator.SetBool("Attack", true);
@@ -144,10 +163,24 @@ public class BearController : MonoBehaviourPunCallbacks
     {
         while (true)
         {
+            if (PhotonNetwork.IsMasterClient)
+            {
+                photonView.RPC("TryDamage", RpcTarget.AllViaServer);
 
-            DataManager.instance.buildingsDictionary[target.ToString()].gameObject.GetComponent<Place>().DamageBuilding(10);
+            }
 
             yield return new WaitForSeconds(2.5f);
+        }
+    } 
+
+    [PunRPC]
+
+    void TryDamage()
+    {
+        if (DataManager.instance.buildingsDictionary[target.ToString()] != null)
+        {
+            DataManager.instance.buildingsDictionary[target.ToString()].gameObject.GetComponent<Place>().DamageBuilding(10);
+
         }
     }
 }

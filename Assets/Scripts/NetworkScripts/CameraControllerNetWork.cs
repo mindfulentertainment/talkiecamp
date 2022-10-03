@@ -48,7 +48,14 @@ public class CameraControllerNetWork : MonoBehaviourPun
     public void CenterPlayer()
     {
         target = player;
-        m_Coroutine= StartCoroutine(CameraTransition());
+        if (m_Coroutine != null)
+        {
+            StopCoroutine(m_Coroutine);
+        }
+        m_Coroutine = StartCoroutine(CameraTransition());
+
+        
+
     }
    
     IEnumerator CameraTransition()

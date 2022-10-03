@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using Photon.Pun;
-public class QuestManager : MonoBehaviourPunCallbacks
+public class QuestManager : MonoBehaviour
 {
     public Button questButton;
     public QuestInfo[] QuestInfo;
     public TMP_Text tmp_Description;
     public TMP_Text tmp_title;
-    public GameObject bear;
-    public override void OnEnable()
+   
+    public  void OnEnable()
     {
         questButton.onClick.AddListener(UpdgradeQuest);
     }
-    public override void OnDisable()
+    public void OnDisable()
     {
         questButton.onClick.RemoveListener(UpdgradeQuest);
 
@@ -65,10 +64,5 @@ public class QuestManager : MonoBehaviourPunCallbacks
         return false;
     }
 
-    [PunRPC]
-    public void ActivateBear()
-    {
-        //bear.SetActive(true);
-
-    }
+    
 }

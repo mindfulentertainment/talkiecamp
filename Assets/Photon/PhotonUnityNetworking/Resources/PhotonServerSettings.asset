@@ -49,6 +49,8 @@ MonoBehaviour:
   - ActivateBear
   - StarFire
   - Gone
+  - TryDamage
+  - FreezeBear
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

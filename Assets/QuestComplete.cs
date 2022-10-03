@@ -8,7 +8,7 @@ public class QuestComplete : MonoBehaviour
 
     private void OnEnable()
     {
-        if (Time.timeSinceLevelLoad > 3)
+        if (Time.timeSinceLevelLoad > 10)
         {
             Notification.instance.ShowMessage(message, 4);
         }
