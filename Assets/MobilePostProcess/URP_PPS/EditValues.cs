@@ -56,6 +56,7 @@ public class EditValues : MonoBehaviour
     [Range(0.001f, 1)]
     public float VignetteSoftness = 0.001f;
 
+    
     void Update()
     {
         if (PostProcessUrp.Instance == null) return;

@@ -313,7 +313,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlaceInfo: {fileID: 11400000, guid: 0c0036259a894414fbd1113998969b49, type: 2}
   maxHealth: 100
-  health: 0
   health_Slider: {fileID: 499561168835298855}
 --- !u!1 &6753164152900513986
 GameObject:

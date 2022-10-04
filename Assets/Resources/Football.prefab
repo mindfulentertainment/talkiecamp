@@ -1249,7 +1249,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlaceInfo: {fileID: 11400000, guid: 29e8e9d0e8a76a943a18c1c13b6206dc, type: 2}
   maxHealth: 250
-  health: 0
   health_Slider: {fileID: 3753276080335120665}
 --- !u!114 &6667671029067281745
 MonoBehaviour:

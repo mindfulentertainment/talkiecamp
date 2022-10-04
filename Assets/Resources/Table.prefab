@@ -287,7 +287,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlaceInfo: {fileID: 11400000, guid: 5b5f0b6906bc91f4091e23d7a8383982, type: 2}
   maxHealth: 60
-  health: 0
   health_Slider: {fileID: 2338251615783771176}
 --- !u!208 &-1378366607198889153
 NavMeshObstacle:

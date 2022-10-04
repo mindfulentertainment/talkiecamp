@@ -52,12 +52,12 @@ public class DataManager : MonoBehaviour
         UIController.instance.ChangeResources(resource);
         if (PhotonNetwork.IsMasterClient)
         {
-            foreach (var item in buildings.buildings)
+            for (int i = 0; i < buildings.buildings.Count; i++)
             {
+                GameObject newBuilding = PhotonNetwork.Instantiate(buildings.buildings[i].buildingName, buildings.buildings[i].GetPosition(), buildings.buildings[i].GetRotation());
 
-                GameObject newBuilding=PhotonNetwork.Instantiate(item.buildingName, item.GetPosition(), item.GetRotation());
-                newBuilding.GetComponent<Place>().buildingHistory = item;
-            }
+            } 
+          
         }
            
            

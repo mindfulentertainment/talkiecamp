@@ -57,6 +57,19 @@ public class CameraControllerNetWork : MonoBehaviourPun
         
 
     }
+    public void  Check(bool zoom)
+    {
+        if (zoom&& m_Coroutine==null)
+        {
+            smoothSpeed = 0.8f;
+            m_camera.fieldOfView = 22;
+            m_camera.fieldOfView = Mathf.Lerp(m_camera.fieldOfView, 7, Time.deltaTime);
+        }
+        else if(m_Coroutine == null)
+        {
+            CenterPlayer();
+        }
+    }
    
     IEnumerator CameraTransition()
     {
@@ -72,6 +85,7 @@ public class CameraControllerNetWork : MonoBehaviourPun
             }
             yield return null;
         }
+        m_Coroutine = null;
     }
 
     IEnumerator GetPlayer()

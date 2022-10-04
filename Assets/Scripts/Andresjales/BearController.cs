@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Photon.Pun;
 
-public class BearController : MonoBehaviourPunCallbacks
+public class BearController : MonoBehaviourPun
 {
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Animator animator;
@@ -13,16 +13,16 @@ public class BearController : MonoBehaviourPunCallbacks
     int index = 0;
     int state = 0; //0 = Attacking, 1 = Trapped
     float stunTimer = 0;
-    Vector3 target;
+    Vector3 target=Vector3.zero;
     bool firstTime=true;
     bool rest=false;
     bool attacking = false;
-
+    public BearManager bM;
     private void Start()
     {
         MatchManager.instance.OnResourcesLoadGlobal.AddListener(GetBuildingsInfo);
     }
-    public override void OnEnable()
+    public  void OnEnable()
     {
 
         Resource r= new Resource();
@@ -30,6 +30,12 @@ public class BearController : MonoBehaviourPunCallbacks
         {
             GetBuildingsInfo(r, DataManager.instance.buildings);
             StartCoroutine(Subscribe());
+        }
+
+        if (firstTime)
+        {
+            firstTime = false;
+            gameObject.SetActive(false);
         }
     }
     
@@ -39,10 +45,10 @@ public class BearController : MonoBehaviourPunCallbacks
         DataManager.instance.OnNewBuilding += GetBuildingsInfo;
 
     }
-    public override void OnDisable()
+    public  void OnDisable()
     {
         DataManager.instance.OnNewBuilding -= GetBuildingsInfo;
-
+        target = Vector3.zero;
         MatchManager.instance.OnResourcesLoadGlobal.RemoveListener(GetBuildingsInfo);
     }
 
@@ -57,12 +63,7 @@ public class BearController : MonoBehaviourPunCallbacks
                 nodes.Add(item.GetPosition());
             }
 
-            target = nodes[0];
-            if (firstTime)
-            {
-                firstTime = false;
-                gameObject.SetActive(false);
-            }
+           
         }
         else
         {
@@ -72,9 +73,10 @@ public class BearController : MonoBehaviourPunCallbacks
 
     private void Update()
     {
+        if(nodes.Count<=0) return;
         if (state == 0)
         {
-            if (target != null)
+            if (target != Vector3.zero)
             {
                 agent.isStopped = false;
                 float distance = Vector3.Distance(transform.position, target);
@@ -87,8 +89,9 @@ public class BearController : MonoBehaviourPunCallbacks
 
                     if (attacking == false)
                     {
-                        index = (index + 1) % nodes.Count;
-                        target = nodes[index];
+                        index = Random.Range(0,nodes.Count);
+                        photonView.RPC("SetDestination", RpcTarget.AllViaServer, index);
+
                     }
                 }
                 if (rest == true)
@@ -97,13 +100,23 @@ public class BearController : MonoBehaviourPunCallbacks
                     {
                         
                             agent.isStopped=true;
+                        bM.ReactivateBear();
+                        rest= false;
                         this.gameObject.SetActive(false);
 
                         return;
                     }
                 }
 
-                agent.SetDestination(target);
+            }
+            else
+            {
+                if (PhotonNetwork.IsMasterClient)
+                {
+                    index = Random.Range(0, nodes.Count);
+                    photonView.RPC("SetDestination", RpcTarget.AllViaServer, index);
+                }
+             
             }
         }
 
@@ -120,20 +133,39 @@ public class BearController : MonoBehaviourPunCallbacks
                 animator.SetBool("Attack", false);
 
                 target = BearManager.instance.restPos.position;
+                agent.SetDestination(target);
+
             }
         }
     }
 
+    [PunRPC]
+    void SetDestination(int i)
+    {
+        target = nodes[i];
+        agent.SetDestination(target);
+
+    }
+
+
     public void CaughtInTrap()
     {
-        photonView.RPC("FreezeBear", RpcTarget.AllViaServer);
+        if (!rest)
+        {
+            photonView.RPC("FreezeBear", RpcTarget.AllViaServer);
+
+        }
     }
     [PunRPC]
     public void FreezeBear()
     {
         state = 1;
         animator.SetBool("Trapped", true);
-        StopCoroutine(damage);
+        if (damage != null)
+        {
+            StopCoroutine(damage);
+
+        }
         damage = null;
         rest = true;
     }
@@ -147,9 +179,9 @@ public class BearController : MonoBehaviourPunCallbacks
         }
 
 
-        if (DataManager.instance.buildingsDictionary[target.ToString()].gameObject.GetComponent<Place>().health<=0) //building.life <= 0
+        if (DataManager.instance.buildingsDictionary[target.ToString()].gameObject.GetComponent<Place>().buildingHistory.health<=0) //building.life <= 0
         {
-
+            nodes.Remove(target);
             StopCoroutine(damage);
             damage = null;
             animator.SetBool("Attack", false);
@@ -165,7 +197,8 @@ public class BearController : MonoBehaviourPunCallbacks
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                photonView.RPC("TryDamage", RpcTarget.AllViaServer);
+                string t=target.ToString();
+                photonView.RPC("TryDamage", RpcTarget.AllViaServer, t);
 
             }
 
@@ -175,11 +208,11 @@ public class BearController : MonoBehaviourPunCallbacks
 
     [PunRPC]
 
-    void TryDamage()
+    void TryDamage(string target)
     {
-        if (DataManager.instance.buildingsDictionary[target.ToString()] != null)
+        if (DataManager.instance.buildingsDictionary[target] != null)
         {
-            DataManager.instance.buildingsDictionary[target.ToString()].gameObject.GetComponent<Place>().DamageBuilding(10);
+            DataManager.instance.buildingsDictionary[target].gameObject.GetComponent<Place>().DamageBuilding(15);
 
         }
     }

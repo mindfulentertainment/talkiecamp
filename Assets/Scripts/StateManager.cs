@@ -28,6 +28,7 @@ public class StateManager : MonoBehaviour
 
     public void SerializeJson()
     {
+        Debug.Log(DataManager.instance.buildings.buildings[2].health);
         string pathResources = PlayerPrefs.GetString("resources");
         string pathBuildings= PlayerPrefs.GetString("buildings");
         if (DataService.SaveData(pathResources, DataManager.instance.resource, false))
@@ -94,6 +95,7 @@ public class Resource
 public class BuildingHistory
 {
     public string buildingName;
+    public float health;
     public float x;
     public float y;
     public float z;

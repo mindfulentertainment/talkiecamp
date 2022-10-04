@@ -13,14 +13,13 @@ public class Place : MonoBehaviourPun
     public static Action<string> OnPlaceBuild;
     Resource resource;
     public float maxHealth;
-    public float health;
     public Slider health_Slider;
-    public BuildingHistory buildingHistory;
+    public BuildingHistory buildingHistory=null;
     private void OnEnable()
     {
         var photonV = GetComponent<PhotonView>();
         Destroy(photonV);
-        if (Time.timeSinceLevelLoad > 3)
+        if (Time.timeSinceLevelLoad > 7)
         {
             UseMaterials();
             BuildingHistory newBuilding = new BuildingHistory();
@@ -32,7 +31,7 @@ public class Place : MonoBehaviourPun
             newBuilding.q_y = transform.rotation.y;
             newBuilding.q_z = transform.rotation.z;
             newBuilding.q_w = transform.rotation.w;
-
+            newBuilding.health = maxHealth;
             DataManager.instance.buildings.buildings.Add(newBuilding);
         }
         OnPlaceBuild?.Invoke(PlaceInfo.placeName);
@@ -47,22 +46,49 @@ public class Place : MonoBehaviourPun
     }
     private void Start()
     {
+        
+        StartCoroutine(GetBuildingHistory());
+    }
+    
+    IEnumerator GetBuildingHistory()
+    {
+        yield return new WaitForSeconds(0.3f);
+        buildingHistory = GetBH(transform.position);
+
+        if (buildingHistory.health < maxHealth)
+        {
+            health_Slider.gameObject.SetActive(true);
+            health_Slider.value = buildingHistory.health / maxHealth;
+
+        }
+        else
+        {
+            health_Slider.gameObject.SetActive(false);
+
+        }
         DataManager.instance.buildingsDictionary.Add(this.transform.position.ToString(), this.gameObject);
-        health = maxHealth;
-
-        health_Slider.value=health/maxHealth;
-        health_Slider.gameObject.SetActive(false);
-
+        health_Slider.value = buildingHistory.health / maxHealth;
+    }
+   
+    BuildingHistory GetBH(Vector3 pos)
+    {
+        foreach(var b in DataManager.instance.buildings.buildings)
+        {
+            if (b.GetPosition() == pos)
+            {
+                return b;
+            }
+        }
+        return null;
     }
 
-
-   
     public void DamageBuilding(float damage)
     {
+
         health_Slider.gameObject.SetActive(true);
-        health -= damage;
-        health_Slider.value = health / maxHealth;
-        if (health <= 0)
+        buildingHistory.health -= damage;
+        health_Slider.value = buildingHistory.health / maxHealth;
+        if (buildingHistory.health <= 0)
         {
             Destroy(this.gameObject,0.5f);
 
@@ -82,6 +108,7 @@ public class Place : MonoBehaviourPun
             }
 
         }
+
     }
 
     void UseMaterials()
@@ -137,12 +164,15 @@ public class Place : MonoBehaviourPun
 
     public void RepairBuilding(float amount)
     {
-        health+=amount;
-        if (health >= maxHealth)
+
+
+        buildingHistory.health += amount;
+        if (buildingHistory.health >= maxHealth)
         {
-            health = maxHealth;
+            buildingHistory.health = maxHealth;
+            health_Slider.gameObject.SetActive(false);
         }
-        health_Slider.value = health / maxHealth;
+        health_Slider.value = buildingHistory.health / maxHealth;
 
 
     }

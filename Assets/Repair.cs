@@ -16,7 +16,7 @@ public class Repair : MonoBehaviourPun
         if (other.gameObject.CompareTag("Placed"))
         {
             place = other.GetComponentInParent<Place>();
-            if (place.health < place.maxHealth)
+            if (place.buildingHistory.health < place.maxHealth)
             {
                UIController.instance.repairHelper.SetActive(true);
                 UIController.instance.pickBtn.GetComponent<Button>().onClick.AddListener(RepairBuilding);
@@ -66,7 +66,12 @@ public class Repair : MonoBehaviourPun
     void SendRepair(string target)
     {
         hammer.SetActive(true);
-        DataManager.instance.buildingsDictionary[target].gameObject.GetComponent<Place>().RepairBuilding(RepairAmount);
+        Place place =null ;
+        DataManager.instance.buildingsDictionary[target]?.gameObject.TryGetComponent(out place);
+        if(place != null)
+        {
+            place.RepairBuilding(RepairAmount);
+        }
         GetComponentInParent<Animator>().SetTrigger("isRepearing");
 
     }
