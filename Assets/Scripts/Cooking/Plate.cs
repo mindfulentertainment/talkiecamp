@@ -65,7 +65,6 @@ public class Plate : SnapZone, IPickable
 
     public void Drop(Vector3 pos)
     {
-
         gameObject.transform.SetParent(null);
         transform.position = pos;
         collider.enabled = true;
