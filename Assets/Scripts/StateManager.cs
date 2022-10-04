@@ -28,7 +28,6 @@ public class StateManager : MonoBehaviour
 
     public void SerializeJson()
     {
-        Debug.Log(DataManager.instance.buildings.buildings[2].health);
         string pathResources = PlayerPrefs.GetString("resources");
         string pathBuildings= PlayerPrefs.GetString("buildings");
         if (DataService.SaveData(pathResources, DataManager.instance.resource, false))
