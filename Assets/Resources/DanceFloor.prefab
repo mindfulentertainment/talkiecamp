@@ -2686,7 +2686,7 @@ GameObject:
   - component: {fileID: 4598172473877002946}
   m_Layer: 0
   m_Name: DanceFloor
-  m_TagString: Untagged
+  m_TagString: Placed
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -639,6 +639,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Carpa
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c621c5683afa8794db96a93f755fcf30, type: 3}
+      propertyPath: m_TagString
+      value: Placed
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c621c5683afa8794db96a93f755fcf30, type: 3}
 --- !u!1 &53009481661563817 stripped
@@ -657,8 +661,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.059419487, y: 0.05845716, z: 0.043395374}
-  m_Center: {x: 0.0006249897, y: -0.0025302605, z: 0.018302388}
+  m_Size: {x: 0.059419487, y: 0.06513425, z: 0.043395374}
+  m_Center: {x: 0.0006249897, y: -0.00016601369, z: 0.018302394}
 --- !u!208 &3457573737296457975
 NavMeshObstacle:
   m_ObjectHideFlags: 0

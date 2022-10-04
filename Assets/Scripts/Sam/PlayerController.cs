@@ -29,8 +29,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
     protected bool isGrounded;
     public LayerMask groundLayers;
     public string role;
-    bool isRunning;
-    protected  bool isBuilding;
+    public bool isRunning;
+    public  bool isBuilding;
     public Transform snap;
 
 

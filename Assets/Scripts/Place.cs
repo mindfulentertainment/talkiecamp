@@ -135,5 +135,16 @@ public class Place : MonoBehaviourPun
 
     }
 
+    public void RepairBuilding(float amount)
+    {
+        health+=amount;
+        if (health >= maxHealth)
+        {
+            health = maxHealth;
+        }
+        health_Slider.value = health / maxHealth;
+
+
+    }
 
 }

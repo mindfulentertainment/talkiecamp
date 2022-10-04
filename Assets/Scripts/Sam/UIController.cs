@@ -30,7 +30,7 @@ public class UIController : MonoBehaviour
     Coroutine fade;
     public GameObject emoticonBtn;
     public GameObject resourcesBtn;
-
+    public GameObject repairHelper;
     [Header("Resources")]
     public TMP_Text meatAmount;
     public TMP_Text hamburguersAmount;

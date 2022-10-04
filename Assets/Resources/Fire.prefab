@@ -1215,7 +1215,7 @@ GameObject:
   - component: {fileID: -6634984309312070771}
   m_Layer: 0
   m_Name: Fire
-  m_TagString: Untagged
+  m_TagString: Placed
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
