@@ -9,48 +9,46 @@ public class BulletMove : MonoBehaviour
     [SerializeField] REvents playerOut;
     public Vector3 canon;
     public bool reverse;
-    [SerializeField] Rigidbody rb;
+    
 
     
     void OnEnable()
     {
+
         if (reverse == false)
         {
             dir = (transform.position - canon).normalized;
         }
         else
         {
-            
             dir = (canon - transform.position).normalized;
         }
-        
-       
-        rb.AddForce(dir * force, ForceMode.Impulse);
         StartCoroutine("BulletLife");
+    }
+    private void FixedUpdate()
+    {
+        transform.Translate(dir*force * Time.deltaTime, Space.World);
     }
 
     IEnumerator BulletLife()
     {
         yield return new WaitForSeconds(duration);
-        rb.isKinematic = true;
-        rb.isKinematic = false;
+        //se detiene
+        transform.Translate(dir, Space.World);
         this.gameObject.SetActive(false);
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("PlayerBody"))
         {
-            //Debug.Log("Player Out");
-
-
             var tp = other.GetComponentInParent<PlayerTP>();
             if (tp != null)
             {
                 tp.TPOut();
             }
             StopCoroutine("BulletLife");
-            rb.isKinematic = true;
-            rb.isKinematic = false;
+             //se detiene
+            transform.Translate(dir, Space.World);
             this.gameObject.SetActive(false);
             playerOut.FireEvent();
         }
