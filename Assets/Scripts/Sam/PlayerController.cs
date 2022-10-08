@@ -107,48 +107,46 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 float x =snap.position.x;
                 float y =snap.position.y;
                 float z =snap.position.z;
-                photonView.RPC("HandlePickUp", RpcTarget.AllViaServer,x,y,z) ;
-
+                Pick(x, y, z);
             }
 
         }
     }
 
-
-
-    [PunRPC]
-    public virtual void HandlePickUp(float x, float y, float z)
+    void Pick(float x, float y, float z)
     {
-        Vector3 pos = new Vector3(x,y,z);
-        var snapZone = pickAndDropNetWork.CurrentSnapZone;
+        SnapZone snapZone = pickAndDropNetWork.CurrentSnapZone;
 
         // empty hands, try to pick
         if (_currentPickable == null)
         {
+            if (snapZone == null) return;
+            if (snapZone.GetComponent<Token_Pick>() != null)
+            {
+                if (!snapZone.GetComponent<Token_Pick>().isAvailable) return;
+
+            }
             _currentPickable = snapZone as IPickable;
+          
+
             if (_currentPickable != null)
             {
-                _currentPickable.Pick();
-                animator?.SetBool("isLifting", true);
-                pickAndDropNetWork.Remove(_currentPickable as SnapZone);
-                _currentPickable.gameObject.transform.SetPositionAndRotation(slot.transform.position, Quaternion.identity);
-                _currentPickable.gameObject.transform.SetParent(slot);
-                return;
+                if (_currentPickable.gameObject.GetComponent<Token_Pick>().isAvailable)
+                {
+                    int key = _currentPickable.gameObject.GetComponent<Token_Pick>().key;
+                    photonView.RPC("HandlePickUp", RpcTarget.AllViaServer, key);
+                    pickAndDropNetWork.Remove(_currentPickable as SnapZone);
+                    return;
+
+                }
+
+
             }
 
             // SnapZone only (not a IPickable)
-            
-                _currentPickable = snapZone?.TryToPickUpFromSlot(_currentPickable);
 
-            
-
-            if (_currentPickable != null )
-            {
-               // animator.SetBool("isLifting", true);
-                _currentPickable?.gameObject.transform.SetPositionAndRotation(slot.position, Quaternion.identity);
-                _currentPickable?.gameObject.transform.SetParent(slot);
-            }
            
+
             return;
         }
 
@@ -159,35 +157,131 @@ public class PlayerController : MonoBehaviourPunCallbacks
         {
             if (_currentPickable != null)
             {
-                animator?.SetBool("isLifting", false);
-                _currentPickable.Drop(pos);
-                _currentPickable = null;
-                return;
+                if (!_currentPickable.gameObject.GetComponent<Token_Pick>().isAvailable)
+                {
+                    int key = _currentPickable.gameObject.GetComponent<Token_Pick>().key;
+                    photonView.RPC("HandleDrop", RpcTarget.AllViaServer, key, x, y, z);
+                    _currentPickable = null;
+                    return;
+                }
+         
             }
-           
+
         }
 
-        // we carry a pickable and we have an snap zone in range
-        // we may drop into the snap zone
+        //// we carry a pickable and we have an snap zone in range
+        //// we may drop into the snap zone
+        //int keyPickUp = _currentPickable.gameObject.GetComponent<Token_Pick>().key;
+        //int keySnap = snapZone.gameObject.GetComponent<Token_snapZone>().key;
+
+        //photonView.RPC("HandlePickUpSlot", RpcTarget.AllViaServer, keyPickUp, keySnap, x, y, z);
+
+
+        if (_currentPickable != null)
+        {
+            int key = _currentPickable.gameObject.GetComponent<Token_Pick>().key;
+            photonView.RPC("HandleState", RpcTarget.AllViaServer, key);
+
+        }
 
         // Try to drop on the snap zone. It may refuse it, e.g. dropping a plate into the CuttingBoard,
         // or simply it already have something on it
         //Debug.Log($"[PlayerController] {_currentPickable.gameObject.name} trying to drop into {interactable.gameObject.name} ");
 
+
+
+
         if (_currentPickable != null)
         {
             if (snapZone != null)
             {
-                animator?.SetBool("isLifting", false);
-                bool dropSuccess = snapZone.TryToDropIntoSlot(_currentPickable);
-                if (!dropSuccess) return;
+                int snap = snapZone.gameObject.GetComponent<Token_snapZone>().key;
+                int pickkey = _currentPickable.gameObject.GetComponent<Token_Pick>().key;
+                photonView.RPC("TryDrop", RpcTarget.AllViaServer, snap, pickkey);
+               
 
             }
         }
-        
+
 
         _currentPickable = null;
+
     }
+
+    [PunRPC]
+    public virtual void HandlePickUp(int key)
+    {
+        IPickable item = Token_Manager.DefaultInstance.pickables_tokens[key];
+
+        if (!item.gameObject.GetComponent<Token_Pick>().isAvailable) return;
+
+        item.gameObject.GetComponent<Token_Pick>().isAvailable = false ;
+        item.Pick();
+        animator?.SetBool("isLifting", true);
+        item.gameObject.transform.SetPositionAndRotation(slot.transform.position, Quaternion.identity);
+        item.gameObject.transform.SetParent(slot);
+
+    }
+    [PunRPC]
+    public virtual void HandleDrop(int key,float x, float y, float z)
+    {
+        IPickable item = Token_Manager.DefaultInstance.pickables_tokens[key];
+
+        if (item.gameObject.GetComponent<Token_Pick>().isAvailable) return;
+        item.gameObject.GetComponent<Token_Pick>().isAvailable = true;
+
+        animator?.SetBool("isLifting", false);
+        Vector3 pos = new Vector3(x, y, z);
+
+        item.Drop(pos);
+
+
+    }
+
+    [PunRPC]
+    public virtual void HandlePickUpSlot(int keyPickable, int keySnapzone, float x, float y, float z)
+    {
+
+        IPickable item = Token_Manager.DefaultInstance.pickables_tokens[keyPickable];
+        SnapZone snapZone = Token_Manager.DefaultInstance.snapzones_tokens[keySnapzone];
+
+        animator?.SetBool("isLifting", true);
+
+        item = snapZone?.TryToPickUpFromSlot(item);
+
+
+
+       
+
+    }
+    [PunRPC]
+    public virtual void HandleState(int keyPickable)
+    {
+
+        IPickable item = Token_Manager.DefaultInstance.pickables_tokens[keyPickable];
+        if (!item.gameObject.GetComponent<Token_Pick>().isAvailable) return;
+        item?.gameObject.transform.SetPositionAndRotation(slot.position, Quaternion.identity);
+        item?.gameObject.transform.SetParent(slot);
+
+    }
+
+    [PunRPC]
+
+    public virtual void TryDrop(int keySnapzone, int keyPickable)
+    {
+        IPickable item = Token_Manager.DefaultInstance.pickables_tokens[keyPickable];
+        if (item.gameObject.GetComponent<Token_Pick>().isAvailable) return;
+
+        SnapZone snapZone = Token_Manager.DefaultInstance.snapzones_tokens[keySnapzone];
+
+
+        item.gameObject.GetComponent<Token_Pick>().isAvailable = true;
+       
+        animator?.SetBool("isLifting", false);
+
+         snapZone.TryToDropIntoSlot(item);
+    }
+
 
     private void OnTriggerEnter(Collider other)
     {

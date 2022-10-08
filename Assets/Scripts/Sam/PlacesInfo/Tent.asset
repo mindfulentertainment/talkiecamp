@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Tent
   m_EditorClassIdentifier: 
   placeName: Carpa
-  wood: 10
+  wood: 0
   stone: 0
-  fabric: 1
+  fabric: 0
   meat: 0
   hamburguers: 0
   sandwiches: 0

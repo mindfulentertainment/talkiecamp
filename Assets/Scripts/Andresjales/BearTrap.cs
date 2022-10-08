@@ -40,15 +40,13 @@ public class BearTrap : SnapZone, IPickable
 
     public void Pick()
     {
-        if (!isTaken)
-        {
+       
             collider.enabled = false;
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
             isTaken = true;
-            GetComponent<PhotonTransformView>().enabled = false;
             StopAllCoroutines();
-        }
+        
     }
 
     public void Drop(Vector3 pos)
@@ -57,7 +55,6 @@ public class BearTrap : SnapZone, IPickable
 
         gameObject.transform.SetParent(null);
         transform.position = pos;
-        GetComponent<PhotonTransformView>().enabled = true;
         collider.enabled = true;
     }
 

@@ -35,7 +35,7 @@ public class PickableItem : SnapZone, IPickable
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
             isTaken = true;
-            GetComponent<PhotonTransformView>().enabled = false;
+            //GetComponent<PhotonTransformView>().enabled = false;
 
             StopAllCoroutines();
         }
@@ -51,7 +51,7 @@ public class PickableItem : SnapZone, IPickable
 
             gameObject.transform.SetParent(null);
             transform.position = pos;
-            GetComponent<PhotonTransformView>().enabled = true;
+            //GetComponent<PhotonTransformView>().enabled = true;
             rb.isKinematic = true;
             collider.enabled = true;
         

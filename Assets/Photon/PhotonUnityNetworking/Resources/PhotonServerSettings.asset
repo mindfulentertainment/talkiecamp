@@ -53,6 +53,11 @@ MonoBehaviour:
   - FreezeBear
   - SendRepair
   - SetDestination
+  - HandleDrop
+  - HandlePickUpSlot
+  - HandleState
+  - TryDrop
+  - HandleStatePickUp
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

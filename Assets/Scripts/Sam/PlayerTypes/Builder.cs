@@ -6,9 +6,9 @@ using Photon.Pun;
 public class Builder : PlayerController
 {
     [PunRPC]
-    public override void HandlePickUp(float x, float y, float z)
+    public override void HandlePickUp(int key)
     {
-        base.HandlePickUp(x,y,z);    
+        base.HandlePickUp(key);    
     }
     public override void OnEnable()
     {

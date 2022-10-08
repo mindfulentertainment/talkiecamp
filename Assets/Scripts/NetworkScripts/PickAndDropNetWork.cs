@@ -25,6 +25,13 @@ public class PickAndDropNetWork : MonoBehaviourPunCallbacks
     {
         SnapZone snapZone = other.gameObject.GetComponent<SnapZone>();
         if (!snapZone) return;
+        Token_Pick pickup;
+        snapZone.TryGetComponent<Token_Pick>(out pickup);
+        if(pickup != null)
+        {
+
+            if (!pickup.isAvailable) return;
+        }
 
         if (snapZones.Contains(snapZone))
         {

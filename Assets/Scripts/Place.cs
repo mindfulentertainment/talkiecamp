@@ -52,7 +52,7 @@ public class Place : MonoBehaviourPun
     
     IEnumerator GetBuildingHistory()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(1f);
         buildingHistory = GetBH(transform.position);
 
         if (buildingHistory.health < maxHealth)
