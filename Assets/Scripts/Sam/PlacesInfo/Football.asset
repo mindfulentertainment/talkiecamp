@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Football
   m_EditorClassIdentifier: 
   placeName: Cancha Futbol
-  wood: 0
-  stone: 0
-  fabric: 0
+  wood: 10
+  stone: 5
+  fabric: 1
   meat: 0
   hamburguers: 0
   sandwiches: 0

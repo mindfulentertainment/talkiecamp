@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: DanceFloor
   m_EditorClassIdentifier: 
   placeName: Pista de baile
-  wood: 0
-  stone: 0
-  fabric: 0
+  wood: 10
+  stone: 5
+  fabric: 2
   meat: 0
   hamburguers: 0
   sandwiches: 0

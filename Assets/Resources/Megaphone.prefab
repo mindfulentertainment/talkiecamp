@@ -110,7 +110,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlaceInfo: {fileID: 11400000, guid: 674bf212f2d4bf04ab268e5ffd13d1f6, type: 2}
   maxHealth: 400
-  health: 0
   health_Slider: {fileID: 4408340373714996909}
 --- !u!136 &5342286816331634289
 CapsuleCollider:
