@@ -17,6 +17,7 @@ TagManager:
   - Bear
   - PlayerBody
   - Wood
+  - object
   layers:
   - Default
   - TransparentFX

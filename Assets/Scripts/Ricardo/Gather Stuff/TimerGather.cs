@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Timer : MonoBehaviour
+public class TimerGather : MonoBehaviour
 {
-    public int minutes, seconds,m,s;
-    [SerializeField] bool loop;
-    [SerializeField] REvents startTimer,eventShoot,stopTime;
-    
-    
-    
+    public int minutes, seconds, m, s;
+    [SerializeField] bool loop,aditionalCall;
+    [SerializeField] REvents startTimer, eventShoot, stopTime,lastCall;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +27,7 @@ public class Timer : MonoBehaviour
 
     public void StopTimer() //detener el contador
     {
-        
+
         CancelInvoke("UpdateTimer");
     }
     void UpdateTimer()
@@ -51,7 +51,10 @@ public class Timer : MonoBehaviour
                 s = 59;
             }
         }
-
+        if (aditionalCall == true)
+        {
+            lastCall.FireEvent();
+        }
         Invoke("UpdateTimer", 1f);
     }
     void RestartTime()
@@ -59,7 +62,7 @@ public class Timer : MonoBehaviour
         m = minutes;
         s = seconds;
     }
-    
+
     private void OnDestroy()
     {
         startTimer.GEvent -= StartTimer;
