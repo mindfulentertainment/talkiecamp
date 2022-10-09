@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 1
+  m_Fog: 0
   m_FogColor: {r: 1, g: 0.7311321, b: 0.7311321, a: 1}
   m_FogMode: 2
   m_FogDensity: 0.002
@@ -62491,7 +62491,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Blur: 0
   BlurAmount: 0
-  Bloom: 1
+  Bloom: 0
   BloomColor: {r: 1, g: 0.17380881, b: 0, a: 1}
   BloomAmount: 0.15
   BloomDiffuse: 0
@@ -62501,10 +62501,10 @@ MonoBehaviour:
   LutAmount: 1
   SourceLut: {fileID: 2800000, guid: e2c7839602869d443853238a1cb59ebb, type: 3}
   ImageFiltering: 0
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color: {r: 0.9976008, g: 1, b: 0.8915094, a: 1}
   Contrast: 0
   Brightness: -0.08
-  Saturation: 0
+  Saturation: -0.54
   Exposure: 0
   Gamma: 0
   Sharpness: 0
@@ -70358,12 +70358,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minutes: 0
   seconds: 1
+  m: 0
+  s: 0
   loop: 1
   startTimer: {fileID: 11400000, guid: 3247ab843e7afdd479ab1a8d31570057, type: 2}
   eventShoot: {fileID: 11400000, guid: 9404fbd230717fd4691678a1a7ef610c, type: 2}
   stopTime: {fileID: 11400000, guid: 5073ad2f1affef24d9d00497251fd749, type: 2}
-  m: 0
-  s: 0
 --- !u!114 &8522938845951534389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70936,12 +70936,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minutes: 0
   seconds: 2
+  m: 0
+  s: 0
   loop: 1
   startTimer: {fileID: 11400000, guid: 3247ab843e7afdd479ab1a8d31570057, type: 2}
   eventShoot: {fileID: 11400000, guid: 9404fbd230717fd4691678a1a7ef610c, type: 2}
   stopTime: {fileID: 11400000, guid: 5073ad2f1affef24d9d00497251fd749, type: 2}
-  m: 0
-  s: 0
 --- !u!114 &8522938846649788928
 MonoBehaviour:
   m_ObjectHideFlags: 0

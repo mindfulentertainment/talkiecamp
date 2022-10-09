@@ -28,12 +28,19 @@ public class ReplicateEvent : MonoBehaviourPunCallbacks
     [PunRPC]
     public void LaunchBall()
     {
-        rEvents.FireEvent();
+        
+            rEvents.FireEvent();
+       
+        
 
     }
     void ReadInput()
     {
-        photonView.RPC("LaunchBall", RpcTarget.All);
+        var ball = PlayerSpawner.GetMyPlayer()?.GetComponentInChildren<OnPlayerFoot>();
+        if (ball != null)
+        {
+        photonView.RPC("LaunchBall", RpcTarget.AllViaServer);
+        }
     }
 
 }

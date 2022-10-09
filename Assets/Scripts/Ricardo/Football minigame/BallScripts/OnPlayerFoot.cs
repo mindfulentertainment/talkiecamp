@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 
-public class OnPlayerFoot : MonoBehaviourPunCallbacks
+public class OnPlayerFoot : MonoBehaviourPun
 {
 
     [SerializeField] bool isOnPlayer;
@@ -13,7 +13,7 @@ public class OnPlayerFoot : MonoBehaviourPunCallbacks
     [SerializeField] REvents shootBall,goalT1,goalT2;
     [SerializeField] GameObject currentPlayer;
     [SerializeField] float shotingForce;
-
+    bool stop;
    
     private void Start()
     {
@@ -26,15 +26,15 @@ public class OnPlayerFoot : MonoBehaviourPunCallbacks
     
     public void GetBall(GameObject player)
     {
-        if (isOnPlayer == false)
-        {
+        if (isOnPlayer == true) return;
+        
+            GetComponent<PhotonRigidbodyView>().enabled = false;                  //UIController.instance.pickBtn.GetComponent<Image>().sprite = ballInteractionIcon;    //cambia el icono de Ui de interaccion
             currentPlayer = player; //determina cual es el jugador actual que tiene la pelota
             isOnPlayer = true;
             this.gameObject.transform.parent = player.transform; //vuelve la bola en hijo al jugador
             transform.position = currentPlayer.transform.GetChild(3).position; //snapea la posicion de la bola al lugar del pie
             rb.isKinematic = true;  //pone kinematico el objeto para que no lo perturben otras fuerzas
-                                    //UIController.instance.pickBtn.GetComponent<Image>().sprite = ballInteractionIcon;    //cambia el icono de Ui de interaccion
-        }
+        
     }
 
    
@@ -44,9 +44,9 @@ public class OnPlayerFoot : MonoBehaviourPunCallbacks
     {
         if (isOnPlayer == true)
         {
-            rb.isKinematic = false;
+            
             this.gameObject.transform.SetParent(null);
-            rb.AddForce(((transform.position - currentPlayer.transform.position)) * shotingForce);
+            photonView.RPC("AddForceToBall", RpcTarget.AllViaServer);
             StartCoroutine(PlayerOn());
         }
     }
@@ -74,5 +74,16 @@ public class OnPlayerFoot : MonoBehaviourPunCallbacks
         shootBall.GEvent -= ShootBall;
         shootBall.GEvent -= RestartBall;
         StopAllCoroutines();
+    }
+
+    [PunRPC]
+    public void AddForceToBall()
+    {
+        rb.isKinematic = false;
+        GetComponent<PhotonRigidbodyView>().enabled = true;                  
+        if (PhotonNetwork.IsMasterClient)
+        {
+            rb.AddForce(((transform.position - currentPlayer.transform.position)) * shotingForce);
+        }
     }
 }

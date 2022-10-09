@@ -80,7 +80,10 @@ public class PlayerSpawner : MonoBehaviour
         SpawnPlayer(newRole);
 
     }
-
+    public static GameObject GetMyPlayer()
+    {
+        return instance.player;
+    }
     public void ShowEmoticon(int index)
     {
         player.GetComponent<PlayerCallBacks>().Emoticon(index);
