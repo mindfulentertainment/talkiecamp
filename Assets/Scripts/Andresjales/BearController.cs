@@ -18,6 +18,8 @@ public class BearController : MonoBehaviourPun
     bool rest=false;
     bool attacking = false;
     public BearManager bM;
+    bool buildings = false;
+    bool subscribe = false;
     private void Start()
     {
         MatchManager.instance.OnResourcesLoadGlobal.AddListener(GetBuildingsInfo);
@@ -29,13 +31,14 @@ public class BearController : MonoBehaviourPun
         if (!firstTime)
         {
             GetBuildingsInfo(r, DataManager.instance.buildings);
+            if (!gameObject.activeSelf) return;
             StartCoroutine(Subscribe());
         }
 
         if (firstTime)
         {
             firstTime = false;
-            gameObject.SetActive(false);
+            gameObject?.SetActive(false);
         }
     }
     
@@ -43,19 +46,24 @@ public class BearController : MonoBehaviourPun
     {
         yield return new WaitForSeconds(0.3f);
         DataManager.instance.OnNewBuilding += GetBuildingsInfo;
-
+        subscribe = true;
     }
     public  void OnDisable()
     {
-        DataManager.instance.OnNewBuilding -= GetBuildingsInfo;
+        if (subscribe)
+        {
+            DataManager.instance.OnNewBuilding -= GetBuildingsInfo;
+            subscribe=false;
+        }
         target = Vector3.zero;
-        MatchManager.instance.OnResourcesLoadGlobal.RemoveListener(GetBuildingsInfo);
+        MatchManager.instance?.OnResourcesLoadGlobal.RemoveListener(GetBuildingsInfo);
     }
 
     void GetBuildingsInfo(Resource resources, Buildings buildings)
     {
         if (buildings.buildings.Count>0)
         {
+
             nodes = new List<Vector3>();
 
             foreach (var item in buildings.buildings)
@@ -73,11 +81,19 @@ public class BearController : MonoBehaviourPun
 
     private void Update()
     {
+
+
+
         if(nodes.Count<=0) return;
         if (state == 0)
         {
             if (target != Vector3.zero)
             {
+                if (rest == true)
+                {
+                    Debug.Log("sssssssss");
+                    target = BearManager.instance.restPos.position;
+                }
                 agent.isStopped = false;
                 float distance = Vector3.Distance(transform.position, target);
                 if (distance < 5f && rest==false)
@@ -87,16 +103,14 @@ public class BearController : MonoBehaviourPun
 
                     AttackBuilding();
 
-                    if (attacking == false)
-                    {
-                        index = Random.Range(0,nodes.Count);
-                        photonView.RPC("SetDestination", RpcTarget.AllViaServer, index);
-
-                    }
+                 
                 }
                 if (rest == true)
                 {
-                    if(distance <= 4)
+                    target = BearManager.instance.restPos.position;
+                    distance = Vector3.Distance(transform.position, BearManager.instance.restPos.position);
+
+                    if (distance <= 4)
                     {
                         
                             agent.isStopped=true;
@@ -109,7 +123,7 @@ public class BearController : MonoBehaviourPun
                 }
 
             }
-            else
+            else if(!rest)
             {
                 if (PhotonNetwork.IsMasterClient)
                 {
@@ -142,6 +156,8 @@ public class BearController : MonoBehaviourPun
     [PunRPC]
     void SetDestination(int i)
     {
+        if (rest) return;
+        if (nodes.Count <= 0) return;
         target = nodes[i];
         agent.SetDestination(target);
 
@@ -181,12 +197,16 @@ public class BearController : MonoBehaviourPun
 
         if (DataManager.instance.buildingsDictionary[target.ToString()].gameObject.GetComponent<Place>().buildingHistory.health<=0) //building.life <= 0
         {
+            rest=true;
             nodes.Remove(target);
             StopCoroutine(damage);
             damage = null;
             animator.SetBool("Attack", false);
             attacking = false;
             agent.isStopped = false;
+            target = BearManager.instance.restPos.position;
+            agent.SetDestination(target);
+
 
         }
     }   

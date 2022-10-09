@@ -21,7 +21,7 @@ public class BearManager : MonoBehaviourPun
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            m_Coroutine = StartCoroutine(ActivateBearC(Random.Range(100,150)));
+            m_Coroutine = StartCoroutine(ActivateBearC(Random.Range(20,30)));
         }
     }
 
@@ -43,7 +43,7 @@ public class BearManager : MonoBehaviourPun
             StopCoroutine(m_Coroutine);
         }
        
-        m_Coroutine = StartCoroutine(ActivateBearC(Random.Range(50, 160)));
+        m_Coroutine = StartCoroutine(ActivateBearC(Random.Range(10, 13)));
        
     }
 
@@ -51,7 +51,26 @@ public class BearManager : MonoBehaviourPun
     {
         Debug.Log($"Reactivating in {t}");
         yield return new WaitForSeconds(t);
-        photonView.RPC("ActivateBear", RpcTarget.AllViaServer);
+        bool buildings= false;
+
+        while (!buildings)
+        {
+            if (DataManager.instance.buildings.buildings.Count > 1)
+            {
+                photonView.RPC("ActivateBear", RpcTarget.AllViaServer);
+
+                    buildings=true;
+
+            }
+            else
+            {
+                Debug.Log("No buildings");
+            }
+
+
+            yield return new WaitForSeconds(10);
+        }
+
 
     }
 
@@ -59,6 +78,7 @@ public class BearManager : MonoBehaviourPun
     [PunRPC]
     public void ActivateBear()
     {
+        
         bear.SetActive(true);
         CameraControllerNetWork.instance.ChangeTarget(bear.gameObject.transform);
         CameraControllerNetWork.instance.gameObject.GetComponent<EditValues>().VignetteAmount = 0.12f;
