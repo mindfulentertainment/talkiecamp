@@ -3554,7 +3554,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: StrikeOutMinigame (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8522938845662626160, guid: db6a7ff7e1ace3648b925f94da1f710d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1377017302}
+    - target: {fileID: 8522938845662626160, guid: db6a7ff7e1ace3648b925f94da1f710d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RequestStartGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 8522938845662626160, guid: db6a7ff7e1ace3648b925f94da1f710d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: StrikeOutNetwork, Assembly-CSharp
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8522938845662626165, guid: db6a7ff7e1ace3648b925f94da1f710d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: db6a7ff7e1ace3648b925f94da1f710d, type: 3}
 --- !u!1 &115055927
 GameObject:
@@ -44804,6 +44817,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0084c612399a90942ae58b51c6f78030, type: 3}
   m_PrefabInstance: {fileID: 1369353062}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1377017296 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8522938845662626159, guid: db6a7ff7e1ace3648b925f94da1f710d, type: 3}
+  m_PrefabInstance: {fileID: 111762039}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1377017302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1377017296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a217d7c8250f6942b9bbb98b49d47fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gEvent: {fileID: 11400000, guid: 3247ab843e7afdd479ab1a8d31570057, type: 2}
 --- !u!1001 &1382891641
 PrefabInstance:
   m_ObjectHideFlags: 0
