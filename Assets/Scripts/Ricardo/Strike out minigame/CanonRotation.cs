@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Photon.Pun;
 public class CanonRotation : MonoBehaviour
 {
     [SerializeField]float angle,angularSpeed,amplitud;
@@ -18,13 +18,17 @@ public class CanonRotation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        angle += Time.deltaTime*angularSpeed;
-        rotation.y = amplitud * Mathf.Sin(angle)+90;
-
-        transform.eulerAngles = rotation;
-        if (angle > 2 * Mathf.PI)
+        if (PhotonNetwork.IsMasterClient)
         {
-            angle = 0;
+            angle += Time.deltaTime * angularSpeed;
+            rotation.y = amplitud * Mathf.Sin(angle) + 90;
+
+            transform.eulerAngles = rotation;
+            if (angle > 2 * Mathf.PI)
+            {
+                angle = 0;
+            }
         }
+        
     }
 }

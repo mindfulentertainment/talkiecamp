@@ -25,7 +25,7 @@ public class BulletMove : MonoBehaviour
         }
         StartCoroutine("BulletLife");
     }
-    private void FixedUpdate()
+    private void Update()
     {
         transform.Translate(dir*force * Time.deltaTime, Space.World);
     }
