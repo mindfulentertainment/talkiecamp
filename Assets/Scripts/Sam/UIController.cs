@@ -44,6 +44,12 @@ public class UIController : MonoBehaviour
     public TMP_Text connectionAmount;
 
 
+    [Header("Sprites")]
+    public Sprite spriteBuilder;
+    public Sprite spriteWatchmen;
+    public Sprite spriteGatherer;
+    public Sprite spriteChef;
+
     [Header("Builder")]
     public GameObject storeButton;
     public GameObject buildingsUI;
@@ -78,19 +84,25 @@ public class UIController : MonoBehaviour
     {
         role = PlayerPrefs.GetString("role");
         roleText.text = role;
+        var roleSprite = roleText.GetComponentInChildren<RoleSprite>();
         switch (role)
         {
             case "Chef":
                 chefUI.SetActive(true);
+                roleSprite.SwitchSprite(spriteChef);
                 break;
             case "Vigilante":
                 watchmenUI.SetActive(true);
+                roleSprite.SwitchSprite(spriteWatchmen);
                 break;
             case "Constructor":
                 builderUI.SetActive(true);
+                roleSprite.SwitchSprite(spriteBuilder);
                 break;
             case "Recolector":
                 gathererUI.SetActive(true);
+                roleSprite.SwitchSprite(spriteGatherer);
+
                 break;
         }
     }
