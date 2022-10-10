@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
-public class SpawnBullets : MonoBehaviourPun
+
+public class SpawnBullets : MonoBehaviour
 {
     [SerializeField] REvents shootBullet;
     [SerializeField] Transform shootPoint;
@@ -14,16 +14,6 @@ public class SpawnBullets : MonoBehaviourPun
 
     void AppearBullet()
     {
-
-        if (PhotonNetwork.IsMasterClient)
-        {
-            photonView.RPC("ShootBullet", RpcTarget.AllViaServer);
-        }
-    }
-
-    [PunRPC]
-    void ShootBullet()
-    {
         GameObject bullet = ObjectPool.SharedInstance.GetPooledObject();
         if (bullet != null)
         {
@@ -32,8 +22,6 @@ public class SpawnBullets : MonoBehaviourPun
             bullet.SetActive(true);
         }
     }
-
-
     private void OnDestroy()
     {
         shootBullet.GEvent -= AppearBullet;
