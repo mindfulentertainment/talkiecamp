@@ -103,7 +103,6 @@ public class OrderManager : MonoBehaviour
             DeactivateSendBackToPool(order);
             Debug.Log("Orden correcta");
             OnOrderDelivered?.Invoke(order);
-            //ordersPanelUI.RegroupPanelsLeft();
             return;
         }
     }
