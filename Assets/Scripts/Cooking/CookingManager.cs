@@ -53,7 +53,7 @@ public class CookingManager : MonoBehaviour
 
     private void Awake()
     {
-        orderButton.onClick.AddListener(PlaceOrder);
+        //orderButton.onClick.AddListener(PlaceOrder);
 
 #if UNITY_EDITOR
         Assert.IsNotNull(dishTray);

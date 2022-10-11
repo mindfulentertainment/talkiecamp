@@ -247,7 +247,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
         animator?.SetBool("isLifting", true);
 
-        item = snapZone?.TryToPickUpFromSlot(item);
+        _currentPickable = snapZone?.TryToPickUpFromSlot(item);
 
 
 

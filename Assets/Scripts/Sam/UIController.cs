@@ -55,6 +55,7 @@ public class UIController : MonoBehaviour
     public GameObject buildingsUI;
     public Button cancel;
     public Button rotate;
+
     private void Awake()
     {
         instance = this;

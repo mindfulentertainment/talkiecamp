@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 4003018183227039230}
   - component: {fileID: 4003018183227039231}
   - component: {fileID: 4003018183227039216}
+  - component: {fileID: -900542443685024331}
+  - component: {fileID: 136750190428841052}
   m_Layer: 0
   m_Name: Ham
   m_TagString: Untagged
@@ -129,3 +131,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slot: {fileID: 4003018183227039227}
   data: {fileID: 11400000, guid: a6f0fc67fa3528e498690b7a552e6c5c, type: 2}
+--- !u!114 &-900542443685024331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4003018183227039217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e26c826acb236c438749028f2b820d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: 48
+  isAvailable: 1
+--- !u!114 &136750190428841052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4003018183227039217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
