@@ -6,10 +6,7 @@ using UnityEngine.UI;
 public class RoleSprite : MonoBehaviour
 {
  
-    public Sprite spriteBuilder;
-    public Sprite spriteWatchmen;
-    public Sprite spriteGatherer;
-    public Sprite spriteChef;
+ 
     public Image spriteImage;
     private void Start()
     {
