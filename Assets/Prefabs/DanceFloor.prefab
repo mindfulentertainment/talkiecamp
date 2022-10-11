@@ -627,7 +627,7 @@ GameObject:
   - component: {fileID: 7904874058704711654}
   m_Layer: 0
   m_Name: DanceFloor
-  m_TagString: Placed
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -750,7 +750,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cd4fcf100c440a042bde6962749b873c, type: 2}
+  - {fileID: 2100000, guid: c881a10a88c982f40b4d01f9bbc013bc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
