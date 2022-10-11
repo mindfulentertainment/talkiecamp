@@ -10,6 +10,7 @@ public class Token_Pick : MonoBehaviour
     void Start()
     {
         CreateToken();
+        Debug.Log(this.gameObject.GetHashCode());
 
     }
     

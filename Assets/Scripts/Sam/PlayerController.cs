@@ -145,7 +145,12 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
             // SnapZone only (not a IPickable)
 
-           
+
+
+
+            int keySnap = snapZone.gameObject.GetComponent<Token_snapZone>().key;
+
+            photonView.RPC("HandlePickUpSlot", RpcTarget.AllViaServer, keySnap);
 
             return;
         }
@@ -169,12 +174,9 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
         }
 
-        //// we carry a pickable and we have an snap zone in range
-        //// we may drop into the snap zone
-        //int keyPickUp = _currentPickable.gameObject.GetComponent<Token_Pick>().key;
-        //int keySnap = snapZone.gameObject.GetComponent<Token_snapZone>().key;
-
-        //photonView.RPC("HandlePickUpSlot", RpcTarget.AllViaServer, keyPickUp, keySnap, x, y, z);
+       
+           
+            
 
 
         if (_currentPickable != null)
@@ -184,11 +186,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
         }
 
-        // Try to drop on the snap zone. It may refuse it, e.g. dropping a plate into the CuttingBoard,
-        // or simply it already have something on it
-        //Debug.Log($"[PlayerController] {_currentPickable.gameObject.name} trying to drop into {interactable.gameObject.name} ");
-
-
+       
 
 
         if (_currentPickable != null)
@@ -239,19 +237,18 @@ public class PlayerController : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    public virtual void HandlePickUpSlot(int keyPickable, int keySnapzone, float x, float y, float z)
+    public virtual void HandlePickUpSlot(int keySnapzone)
     {
 
-        IPickable item = Token_Manager.DefaultInstance.pickables_tokens[keyPickable];
         SnapZone snapZone = Token_Manager.DefaultInstance.snapzones_tokens[keySnapzone];
 
         animator?.SetBool("isLifting", true);
 
-        _currentPickable = snapZone?.TryToPickUpFromSlot(item);
+        _currentPickable = snapZone?.TryToPickUpFromSlot(_currentPickable);
+        int key = _currentPickable.gameObject.GetComponent<Token_Pick>().key;
+        photonView.RPC("HandlePickUp", RpcTarget.AllViaServer, key);
 
 
-
-       
 
     }
     [PunRPC]
