@@ -10,6 +10,7 @@ public class Order : MonoBehaviour
 
     public OrderData OrderData => _orderData;
     public List<IngredientData> Ingredients => _orderData.ingredients;
+    public string OrderName => _orderData.orderName;
 
     public delegate void Delivered(Order order);
     public event Delivered OnDelivered;

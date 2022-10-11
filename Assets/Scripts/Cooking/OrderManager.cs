@@ -5,10 +5,9 @@ using UnityEngine;
 
 public class OrderManager : MonoBehaviour
 {
-    [SerializeField] private MealData currentEvent;
     [SerializeField] private Order orderPrefab;
     [SerializeField] private int maxConcurrentOrders = 5;
-    //[SerializeField] private OrdersPanelUI ordersPanelUI;
+    private MealData currentEvent;
 
     private readonly List<Order> _orders = new List<Order>();
     private readonly Queue<Order> _poolOrders = new Queue<Order>();
@@ -103,7 +102,6 @@ public class OrderManager : MonoBehaviour
             DeactivateSendBackToPool(order);
             Debug.Log("Orden correcta");
             OnOrderDelivered?.Invoke(order);
-            //ordersPanelUI.RegroupPanelsLeft();
             return;
         }
     }

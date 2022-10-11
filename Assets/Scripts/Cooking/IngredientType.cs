@@ -7,5 +7,7 @@ public enum IngredientType
     Ham,
     Tomato,
     Lettuce,
-    Bun
+    Bun,
+    Carrot,
+    Meat
 }
