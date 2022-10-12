@@ -245,11 +245,20 @@ public class PlayerController : MonoBehaviourPunCallbacks
         animator?.SetBool("isLifting", true);
 
         _currentPickable = snapZone?.TryToPickUpFromSlot(_currentPickable);
-        int key = _currentPickable.gameObject.GetComponent<Token_Pick>().key;
+
+        StartCoroutine(GetPickUp(_currentPickable));
+
+
+
+
+
+    }
+
+    IEnumerator GetPickUp(IPickable p)
+    {
+        yield return new WaitForEndOfFrame();
+        int key = p.gameObject.GetComponent<Token_Pick>().key;
         photonView.RPC("HandlePickUp", RpcTarget.AllViaServer, key);
-
-
-
     }
     [PunRPC]
     public virtual void HandleState(int keyPickable)

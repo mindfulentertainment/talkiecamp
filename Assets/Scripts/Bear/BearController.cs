@@ -91,7 +91,6 @@ public class BearController : MonoBehaviourPun
             {
                 if (rest == true)
                 {
-                    Debug.Log("sssssssss");
                     target = BearManager.instance.restPos.position;
                 }
                 agent.isStopped = false;

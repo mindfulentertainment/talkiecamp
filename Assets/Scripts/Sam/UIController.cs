@@ -8,7 +8,7 @@ public class UIController : MonoBehaviour
 {
     public static UIController instance;
     public GameObject LoadingScreen;
-
+    public GameObject Fire;
     public Joystick joystick;
     public Button pickBtn;
     private string role;

@@ -7,9 +7,13 @@ public class ActivationManager : MonoBehaviourPun
 {
     [SerializeField] private GameObject FirePs;
     [SerializeField] private float Id;
+    FireNetwork fireNetwork;
     private float randomNum;
     public  bool onFire;
-
+    private void Awake()
+    {
+        fireNetwork = GetComponent<FireNetwork>();
+    }
     private void Start()
     {
         StartCoroutine(RandomId()); 
@@ -18,7 +22,7 @@ public class ActivationManager : MonoBehaviourPun
     IEnumerator RandomId()
     {
         while(true){
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(40);
             randomNum = Random.Range(1, 6);
 
             if (randomNum == Id)
@@ -33,10 +37,43 @@ public class ActivationManager : MonoBehaviourPun
     void StarFire()
     {
         FirePs.SetActive(true);
+
+        if (PhotonNetwork.IsMasterClient)
+        {
+            StartCoroutine(StartDamage());
+
+        }
     }
 
-   
- 
+    IEnumerator StartDamage()
+    {
+        while (fireNetwork.firePs.gameObject.activeSelf)
+        {
+            UIController.instance.Fire.gameObject.SetActive(true);
+            photonView.RPC("Damage", RpcTarget.AllViaServer);
+            yield return new WaitForSeconds(5);
+
+        }
+
+        UIController.instance.Fire.gameObject.SetActive(false);
+    }
+
+    [PunRPC]
+    private void Damage()
+    {
+        GetComponentInParent<Place>().DamageBuilding(5);
+    }
 
 
+    private void OnDisable()
+    {
+        UIController.instance.Fire.gameObject.SetActive(false);
+
+    }
+
+    private void OnDestroy()
+    {
+        UIController.instance.Fire.gameObject.SetActive(false);
+
+    }
 }

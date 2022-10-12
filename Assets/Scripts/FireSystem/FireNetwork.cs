@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class FireNetwork : MonoBehaviourPun
 {
-    [SerializeField , Range (0f,1f)] private float currentIntensity;
-    [SerializeField] private ParticleSystem firePs;
+    [SerializeField , Range (0f,1f)] public float currentIntensity;
+    [SerializeField] public ParticleSystem firePs;
     
     [SerializeField] private float regenerationDelay;
     [SerializeField] private float regenerationRate;
@@ -28,6 +28,7 @@ public class FireNetwork : MonoBehaviourPun
         playerPos = PlayerSpawner.instance?.player.transform;
         //  startIntensity = firePs.emission.rateOverTime.constant;
         currentIntensity = 1.0f;
+       
     }
 
     private void Update()
@@ -64,7 +65,7 @@ public class FireNetwork : MonoBehaviourPun
         }
         else
         {
-            slider.gameObject.SetActive(false);
+            //slider.gameObject.SetActive(false);
         }
     }
  
@@ -110,4 +111,7 @@ public class FireNetwork : MonoBehaviourPun
         activationManager.onFire = false;
         currentIntensity = 1;
     }
+
+   
+
 }
