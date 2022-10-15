@@ -147,7 +147,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
 
 
-
+            
             int keySnap = snapZone.gameObject.GetComponent<Token_snapZone>().key;
 
             photonView.RPC("HandlePickUpSlot", RpcTarget.AllViaServer, keySnap);
@@ -210,7 +210,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     public virtual void HandlePickUp(int key)
     {
         IPickable item = Token_Manager.DefaultInstance.pickables_tokens[key];
-
+        Debug.Log("Carrying " + key);
         if (!item.gameObject.GetComponent<Token_Pick>().isAvailable) return;
 
         item.gameObject.GetComponent<Token_Pick>().isAvailable = false ;
@@ -232,7 +232,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
         Vector3 pos = new Vector3(x, y, z);
 
         item.Drop(pos);
-
+        _currentPickable = null;
+        Debug.Log("NormalDrop");
 
     }
 
@@ -240,23 +241,31 @@ public class PlayerController : MonoBehaviourPunCallbacks
     public virtual void HandlePickUpSlot(int keySnapzone)
     {
 
-        SnapZone snapZone = Token_Manager.DefaultInstance.snapzones_tokens[keySnapzone];
+        
 
-        animator?.SetBool("isLifting", true);
-
-        _currentPickable = snapZone?.TryToPickUpFromSlot(_currentPickable);
-
-        StartCoroutine(GetPickUp(_currentPickable));
-
+        StartCoroutine(GetPickUp(keySnapzone));
 
 
 
 
     }
 
-    IEnumerator GetPickUp(IPickable p)
+    IEnumerator GetPickUp(int keySnapzone)
     {
+        
         yield return new WaitForEndOfFrame();
+
+        SnapZone snapZone = Token_Manager.DefaultInstance.snapzones_tokens[keySnapzone];
+
+
+        _currentPickable = snapZone?.TryToPickUpFromSlot(_currentPickable);
+        yield return new WaitForEndOfFrame();
+
+        IPickable p = _currentPickable;
+
+        if (p == null) yield break;
+        if (p.gameObject.GetComponent<Token_Pick>() == null) yield break;
+        animator?.SetBool("isLifting", true);
         int key = p.gameObject.GetComponent<Token_Pick>().key;
         photonView.RPC("HandlePickUp", RpcTarget.AllViaServer, key);
     }
@@ -275,19 +284,36 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     public virtual void TryDrop(int keySnapzone, int keyPickable)
     {
+
         IPickable item = Token_Manager.DefaultInstance.pickables_tokens[keyPickable];
         if (item.gameObject.GetComponent<Token_Pick>().isAvailable) return;
 
         SnapZone snapZone = Token_Manager.DefaultInstance.snapzones_tokens[keySnapzone];
+        if(snapZone.gameObject.GetComponentInChildren<Plate>()!=null)
+        {
+            Debug.Log("It's a plate!!!");
+            Plate plate = snapZone.gameObject.GetComponentInChildren<Plate>();
 
+            if (plate.Ingredients.Count >= Plate.MaxNumberIngredients) 
+            {
+                _currentPickable = item;
+                int key = _currentPickable.gameObject.GetComponent<Token_Pick>().key;
+                photonView.RPC("HandlePickUp", RpcTarget.AllViaServer, key);
+                return;
+            };
+
+        }
+       
 
         item.gameObject.GetComponent<Token_Pick>().isAvailable = true;
        
         animator?.SetBool("isLifting", false);
 
-         snapZone.TryToDropIntoSlot(item);
+        Debug.Log("Dropping....");
+        snapZone.TryToDropIntoSlot(item);
+        _currentPickable = null;
     }
-
+   
 
     private void OnTriggerEnter(Collider other)
     {

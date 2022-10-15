@@ -9,7 +9,7 @@ public abstract class SnapZone : MonoBehaviour
     [Tooltip("Pivot where IPickables could be dropped/pickedUp")]
     [SerializeField] protected Transform slot;
 
-    protected IPickable CurrentPickable { get; set; }
+    public IPickable CurrentPickable { get; set; }
 
     public Transform Slot => slot;
 

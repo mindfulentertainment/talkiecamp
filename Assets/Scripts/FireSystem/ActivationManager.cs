@@ -71,9 +71,5 @@ public class ActivationManager : MonoBehaviourPun
 
     }
 
-    private void OnDestroy()
-    {
-        UIController.instance.Fire.gameObject.SetActive(false);
-
-    }
+   
 }

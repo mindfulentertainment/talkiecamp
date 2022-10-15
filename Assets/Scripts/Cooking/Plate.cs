@@ -7,7 +7,7 @@ using UnityEngine.Assertions;
 [RequireComponent(typeof(Collider))]
 public class Plate : SnapZone, IPickable
 {
-    private const int MaxNumberIngredients = 4;
+    public const int MaxNumberIngredients = 4;
     bool isTaken = false;
 
     bool IPickable.isTaken => isTaken;

@@ -41,6 +41,10 @@ public class Token_Pick : MonoBehaviourPun
     public virtual void CreateToken()
     {
         IPickable pickable = GetComponent<IPickable>();
+        while (Token_Manager.DefaultInstance.pickables_tokens.ContainsKey(key))
+        {
+            key++;
+        }
 
         Token_Manager.DefaultInstance.pickables_tokens.Add(key, pickable);
     }
