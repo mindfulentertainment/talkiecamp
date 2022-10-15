@@ -70,7 +70,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
         {
             direction.y = 0;
         }
-        //Debug.Log(isGrounded);
         isGrounded = Physics.Raycast(groundCheckPoint.position, Vector3.down, .25f, groundLayers);
 
         direction = new Vector3(horizontal, direction.y, vertical).normalized;
@@ -210,7 +209,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
     public virtual void HandlePickUp(int key)
     {
         IPickable item = Token_Manager.DefaultInstance.pickables_tokens[key];
-        Debug.Log("Carrying " + key);
         if (!item.gameObject.GetComponent<Token_Pick>().isAvailable) return;
 
         item.gameObject.GetComponent<Token_Pick>().isAvailable = false ;
@@ -233,7 +231,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
         item.Drop(pos);
         _currentPickable = null;
-        Debug.Log("NormalDrop");
 
     }
 
@@ -291,7 +288,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
         SnapZone snapZone = Token_Manager.DefaultInstance.snapzones_tokens[keySnapzone];
         if(snapZone.gameObject.GetComponentInChildren<Plate>()!=null)
         {
-            Debug.Log("It's a plate!!!");
             Plate plate = snapZone.gameObject.GetComponentInChildren<Plate>();
 
             if (plate.Ingredients.Count >= Plate.MaxNumberIngredients) 
@@ -309,7 +305,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
        
         animator?.SetBool("isLifting", false);
 
-        Debug.Log("Dropping....");
         snapZone.TryToDropIntoSlot(item);
         _currentPickable = null;
     }
