@@ -6,7 +6,7 @@ public class BulletMove : MonoBehaviour
 {
     [SerializeField] Vector3 dir;
     [SerializeField] float force,duration;
-    [SerializeField] REvents playerOut;
+    
     public Vector3 canon;
     public bool reverse;
     
@@ -50,7 +50,7 @@ public class BulletMove : MonoBehaviour
              //se detiene
             transform.Translate(dir, Space.World);
             this.gameObject.SetActive(false);
-            playerOut.FireEvent();
+            
         }
     }
 }
