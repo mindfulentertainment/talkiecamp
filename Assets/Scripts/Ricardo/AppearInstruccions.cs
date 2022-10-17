@@ -6,11 +6,13 @@ public class AppearInstruccions : MonoBehaviour
 {
     
     [SerializeField] GameObject instructions;
-    [SerializeField] float timeForInst;
+    [SerializeField] float timeForInst,appearTime;
     [SerializeField] REvents startInstructions;
+    [SerializeField] Vector3 initialSize;
     void Start()
     {
-        instructions.SetActive(false);
+        initialSize = instructions.transform.localScale;
+        instructions.transform.localScale = Vector3.zero;
         startInstructions.GEvent += DisplayInst;
     }
     void DisplayInst()
@@ -19,9 +21,9 @@ public class AppearInstruccions : MonoBehaviour
     }
     IEnumerator DisplayInstructions()
     {
-        instructions.SetActive(true);
+        instructions.transform.LeanScale(initialSize, appearTime).setEaseOutQuart();
         yield return new WaitForSeconds(timeForInst);
-        instructions.SetActive(false);
+        instructions.transform.LeanScale(Vector3.zero, appearTime).setEaseOutQuart();
     }
     private void OnDestroy()
     {
