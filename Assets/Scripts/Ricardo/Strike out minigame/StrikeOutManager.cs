@@ -13,15 +13,21 @@ public class StrikeOutManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI timer;
     [SerializeField] TimerGather temporizador;
     List<GameObject>  playersList= new List<GameObject>();
+
+    [SerializeField] Vector3 initialButtonScale, initialCounterScale;
     void Start()
     {
+        initialButtonScale = startButton.transform.localScale;
+        initialCounterScale = timer.transform.localScale;
         players = 0;
         startMatch.GEvent += StartMatch;
         endMatch.GEvent += EndMatch;
         updateTime.GEvent += UpdateTime;
         timer.text = "0" + 1 + " : 0" + temporizador.s;
-        timer.gameObject.SetActive(false);
-        startButton.SetActive(false);
+        //timer.gameObject.SetActive(false);
+        //startButton.SetActive(false);
+        timer.transform.localScale = Vector3.zero;
+        startButton.transform.localScale = Vector3.zero;
         Invoke("AddTp", 2);
 
     }
@@ -34,7 +40,8 @@ public class StrikeOutManager : MonoBehaviour
 
             if (activeMatch == false)
             {
-                startButton.SetActive(true);
+                //startButton.SetActive(true);
+                startButton.transform.LeanScale(initialButtonScale, 0.5f).setEaseOutQuart();
                 Debug.Log(players+" Enter");
             }
         }
@@ -61,7 +68,8 @@ public class StrikeOutManager : MonoBehaviour
 
                 if (playersList.Count<=0)
                 {
-                    startButton.SetActive(false);
+                    //startButton.SetActive(false);
+                    startButton.transform.LeanScale(Vector3.zero, 0.5f).setEaseOutQuart();
                 }
                 Debug.Log(players+" out");
             }
@@ -69,12 +77,14 @@ public class StrikeOutManager : MonoBehaviour
     }
     void StartMatch()
     {
-        timer.gameObject.SetActive(true);
+        //timer.gameObject.SetActive(true);
+        timer.transform.LeanScale(initialCounterScale, 0.3f).setEaseOutQuart();
         timer.text = "0" + 1 + " : 0" + temporizador.s;
         if (activeMatch == false)
             {
-                startButton.SetActive(false);
-                playerCount = playersList.Count;
+                //startButton.SetActive(false);
+            startButton.transform.LeanScale(Vector3.zero, 0.5f).setEaseOutQuart();
+            playerCount = playersList.Count;
                 Debug.Log("PLAYECOUNT" + playerCount);
                 
                 activeMatch = true;
@@ -94,7 +104,8 @@ public class StrikeOutManager : MonoBehaviour
 
     IEnumerator End()
     {
-        timer.gameObject.SetActive(false);
+        //timer.gameObject.SetActive(false);
+        timer.transform.LeanScale(Vector3.zero, 0.3f).setEaseOutQuart();
         yield return new WaitForSeconds(2);
         Debug.Log(playerCount + "/" + playersList.Count);
 
@@ -104,8 +115,8 @@ public class StrikeOutManager : MonoBehaviour
             
             
             activeMatch = false;
-            startButton.SetActive(true);
-
+            //startButton.SetActive(true);
+        startButton.transform.LeanScale(initialButtonScale, 0.5f).setEaseOutQuart();
     }
 
     

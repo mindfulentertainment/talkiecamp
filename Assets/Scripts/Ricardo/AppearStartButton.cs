@@ -8,9 +8,13 @@ public class AppearStartButton : MonoBehaviour
     [SerializeField] int count;
     [SerializeField] bool activeGame;
     [SerializeField] REvents startGame, endGame;
+    [SerializeField] Vector3 initialSize;
+    [SerializeField] float appearTime;
     private void Start()
     {
-        button.SetActive(false);
+        initialSize = button.transform.localScale;
+        button.transform.localScale = Vector3.zero;
+        //button.SetActive(false);
         startGame.GEvent += ActiveMatch;
         endGame.GEvent += DeactivateMatch;
     }
@@ -21,30 +25,39 @@ public class AppearStartButton : MonoBehaviour
             if (other.CompareTag("PlayerBody"))
             {
                 count++;
-                button.SetActive(true);
+                //button.SetActive(true);
+                button.transform.LeanScale(initialSize, appearTime).setEaseOutQuart();
             }
         }
         
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("PlayerBody"))
+        if (activeGame == false)
         {
-            count--;
-            if (count <= 0)
-            {
-                button.SetActive(false);
+            if (other.CompareTag("PlayerBody"))
+             {
+            
+                count--;
+                if (count <= 0)
+                {
+                    //button.SetActive(false);
+                    button.transform.LeanScale(Vector3.zero, appearTime).setEaseOutQuart();
+                }
             }
         }
     }
     void ActiveMatch()
     {
         activeGame = true;
-        button.SetActive(false);
+        //button.SetActive(false);
+        button.transform.LeanScale(Vector3.zero, appearTime).setEaseOutQuart();
     }
     void DeactivateMatch()
     {
         activeGame = false;
+        count = 0;
+        button.transform.LeanScale(initialSize, appearTime).setEaseOutQuart();
     }
     private void OnDestroy()
     {
