@@ -18,6 +18,7 @@ TagManager:
   - PlayerBody
   - Wood
   - object
+  - OrderPlace
   layers:
   - Default
   - TransparentFX

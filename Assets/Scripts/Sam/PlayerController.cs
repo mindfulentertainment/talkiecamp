@@ -335,6 +335,23 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
             }
 
+            if (other.gameObject.CompareTag("OrderPlace"))
+            {
+                if (photonView.IsMine)
+                {
+                    if (LayerMask.LayerToName(other.gameObject.layer) == role && !isBuilding)
+                    {
+                        string message = "El Chef no puede interactuar con esto";
+                        UIController.instance.ShowCaption(message);
+                    }
+                    else
+                    {
+                        UIController.instance.placeOrderBtn.SetActive(true);
+                    }
+                }
+
+            }
+
             if (other.gameObject.CompareTag("Obstacle"))
             {
                 if (photonView.IsMine)
@@ -369,6 +386,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
             if (photonView.IsMine)
             {
                 UIController.instance.storeButton.SetActive(false);
+                UIController.instance.placeOrderBtn.SetActive(false);
                 UIController.instance.HideCaption();
                 isBuilding = false;
 
@@ -377,7 +395,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
                     other.gameObject.GetComponent<NPCPoint>().Exit();
 
                 }
-              }
+            }
 
        
 
