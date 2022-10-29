@@ -13,11 +13,12 @@ public class FireNetwork : MonoBehaviourPun
     [SerializeField] private float regenerationRate;
      private Slider slider;
     private Transform playerPos;
-   // [SerializeField] private Animator animator;
-   
+    // [SerializeField] private Animator animator;
+    public bool onFire;
+
     private float lastTimeWatered = 0f;
     private float startIntensity = 10;
-    private bool isActive=true;
+    private bool isActive=false;
 
     ActivationManager activationManager;
    
@@ -55,7 +56,7 @@ public class FireNetwork : MonoBehaviourPun
 
            
 
-            if (isActive && currentIntensity < 1.0f && Time.time - lastTimeWatered >= regenerationDelay)
+            if ( currentIntensity < 1.0f && Time.time - lastTimeWatered >= regenerationDelay)
             {
                 currentIntensity += regenerationRate * Time.deltaTime;
                 slider.value = currentIntensity;
@@ -83,15 +84,15 @@ public class FireNetwork : MonoBehaviourPun
         slider.value = currentIntensity;
       
         ChangeIntensity();
-
+       
         if (currentIntensity <= 0)
         {
            // animator.SetBool("isDone",true);
             
             photonView.RPC("Gone", RpcTarget.AllViaServer);
-           
-           
-            
+
+
+
         }
     }
     private void ChangeIntensity()
@@ -110,8 +111,9 @@ public class FireNetwork : MonoBehaviourPun
         firePs.gameObject.SetActive(false);
         activationManager.onFire = false;
         currentIntensity = 1;
+        isActive = false;
+        GetComponent<ActivationManager>().onFire = false;
     }
 
-   
 
 }

@@ -177,6 +177,7 @@ MonoBehaviour:
   firePs: {fileID: 4167279531950328760}
   regenerationDelay: 2.5
   regenerationRate: 0.2
+  onFire: 0
 --- !u!1 &4584874959843423036
 GameObject:
   m_ObjectHideFlags: 0

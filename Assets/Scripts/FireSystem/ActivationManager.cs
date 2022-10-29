@@ -22,10 +22,10 @@ public class ActivationManager : MonoBehaviourPun
     IEnumerator RandomId()
     {
         while(true){
-            yield return new WaitForSeconds(40);
+            yield return new WaitForSeconds(70);
             randomNum = Random.Range(1, 6);
 
-            if (randomNum == Id)
+            if (randomNum == Id&&!onFire)
             {
                 onFire = true;
                 photonView.RPC("StarFire",RpcTarget.AllViaServer);
@@ -68,7 +68,7 @@ public class ActivationManager : MonoBehaviourPun
     private void OnDisable()
     {
         UIController.instance.Fire.gameObject.SetActive(false);
-
+        onFire = false;
     }
 
    

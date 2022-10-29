@@ -31,6 +31,7 @@ public class UIController : MonoBehaviour
     public GameObject emoticonBtn;
     public GameObject resourcesBtn;
     public GameObject repairHelper;
+    public GameObject fireHelper;
     public GameObject bearNear;
     [Header("Resources")]
     public TMP_Text meatAmount;
