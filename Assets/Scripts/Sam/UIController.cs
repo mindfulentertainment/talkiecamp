@@ -16,7 +16,9 @@ public class UIController : MonoBehaviour
     public GameObject sideBar;
     public TMP_Text btn_description;
     public Slider slider;
+    public GameObject placeOrderBtn;
 
+    [Header("RolUI")]
     public GameObject builderUI;
     public GameObject chefUI;
     public GameObject watchmenUI;

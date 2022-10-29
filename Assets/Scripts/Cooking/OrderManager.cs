@@ -7,7 +7,7 @@ public class OrderManager : MonoBehaviour
 {
     [SerializeField] private Order orderPrefab;
     [SerializeField] private int maxConcurrentOrders = 5;
-    private MealData currentEvent;
+    private OrderData currentOrder;
 
     private readonly List<Order> _orders = new List<Order>();
     private readonly Queue<Order> _poolOrders = new Queue<Order>();
@@ -28,9 +28,9 @@ public class OrderManager : MonoBehaviour
         return _poolOrders.Count > 0 ? _poolOrders.Dequeue() : Instantiate(orderPrefab, transform);
     }
 
-    public void GenerateOrder(MealData mealData)
+    public void GenerateOrder(OrderData orderData)
     {
-        currentEvent = mealData;
+        currentOrder = orderData;
         TrySpawnOrder();
     }
 
@@ -45,7 +45,7 @@ public class OrderManager : MonoBehaviour
                 return;
             }
 
-            order.Setup(GetRandomOrderData());
+            order.Setup(Instantiate(currentOrder));
             _orders.Add(order);
             foreach (var item in order.Ingredients)
             {
@@ -60,12 +60,6 @@ public class OrderManager : MonoBehaviour
         order.SetOrderDelivered();
         _orders.RemoveAll(x => x.IsDelivered);
         _poolOrders.Enqueue(order);
-    }
-
-    private OrderData GetRandomOrderData()
-    {
-        var randomIndex = Random.Range(0, currentEvent.orders.Count);
-        return Instantiate(currentEvent.orders[randomIndex]);
     }
 
     public void CheckIngredientsMatchOrder(List<Ingredient> ingredients)

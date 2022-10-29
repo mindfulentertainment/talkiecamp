@@ -45,16 +45,13 @@ public class CookingManager : MonoBehaviour
 
     [SerializeField] private DishTray dishTray;
     [SerializeField] private OrderManager orderManager;
-    [SerializeField] private MealData mealData;
-    [SerializeField] Button orderButton;
+    //[SerializeField] private MealData mealData; No necesario actualmente, se puede ultilizar cuando se requiera crear eventos con diferentes tipos de comidas
 
     private const float TimeToReturnPlateSeconds = 3f;
     private readonly WaitForSeconds _timeToReturnPlate = new WaitForSeconds(TimeToReturnPlateSeconds);
 
     private void Awake()
     {
-        //orderButton.onClick.AddListener(PlaceOrder);
-
 #if UNITY_EDITOR
         Assert.IsNotNull(dishTray);
         Assert.IsNotNull(orderManager);
@@ -69,11 +66,6 @@ public class CookingManager : MonoBehaviour
     private void OnDisable()
     {
         DeliverTable.OnPlateDropped -= HandlePlateDropped;
-    }
-
-    private void PlaceOrder()
-    {
-        orderManager.GenerateOrder(mealData);
     }
 
     private void HandlePlateDropped(Plate plate)
