@@ -88,6 +88,7 @@ public class Resource
     public Food food= new Food();
     public int meat;
     public int connection;
+    public bool newCamp=false;
 
 }
 

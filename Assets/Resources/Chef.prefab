@@ -430,6 +430,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16384
   amountToExtinguish: 0.1
+  fireExtinguisher: {fileID: 0}
 --- !u!95 &6105347455095645512
 Animator:
   serializedVersion: 4

@@ -9,7 +9,7 @@ public class EmotionDisplay : MonoBehaviour
     bool isOn;
     Coroutine coroutine;
     private Transform camera;
-    void Start()
+    void Awake()
     {
 
         camera = Camera.main.transform;
