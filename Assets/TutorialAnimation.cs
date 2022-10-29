@@ -14,6 +14,7 @@ public class TutorialAnimation : MonoBehaviour
     public GameObject cameraTutorial;
     public GameObject canvas;
     public GameObject tutorialObject;
+    public GameObject tutorialCanvas;
     void Start()
     {
         StartCoroutine(StartTweenImage());
@@ -67,6 +68,7 @@ public class TutorialAnimation : MonoBehaviour
         
         yield return new WaitForSeconds(1f);
         canvas.gameObject.SetActive(true);
+        tutorialCanvas.SetActive(true);
         cameraTutorial.gameObject.SetActive(false);
         yield return new WaitForSeconds(0.5f);
         fromHeight = 545;
@@ -76,7 +78,6 @@ public class TutorialAnimation : MonoBehaviour
         yield return new WaitForSeconds(1f);
         tutorialObject.SetActive(false);
 
-        DataManager.instance.resource.newCamp = true;
     }
 
 
