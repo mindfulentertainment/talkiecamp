@@ -23,7 +23,7 @@ public class UIController : MonoBehaviour
     public GameObject chefUI;
     public GameObject watchmenUI;
     public GameObject gathererUI;
-
+    public GameObject lockImage;
 
     [Header("Message")]
     public GameObject messageScreen;

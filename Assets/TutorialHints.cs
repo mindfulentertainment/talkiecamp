@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TutorialHints : MonoBehaviour
 {
+    public GameObject lockImage;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +14,7 @@ public class TutorialHints : MonoBehaviour
    
     IEnumerator ShowTutorialHints()
     {
+        UIController.instance.lockImage.SetActive(true);
         UIController.instance.joystick.gameObject.SetActive(false);
         UIController.instance.pickBtn.gameObject.SetActive(false);
         UIController.instance.roleText.gameObject.SetActive(false);
@@ -44,6 +46,8 @@ public class TutorialHints : MonoBehaviour
         transform.GetChild(5).gameObject.SetActive(true);
         UIController.instance.zoomBtn.gameObject.SetActive(true);
         yield return new WaitForSeconds(4);
+        UIController.instance.lockImage.SetActive(false);
+        lockImage.SetActive(false);
         transform.GetChild(5).gameObject.SetActive(false);
         transform.GetChild(6).gameObject.SetActive(true);
         DataManager.instance.resource.newCamp = true;

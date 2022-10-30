@@ -9,21 +9,25 @@ public class QuestManager : MonoBehaviour
     public QuestInfo[] QuestInfo;
     public TMP_Text tmp_Description;
     public TMP_Text tmp_title;
-   
-    public  void OnEnable()
+    QuestInfo actualQuestInfo = null;
+
+    private void Awake()
+    {
+        actualQuestInfo = QuestInfo[0];
+    }
+    public void OnEnable()
     {
         questButton.onClick.AddListener(UpdgradeQuest);
     }
+   
     public void OnDisable()
     {
         questButton.onClick.RemoveListener(UpdgradeQuest);
-
     }
 
-    
+   
     void UpdgradeQuest()
     {
-        QuestInfo actualQuestInfo=null;
 
         for (int i = 0; i < QuestInfo.Length; i++)
         {
