@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: DanceFloor
   m_EditorClassIdentifier: 
   placeName: Pista de baile
-  wood: 20
-  stone: 4
-  fabric: 3
+  wood: 0
+  stone: 0
+  fabric: 0
   meat: 0
   hamburguers: 0
-  sandwiches: 10
-  soups: 1
+  sandwiches: 0
+  soups: 0
   conexion: 0

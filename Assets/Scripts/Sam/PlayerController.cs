@@ -363,13 +363,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
             }
 
-            if (other.gameObject.CompareTag("Ball"))
-            {
-                if (photonView.IsMine)
-                {
-                    photonView.RPC("GetBall", RpcTarget.AllBufferedViaServer);
-                }
-            }
+           
 
             if (other.gameObject.CompareTag("NPC"))
             {
@@ -401,6 +395,45 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     }
 
+    bool hasBall = false;
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ball"))
+        {
+            Vector2 speed = new Vector2(joystick.Vertical, joystick.Horizontal);
+
+            if (speed.magnitude >= 0.2f)
+            {
+                if (photonView.IsMine && !hasBall)
+                {
+
+                    hasBall = true;
+                    Debug.Log("ball!");
+                    photonView.RPC("GetBall", RpcTarget.AllBufferedViaServer);
+                }
+            }
+           
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ball"))
+        {
+
+            if (photonView.IsMine)
+            {
+                StartCoroutine(FreeBall());
+            }
+            
+        }
+    }
+    IEnumerator FreeBall()
+    {
+        yield return new WaitForSeconds(1);
+        hasBall = false;
+
+    }
     [PunRPC]
     public void GetBall()
     {

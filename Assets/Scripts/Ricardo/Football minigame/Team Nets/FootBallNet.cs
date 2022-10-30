@@ -12,17 +12,11 @@ public class FootBallNet : MonoBehaviour
     {
         if (other.CompareTag("Ball"))
         {
-            if (net == true)
-            {
                 teamGoal.FireEvent();
                 restartBall.FireEvent();
                 Handheld.Vibrate();
                 CameraShake.Shake(0.25f, 0.5f);
-            }
-            else
-            {
-                restartBall.FireEvent();
-            }
+           
         }
     }
 }

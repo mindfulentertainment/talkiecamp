@@ -7,9 +7,9 @@ public class prepareFire : MonoBehaviour
     [SerializeField] int woodCount,maxWood;
     [SerializeField] TextMeshProUGUI woodText;
     [SerializeField] GameObject bar;
-    //[SerializeField] ParticleSystem fire;
+    [SerializeField] ParticleSystem fire;
     [SerializeField] REvents fireOn, fireOff,instructionWood,instructionFire;
-
+    
     [SerializeField] Vector3 inititalBarSize;
     [SerializeField] float appearTime;
 
@@ -22,7 +22,7 @@ public class prepareFire : MonoBehaviour
         woodText.text = woodCount + " / " + maxWood;
         //bar.SetActive(false);
         bar.transform.localScale = Vector3.zero;
-        //fire.gameObject.SetActive(false);
+        fire.gameObject.SetActive(false);
         fireOn.GEvent += FireOn;
         fireOff.GEvent += FireOff;
     }
@@ -34,6 +34,7 @@ public class prepareFire : MonoBehaviour
         {
             other.gameObject.SetActive(false);
             WoodCount();
+            Debug.Log(woodCount);
         }
         if (other.CompareTag("PlayerBody"))
         {
@@ -72,15 +73,15 @@ public class prepareFire : MonoBehaviour
     }
     void FireOn()
     {
-        //fire.gameObject.SetActive(true);
-        //fire.Play();
+        fire.gameObject.SetActive(true);
+        fire.Play(true);
     }
     void FireOff()
     {
         //fire.Stop();
         //fire.gameObject.SetActive(false);
         //woodCount = 0;
-        woodText.text = woodCount + " / " + maxWood;
+        //woodText.text = woodCount + " / " + maxWood;
     }
     private void OnDestroy()
     {

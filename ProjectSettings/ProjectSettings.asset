@@ -149,7 +149,7 @@ PlayerSettings:
   useHDRDisplay: 0
   D3DHDRBitDepth: 0
   m_ColorGamuts: 00000000
-  targetPixelDensity: 790
+  targetPixelDensity: 781
   resolutionScalingMode: 1
   resetResolutionOnWindowResize: 1
   androidSupportedAspectRatio: 1
@@ -162,7 +162,7 @@ PlayerSettings:
     tvOS: 0
   overrideDefaultApplicationIdentifier: 0
   AndroidBundleVersionCode: 1
-  AndroidMinSdkVersion: 26
+  AndroidMinSdkVersion: 23
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
   aotOptions: 

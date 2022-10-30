@@ -26,46 +26,48 @@ public class OnPlayerFoot : MonoBehaviourPun
     
     public void GetBall(GameObject player)
     {
-        if (isOnPlayer == true) return;
+        if (currentPlayer == player) return;
         
             GetComponent<PhotonRigidbodyView>().enabled = false;                  //UIController.instance.pickBtn.GetComponent<Image>().sprite = ballInteractionIcon;    //cambia el icono de Ui de interaccion
             currentPlayer = player; //determina cual es el jugador actual que tiene la pelota
             isOnPlayer = true;
             this.gameObject.transform.parent = player.transform; //vuelve la bola en hijo al jugador
             transform.position = currentPlayer.transform.GetChild(3).position; //snapea la posicion de la bola al lugar del pie
-            rb.isKinematic = true;  //pone kinematico el objeto para que no lo perturben otras fuerzas
-        
+            rb.constraints = RigidbodyConstraints.FreezeAll; // freeze rotation and pos
+
+
     }
 
-   
+
 
 
     void ShootBall()
     {
         if (isOnPlayer == true)
         {
-            
             this.gameObject.transform.SetParent(null);
+            rb.constraints = RigidbodyConstraints.None; // freeze rotation and pos
             photonView.RPC("AddForceToBall", RpcTarget.AllViaServer);
             StartCoroutine(PlayerOn());
+
         }
     }
     void RestartBall()
     {
-        rb = FootBallScoreManager.Instance.ball.GetComponent<Rigidbody>();
-        rb.isKinematic = true;
         if (isOnPlayer == true)
         {
+            rb.constraints = RigidbodyConstraints.None; // freeze rotation and pos
+            rb.velocity=Vector3.zero;
             this.gameObject.transform.SetParent(null);
             StartCoroutine(PlayerOn());
         }
-        rb.isKinematic = false;
     }
 
 
     IEnumerator PlayerOn()
     {
         yield return new WaitForSeconds(0.8f);
+        currentPlayer = null;
         isOnPlayer = false;
 
     }
@@ -79,7 +81,7 @@ public class OnPlayerFoot : MonoBehaviourPun
     [PunRPC]
     public void AddForceToBall()
     {
-        rb.isKinematic = false;
+       
         GetComponent<PhotonRigidbodyView>().enabled = true;                  
         if (PhotonNetwork.IsMasterClient)
         {

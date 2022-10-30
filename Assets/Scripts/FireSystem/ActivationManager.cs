@@ -49,14 +49,24 @@ public class ActivationManager : MonoBehaviourPun
     {
         while (fireNetwork.firePs.gameObject.activeSelf)
         {
-            UIController.instance.Fire.gameObject.SetActive(true);
             photonView.RPC("Damage", RpcTarget.AllViaServer);
+            photonView.RPC("SentAlert", RpcTarget.AllViaServer, true);
+
             yield return new WaitForSeconds(5);
 
         }
 
-        UIController.instance.Fire.gameObject.SetActive(false);
+        photonView.RPC("SentAlert", RpcTarget.AllViaServer, false);
     }
+
+    [PunRPC]
+    public void SentAlert(bool state)
+    {
+        UIController.instance.Fire.gameObject.SetActive(state);
+
+
+    }
+
 
     [PunRPC]
     private void Damage()

@@ -154,17 +154,11 @@ public class DanceFloorGame : MonoBehaviour
     }
     bool CheckWin(int random)
     {
-        List<int> vs = new List<int>();
-        for (int i = 0; i < floorPatterns[random].targetPiece.Length; i++)
+        
+       
+        for (int i = 0; i < pieces.Count; i++)
         {
-            if (floorPatterns[random].targetPiece[i])
-            {
-                vs.Add(i);
-            }
-        }
-        for (int i = 0; i < vs.Count; i++)
-        {
-            if (!pieces[vs[i]].State)
+            if (pieces[i].State != floorPatterns[random].targetPiece[i])
             {
                 vs.Clear();
                 level = 0;

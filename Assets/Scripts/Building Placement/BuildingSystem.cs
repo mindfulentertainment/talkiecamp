@@ -15,7 +15,7 @@ public class BuildingSystem : MonoBehaviour
     private Grid grid;
     [SerializeField] private Tilemap mainTile;
     [SerializeField] private TileBase selectTile;
-    
+    [SerializeField] public ParticleSystem ps;
 
     [Header("Buildings ")]
     [SerializeField] GameObject[] buildings;
@@ -109,6 +109,12 @@ public class BuildingSystem : MonoBehaviour
 
     public void Cancel()
     {
+        var buildingPos = objectoToPlace.gameObject.transform.position;
+        ps.transform.position = new Vector3(buildingPos.x,ps.transform.position.y, buildingPos.z);
+        ps.gameObject.SetActive(true);
+        ps.Play(true);
+        StartCoroutine(StopParticles());
+       
         Destroy(objectoToPlace.gameObject);
         CameraControllerNetWork.instance.CenterPlayer();
         UIController.instance.joystick.gameObject.SetActive(true);
@@ -148,4 +154,10 @@ public class BuildingSystem : MonoBehaviour
       
     }
 
+    IEnumerator StopParticles()
+    {
+        yield return new WaitForSeconds(4);
+        ps.Pause();
+        ps.gameObject.SetActive(false);
+    }
 }
