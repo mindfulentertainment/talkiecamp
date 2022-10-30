@@ -160,7 +160,6 @@ public class DanceFloorGame : MonoBehaviour
         {
             if (pieces[i].State != floorPatterns[random].targetPiece[i])
             {
-                vs.Clear();
                 level = 0;
                 timeToLerp = 6;
                 isPlaying = false;
@@ -168,7 +167,6 @@ public class DanceFloorGame : MonoBehaviour
                 return false;
             }
         }
-        vs.Clear();
 
         timeToLerp -= 0.14f;
         return true;
