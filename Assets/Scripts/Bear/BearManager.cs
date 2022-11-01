@@ -21,7 +21,7 @@ public class BearManager : MonoBehaviourPun
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            m_Coroutine = StartCoroutine(ActivateBearC(Random.Range(150,350)));
+            m_Coroutine = StartCoroutine(ActivateBearC(Random.Range(50,100)));
         }
     }
 

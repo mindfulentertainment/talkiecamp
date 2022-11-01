@@ -16,6 +16,8 @@ public class Repair : MonoBehaviourPun
         if (other.gameObject.CompareTag("Placed"))
         {
             place = other.GetComponentInParent<Place>();
+            if(place ==null) return;
+            
             if (place.buildingHistory.health < place.maxHealth)
             {
                UIController.instance.repairHelper.SetActive(true);

@@ -34,7 +34,10 @@ public class OnPlayerFoot : MonoBehaviourPun
             this.gameObject.transform.parent = player.transform; //vuelve la bola en hijo al jugador
             transform.position = currentPlayer.transform.GetChild(3).position; //snapea la posicion de la bola al lugar del pie
             rb.constraints = RigidbodyConstraints.FreezeAll; // freeze rotation and pos
-
+        if (player.GetComponent<PhotonView>().IsMine)
+        {
+            UIController.instance.SwitchPickSprite(UIController.instance.guayo);
+        }
 
     }
 
@@ -47,6 +50,8 @@ public class OnPlayerFoot : MonoBehaviourPun
         {
             this.gameObject.transform.SetParent(null);
             rb.constraints = RigidbodyConstraints.None; // freeze rotation and pos
+            UIController.instance.ResetPickSprite();
+
             photonView.RPC("AddForceToBall", RpcTarget.AllViaServer);
             StartCoroutine(PlayerOn());
 

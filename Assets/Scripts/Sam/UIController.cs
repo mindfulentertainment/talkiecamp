@@ -52,7 +52,8 @@ public class UIController : MonoBehaviour
     public Sprite spriteWatchmen;
     public Sprite spriteGatherer;
     public Sprite spriteChef;
-
+    public Sprite hand;
+    public Sprite guayo;
     [Header("Builder")]
     public GameObject storeButton;
     public GameObject buildingsUI;
@@ -161,6 +162,16 @@ public class UIController : MonoBehaviour
         yield return new WaitForSeconds(seconds);
         screen.SetActive(false);
 
+    }
+
+    public void SwitchPickSprite(Sprite sprite)
+    {
+        pickBtn.GetComponent<Image>().sprite = sprite;
+
+    }
+    public void ResetPickSprite()
+    {
+        pickBtn.GetComponent<Image>().sprite = hand;
     }
 
     public void ShowCaption(string message)

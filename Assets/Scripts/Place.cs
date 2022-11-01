@@ -90,7 +90,6 @@ public class Place : MonoBehaviourPun
         health_Slider.value = buildingHistory.health / maxHealth;
         if (buildingHistory.health <= 0)
         {
-            Destroy(this.gameObject,0.5f);
 
             BuildingHistory bh = null;
 
@@ -103,9 +102,12 @@ public class Place : MonoBehaviourPun
             }
             if (bh != null)
             {
+
                 DataManager.instance.buildings.buildings.Remove(bh);
+                VFX_Destruction.instance.SetVFX(this.gameObject.transform.position);
                 Debug.Log("ELIMINADO");
             }
+            Destroy(this.gameObject, 0.5f);
 
         }
 
