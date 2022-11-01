@@ -22,8 +22,16 @@ public  class Element: MonoBehaviour
         meat,
         connection,
         hamburguer,
+        hamburguer_2,
         sandwich,
-        soup
+        sandwich_2,
+        soup,
+        soup_2,
+        tomato,
+        lettuce,
+        carrot,
+        bun,
+        ham
 
     }
     public ElementType type;

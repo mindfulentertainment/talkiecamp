@@ -73,7 +73,10 @@ public class OrdersPanelUI : MonoBehaviour
 
     private void HandleOrderDelivered(Order order)
     {
-        switch (order.OrderName)
+        UpdateResources(order);
+    
+
+            switch (order.OrderName)
         {
             case "Burger01":
                 burger01Amount--;
@@ -103,6 +106,45 @@ public class OrdersPanelUI : MonoBehaviour
             case "Sandwich02":
                 sandwich02Amount--;
                 sandwich02.text = sandwich02Amount.ToString();
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    private void UpdateResources(Order order)
+    {
+        switch (order.OrderName)
+        {
+            case "Burger01":
+                Element burguer01 = new Element(Element.ElementType.hamburguer, 1);
+                DataManager.instance.IncreaseElement(burguer01);
+
+                break;
+
+            case "Burger02":
+                Element burger02 = new Element(Element.ElementType.hamburguer_2, 1);
+                DataManager.instance.IncreaseElement(burger02);
+                break;
+
+            case "TomatoSoup":
+                Element TomatoSoup = new Element(Element.ElementType.soup, 1);
+                DataManager.instance.IncreaseElement(TomatoSoup);
+                break;
+
+            case "CarrotSoup":
+                Element CarrotSoup = new Element(Element.ElementType.soup_2, 1);
+                DataManager.instance.IncreaseElement(CarrotSoup);
+                break;
+
+            case "Sandwich01":
+                Element Sandwich01 = new Element(Element.ElementType.sandwich, 1);
+                DataManager.instance.IncreaseElement(Sandwich01); break;
+
+            case "Sandwich02":
+                Element Sandwich02 = new Element(Element.ElementType.sandwich_2, 1);
+                DataManager.instance.IncreaseElement(Sandwich02);
                 break;
 
             default:

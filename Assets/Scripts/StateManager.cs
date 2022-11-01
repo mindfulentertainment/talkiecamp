@@ -88,6 +88,15 @@ public class Resource
     public Food food= new Food();
     public int meat;
     public int connection;
+    public int ham;
+    public int bun;
+    public int carrot;
+    public int tomato;
+    public int lettuce;
+
+
+
+
     public bool newCamp=false;
 
 }
@@ -135,8 +144,12 @@ public class Food
         this.soup = soup;
     }
     public int hamburguer;
+    public int hamburguer2;
     public int sandwich;
-    public int juice;
+    public int sandwich2;
     public int soup;
+    public int soup2;
+
+    
 
 }

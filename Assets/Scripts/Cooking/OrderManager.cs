@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Newtonsoft.Json;
+using Photon.Pun;
 
-public class OrderManager : MonoBehaviour
+public class OrderManager : MonoBehaviourPun
 {
     [SerializeField] private Order orderPrefab;
     [SerializeField] private int maxConcurrentOrders = 5;
@@ -30,12 +32,22 @@ public class OrderManager : MonoBehaviour
 
     public void GenerateOrder(OrderData orderData)
     {
-        currentOrder = orderData;
-        TrySpawnOrder();
+
+        string json = JsonConvert.SerializeObject(orderData);
+
+        photonView.RPC("TrySpawnOrder", RpcTarget.AllViaServer,json);
+        
     }
 
-    private void TrySpawnOrder()
+    [PunRPC]
+    private void TrySpawnOrder(string json)
     {
+        JsonSerializerSettings settings = new JsonSerializerSettings()
+        {
+            TypeNameHandling = Newtonsoft.Json.TypeNameHandling.Auto
+        };
+        OrderData orderJson = JsonConvert.DeserializeObject<OrderData>(json, settings);
+        currentOrder = orderJson;
         if (_orders.Count < maxConcurrentOrders)
         {
             var order = GetOrderFromPool();

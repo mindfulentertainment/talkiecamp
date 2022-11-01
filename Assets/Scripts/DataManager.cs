@@ -76,8 +76,11 @@ public class DataManager : MonoBehaviour
                     resource.wood += element.GetAmount();
 
                     break;
+            case Element.ElementType.connection:
+                resource.connection += element.GetAmount();
 
-                case Element.ElementType.stone:
+                break;
+            case Element.ElementType.stone:
                     resource.stone += element.GetAmount();
 
                     break;
@@ -90,19 +93,45 @@ public class DataManager : MonoBehaviour
 
                     break;
 
-                case Element.ElementType.connection:
-                    resource.connection += element.GetAmount();
-
+                case Element.ElementType.ham:
+                    resource.ham += element.GetAmount();
                     break;
+
+                case Element.ElementType.lettuce:
+                    resource.lettuce += element.GetAmount();
+                    break;
+                case Element.ElementType.carrot:
+                    resource.carrot += element.GetAmount();
+                    break;
+                case Element.ElementType.bun:
+                    resource.bun+= element.GetAmount();
+                    break;
+                case Element.ElementType.tomato:
+                    resource.tomato += element.GetAmount();
+                    break;
+          
 
                 case Element.ElementType.sandwich:
                     resource.food.sandwich += element.GetAmount();
-
                     break;
+                case Element.ElementType.sandwich_2:
+                resource.food.sandwich2 += element.GetAmount();
+                break;
+
                 case Element.ElementType.hamburguer:
                     resource.food.hamburguer += element.GetAmount();
                     break;
-            }
+                case Element.ElementType.hamburguer_2:
+                resource.food.hamburguer2 += element.GetAmount();
+                break;
+                case Element.ElementType.soup:
+                resource.food.soup += element.GetAmount();
+                break;
+                case Element.ElementType.soup_2:
+                resource.food.soup2 += element.GetAmount();
+                break;
+
+        }
 
         
         UIController.instance.ChangeResources(resource);
@@ -152,7 +181,40 @@ public class DataManager : MonoBehaviour
                 case Element.ElementType.hamburguer:
                     resource.food.hamburguer -= element.GetAmount();
                     break;
-            }
+            case Element.ElementType.soup:
+                resource.food.soup -= element.GetAmount();
+                break;
+
+            case Element.ElementType.ham:
+                resource.ham -= element.GetAmount();
+                break;
+
+            case Element.ElementType.lettuce:
+                resource.lettuce -= element.GetAmount();
+                break;
+            case Element.ElementType.carrot:
+                resource.carrot -= element.GetAmount();
+                break;
+            case Element.ElementType.bun:
+                resource.bun -= element.GetAmount();
+                break;
+            case Element.ElementType.tomato:
+                resource.tomato -= element.GetAmount();
+                break;
+
+
+            case Element.ElementType.sandwich_2:
+                resource.food.sandwich2 -= element.GetAmount();
+                break;
+
+            case Element.ElementType.hamburguer_2:
+                resource.food.hamburguer2 -= element.GetAmount();
+                break;
+         
+            case Element.ElementType.soup_2:
+                resource.food.soup2 -= element.GetAmount();
+                break;
+        }
 
         
 

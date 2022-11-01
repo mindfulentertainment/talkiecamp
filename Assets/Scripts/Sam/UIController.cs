@@ -60,6 +60,17 @@ public class UIController : MonoBehaviour
     public Button cancel;
     public Button rotate;
 
+
+    [Header("Orders")]
+    [SerializeField] TMP_Text burger02;
+    [SerializeField] TMP_Text sandwich02;
+    [SerializeField] TMP_Text carrotSoup;
+    [SerializeField] TMP_Text lettuce;
+    [SerializeField] TMP_Text carrot;
+    [SerializeField] TMP_Text tomato;
+    [SerializeField] TMP_Text ham;
+    [SerializeField] TMP_Text bun;
+
     private void Awake()
     {
         instance = this;
@@ -142,6 +153,16 @@ public class UIController : MonoBehaviour
         hamburguersAmount.text = resource.food.hamburguer.ToString();
         sandwichesAmount.text =  resource.food.sandwich.ToString();
         soupAmount.text = resource.food.soup.ToString();
+        burger02.text = resource.food.hamburguer2.ToString();
+        carrotSoup.text = resource.food.soup2.ToString();
+        sandwich02.text = resource.food.sandwich2.ToString();
+        lettuce.text = resource.lettuce.ToString();
+        carrot.text = resource.carrot.ToString();
+        tomato.text = resource.tomato.ToString();
+        ham.text = resource.ham.ToString();
+        bun.text = resource.bun.ToString();
+
+
 
     }
 
