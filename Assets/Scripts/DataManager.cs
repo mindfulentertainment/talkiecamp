@@ -115,7 +115,7 @@ public class DataManager : MonoBehaviour
                     resource.food.sandwich += element.GetAmount();
                     break;
                 case Element.ElementType.sandwich_2:
-                resource.food.sandwich2 += element.GetAmount();
+                     resource.food.sandwich2 += element.GetAmount();
                 break;
 
                 case Element.ElementType.hamburguer:

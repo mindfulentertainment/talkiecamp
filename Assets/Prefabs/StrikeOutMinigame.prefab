@@ -1035,7 +1035,6 @@ GameObject:
   - component: {fileID: 8522938845024501241}
   - component: {fileID: 8522938845024501238}
   - component: {fileID: 6784576299129253815}
-  - component: {fileID: 5688269194207541145}
   - component: {fileID: 8522938845024501240}
   m_Layer: 0
   m_Name: floor-gameManager
@@ -1199,23 +1198,6 @@ MonoBehaviour:
   eventShoot: {fileID: 11400000, guid: 5073ad2f1affef24d9d00497251fd749, type: 2}
   stopTime: {fileID: 11400000, guid: 5073ad2f1affef24d9d00497251fd749, type: 2}
   lastCall: {fileID: 11400000, guid: 92d6cc6911bd7be4cab9e25c5cfebac2, type: 2}
---- !u!114 &5688269194207541145
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8522938845024501235}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b25786e0fb64ffa44abdd99de32b8add, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  instructions: {fileID: 0}
-  timeForInst: 0
-  appearTime: 0
-  startInstructions: {fileID: 0}
-  initialSize: {x: 0, y: 0, z: 0}
 --- !u!54 &8522938845024501240
 Rigidbody:
   m_ObjectHideFlags: 0
