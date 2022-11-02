@@ -108,6 +108,9 @@ public class OrderManager : MonoBehaviourPun
             DeactivateSendBackToPool(order);
             Debug.Log("Orden correcta");
             OnOrderDelivered?.Invoke(order);
+
+            
+
             return;
         }
     }
