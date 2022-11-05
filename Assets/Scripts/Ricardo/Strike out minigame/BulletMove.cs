@@ -41,6 +41,7 @@ public class BulletMove : MonoBehaviour
     {
         if (other.CompareTag("PlayerBody"))
         {
+            Debug.Log("hit");
             var tp = other.GetComponentInParent<PlayerTP>();
             if (tp != null)
             {
