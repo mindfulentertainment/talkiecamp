@@ -19,6 +19,7 @@ TagManager:
   - Wood
   - object
   - OrderPlace
+  - Hex
   layers:
   - Default
   - TransparentFX

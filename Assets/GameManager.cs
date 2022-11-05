@@ -2,8 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun; 
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviourPun
 {
     public GameObject tutorial;
     private void Start()
@@ -22,8 +23,17 @@ public class GameManager : MonoBehaviour
     {
         if (!resource.newCamp)
         {
-            tutorial.SetActive(true);
+            if (PhotonNetwork.IsMasterClient)
+            {
+                photonView.RPC("ShowTutorial", RpcTarget.AllViaServer);
+            }
         }
+    }
+    [PunRPC]
+    public void ShowTutorial()
+    {
+        tutorial.SetActive(true);
+
     }
 
 }

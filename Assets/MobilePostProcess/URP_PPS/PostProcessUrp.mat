@@ -11,6 +11,7 @@ Material:
   m_Shader: {fileID: 4800000, guid: 862aeb01c5d6def4194ff0384218d8ee, type: 3}
   m_ValidKeywords:
   - CHROMA
+  - DISTORTION
   - LUT
   m_InvalidKeywords: []
   m_LightmapFlags: 4
