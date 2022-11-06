@@ -5,12 +5,15 @@ using Photon.Pun;
 public class CanonRotation : MonoBehaviour
 {
     [SerializeField]float angle,angularSpeed,amplitud;
-  
 
+    Vector3 dir;
     [SerializeField] Vector3 rotation;
+
+    public bool opposite; 
 
     void Start()
     {
+        
         angle = 0;
        
     }
@@ -18,17 +21,27 @@ public class CanonRotation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PhotonNetwork.IsMasterClient)
-        {
+      
             angle += Time.deltaTime * angularSpeed;
-            rotation.y = amplitud * Mathf.Sin(angle) + 90;
+            if (opposite) 
+            {
+                rotation.y = amplitud * Mathf.Sin(angle) + 90;
 
-            transform.eulerAngles = rotation;
+            }
+            else
+            {
+                rotation.y = amplitud * Mathf.Sin(-angle) + 90;
+
+            }
+            dir.x = transform.eulerAngles.x;
+            dir.z = transform.eulerAngles.z;
+            dir.y = rotation.y;
+            transform.eulerAngles = dir;
             if (angle > 2 * Mathf.PI)
             {
                 angle = 0;
             }
-        }
+        
         
     }
 }

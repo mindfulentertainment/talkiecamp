@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
+using Unity.VisualScripting;
 
 public class Repair : MonoBehaviourPun
 {
@@ -16,10 +17,11 @@ public class Repair : MonoBehaviourPun
         if (other.gameObject.CompareTag("Placed"))
         {
             place = other.GetComponentInParent<Place>();
-            if(place ==null) return;
+            if(place ==null|| place.buildingHistory == null) return;
             
             if (place.buildingHistory.health < place.maxHealth)
             {
+                if (UIController.instance == null) return;
                UIController.instance.repairHelper.SetActive(true);
                 UIController.instance.pickBtn.GetComponent<Button>().onClick.AddListener(RepairBuilding);
                

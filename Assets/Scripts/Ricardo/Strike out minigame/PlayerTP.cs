@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerTP : MonoBehaviour
 {
-    [SerializeField] public Transform losingPos;
+     public Transform losingPos;
     
     [SerializeField] bool outGame;
     //[SerializeField] ParticleSystem splash;    //efecto de splash de cuando impacta
@@ -17,6 +17,8 @@ public class PlayerTP : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (losingPos == null) return;
+
         if (outGame == true)
         {
             transform.position = losingPos.position;

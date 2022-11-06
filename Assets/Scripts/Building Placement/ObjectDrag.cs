@@ -8,7 +8,17 @@ public class ObjectDrag : MonoBehaviour
     private Vector3 lastPoint;
     public LayerMask BuildingZone;
     // static  BuildingSystem buildingSystem;
+    private void Start()
+    {
+        UIController.instance.pickBtn.gameObject.SetActive(false);
 
+    }
+
+    private void OnDisable()
+    {
+        UIController.instance.pickBtn.gameObject.SetActive(true);
+
+    }
     public Vector3 GetMousePosition()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -23,7 +33,16 @@ public class ObjectDrag : MonoBehaviour
     {
         offSet = transform.position - GetMousePosition();
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Hex"))
+        {
+            GetComponentInChildren<Outline>().OutlineColor=Color.black;
+            UIController.instance.pickBtn.gameObject.SetActive(true);
 
+        }
+
+    }
     private void OnMouseDrag()
     {
         Vector3 pos = GetMousePosition()+ offSet;
