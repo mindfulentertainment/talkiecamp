@@ -164,9 +164,6 @@ public class UIController : MonoBehaviour
         tomato.text = resource.tomato.ToString();
         ham.text = resource.ham.ToString();
         bun.text = resource.bun.ToString();
-
-
-
     }
 
     public void ShowMessage(string message)
