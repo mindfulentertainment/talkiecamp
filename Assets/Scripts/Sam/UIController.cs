@@ -18,6 +18,7 @@ public class UIController : MonoBehaviour
     public Slider slider;
     public GameObject placeOrderBtn;
     public GameObject zoomBtn;
+
     [Header("RolUI")]
     public GameObject builderUI;
     public GameObject chefUI;
@@ -35,6 +36,7 @@ public class UIController : MonoBehaviour
     public GameObject repairHelper;
     public GameObject fireHelper;
     public GameObject bearNear;
+
     [Header("Resources")]
     public TMP_Text meatAmount;
     public TMP_Text hamburguersAmount;
@@ -43,9 +45,7 @@ public class UIController : MonoBehaviour
     public TMP_Text stoneAmount;
     public TMP_Text woodAmount;
     public TMP_Text fabricAmount;
-
     public TMP_Text connectionAmount;
-
 
     [Header("Sprites")]
     public Sprite spriteBuilder;
@@ -54,12 +54,15 @@ public class UIController : MonoBehaviour
     public Sprite spriteChef;
     public Sprite hand;
     public Sprite guayo;
+
     [Header("Builder")]
     public GameObject storeButton;
     public GameObject buildingsUI;
     public Button cancel;
     public Button rotate;
 
+    [Header("Chef")]
+    public GameObject kitchenUI;
 
     [Header("Orders")]
     [SerializeField] TMP_Text burger02;

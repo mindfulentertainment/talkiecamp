@@ -312,7 +312,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     private void OnTriggerEnter(Collider other)
     {
-
         if (photonView.IsMine)
         {
 
@@ -329,10 +328,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
                         string message = "Solo " + LayerMask.LayerToName(other.gameObject.layer) + " puede interactuar con esto";
 
                         UIController.instance.ShowCaption(message);
-
                     }
                 }
-
             }
 
             if (other.gameObject.CompareTag("OrderPlace"))
@@ -349,7 +346,17 @@ public class PlayerController : MonoBehaviourPunCallbacks
                         UIController.instance.placeOrderBtn.SetActive(true);
                     }
                 }
+            }
 
+            if (other.gameObject.CompareTag("Kitchen"))
+            {
+                if (photonView.IsMine)
+                {
+                    if (LayerMask.LayerToName(other.gameObject.layer) == role && !isBuilding)
+                    {
+                        UIController.instance.kitchenUI.SetActive(true);
+                    }
+                }
             }
 
             if (other.gameObject.CompareTag("Obstacle"))
@@ -373,26 +380,40 @@ public class PlayerController : MonoBehaviourPunCallbacks
         }
     }
 
-    
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        
-            if (photonView.IsMine)
+        if (photonView.IsMine)
+        {
+            if (other.gameObject.CompareTag("Kitchen"))
             {
-                UIController.instance.storeButton.SetActive(false);
-                UIController.instance.placeOrderBtn.SetActive(false);
-                UIController.instance.HideCaption();
-                isBuilding = false;
-
-                if (other.gameObject.CompareTag("NPC"))
+                if (photonView.IsMine)
                 {
-                    other.gameObject.GetComponent<NPCPoint>().Exit();
-
+                    if (LayerMask.LayerToName(other.gameObject.layer) == role && !isBuilding)
+                    {
+                        UIController.instance.kitchenUI.SetActive(true);
+                    }
                 }
             }
+        }
+    }
 
-       
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (photonView.IsMine)
+        {
+            UIController.instance.storeButton.SetActive(false);
+            UIController.instance.placeOrderBtn.SetActive(false);
+            UIController.instance.kitchenUI.SetActive(false);
+            UIController.instance.HideCaption();
+            isBuilding = false;
+
+            if (other.gameObject.CompareTag("NPC"))
+            {
+                other.gameObject.GetComponent<NPCPoint>().Exit();
+
+            }
+        }
     }
 
     bool hasBall = false;
