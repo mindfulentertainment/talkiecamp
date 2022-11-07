@@ -383,6 +383,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxDistance: 3
   distance: 0
+  saw: {fileID: 0}
+  isGatherer: 0
 --- !u!114 &7722301083133499613
 MonoBehaviour:
   m_ObjectHideFlags: 0

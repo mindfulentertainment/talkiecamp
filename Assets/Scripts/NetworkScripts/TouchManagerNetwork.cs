@@ -11,6 +11,8 @@ public class TouchManagerNetwork : MonoBehaviourPunCallbacks
     string role;
     GameObject player;
     [SerializeField]  float distance;
+    [SerializeField] GameObject saw;
+    public bool isGatherer;
 
     Ray GenerateTouchRay(Vector3 touchPos)
     {
@@ -61,11 +63,12 @@ public class TouchManagerNetwork : MonoBehaviourPunCallbacks
                             if (LayerMask.LayerToName(hit.collider.gameObject.layer) == role)
                             {
                                 hit.collider.GetComponent<Interactable>().OnInteraction();
-
+                                GetComponent<Animator>().SetBool("IsOnInteractable", true);
+                                saw.gameObject.SetActive(true);
                             }
                             else
                             {
-                                string message ="Only " + LayerMask.LayerToName(hit.collider.gameObject.layer) + " can interact with this, tell him!!";
+                                string message = "Solo  el recolector opuede intereactuar con esto, busca su ayuda!";
                                 UIController.instance.ShowMessage(message);
                             }
 
@@ -81,7 +84,14 @@ public class TouchManagerNetwork : MonoBehaviourPunCallbacks
         }
         if (Input.GetMouseButtonUp(0))
         {
-            UIController.instance.slider.gameObject.SetActive(false);
+            if (isGatherer)
+            {
+                UIController.instance.slider.gameObject.SetActive(false);
+                GetComponent<Animator>().SetBool("IsOnInteractable", false);
+                saw.gameObject.SetActive(false);
+            }
+    
+
         }
     }
 
