@@ -76,8 +76,13 @@ public class TouchManagerNetwork : MonoBehaviourPunCallbacks
 
                 }
             }
+
+            
         }
-       
+        if (Input.GetMouseButtonUp(0))
+        {
+            UIController.instance.slider.gameObject.SetActive(false);
+        }
     }
 
     

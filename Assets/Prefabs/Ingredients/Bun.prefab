@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1827609510817628485}
   - component: {fileID: 3856283557295855490}
   - component: {fileID: 1675858363858336327}
+  - component: {fileID: -3917878922694932057}
   m_Layer: 0
   m_Name: Bun
   m_TagString: Untagged
@@ -167,3 +168,17 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &-3917878922694932057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1827609510817628486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23433974955dcc1428261dbb54fed512, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amount: 0
+  type: 14

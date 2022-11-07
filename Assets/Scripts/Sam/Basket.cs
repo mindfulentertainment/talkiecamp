@@ -6,7 +6,7 @@ public class Basket : SnapZone
 {
     public override bool TryToDropIntoSlot(IPickable pickable)
     {
-        if (pickable == null)
+        if (pickable == null|| pickable.gameObject.GetComponent<Element>()==null)
         {
             return false;
         }
@@ -17,6 +17,7 @@ public class Basket : SnapZone
             if (CurrentPickable.gameObject != null)
             {
                 CurrentPickable.gameObject.TryGetComponent(out element);
+               
                 DataManager.instance.IncreaseElement(element);
 
                 CurrentPickable.gameObject.transform.SetParent(Slot);
@@ -49,6 +50,6 @@ public class Basket : SnapZone
 
        
 
-        return true;
+        return false;
     }
 }
