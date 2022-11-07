@@ -18,9 +18,13 @@ public class Table : SnapZone
     {
         if (CurrentPickable == null) return null;
 
-        var output = CurrentPickable;
-        CurrentPickable = null;
-        return output;
+        if (playerHoldPickable == null)
+        {
+            var output = CurrentPickable;
+            CurrentPickable = null;
+            return output;
+        }
+        return null;
     }
 
     private bool TryDropIfNotOccupied(IPickable pickable)

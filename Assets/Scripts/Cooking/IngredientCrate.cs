@@ -28,16 +28,26 @@ public class IngredientCrate : SnapZone
 
     public override IPickable TryToPickUpFromSlot(IPickable playerHoldPickable)
     {
-        if (CurrentPickable == null)
+        if(playerHoldPickable == null)
         {
-            if (DataManager.instance.CheckResourceAmount(ingredientPrefab.Type.ToString().ToLower()))
+            if (CurrentPickable == null)
             {
-                return Instantiate(ingredientPrefab, Slot.transform.position, Quaternion.identity);
+                if (DataManager.instance.CheckResourceAmount(ingredientPrefab.Type.ToString().ToLower()))
+                {
+                    return Instantiate(ingredientPrefab, Slot.transform.position, Quaternion.identity);
+                }
             }
-        }
+        } 
+     
 
         var output = CurrentPickable;
-        CurrentPickable = null;
+        StartCoroutine(NullPickUp());
         return output;
+    }
+
+    private IEnumerator NullPickUp()
+    {
+        yield return new WaitForEndOfFrame();
+        CurrentPickable = null;
     }
 }
