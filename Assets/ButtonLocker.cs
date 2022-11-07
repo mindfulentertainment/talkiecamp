@@ -14,7 +14,7 @@ public class ButtonLocker : MonoBehaviour
     IEnumerator CoolDown(Button button)
     {
         button.interactable = false;
-        yield return new WaitForSeconds(0.16f);
+        yield return new WaitForSeconds(0.19f);
         
             button.interactable = true;
         

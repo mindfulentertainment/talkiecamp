@@ -18,12 +18,8 @@ public class IngredientCrate : SnapZone
 
     public override bool TryToDropIntoSlot(IPickable pickableToDrop)
     {
-        if (CurrentPickable != null) return false;
-
-        CurrentPickable = pickableToDrop;
-        CurrentPickable.gameObject.transform.SetParent(Slot);
-        pickableToDrop.gameObject.transform.SetPositionAndRotation(Slot.position, Quaternion.identity);
-        return true;
+        
+        return false;
     }
 
     public override IPickable TryToPickUpFromSlot(IPickable playerHoldPickable)
