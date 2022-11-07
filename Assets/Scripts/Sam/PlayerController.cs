@@ -32,8 +32,10 @@ public class PlayerController : MonoBehaviourPunCallbacks
     public bool isRunning;
     public  bool isBuilding;
     public Transform snap;
-
-
+    Coroutine pick;
+    Coroutine pick_normal;
+    Coroutine drop;
+    Coroutine drop_normal;
     public Transform GetSnap()
     {
         return snap;
@@ -208,39 +210,65 @@ public class PlayerController : MonoBehaviourPunCallbacks
     [PunRPC]
     public virtual void HandlePickUp(int key)
     {
-        IPickable item = Token_Manager.DefaultInstance.pickables_tokens[key];
-        if (!item.gameObject.GetComponent<Token_Pick>().isAvailable) return;
-
-        item.gameObject.GetComponent<Token_Pick>().isAvailable = false ;
-        item.Pick();
-        animator?.SetBool("isLifting", true);
-        item.gameObject.transform.SetPositionAndRotation(slot.transform.position, Quaternion.identity);
-        item.gameObject.transform.SetParent(slot);
+        if (pick_normal != null) return;
+       pick_normal= StartCoroutine(PickUpNormal(key));
 
     }
+
+    private IEnumerator PickUpNormal(int key)
+    {
+        yield return new WaitForEndOfFrame();
+        IPickable item = Token_Manager.DefaultInstance.pickables_tokens[key];
+        if (item.gameObject.GetComponent<Token_Pick>().isAvailable)
+        {
+            _currentPickable = item;
+            item.gameObject.GetComponent<Token_Pick>().isAvailable = false;
+            item.Pick();
+            animator?.SetBool("isLifting", true);
+            item.gameObject.transform.SetPositionAndRotation(slot.transform.position, Quaternion.identity);
+            item.gameObject.transform.SetParent(slot);
+        }
+        pick_normal = null;
+
+    }
+
     [PunRPC]
     public virtual void HandleDrop(int key,float x, float y, float z)
     {
+        if (drop_normal != null) return;
+        drop_normal = StartCoroutine(DropCoroutine(key, x, y, z));
+
+
+
+    }
+
+    private IEnumerator DropCoroutine(int key, float x, float y, float z)
+    {
+        yield return new WaitForEndOfFrame();
+
         IPickable item = Token_Manager.DefaultInstance.pickables_tokens[key];
 
-        if (item.gameObject.GetComponent<Token_Pick>().isAvailable) return;
-        item.gameObject.GetComponent<Token_Pick>().isAvailable = true;
+        if (!item.gameObject.GetComponent<Token_Pick>().isAvailable)
+        {
+            item.gameObject.GetComponent<Token_Pick>().isAvailable = true;
 
-        animator?.SetBool("isLifting", false);
-        Vector3 pos = new Vector3(x, y, z);
+            animator?.SetBool("isLifting", false);
+            Vector3 pos = new Vector3(x, y, z);
 
-        item.Drop(pos);
-        _currentPickable = null;
-
+            item.Drop(pos);
+            _currentPickable = null;
+        }
+        drop_normal = null;
+      
     }
 
     [PunRPC]
     public virtual void HandlePickUpSlot(int keySnapzone)
     {
 
-        
 
-        StartCoroutine(GetPickUp(keySnapzone));
+        if(pick!=null) return;
+        pick=StartCoroutine(GetPickUp(keySnapzone));
 
 
 
@@ -251,6 +279,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     {
         
         yield return new WaitForEndOfFrame();
+        pick = null;
 
         SnapZone snapZone = Token_Manager.DefaultInstance.snapzones_tokens[keySnapzone];
 
@@ -281,34 +310,49 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     public virtual void TryDrop(int keySnapzone, int keyPickable)
     {
-
-        IPickable item = Token_Manager.DefaultInstance.pickables_tokens[keyPickable];
-        if (item.gameObject.GetComponent<Token_Pick>().isAvailable) return;
-
-        SnapZone snapZone = Token_Manager.DefaultInstance.snapzones_tokens[keySnapzone];
-        if(snapZone.gameObject.GetComponentInChildren<Plate>()!=null)
-        {
-            Plate plate = snapZone.gameObject.GetComponentInChildren<Plate>();
-
-            if (plate.Ingredients.Count >= Plate.MaxNumberIngredients) 
-            {
-                _currentPickable = item;
-                int key = _currentPickable.gameObject.GetComponent<Token_Pick>().key;
-                photonView.RPC("HandlePickUp", RpcTarget.AllViaServer, key);
-                return;
-            };
-
-        }
-       
-
-        item.gameObject.GetComponent<Token_Pick>().isAvailable = true;
-       
-        animator?.SetBool("isLifting", false);
-
-        snapZone.TryToDropIntoSlot(item);
-        _currentPickable = null;
+        if (drop != null) return;
+        drop=StartCoroutine(TryDropCoroutine(keySnapzone, keyPickable));
     }
-   
+
+    private IEnumerator TryDropCoroutine(int keySnapzone, int keyPickable)
+    {
+
+        yield return new WaitForEndOfFrame();
+        drop=null;
+        bool done = false;
+        IPickable item = Token_Manager.DefaultInstance.pickables_tokens[keyPickable];
+        if (!item.gameObject.GetComponent<Token_Pick>().isAvailable)
+        {
+            SnapZone snapZone = Token_Manager.DefaultInstance.snapzones_tokens[keySnapzone];
+            if (snapZone.gameObject.GetComponentInChildren<Plate>() != null)
+            {
+                Plate plate = snapZone.gameObject.GetComponentInChildren<Plate>();
+
+                if (plate.Ingredients.Count >= Plate.MaxNumberIngredients)
+                {
+                    _currentPickable = item;
+                    int key = _currentPickable.gameObject.GetComponent<Token_Pick>().key;
+                    photonView.RPC("HandlePickUp", RpcTarget.AllViaServer, key);
+                    done = true;
+                };
+
+            }
+            if (!done)
+            {
+                item.gameObject.GetComponent<Token_Pick>().isAvailable = true;
+
+                animator?.SetBool("isLifting", false);
+
+                snapZone.TryToDropIntoSlot(item);
+                _currentPickable = null;
+            }
+        
+        }
+
+    
+
+
+    }
 
     private void OnTriggerEnter(Collider other)
     {
