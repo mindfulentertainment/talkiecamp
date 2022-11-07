@@ -19,9 +19,8 @@ TagManager:
   - Wood
   - object
   - OrderPlace
-
-  - Hex
   - Kitchen
+  - Hex
   layers:
   - Default
   - TransparentFX
