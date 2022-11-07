@@ -30,7 +30,10 @@ public class IngredientCrate : SnapZone
     {
         if (CurrentPickable == null)
         {
-            return Instantiate(ingredientPrefab, Slot.transform.position, Quaternion.identity);
+            if (DataManager.instance.CheckResourceAmount(ingredientPrefab.Type.ToString().ToLower()))
+            {
+                return Instantiate(ingredientPrefab, Slot.transform.position, Quaternion.identity);
+            }
         }
 
         var output = CurrentPickable;

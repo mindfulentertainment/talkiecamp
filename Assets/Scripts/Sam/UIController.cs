@@ -147,7 +147,6 @@ public class UIController : MonoBehaviour
 
     public void ChangeResources(Resource resource)
     {
-
         meatAmount.text = resource.meat.ToString();
         stoneAmount.text =  resource.stone.ToString();
         woodAmount.text =  resource.wood.ToString();

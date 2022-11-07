@@ -6,7 +6,7 @@ using Photon.Pun;
 
 public class Token_Pick : MonoBehaviourPun
 {
-     public int key;
+    public int key;
 
     public bool isAvailable=true;
 
@@ -48,6 +48,4 @@ public class Token_Pick : MonoBehaviourPun
 
         Token_Manager.DefaultInstance.pickables_tokens.Add(key, pickable);
     }
-
-
 }
