@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 
-public class Interactable : MonoBehaviourPunCallbacks
+public class Interactable : MonoBehaviourPun
 {
     [PunRPC]
     public virtual void OnInteraction()

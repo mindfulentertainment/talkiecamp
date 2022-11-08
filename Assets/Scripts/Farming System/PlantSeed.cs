@@ -104,10 +104,19 @@ public class PlantSeed : Interactable
 
     public override void CreatePlant(GameObject plant)
     {
-        Debug.Log(gameObject.name);
-        var newplant = PhotonNetwork.Instantiate(plant.name, this.transform.position, Quaternion.identity);
-        newplant.transform.parent = gameObject.transform;
+        photonView.RPC("InstantiatePlant", RpcTarget.AllViaServer, plant.name);
 
     }
+
+    [PunRPC]
+    private void InstantiatePlant(string plant)
+    {
+        var variableForPrefab = Resources.Load(plant) as GameObject;
+        var newplant = Instantiate(variableForPrefab, this.transform.position, Quaternion.identity);
+        newplant.transform.parent = gameObject.transform;
+    }
+
+    
+
 
 }
