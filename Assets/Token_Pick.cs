@@ -7,7 +7,7 @@ using Photon.Pun;
 public class Token_Pick : MonoBehaviourPun
 {
     public int key;
-
+ 
     public bool isAvailable=true;
 
     private void Awake()
@@ -45,11 +45,7 @@ public class Token_Pick : MonoBehaviourPun
     public virtual void CreateToken()
     {
         IPickable pickable = GetComponent<IPickable>();
-        while (Token_Manager.DefaultInstance.pickables_tokens.ContainsKey(key))
-        {
-            key++;
-        }
-
+        key = Token_Manager.DefaultInstance.pickables_tokens.Count + 1;
         Token_Manager.DefaultInstance.pickables_tokens.Add(key, pickable);
     }
 }

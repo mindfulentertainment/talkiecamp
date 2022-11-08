@@ -1023,10 +1023,10 @@ MonoBehaviour:
     SynchronizeType: 2
     Name: isLifting
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 0
     Name: isRepearing
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: IsOnInteractable
   m_SynchronizeLayers:
   - SynchronizeType: 2
@@ -4560,6 +4560,10 @@ PrefabInstance:
     - target: {fileID: 7590060000312446498, guid: 9df58f35e66dbf24eaa0b887d73562b1, type: 3}
       propertyPath: m_Name
       value: Handle
+      objectReference: {fileID: 0}
+    - target: {fileID: 7590060000312446498, guid: 9df58f35e66dbf24eaa0b887d73562b1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9df58f35e66dbf24eaa0b887d73562b1, type: 3}
