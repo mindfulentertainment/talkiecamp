@@ -12,6 +12,11 @@ public class Interactable : MonoBehaviourPunCallbacks
         Debug.Log("Interaction");
     }
 
+    public virtual void CreatePlant(GameObject plant)
+    {
+        Debug.Log("plant");
+    }
+
     public float OnDestruction(Slider slider, float timeOfDestruction, float timer)
     {
         slider.maxValue = timeOfDestruction;
@@ -22,6 +27,7 @@ public class Interactable : MonoBehaviourPunCallbacks
             timer += Time.deltaTime;
             Debug.Log(timer);
         }
+        
         slider.value = timer;
 
         return timer;
