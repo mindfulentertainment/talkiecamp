@@ -21,7 +21,7 @@ public class PlantGrowth : MonoBehaviour
 
     IEnumerator Growth()
     {
-        gameObject.transform.parent.gameObject.GetComponent<BoxCollider>().enabled = false;
+        gameObject.GetComponentInParent<PlantSeed>().gameObject.GetComponent<BoxCollider>().enabled = false;
 
         while (true)
         {
@@ -45,7 +45,7 @@ public class PlantGrowth : MonoBehaviour
             }
             if(currentStage == maxGrowth)
             {
-                gameObject.transform.parent.gameObject.GetComponent<BoxCollider>().enabled = true; 
+                gameObject.GetComponentInParent<PlantSeed>().gameObject.GetComponent<BoxCollider>().enabled = true;
             }
         }
     }
