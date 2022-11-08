@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
-public class TouchManagerNetwork : MonoBehaviourPunCallbacks
+public class TouchManagerNetwork : MonoBehaviourPun
 {
 
     [Header("Settings for the interaction")]
@@ -50,36 +50,39 @@ public class TouchManagerNetwork : MonoBehaviourPunCallbacks
 
                 if (Physics.Raycast(touchRay.origin, touchRay.direction, out hit))
                 {
-                   
-                    Interactable currentInteractable = hit.collider.GetComponent<Interactable>(); // objecto con el que choca el rayo 
-                    if (currentInteractable != null)
+                    if (!GetComponent<PlayerController>().isRunning)
                     {
-
-                        distance = Vector3.Distance(player.transform.position, currentInteractable.transform.position); //se calcula la distancia del player y el objeto 
-
-                        // se verifica si la distancia es la requerida 
-                        if (distance <= maxDistance)
+                        Interactable currentInteractable = hit.collider.GetComponent<Interactable>(); // objecto con el que choca el rayo 
+                        if (currentInteractable != null)
                         {
-                            if (LayerMask.LayerToName(hit.collider.gameObject.layer) == role)
+
+                            distance = Vector3.Distance(player.transform.position, currentInteractable.transform.position); //se calcula la distancia del player y el objeto 
+
+                            // se verifica si la distancia es la requerida 
+                            if (distance <= maxDistance)
                             {
-                                hit.collider.GetComponent<Interactable>().OnInteraction();
-                                GetComponent<Animator>().SetBool("IsOnInteractable", true);
-                                saw.gameObject.SetActive(true);
-                            }
-                            else if (LayerMask.LayerToName(hit.collider.gameObject.layer) == "Land")
-                            {
-                                Debug.Log("Hiiit");
-                                hit.collider.GetComponent<Interactable>().OnInteraction();
-                            }
-                            else
-                            {
-                                string message = "Solo  el recolector opuede intereactuar con esto, busca su ayuda!";
-                                UIController.instance.ShowMessage(message);
+                                if (LayerMask.LayerToName(hit.collider.gameObject.layer) == role)
+                                {
+                                    hit.collider.GetComponent<Interactable>().OnInteraction();
+                                    GetComponent<Animator>().SetBool("IsOnInteractable", true);
+                                    photonView.RPC("SyncSaw", RpcTarget.AllViaServer, true);
+                                }
+                                else if (LayerMask.LayerToName(hit.collider.gameObject.layer) == "Land")
+                                {
+                                    Debug.Log("Hiiit");
+                                    hit.collider.GetComponent<Interactable>().OnInteraction();
+                                }
+                                else
+                                {
+                                    string message = "Solo  el recolector puede intereactuar con esto, busca su ayuda!";
+                                    UIController.instance.ShowMessage(message);
+                                }
+
                             }
 
                         }
-
                     }
+                    
 
 
                 }
@@ -93,7 +96,7 @@ public class TouchManagerNetwork : MonoBehaviourPunCallbacks
             {
                 UIController.instance.slider.gameObject.SetActive(false);
                 GetComponent<Animator>().SetBool("IsOnInteractable", false);
-                saw.gameObject.SetActive(false);
+                photonView.RPC("SyncSaw", RpcTarget.AllViaServer, false);
             }
     
 
@@ -101,5 +104,10 @@ public class TouchManagerNetwork : MonoBehaviourPunCallbacks
     }
 
     
+    [PunRPC]
+    public void SyncSaw(bool state)
+    {
+        saw.gameObject.SetActive(state);
 
+    }
 }

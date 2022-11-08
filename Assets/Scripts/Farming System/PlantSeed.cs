@@ -36,6 +36,10 @@ public class PlantSeed : Interactable
     public override void OnInteraction()
     {
         seedPanel.transform.GetChild(0).gameObject.SetActive(true);
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
         IsInteractable = false;
     }
 
