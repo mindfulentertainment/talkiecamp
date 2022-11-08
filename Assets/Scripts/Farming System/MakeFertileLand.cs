@@ -15,6 +15,7 @@ public class MakeFertileLand : Interactable
     private void Start()
     {
         slider = UIController.instance.slider;
+        PlantSeed.IsInteractable=true;
     }
 
     private void OnMouseDown()

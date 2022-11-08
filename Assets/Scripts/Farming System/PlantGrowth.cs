@@ -30,6 +30,7 @@ public class PlantGrowth : MonoBehaviour
 
             if (currentStage != maxGrowth)
             {
+
                 gameObject.transform.GetChild(currentStage).gameObject.SetActive(true);
                 timeTweenGrowth += time;
                
