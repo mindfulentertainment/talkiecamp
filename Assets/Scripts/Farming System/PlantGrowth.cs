@@ -21,6 +21,8 @@ public class PlantGrowth : MonoBehaviour
 
     IEnumerator Growth()
     {
+        gameObject.transform.parent.gameObject.GetComponent<BoxCollider>().enabled = false;
+
         while (true)
         {
            

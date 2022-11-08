@@ -107,7 +107,6 @@ public class PlantSeed : Interactable
         Debug.Log(gameObject.name);
         var newplant = PhotonNetwork.Instantiate(plant.name, this.transform.position, Quaternion.identity);
         newplant.transform.parent = gameObject.transform;
-        gameObject.GetComponent<BoxCollider>().enabled = false;
 
     }
 
