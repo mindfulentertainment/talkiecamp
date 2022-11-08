@@ -12,10 +12,17 @@ public class MakeFertileLand : Interactable
     [SerializeField] PlantSeed PlantSeed;
     int isFertilezed;
 
-  
+    private void Start()
+    {
+        slider = UIController.instance.slider;
+    }
+
     private void OnMouseDown()
     {
-        CreatePlants.seed =PlantSeed;
+        if (PlantSeed.IsInteractable) {
+            CreatePlants.seed = PlantSeed;
+
+        }
     }
     public override void OnInteraction()
     {

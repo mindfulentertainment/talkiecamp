@@ -9,6 +9,7 @@ public class PlantGrowth : MonoBehaviour
     public int currentStage = 0; 
     [SerializeField] private int timeTweenGrowth;
     [SerializeField] private int maxGrowth;
+    [SerializeField] private int time;
    
     void Start()
     {
@@ -28,13 +29,12 @@ public class PlantGrowth : MonoBehaviour
             if (currentStage != maxGrowth)
             {
                 gameObject.transform.GetChild(currentStage).gameObject.SetActive(true);
-                timeTweenGrowth += 45;
+                timeTweenGrowth += time;
                
             }
             if (currentStage > 0 && currentStage < maxGrowth)
             {
                 gameObject.transform.GetChild(currentStage - 1).gameObject.SetActive(false);
-
             }
             if (currentStage < maxGrowth)
             {

@@ -481,4 +481,4 @@ MonoBehaviour:
   currentStage: 0
   timeTweenGrowth: 1
   maxGrowth: 4
-  MustWaterPlant: 500
+  time: 10

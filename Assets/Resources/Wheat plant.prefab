@@ -1322,7 +1322,7 @@ MonoBehaviour:
   currentStage: 0
   timeTweenGrowth: 1
   maxGrowth: 4
-  MustWaterPlant: 500
+  time: 10
 --- !u!1 &8290926722013885241
 GameObject:
   m_ObjectHideFlags: 0

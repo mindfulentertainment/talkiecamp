@@ -3,20 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Photon.Pun;
 public class PlantSeed : Interactable
 {
     [SerializeField] private GameObject seedPanel;
     [SerializeField] private GameObject[] plants;
     private int lechuga, cebolla, tomate, trigo;
-
-    private void Awake()
+    Coroutine coroutine;
+    public static bool IsInteractable=true;
+    private void Start()
     {
-        
-        seedPanel = GameObject.Find("seedPanel");
+
+        seedPanel = UIController.instance.seedPanel;
     }
- 
-    private void Update() 
-    {    
+
+    private void Update()
+    {
         cebolla = PlayerPrefs.GetInt("onion");
         tomate = PlayerPrefs.GetInt("tomato");
         lechuga = PlayerPrefs.GetInt("lettuce");
@@ -25,15 +27,36 @@ public class PlantSeed : Interactable
     }
     private void OnMouseDown()
     {
-        CreatePlants.seed = this;
+        if (IsInteractable)
+        {
+            CreatePlants.seed = this;
+        }
+        
     }
     public override void OnInteraction()
     {
         seedPanel.transform.GetChild(0).gameObject.SetActive(true);
+        IsInteractable = false;
+    }
+
+    public void MakeInteractable()
+    {
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+        coroutine=StartCoroutine(InteractableCoroutine());
+    }
+
+    IEnumerator InteractableCoroutine()
+    {
+        yield return new WaitForSeconds(1);
+        IsInteractable=true;
     }
 
     public void Plant(int num)
     {
+        MakeInteractable();
         if (num == 1 && cebolla > 0)
         {
            
@@ -82,9 +105,10 @@ public class PlantSeed : Interactable
     public override void CreatePlant(GameObject plant)
     {
         Debug.Log(gameObject.name);
-        var newplant = Instantiate(plant, this.transform.position, Quaternion.identity);
+        var newplant = PhotonNetwork.Instantiate(plant.name, this.transform.position, Quaternion.identity);
         newplant.transform.parent = gameObject.transform;
         gameObject.GetComponent<BoxCollider>().enabled = false;
+
     }
-   
+
 }

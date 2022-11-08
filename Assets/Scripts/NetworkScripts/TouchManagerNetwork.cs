@@ -66,6 +66,11 @@ public class TouchManagerNetwork : MonoBehaviourPunCallbacks
                                 GetComponent<Animator>().SetBool("IsOnInteractable", true);
                                 saw.gameObject.SetActive(true);
                             }
+                            else if (LayerMask.LayerToName(hit.collider.gameObject.layer) == "Land")
+                            {
+                                Debug.Log("Hiiit");
+                                hit.collider.GetComponent<Interactable>().OnInteraction();
+                            }
                             else
                             {
                                 string message = "Solo  el recolector opuede intereactuar con esto, busca su ayuda!";

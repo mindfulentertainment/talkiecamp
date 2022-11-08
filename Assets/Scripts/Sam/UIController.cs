@@ -64,6 +64,8 @@ public class UIController : MonoBehaviour
     [Header("Chef")]
     public GameObject kitchenUI;
 
+    public GameObject seedPanel;
+
     [Header("Orders")]
     [SerializeField] TMP_Text burger02;
     [SerializeField] TMP_Text sandwich02;
