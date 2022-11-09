@@ -37,8 +37,9 @@ public class Token_Pick : MonoBehaviourPun
     [PunRPC]
     public void SetKey(int k)
     {
+        IPickable pickable = GetComponent<IPickable>();
         key = k;
-        CreateToken();
+        Token_Manager.DefaultInstance.pickables_tokens.Add(key, pickable);
     }
 
     
