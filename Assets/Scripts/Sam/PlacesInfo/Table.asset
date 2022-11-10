@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Table
   m_EditorClassIdentifier: 
   placeName: Mesa
-  wood: 5
-  stone: 5
+  wood: 10
+  stone: 0
   fabric: 0
   meat: 0
   hamburguers: 0

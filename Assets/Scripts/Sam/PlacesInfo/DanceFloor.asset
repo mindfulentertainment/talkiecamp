@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   placeName: Pista de baile
   wood: 10
-  stone: 15
-  fabric: 10
+  stone: 0
+  fabric: 0
   meat: 0
-  hamburguers: 10
+  hamburguers: 5
   sandwiches: 0
   soups: 1
   hamburguers2: 0

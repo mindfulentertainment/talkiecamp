@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slot: {fileID: 4003018183227039227}
-  data: {fileID: 11400000, guid: a6f0fc67fa3528e498690b7a552e6c5c, type: 2}
+  data: {fileID: 11400000, guid: decf43ba4187ed74fa22e62cbe4121f8, type: 2}
 --- !u!114 &-8511385834394479349
 MonoBehaviour:
   m_ObjectHideFlags: 0

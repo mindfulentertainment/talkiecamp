@@ -14,13 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   placeName: Carpa
   wood: 10
-  stone: 10
+  stone: 0
   fabric: 0
   meat: 0
   hamburguers: 0
   sandwiches: 0
-  soups: 2
-  hamburguers2: 0
-  sandwiches2: 0
-  soups2: 0
+  soups: 1
   conexion: 0

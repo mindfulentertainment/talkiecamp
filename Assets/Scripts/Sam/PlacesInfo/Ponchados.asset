@@ -17,10 +17,7 @@ MonoBehaviour:
   stone: 0
   fabric: 4
   meat: 0
-  hamburguers: 10
+  hamburguers: 1
   sandwiches: 0
-  soups: 0
-  hamburguers2: 0
-  sandwiches2: 0
-  soups2: 0
+  soups: 3
   conexion: 0

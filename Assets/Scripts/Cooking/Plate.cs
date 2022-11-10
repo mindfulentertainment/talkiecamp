@@ -82,7 +82,9 @@ public class Plate : SnapZone, IPickable
                 if (ingredient.Type == IngredientType.Bun ||
                     ingredient.Type == IngredientType.Tomato ||
                     ingredient.Type == IngredientType.Lettuce ||
-                    ingredient.Type == IngredientType.Ham)
+                    ingredient.Type == IngredientType.Ham || 
+                    ingredient.Type == IngredientType.Meat || 
+                    ingredient.Type == IngredientType.Carrot)
                 {
                     return TryDrop(pickableToDrop);
                 }
