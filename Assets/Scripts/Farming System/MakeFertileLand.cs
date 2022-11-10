@@ -16,6 +16,11 @@ public class MakeFertileLand : Interactable
     {
         slider = UIController.instance.slider;
         PlantSeed.IsInteractable=true;
+
+        GameObject child = gameObject.transform.GetChild(0).gameObject;
+        child.SetActive(true);
+        child.transform.parent = gameObject.transform.parent;
+        Destroy(gameObject);
     }
 
     private void OnMouseDown()
@@ -44,21 +49,5 @@ public class MakeFertileLand : Interactable
 
     }
 
-    private void Update()
-    {
-        //if(Vector3.Distance(player.position, gameObject.transform.position) >5)
-        //{
-        //    slider.gameObject.SetActive(false);
-        //}
-        isFertilezed = PlayerPrefs.GetInt("fertiled");
-        if (isFertilezed == 1)
-        {
-            GameObject child = gameObject.transform.GetChild(0).gameObject;
-            child.SetActive(true);
-            child.transform.parent = gameObject.transform.parent;
-            Destroy(gameObject);
-        }
-
-
-    }
+ 
 }

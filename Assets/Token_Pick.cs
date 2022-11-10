@@ -12,10 +12,11 @@ public class Token_Pick : MonoBehaviourPun
 
     private void Awake()
     {
-        if(PhotonNetwork.IsMasterClient&&GetComponent<Ingredient>()==null&& GetComponentInParent<PlantGrowth>() == null)
+        if (PhotonNetwork.IsMasterClient && GetComponent<Ingredient>() == null && GetComponentInParent<PlantGrowth>() == null)
         {
             key = this.gameObject.GetHashCode();
             photonView.RPC("SetKey", RpcTarget.AllViaServer, key);
+            Debug.Log("CreateToken");
         }
        
         
