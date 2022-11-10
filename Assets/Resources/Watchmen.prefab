@@ -489,6 +489,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxDistance: 3
   distance: 0
+  saw: {fileID: 0}
+  isGatherer: 0
 --- !u!135 &7237537877924100887
 SphereCollider:
   m_ObjectHideFlags: 0
