@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Ponchados
   m_EditorClassIdentifier: 
   placeName: Ponchados
-  wood: 0
+  wood: 10
   stone: 0
   fabric: 0
   meat: 0
-  hamburguers: 0
+  hamburguers: 1
   sandwiches: 0
-  soups: 0
+  soups: 3
   conexion: 0

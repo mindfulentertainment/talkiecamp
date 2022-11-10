@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Table
   m_EditorClassIdentifier: 
   placeName: Mesa
-  wood: 0
+  wood: 10
   stone: 0
   fabric: 0
   meat: 0

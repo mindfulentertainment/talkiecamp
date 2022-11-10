@@ -8,11 +8,11 @@ public class ShootObject : MonoBehaviour
     [SerializeField] Transform movingDir,posIni;
     [SerializeField] float force;
     [SerializeField] REvents thing,dissapear;
-    Vector3 tamañoInicial;
+    Vector3 initialSize;
     void Start()
     {
         transform.position = posIni.localPosition;
-        tamañoInicial = transform.localScale;
+        initialSize = transform.localScale;
         rb = GetComponent<Rigidbody>();
         thing.GEvent += Shoot;
         dissapear.GEvent += Disappear;
@@ -22,7 +22,7 @@ public class ShootObject : MonoBehaviour
 
     void Shoot()
     {
-        transform.localScale = tamañoInicial;
+        transform.localScale = initialSize;
         rb.isKinematic = false;
         rb.AddForce((movingDir.transform.position - transform.position) * force*Time.deltaTime);
     }

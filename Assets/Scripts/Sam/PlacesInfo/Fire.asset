@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Fire
   m_EditorClassIdentifier: 
   placeName: Fogata
-  wood: 0
+  wood: 10
   stone: 0
   fabric: 0
   meat: 0
-  hamburguers: 0
+  hamburguers: 2
   sandwiches: 0
   soups: 0
   conexion: 0
