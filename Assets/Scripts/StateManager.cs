@@ -137,11 +137,15 @@ public class Food
 
     public Food() { }
 
-    public Food(int hamburguer, int sandwich, int soup)
+    public Food(int hamburguer, int sandwich, int soup, int hamburguer2, int sandwich2, int soup2)
     {
         this.hamburguer = hamburguer;
         this.sandwich = sandwich;
         this.soup = soup;
+
+        this.hamburguer2 = hamburguer2;
+        this.sandwich2 = sandwich2;
+        this.soup2 = soup2;
     }
     public int hamburguer;
     public int hamburguer2;

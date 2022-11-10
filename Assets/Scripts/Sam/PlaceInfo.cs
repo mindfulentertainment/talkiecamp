@@ -15,5 +15,8 @@ public class PlaceInfo : ScriptableObject
     public int hamburguers;
     public int sandwiches;
     public int soups;
+    public int hamburguers2;
+    public int sandwiches2;
+    public int soups2;
     public int conexion;
 }

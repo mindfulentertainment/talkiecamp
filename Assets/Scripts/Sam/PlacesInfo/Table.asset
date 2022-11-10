@@ -13,11 +13,14 @@ MonoBehaviour:
   m_Name: Table
   m_EditorClassIdentifier: 
   placeName: Mesa
-  wood: 0
-  stone: 0
+  wood: 5
+  stone: 5
   fabric: 0
   meat: 0
   hamburguers: 0
-  sandwiches: 0
+  sandwiches: 2
   soups: 0
+  hamburguers2: 0
+  sandwiches2: 0
+  soups2: 0
   conexion: 0

@@ -17,8 +17,11 @@ public class PlaceButton : MonoBehaviour
     private TMP_Text wood;
     private TMP_Text fabric;
     private TMP_Text sandwich;
+    private TMP_Text sandwich2;
     private TMP_Text hamburguer;
+    private TMP_Text hamburguer2;
     private TMP_Text soup;
+    private TMP_Text soup2;
     private TMP_Text interaction;
     private bool firstCheck=true;
 
@@ -28,6 +31,9 @@ public class PlaceButton : MonoBehaviour
     public Sprite sandwichSprite;
     public Sprite hamburguerSprite;
     public Sprite soupSprite;
+    public Sprite sandwichSprite2;
+    public Sprite hamburguerSprite2;
+    public Sprite soupSprite2;
     public Sprite interactionSprite;
 
     Resource resource;
@@ -63,7 +69,7 @@ public class PlaceButton : MonoBehaviour
     private void GetInfo()
     {
         buildingName.text = PlaceInfo.placeName;
-         food = new Food(PlaceInfo.hamburguers,PlaceInfo.sandwiches,PlaceInfo.soups);
+         food = new Food(PlaceInfo.hamburguers,PlaceInfo.sandwiches,PlaceInfo.soups, PlaceInfo.hamburguers2, PlaceInfo.sandwiches2, PlaceInfo.soups2);
       
          resource= new Resource(PlaceInfo.stone, PlaceInfo.fabric, PlaceInfo.wood, food);
         resource.connection = PlaceInfo.conexion;
@@ -138,7 +144,36 @@ public class PlaceButton : MonoBehaviour
             instance.transform.GetChild(2).GetComponent<Image>().sprite = soupSprite;
 
         }
+        if (food.sandwich2 > 0)
+        {
+            GameObject instance = Instantiate(m_resource, m_resource.transform.parent);
+            instance.transform.GetChild(0).GetComponent<TMP_Text>().text = "Sandwich";
 
+            sandwich = instance.transform.GetChild(1).GetComponent<TMP_Text>();
+            sandwich.text = food.sandwich.ToString();
+            instance.transform.GetChild(2).GetComponent<Image>().sprite = sandwichSprite2;
+
+        }
+        if (food.hamburguer2 > 0)
+        {
+            GameObject instance = Instantiate(m_resource, m_resource.transform.parent);
+            instance.transform.GetChild(0).GetComponent<TMP_Text>().text = "Hamburguesa Especial";
+
+            hamburguer = instance.transform.GetChild(1).GetComponent<TMP_Text>();
+            hamburguer.text = food.hamburguer2.ToString();
+            instance.transform.GetChild(2).GetComponent<Image>().sprite = hamburguerSprite2;
+
+        }
+        if (food.soup2 > 0)
+        {
+            GameObject instance = Instantiate(m_resource, m_resource.transform.parent);
+            instance.transform.GetChild(0).GetComponent<TMP_Text>().text = "Sopa especial";
+
+            soup = instance.transform.GetChild(1).GetComponent<TMP_Text>();
+            soup.text = food.soup2.ToString();
+            instance.transform.GetChild(2).GetComponent<Image>().sprite = soupSprite2;
+
+        }
         Destroy(m_resource);
         firstCheck = false;
         Check();
@@ -235,6 +270,48 @@ public class PlaceButton : MonoBehaviour
                 {
                     sandwich.color = Color.red;
                                         buildButton.interactable = false;
+
+                }
+            }
+            if (soup2 != null)
+            {
+                if (gameResources.food.soup2 >= food.soup2)
+                {
+                    soup2.color = Color.green;
+
+                }
+                else
+                {
+                    soup2.color = Color.red;
+                    buildButton.interactable = false;
+
+                }
+            }
+            if (sandwich2 != null)
+            {
+                if (gameResources.food.sandwich2 >= food.sandwich2)
+                {
+                    sandwich2.color = Color.green;
+
+                }
+                else
+                {
+                    sandwich2.color = Color.red;
+                    buildButton.interactable = false;
+
+                }
+            }
+            if (hamburguer2 != null)
+            {
+                if (gameResources.food.hamburguer2 >= food.hamburguer2)
+                {
+                    hamburguer2.color = Color.green;
+
+                }
+                else
+                {
+                    hamburguer2.color = Color.red;
+                    buildButton.interactable = false;
 
                 }
             }

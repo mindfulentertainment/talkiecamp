@@ -116,7 +116,7 @@ public class Place : MonoBehaviourPun
     void UseMaterials()
     {
 
-        food = new Food(PlaceInfo.hamburguers, PlaceInfo.sandwiches, PlaceInfo.soups);
+        food = new Food(PlaceInfo.hamburguers, PlaceInfo.sandwiches, PlaceInfo.soups, PlaceInfo.hamburguers2, PlaceInfo.sandwiches2, PlaceInfo.soups2);
 
         resource = new Resource(PlaceInfo.stone, PlaceInfo.fabric, PlaceInfo.wood, food);
         resource.connection = PlaceInfo.conexion;
