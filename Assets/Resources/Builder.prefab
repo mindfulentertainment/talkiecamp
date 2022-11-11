@@ -741,6 +741,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RepairAmount: 12
+  hammerSprite: {fileID: -944152256, guid: a90dd0d7ef8043244a67ece1f0401dba, type: 3}
   hammer: {fileID: 111988711222503996}
 --- !u!114 &3895622512558060754
 MonoBehaviour:

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
-
+[RequireComponent(typeof(Rigidbody))]
 public class OnPlayerFoot : MonoBehaviourPun
 {
 
@@ -15,20 +15,31 @@ public class OnPlayerFoot : MonoBehaviourPun
     [SerializeField] float shotingForce;
     bool stop;
    
-    private void Start()
+    private void OnEnable()
     {
         rb = GetComponent<Rigidbody>();
         shootBall.GEvent += ShootBall;
         goalT1.GEvent += RestartBall;
         goalT2.GEvent += RestartBall;
     }
-    
-    
+    private void OnDisable()
+    {
+        shootBall.GEvent -= ShootBall;
+        goalT1.GEvent -= RestartBall;
+        goalT2.GEvent -= RestartBall;
+        shootBall.GEvent -= ShootBall;
+        shootBall.GEvent -= RestartBall;
+        StopAllCoroutines();
+
+    }
+
     public void GetBall(GameObject player)
     {
         if (currentPlayer == player) return;
-        
-            GetComponent<PhotonRigidbodyView>().enabled = false;                  //UIController.instance.pickBtn.GetComponent<Image>().sprite = ballInteractionIcon;    //cambia el icono de Ui de interaccion
+
+        GetComponent<PhotonRigidbodyView>().m_SynchronizeAngularVelocity = false;          //UIController.instance.pickBtn.GetComponent<Image>().sprite = ballInteractionIcon;    //cambia el icono de Ui de interaccion
+        GetComponent<PhotonRigidbodyView>().m_SynchronizeVelocity = false;          //UIController.instance.pickBtn.GetComponent<Image>().sprite = ballInteractionIcon;    //cambia el icono de Ui de interaccion
+        GetComponent<PhotonRigidbodyView>().m_TeleportEnabled = false;          //UIController.instance.pickBtn.GetComponent<Image>().sprite = ballInteractionIcon;    //cambia el icono de Ui de interaccion
             currentPlayer = player; //determina cual es el jugador actual que tiene la pelota
             isOnPlayer = true;
             this.gameObject.transform.parent = player.transform; //vuelve la bola en hijo al jugador
@@ -59,6 +70,7 @@ public class OnPlayerFoot : MonoBehaviourPun
     }
     void RestartBall()
     {
+        TryGetComponent(out rb);
         rb.constraints = RigidbodyConstraints.None; // freeze rotation and pos
 
        
@@ -76,18 +88,15 @@ public class OnPlayerFoot : MonoBehaviourPun
         isOnPlayer = false;
 
     }
-    private void OnDisable()
-    {
-        shootBall.GEvent -= ShootBall;
-        shootBall.GEvent -= RestartBall;
-        StopAllCoroutines();
-    }
+   
 
     [PunRPC]
     public void AddForceToBall()
     {
-       
-        GetComponent<PhotonRigidbodyView>().enabled = true;                  
+
+        GetComponent<PhotonRigidbodyView>().m_SynchronizeAngularVelocity = true;          //UIController.instance.pickBtn.GetComponent<Image>().sprite = ballInteractionIcon;    //cambia el icono de Ui de interaccion
+        GetComponent<PhotonRigidbodyView>().m_SynchronizeVelocity = true;          //UIController.instance.pickBtn.GetComponent<Image>().sprite = ballInteractionIcon;    //cambia el icono de Ui de interaccion
+        GetComponent<PhotonRigidbodyView>().m_TeleportEnabled = true; 
         if (PhotonNetwork.IsMasterClient)
         {
             rb.AddForce(((transform.position - currentPlayer.transform.position)) * shotingForce);

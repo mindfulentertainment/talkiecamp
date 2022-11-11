@@ -10,6 +10,7 @@ public class Repair : MonoBehaviourPun
     public float RepairAmount = 7;
     Place place=null;
     Coroutine coroutine=null;
+    public Sprite hammerSprite;
     PlayerController characterController=null;
     public GameObject hammer;
     private void OnTriggerEnter(Collider other)
@@ -22,7 +23,12 @@ public class Repair : MonoBehaviourPun
             if (place.buildingHistory.health < place.maxHealth)
             {
                 if (UIController.instance == null) return;
-               UIController.instance.repairHelper.SetActive(true);
+                if (photonView.IsMine)
+                {
+                    UIController.instance.SwitchPickSprite(hammerSprite);
+
+                }
+                UIController.instance.repairHelper.SetActive(true);
                 UIController.instance.pickBtn.GetComponent<Button>().onClick.AddListener(RepairBuilding);
                
 
@@ -38,7 +44,12 @@ public class Repair : MonoBehaviourPun
         if (other.gameObject.CompareTag("Placed"))
         {
             hammer.SetActive(false);
+            if (photonView.IsMine)
+            {
+                UIController.instance.ResetPickSprite();
 
+
+            }
             UIController.instance.repairHelper.SetActive(false);
             UIController.instance.pickBtn.GetComponent<Button>().onClick.RemoveListener(RepairBuilding);
         }
@@ -74,6 +85,12 @@ public class Repair : MonoBehaviourPun
         DataManager.instance.buildingsDictionary[target]?.gameObject.TryGetComponent(out place);
         if(place != null)
         {
+            if (photonView.IsMine)
+            {
+                UIController.instance.SwitchPickSprite(hammerSprite);
+
+            }
+
             place.RepairBuilding(RepairAmount);
         }
         GetComponentInParent<Animator>().SetTrigger("isRepearing");
