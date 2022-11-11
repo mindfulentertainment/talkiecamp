@@ -81,8 +81,8 @@ public class BearManager : MonoBehaviourPun
         
         bear.SetActive(true);
         CameraControllerNetWork.instance.ChangeTarget(bear.gameObject.transform);
-        CameraControllerNetWork.instance.gameObject.GetComponent<EditValues>().VignetteAmount = 0.12f;
-        CameraControllerNetWork.instance.gameObject.GetComponent<EditValues>().VignetteColor = danger;
+        //CameraControllerNetWork.instance.gameObject.GetComponent<EditValues>().VignetteAmount = 0.12f;
+        //CameraControllerNetWork.instance.gameObject.GetComponent<EditValues>().VignetteColor = danger;
         UIController.instance.bearNear.SetActive(true);
         StartCoroutine(CenterPlayer());
     }
@@ -91,9 +91,9 @@ public class BearManager : MonoBehaviourPun
     {
         yield return new WaitForSeconds(8);
         CameraControllerNetWork.instance.CenterPlayer();
-        CameraControllerNetWork.instance.gameObject.GetComponent<EditValues>().VignetteAmount = 0.058f;
+        //CameraControllerNetWork.instance.gameObject.GetComponent<EditValues>().VignetteAmount = 0.058f;
 
-        CameraControllerNetWork.instance.gameObject.GetComponent<EditValues>().VignetteColor = calm;
+        //CameraControllerNetWork.instance.gameObject.GetComponent<EditValues>().VignetteColor = calm;
         UIController.instance.bearNear.SetActive(false);
 
 

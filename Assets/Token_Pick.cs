@@ -22,6 +22,8 @@ public class Token_Pick : MonoBehaviourPun
         
         
     }
+      
+
     private void Start()
     {
         if ( GetComponent<Ingredient>() != null)

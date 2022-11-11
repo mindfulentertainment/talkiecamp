@@ -32,6 +32,8 @@ public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
+
+      
         for (int i = 0; i < allPlayers.Count; i++)
         {
             if (allPlayers[i].name == otherPlayer.NickName)

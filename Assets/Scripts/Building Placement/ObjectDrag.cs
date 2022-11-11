@@ -37,7 +37,7 @@ public class ObjectDrag : MonoBehaviour
     {
         if (other.CompareTag("Hex"))
         {
-            GetComponentInChildren<Outline>().OutlineColor=Color.black;
+            //GetComponentInChildren<Outline>().OutlineColor=Color.black;
             UIController.instance.pickBtn.gameObject.SetActive(true);
 
         }
