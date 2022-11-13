@@ -13,6 +13,7 @@ public class OnPlayerFoot : MonoBehaviourPun
     [SerializeField] REvents shootBall,goalT1,goalT2;
     [SerializeField] GameObject currentPlayer;
     [SerializeField] float shotingForce;
+    [SerializeField] ParticleSystem confetiPS;
     bool stop;
    
     private void OnEnable()
@@ -70,6 +71,8 @@ public class OnPlayerFoot : MonoBehaviourPun
     }
     void RestartBall()
     {
+
+        confetiPS.Play();
         TryGetComponent(out rb);
         rb.constraints = RigidbodyConstraints.None; // freeze rotation and pos
 

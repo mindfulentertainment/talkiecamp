@@ -149,8 +149,8 @@ public class PlaceButton : MonoBehaviour
             GameObject instance = Instantiate(m_resource, m_resource.transform.parent);
             instance.transform.GetChild(0).GetComponent<TMP_Text>().text = "Sandwich";
 
-            sandwich = instance.transform.GetChild(1).GetComponent<TMP_Text>();
-            sandwich.text = food.sandwich.ToString();
+            sandwich2 = instance.transform.GetChild(1).GetComponent<TMP_Text>();
+            sandwich2.text = food.sandwich2.ToString();
             instance.transform.GetChild(2).GetComponent<Image>().sprite = sandwichSprite2;
 
         }
@@ -159,8 +159,8 @@ public class PlaceButton : MonoBehaviour
             GameObject instance = Instantiate(m_resource, m_resource.transform.parent);
             instance.transform.GetChild(0).GetComponent<TMP_Text>().text = "Hamburguesa Especial";
 
-            hamburguer = instance.transform.GetChild(1).GetComponent<TMP_Text>();
-            hamburguer.text = food.hamburguer2.ToString();
+            hamburguer2 = instance.transform.GetChild(1).GetComponent<TMP_Text>();
+            hamburguer2.text = food.hamburguer2.ToString();
             instance.transform.GetChild(2).GetComponent<Image>().sprite = hamburguerSprite2;
 
         }
@@ -169,8 +169,8 @@ public class PlaceButton : MonoBehaviour
             GameObject instance = Instantiate(m_resource, m_resource.transform.parent);
             instance.transform.GetChild(0).GetComponent<TMP_Text>().text = "Sopa especial";
 
-            soup = instance.transform.GetChild(1).GetComponent<TMP_Text>();
-            soup.text = food.soup2.ToString();
+            soup2 = instance.transform.GetChild(1).GetComponent<TMP_Text>();
+            soup2.text = food.soup2.ToString();
             instance.transform.GetChild(2).GetComponent<Image>().sprite = soupSprite2;
 
         }

@@ -160,6 +160,22 @@ public class Place : MonoBehaviourPun
             DataManager.instance.DecreaseElement(element);
         }
 
+        if (food.sandwich2 > 0)
+        {
+            Element element = new Element(Element.ElementType.sandwich_2, food.sandwich2);
+            DataManager.instance.DecreaseElement(element);
+        }
+        if (food.hamburguer2 > 0)
+        {
+            Element element = new Element(Element.ElementType.hamburguer_2, food.hamburguer2);
+            Debug.Log(food.hamburguer2);
+            DataManager.instance.DecreaseElement(element);
+        }
+        if (food.soup2 > 0)
+        {
+            Element element = new Element(Element.ElementType.soup_2, food.soup2);
+            DataManager.instance.DecreaseElement(element);
+        }
         UIController.instance.ChangeResources(DataManager.instance.resource);
 
     }

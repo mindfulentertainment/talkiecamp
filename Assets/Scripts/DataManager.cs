@@ -201,6 +201,7 @@ public class DataManager : MonoBehaviour
 
                 case Element.ElementType.hamburguer_2:
                     resource.food.hamburguer2 -= element.GetAmount();
+                Debug.Log(element.GetAmount());
                     break;
          
                 case Element.ElementType.soup_2:

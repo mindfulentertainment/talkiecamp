@@ -13,11 +13,14 @@ MonoBehaviour:
   m_Name: Tent
   m_EditorClassIdentifier: 
   placeName: Carpa
-  wood: 10
-  stone: 0
-  fabric: 0
-  meat: 0
-  hamburguers: 0
-  sandwiches: 0
+  wood: 1
+  stone: 1
+  fabric: 1
+  meat: 1
+  hamburguers: 1
+  sandwiches: 1
   soups: 1
-  conexion: 0
+  hamburguers2: 1
+  sandwiches2: 1
+  soups2: 1
+  conexion: 1
