@@ -18,7 +18,7 @@ public class Tree : Interactable
     public override void OnInteraction()
     {
         timer = OnDestruction(slider, timeOfDestruction, timer);
-        audio1.enabled = true;
+        
         audio1.Play();
         if (timer >= timeOfDestruction)
         {

@@ -13,6 +13,7 @@ public class Repair : MonoBehaviourPun
     public Sprite hammerSprite;
     PlayerController characterController=null;
     public GameObject hammer;
+    [SerializeField] AudioSource audioSource;
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Placed"))
@@ -81,6 +82,7 @@ public class Repair : MonoBehaviourPun
     void SendRepair(string target)
     {
         hammer.SetActive(true);
+        audioSource.Play();
         Place place =null ;
         DataManager.instance.buildingsDictionary[target]?.gameObject.TryGetComponent(out place);
         if(place != null)

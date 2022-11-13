@@ -8,6 +8,8 @@ public class BearController : MonoBehaviourPun
 {
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Animator animator;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip[] clips;
     Coroutine damage;
     List<Vector3> nodes;
     int index = 0;
@@ -126,6 +128,7 @@ public class BearController : MonoBehaviourPun
             {
                 if (PhotonNetwork.IsMasterClient)
                 {
+                    audioSource.PlayOneShot(clips[2]);
                     index = Random.Range(0, nodes.Count);
                     photonView.RPC("SetDestination", RpcTarget.AllViaServer, index);
                 }
@@ -176,6 +179,8 @@ public class BearController : MonoBehaviourPun
     {
         state = 1;
         animator.SetBool("Trapped", true);
+        audioSource.PlayOneShot(clips[0]);
+
         if (damage != null)
         {
             StopCoroutine(damage);
@@ -232,6 +237,9 @@ public class BearController : MonoBehaviourPun
         if (DataManager.instance.buildingsDictionary[target] != null)
         {
             DataManager.instance.buildingsDictionary[target].gameObject.GetComponent<Place>().DamageBuilding(15);
+            audioSource.PlayOneShot(clips[1]);
+
+            //audioSource.PlayDelayed(1f);
 
         }
     }
