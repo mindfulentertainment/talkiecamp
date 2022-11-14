@@ -23,4 +23,5 @@ MonoBehaviour:
   hamburguers2: 0
   sandwiches2: 0
   soups2: 0
-  conexion: 0
+  conexion: 10
+  newConexion: 0

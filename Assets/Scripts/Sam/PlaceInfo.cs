@@ -19,4 +19,6 @@ public class PlaceInfo : ScriptableObject
     public int sandwiches2;
     public int soups2;
     public int conexion;
+
+    public int newConexion;
 }

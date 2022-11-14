@@ -35,7 +35,8 @@ public class PlaceButton : MonoBehaviour
     public Sprite hamburguerSprite2;
     public Sprite soupSprite2;
     public Sprite interactionSprite;
-
+    public TMP_Text newInteraction;
+    public GameObject interactio;
     Resource resource;
     Food food;
     private void Awake()
@@ -183,7 +184,11 @@ public class PlaceButton : MonoBehaviour
     public void Check()
     {
         buildButton.interactable = true;
-
+        if (PlaceInfo.newConexion <= 0)
+        {
+            interactio.gameObject.SetActive(false);
+        }
+        newInteraction.text = "+"+PlaceInfo.newConexion.ToString();
         if (!firstCheck)
         {
             Resource gameResources = DataManager.instance.resource;

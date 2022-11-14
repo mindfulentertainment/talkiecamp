@@ -117,7 +117,11 @@ public class Place : MonoBehaviourPun
     {
 
         food = new Food(PlaceInfo.hamburguers, PlaceInfo.sandwiches, PlaceInfo.soups, PlaceInfo.hamburguers2, PlaceInfo.sandwiches2, PlaceInfo.soups2);
-
+        if (PlaceInfo.newConexion > 0)
+        {
+            Element element = new Element(Element.ElementType.connection, PlaceInfo.newConexion);
+            DataManager.instance.IncreaseElement(element);
+        }
         resource = new Resource(PlaceInfo.stone, PlaceInfo.fabric, PlaceInfo.wood, food);
         resource.connection = PlaceInfo.conexion;
         if (resource.stone > 0)

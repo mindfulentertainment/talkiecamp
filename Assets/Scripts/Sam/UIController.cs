@@ -18,7 +18,7 @@ public class UIController : MonoBehaviour
     public Slider slider;
     public GameObject placeOrderBtn;
     public GameObject zoomBtn;
-
+    public GameObject instructions;
     [Header("RolUI")]
     public GameObject builderUI;
     public GameObject chefUI;

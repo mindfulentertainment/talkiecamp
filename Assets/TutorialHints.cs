@@ -5,6 +5,7 @@ using UnityEngine;
 public class TutorialHints : MonoBehaviour
 {
     public GameObject lockImage;
+    public GameObject instrucionsHint;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +22,7 @@ public class TutorialHints : MonoBehaviour
         UIController.instance.resourcesBtn.gameObject.SetActive(false);
         UIController.instance.emoticonBtn.gameObject.SetActive(false);
         UIController.instance.zoomBtn.gameObject.SetActive(false);
+        UIController.instance.instructions.gameObject.SetActive(false);
 
         yield return new WaitForSeconds(1.8f);
         transform.GetChild(0).gameObject.SetActive(true);
@@ -35,6 +37,10 @@ public class TutorialHints : MonoBehaviour
         UIController.instance.roleText.gameObject.SetActive(true);
         yield return new WaitForSeconds(4);
         transform.GetChild(2).gameObject.SetActive(false);
+        instrucionsHint.gameObject.SetActive(true);
+        UIController.instance.instructions.gameObject.SetActive(true);
+        yield return new WaitForSeconds(4);
+        instrucionsHint.gameObject.SetActive(false);
         transform.GetChild(3).gameObject.SetActive(true);
         UIController.instance.resourcesBtn.gameObject.SetActive(true);
         yield return new WaitForSeconds(4);

@@ -27,10 +27,10 @@ public class TutorialAnimation : MonoBehaviour
     IEnumerator StartTweenImage()
     {
         yield return new WaitForSeconds(2);
-        var seq = LeanTween.sequence();
 
         Color fromColor = new Color(0, 0, 0, 0);
         Color toColor = new Color(255, 255, 255, 1);
+        var seq = LeanTween.sequence();
 
         LeanTween.value(imgTittle.gameObject, (c) => imgTittle.color = c, fromColor, toColor, 1);
 
@@ -61,7 +61,7 @@ public class TutorialAnimation : MonoBehaviour
         yield return new WaitForSeconds(10);
 
         fromHeight = 50;
-        toHeight = 545;
+        toHeight = 700;
 
         LeanTween.value(barDown.gameObject, (w) => barDown.rectTransform.sizeDelta = new Vector2(1920, w), fromHeight, toHeight, 1);
         LeanTween.value(barUp.gameObject, (w) => barUp.rectTransform.sizeDelta = new Vector2(1920, w), fromHeight, toHeight, 1);
@@ -71,7 +71,7 @@ public class TutorialAnimation : MonoBehaviour
         tutorialCanvas.SetActive(true);
         cameraTutorial.gameObject.SetActive(false);
         yield return new WaitForSeconds(0.5f);
-        fromHeight = 545;
+        fromHeight = 700;
         toHeight = 0;
         LeanTween.value(barDown.gameObject, (w) => barDown.rectTransform.sizeDelta = new Vector2(1920, w), fromHeight, toHeight, 1);
         LeanTween.value(barUp.gameObject, (w) => barUp.rectTransform.sizeDelta = new Vector2(1920, w), fromHeight, toHeight, 1);
