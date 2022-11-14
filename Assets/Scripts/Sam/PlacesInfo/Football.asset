@@ -13,11 +13,14 @@ MonoBehaviour:
   m_Name: Football
   m_EditorClassIdentifier: 
   placeName: Cancha Futbol
-  wood: 5
-  stone: 10
-  fabric: 1
+  wood: 0
+  stone: 0
+  fabric: 0
   meat: 0
-  hamburguers: 2
+  hamburguers: 0
   sandwiches: 0
-  soups: 1
+  soups: 0
+  hamburguers2: 0
+  sandwiches2: 0
+  soups2: 0
   conexion: 0
