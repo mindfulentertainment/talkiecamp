@@ -7,22 +7,22 @@ using UnityEngine.Video;
 
 public class VideoManager : MonoBehaviour
 {
-    public VideoPlayer video;
+   // public VideoPlayer video;
     private void Start()
     {
        
-            StartCoroutine(ContinueGame());
+           // StartCoroutine(ContinueGame());
 
         
     }
 
-   IEnumerator ContinueGame()
-    {
+   //IEnumerator ContinueGame()
+   // {
 
-        yield return new WaitForSeconds(video.frameCount/video.frameRate);
+   //     yield return new WaitForSeconds(video.frameCount/video.frameRate);
 
-        SkipVideo();
-    }
+   //     SkipVideo();
+   // }
 
     public void SkipVideo()
     {

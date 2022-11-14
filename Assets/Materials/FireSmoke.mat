@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8111387667992640497
+--- !u!114 &-1415554096150039837
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -26,7 +26,6 @@ Material:
   - _EMISSION
   - _SURFACE_TYPE_TRANSPARENT
   m_InvalidKeywords:
-  - _ALPHABLEND_ON
   - _FLIPBOOKBLENDING_OFF
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
@@ -36,7 +35,6 @@ Material:
     RenderType: Transparent
   disabledShaderPasses:
   - GRABPASS
-  - ALWAYS
   - DepthOnly
   - SHADOWCASTER
   m_SavedProperties:
