@@ -7,6 +7,7 @@ public class TimerGather : MonoBehaviour
     public int minutes, seconds, m, s;
     [SerializeField] bool loop,aditionalCall;
     [SerializeField] REvents startTimer, eventShoot, stopTime,lastCall;
+    [SerializeField] GameObject textCounter;
 
 
 
@@ -27,7 +28,6 @@ public class TimerGather : MonoBehaviour
 
     public void StopTimer() //detener el contador
     {
-
         CancelInvoke("UpdateTimer");
     }
     void UpdateTimer()
@@ -42,6 +42,7 @@ public class TimerGather : MonoBehaviour
                 if (loop == false)
                 {
                     StopTimer();
+                    textCounter.gameObject.SetActive(false);
                     return;
                 }
             }

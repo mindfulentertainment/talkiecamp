@@ -12,6 +12,7 @@ public class GatheringManager : MonoBehaviour
     [SerializeField] REvents finishGathering,updateTime,deductCount,starGathering,disappear;
     [SerializeField] Vector3 counterSize;
     [SerializeField] TMP_Text counter;
+    [SerializeField] ParticleSystem confeti;
     
     void Start()
     {
@@ -60,7 +61,8 @@ public class GatheringManager : MonoBehaviour
 
         if (c <= 0)
         {
-            //counter.gameObject.SetActive(false);
+            confeti.Play();
+            counter.gameObject.SetActive(false);
             finishGathering.FireEvent();
             c = objectCountIni;
             //textMark.gameObject.SetActive(false);

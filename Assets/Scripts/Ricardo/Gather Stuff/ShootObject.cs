@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Pun.UtilityScripts;
 
 public class ShootObject : MonoBehaviour
 {
@@ -29,8 +30,9 @@ public class ShootObject : MonoBehaviour
         if (PhotonNetwork.IsMasterClient)
         {
             rb.AddForce((movingDir.transform.position - transform.position) * force * Time.deltaTime);
-
+            GetComponent<SmoothSyncMovement>().enabled = false;
         }
+
     }
     public void Disappear()
     {
