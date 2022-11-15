@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using System.Data;
 
 public class Extinguisher : MonoBehaviourPun
 {
@@ -26,9 +27,13 @@ public class Extinguisher : MonoBehaviourPun
 
                 if ((Vector3.Distance(hit.point, transform.position) <= 5) &&fire!=null&&fire.GetComponent<ActivationManager>().onFire )
                 {
+                    if (LayerMask.LayerToName(hit.collider.gameObject.layer) == "Watchmen")
+                    {
+                        photonView.RPC("ShowTool", RpcTarget.AllViaServer, true);
+                        fire.TryExtinguish(amountToExtinguish * Time.deltaTime);
+                    }
 
-                    photonView.RPC("ShowTool", RpcTarget.AllViaServer, true);
-                    fire.TryExtinguish(amountToExtinguish * Time.deltaTime);
+                        
                 }
 
               
