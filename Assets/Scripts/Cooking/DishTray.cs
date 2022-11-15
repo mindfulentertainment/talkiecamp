@@ -14,9 +14,9 @@ public class DishTray : SnapZone
         if (playerHoldPickable != null) return null;
         if (_plates.Count == 0) return null;
 
-        var bottomPlate = _plates[0];
-        _plates.Clear();
-        return bottomPlate;
+        var topPlate = _plates.Last();
+        _plates.Remove(topPlate);
+        return topPlate;
     }
 
     public void AddPlate(Plate plate)

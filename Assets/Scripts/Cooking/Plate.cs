@@ -70,8 +70,6 @@ public class Plate : SnapZone, IPickable
         collider.enabled = true;
     }
 
-
-
     public override bool TryToDropIntoSlot(IPickable pickableToDrop)
     {
         if (pickableToDrop == null) return false;
@@ -104,15 +102,22 @@ public class Plate : SnapZone, IPickable
 
     public override IPickable TryToPickUpFromSlot(IPickable playerHoldPickable)
     {
-        // We can pickup Ingredients from plates with other plates (effectively swapping content) or from Pans
-
         if (playerHoldPickable == null) return null;
-        if (!(playerHoldPickable is Plate plate)) return null;
-        if (!plate.IsEmpty()) return null;
-        if (this.IsEmpty()) return null;
 
-        plate.AddIngredients(this._ingredients);
-
+        switch (playerHoldPickable)
+        {
+            case Ingredient ingredient:
+                //TODO: we can pickup some ingredients into plate, not all of them.
+                break;
+            // swap plate ingredients
+            case Plate plate:
+                if (plate.IsEmpty())
+                {
+                    if (this.IsEmpty()) return null;
+                    plate.AddIngredients(this._ingredients);
+                }
+                break;
+        }
         return null;
     }
 
