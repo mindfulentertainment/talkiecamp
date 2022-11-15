@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using Photon.Pun;
+using Photon.Pun.UtilityScripts;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Collider))]
@@ -30,6 +31,11 @@ public class PickableItem : SnapZone, IPickable
     {
         if (!isTaken)
         {
+            if (GetComponent<SmoothSyncMovement>() != null)
+            {
+                GetComponent<SmoothSyncMovement>().enabled= false;  
+            }
+
             rb.isKinematic = true;
             collider.enabled = false;
             rb.velocity = Vector3.zero;

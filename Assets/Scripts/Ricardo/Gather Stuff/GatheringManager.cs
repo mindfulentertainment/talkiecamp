@@ -29,6 +29,7 @@ public class GatheringManager : MonoBehaviour
     }
     void StartGame()
     {
+        c = objectCountIni;
         Debug.Log("Game started");
         counter.gameObject.SetActive(true);
         counter.text = "Te faltan " + c + " pelotas por guardar";
