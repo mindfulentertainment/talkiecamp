@@ -63,7 +63,6 @@ public class UIController : MonoBehaviour
 
     [Header("Chef")]
     public GameObject kitchenUI;
-
     public GameObject seedPanel;
 
     [Header("Orders")]

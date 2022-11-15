@@ -77,21 +77,12 @@ public class Plate : SnapZone, IPickable
         switch (pickableToDrop)
         {
             case Ingredient ingredient:
-                if (ingredient.Type == IngredientType.Bun ||
-                    ingredient.Type == IngredientType.Tomato ||
-                    ingredient.Type == IngredientType.Lettuce ||
-                    ingredient.Type == IngredientType.Ham || 
-                    ingredient.Type == IngredientType.Meat || 
-                    ingredient.Type == IngredientType.Carrot)
-                {
-                    return TryDrop(pickableToDrop);
-                }
-                return false;
+                return TryDrop(ingredient);
             case Plate plate:
                 //Debug.Log("[Plate] Trying to drop something from a plate into other plate! We basically swap contents");
                 if (this.IsEmpty() == false) return false;
                 this.AddIngredients(plate.Ingredients);
-                plate.RemoveAllIngredients();
+                plate._ingredients.Clear();
                 return false;
             default:
                 Debug.LogWarning("[Plate] Drop not recognized", this);

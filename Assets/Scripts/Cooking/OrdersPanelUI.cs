@@ -75,8 +75,7 @@ public class OrdersPanelUI : MonoBehaviour
     {
         UpdateResources(order);
     
-
-            switch (order.OrderName)
+        switch (order.OrderName)
         {
             case "Burger01":
                 burger01Amount--;
@@ -120,7 +119,6 @@ public class OrdersPanelUI : MonoBehaviour
             case "Burger01":
                 Element burguer01 = new Element(Element.ElementType.hamburguer, 1);
                 DataManager.instance.IncreaseElement(burguer01);
-
                 break;
 
             case "Burger02":
@@ -140,7 +138,8 @@ public class OrdersPanelUI : MonoBehaviour
 
             case "Sandwich01":
                 Element Sandwich01 = new Element(Element.ElementType.sandwich, 1);
-                DataManager.instance.IncreaseElement(Sandwich01); break;
+                DataManager.instance.IncreaseElement(Sandwich01); 
+                break;
 
             case "Sandwich02":
                 Element Sandwich02 = new Element(Element.ElementType.sandwich_2, 1);
