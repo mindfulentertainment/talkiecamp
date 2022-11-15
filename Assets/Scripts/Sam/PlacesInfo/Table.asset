@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   placeName: Mesa
   wood: 10
-  stone: 0
+  stone: 5
   fabric: 0
   meat: 0
   hamburguers: 0
@@ -22,5 +22,6 @@ MonoBehaviour:
   soups: 0
   hamburguers2: 0
   sandwiches2: 0
-  soups2: 0
+  soups2: 1
   conexion: 0
+  newConexion: 0

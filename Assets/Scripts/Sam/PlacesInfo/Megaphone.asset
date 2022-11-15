@@ -15,7 +15,7 @@ MonoBehaviour:
   placeName: Megafono
   wood: 10
   stone: 10
-  fabric: 0
+  fabric: 5
   meat: 0
   hamburguers: 2
   sandwiches: 0
@@ -24,3 +24,4 @@ MonoBehaviour:
   sandwiches2: 0
   soups2: 0
   conexion: 0
+  newConexion: 0

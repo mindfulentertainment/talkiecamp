@@ -15,7 +15,7 @@ MonoBehaviour:
   placeName: Silla
   wood: 10
   stone: 0
-  fabric: 0
+  fabric: 5
   meat: 0
   hamburguers: 0
   sandwiches: 0

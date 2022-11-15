@@ -1562,6 +1562,7 @@ MonoBehaviour:
   eventShoot: {fileID: 11400000, guid: 5073ad2f1affef24d9d00497251fd749, type: 2}
   stopTime: {fileID: 11400000, guid: 5073ad2f1affef24d9d00497251fd749, type: 2}
   lastCall: {fileID: 11400000, guid: 92d6cc6911bd7be4cab9e25c5cfebac2, type: 2}
+  textCounter: {fileID: 0}
 --- !u!54 &5091863606419451674
 Rigidbody:
   m_ObjectHideFlags: 0
