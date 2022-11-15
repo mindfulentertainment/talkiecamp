@@ -21,6 +21,7 @@ TagManager:
   - OrderPlace
   - Kitchen
   - Hex
+  - Trap
   layers:
   - Default
   - TransparentFX
@@ -44,7 +45,7 @@ TagManager:
   - Watchmen
   - Land
   - 
-  - 
+  - player
   - 
   - 
   - 

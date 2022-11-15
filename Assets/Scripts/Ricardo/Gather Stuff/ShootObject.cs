@@ -11,7 +11,7 @@ public class ShootObject : MonoBehaviour
     Vector3 initialSize;
     void Start()
     {
-        transform.position = posIni.localPosition;
+        transform.position = posIni.position;
         initialSize = transform.localScale;
         rb = GetComponent<Rigidbody>();
         thing.GEvent += Shoot;
@@ -30,7 +30,7 @@ public class ShootObject : MonoBehaviour
     {
         rb.isKinematic=true;
         
-        transform.position = posIni.localPosition;
+        transform.position = posIni.position;
         transform.localScale = Vector3.zero;
     }
     private void OnDestroy()

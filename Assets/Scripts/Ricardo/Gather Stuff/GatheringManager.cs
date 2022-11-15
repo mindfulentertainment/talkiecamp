@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 public class GatheringManager : MonoBehaviour
 {
@@ -10,9 +11,11 @@ public class GatheringManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI textMark;
     [SerializeField] REvents finishGathering,updateTime,deductCount,starGathering,disappear;
     [SerializeField] Vector3 counterSize;
+    [SerializeField] TMP_Text counter;
     
     void Start()
     {
+        counter.gameObject.SetActive(false);
         counterSize = textMark.transform.localScale;
         c = objectCountIni;
         updateTime.GEvent += UpdateTime;
@@ -25,7 +28,9 @@ public class GatheringManager : MonoBehaviour
     }
     void StartGame()
     {
-        
+        Debug.Log("Game started");
+        counter.gameObject.SetActive(true);
+        counter.text = "Te faltan " + c + " pelotas por guardar";
         //textMark.gameObject.SetActive(true);
         textMark.transform.LeanScale(counterSize, 0.3f).setEaseOutQuart();
 
@@ -51,8 +56,11 @@ public class GatheringManager : MonoBehaviour
     void DeductCount()
     {
         c--;
+        counter.text = "Llevas guardadas " + c + " pelotas de " + objectCountIni.ToString();
+
         if (c <= 0)
         {
+            //counter.gameObject.SetActive(false);
             finishGathering.FireEvent();
             c = objectCountIni;
             //textMark.gameObject.SetActive(false);
