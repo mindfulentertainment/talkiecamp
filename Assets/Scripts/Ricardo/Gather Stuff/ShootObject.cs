@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class ShootObject : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class ShootObject : MonoBehaviour
     [SerializeField] Transform movingDir,posIni;
     [SerializeField] float force;
     [SerializeField] REvents thing,dissapear;
+   
     Vector3 initialSize;
     void Start()
     {
@@ -24,7 +26,11 @@ public class ShootObject : MonoBehaviour
     {
         transform.localScale = initialSize;
         rb.isKinematic = false;
-        rb.AddForce((movingDir.transform.position - transform.position) * force*Time.deltaTime);
+        if (PhotonNetwork.IsMasterClient)
+        {
+            rb.AddForce((movingDir.transform.position - transform.position) * force * Time.deltaTime);
+
+        }
     }
     public void Disappear()
     {
