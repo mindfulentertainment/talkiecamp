@@ -27,11 +27,17 @@ public class ShootObject : MonoBehaviour
     {
         transform.localScale = initialSize;
         rb.isKinematic = false;
-        if (PhotonNetwork.IsMasterClient)
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            GetComponent<SmoothSyncMovement>().enabled = true;
+
+        }
+        else
         {
             rb.AddForce((movingDir.transform.position - transform.position) * force * Time.deltaTime);
             GetComponent<SmoothSyncMovement>().enabled = false;
         }
+        StartCoroutine(DisableSync());
 
     }
     public void Disappear()
@@ -45,5 +51,11 @@ public class ShootObject : MonoBehaviour
     {
         thing.GEvent -= Shoot;
         dissapear.GEvent -= Disappear;
+    }
+    IEnumerator DisableSync() {
+
+        yield return new WaitUntil(() => rb.velocity == Vector3.zero);
+        GetComponent<SmoothSyncMovement>().enabled = false;
+
     }
 }
