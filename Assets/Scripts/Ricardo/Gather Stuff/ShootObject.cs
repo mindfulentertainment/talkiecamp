@@ -54,7 +54,9 @@ public class ShootObject : MonoBehaviour
     }
     IEnumerator DisableSync() {
 
+        yield return new WaitForSeconds(1);
         yield return new WaitUntil(() => rb.velocity == Vector3.zero);
+        Debug.Log("ssssssssssssssssssssssss");
         GetComponent<SmoothSyncMovement>().enabled = false;
 
     }
