@@ -75,6 +75,15 @@ public class UIController : MonoBehaviour
     [SerializeField] TMP_Text ham;
     [SerializeField] TMP_Text bun;
 
+    [Header("Crates")]
+    [SerializeField] TMP_Text lettuceCrate;
+    [SerializeField] TMP_Text carrotCrate;
+    [SerializeField] TMP_Text tomatoCrate;
+    [SerializeField] TMP_Text hamCrate;
+    [SerializeField] TMP_Text bunCrate;
+    [SerializeField] TMP_Text meatCrate;
+
+
     private void Awake()
     {
         instance = this;
@@ -164,6 +173,13 @@ public class UIController : MonoBehaviour
         tomato.text = resource.tomato.ToString();
         ham.text = resource.ham.ToString();
         bun.text = resource.bun.ToString();
+        lettuceCrate.text = resource.lettuce.ToString();
+        carrotCrate.text = resource.carrot.ToString();
+        tomatoCrate.text = resource.tomato.ToString();
+        hamCrate.text = resource.ham.ToString();
+        bunCrate.text = resource.bun.ToString();
+        meatCrate.text = resource.meat.ToString();
+
     }
 
     public void ShowMessage(string message)
