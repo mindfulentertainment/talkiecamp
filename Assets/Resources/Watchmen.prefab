@@ -528,9 +528,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd3110cd532f1dd4c913c5febb5e7c7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireLayer:
-    serializedVersion: 2
-    m_Bits: 16384
   amountToExtinguish: 0.1
   fireExtinguisher: {fileID: 3951466434582036164}
 --- !u!95 &6105347455095645512
