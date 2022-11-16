@@ -77,20 +77,23 @@ public class OrderManager : MonoBehaviourPun
     public void CheckIngredientsMatchOrder(List<Ingredient> ingredients)
     {
         if (ingredients == null) return;
-        List<IngredientType> plateIngredients = ingredients.Select(x => x.Type).ToList();
 
-        List<Order> orderByArrivalNotDelivered = _orders
-            .Where(x => x.IsDelivered == false).ToList();
 
-        for (int i = 0; i < orderByArrivalNotDelivered.Count; i++)
+        for (int i = 0; i < _orders.Count; i++)
         {
-            var order = orderByArrivalNotDelivered[i];
+            var order = _orders[i];
+
+            if (!order.IsDelivered)
+            {
+                continue;
+            }
 
             List<IngredientType> orderIngredients = order.Ingredients.Select(x => x.type).ToList();
+            List<IngredientType> plateIngredients = ingredients.Select(x => x.Type).ToList();
 
-            if (plateIngredients.Count != orderIngredients.Count)
+            if (ingredients.Count != orderIngredients.Count)
             {
-                Debug.Log("Orden erronea");
+                UIController.instance.ShowMessage("Orden erronea");
 
                 continue;
             }
@@ -100,13 +103,13 @@ public class OrderManager : MonoBehaviourPun
             // doesn't match any plate
             if (intersection.Count != 0)
             {
-                Debug.Log("Orden erronea");
+                UIController.instance.ShowMessage("Orden erronea");
 
                 continue;
             }
 
             DeactivateSendBackToPool(order);
-            Debug.Log("Orden correcta");
+            UIController.instance.ShowMessage("Orden correcta");
             OnOrderDelivered?.Invoke(order);
 
             

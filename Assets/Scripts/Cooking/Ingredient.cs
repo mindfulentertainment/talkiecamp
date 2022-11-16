@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class Ingredient : SnapZone, IPickable
 {
-    [SerializeField] private IngredientData data;
+    [SerializeField] public IngredientData data;
     private Rigidbody rb;
     private Collider collider;
     bool isTaken = false;
