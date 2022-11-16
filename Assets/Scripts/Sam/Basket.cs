@@ -103,6 +103,9 @@ public class Basket : SnapZone
             case Element.ElementType.meat:
                 actualSrite.sprite = meat;
                 break;
+            case Element.ElementType.lettuce:
+                actualSrite.sprite = lettuce;
+                break;
             default:
                 break;
         }

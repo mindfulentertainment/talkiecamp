@@ -20,7 +20,6 @@ public class AnimalBehaviour : MonoBehaviourPun
         {
             waitTime = startWaitTime;
             randomSpot = Random.Range(0, moveSpots.Length);
-            RotateTo();
         }
        
     }
@@ -32,13 +31,16 @@ public class AnimalBehaviour : MonoBehaviourPun
             if (trapped == false)
             {
                 transform.position = Vector3.MoveTowards(transform.position, moveSpots[randomSpot].position, speed * Time.deltaTime);
+                transform.LookAt(moveSpots[randomSpot]);
+
                 if (Vector3.Distance(transform.position, moveSpots[randomSpot].position) < 0.2f)
                 {
                     if (waitTime <= 0)
                     {
                         randomSpot = Random.Range(0, moveSpots.Length);
+                        transform.LookAt(moveSpots[randomSpot]);
+
                         waitTime = startWaitTime;
-                        RotateTo();
                     }
                     else
                     {
@@ -48,12 +50,7 @@ public class AnimalBehaviour : MonoBehaviourPun
             }
         }
     }
-    void RotateTo()
-    {
-        dif = (moveSpots[randomSpot].position - transform.position).normalized;
-        angle = Mathf.Atan2(dif.z, dif.x);
-        transform.rotation = Quaternion.Euler(90f, 0f, angle * Mathf.Rad2Deg);
-    }
+    
     private void OnTriggerEnter(Collider other)
     {
         if (PhotonNetwork.IsMasterClient)

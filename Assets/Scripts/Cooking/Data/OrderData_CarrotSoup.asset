@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efddbfcd12e7a344d9f3e65c712d3776, type: 3}
   m_Name: OrderData_CarrotSoup
   m_EditorClassIdentifier: 
-  orderName: CarrotSoup
+  orderName: Sopa Zanahoria
   ingredients:
   - {fileID: 11400000, guid: 95dc41f1e91168c4098f24b99957ff0f, type: 2}
   - {fileID: 11400000, guid: 95dc41f1e91168c4098f24b99957ff0f, type: 2}

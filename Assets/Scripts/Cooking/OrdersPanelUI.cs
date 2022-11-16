@@ -36,32 +36,32 @@ public class OrdersPanelUI : MonoBehaviour
     {
         switch (order.OrderName)
         {
-            case "Burger01":
+            case "Hamburguesa":
                 burger01Amount++;
                 burger01.text = burger01Amount.ToString();
                 break;
 
-            case "Burger02":
+            case "Hamburguesa Especial":
                 burger02Amount++;
                 burger02.text = burger02Amount.ToString();
                 break;
 
-            case "TomatoSoup":
+            case "Sopa Tomate":
                 tomatoSoupAmount++;
                 tomatoSoup.text = tomatoSoupAmount.ToString();
                 break;
 
-            case "CarrotSoup":
+            case "Sopa Zanahoria":
                 carrotSoupAmount++;
                 carrotSoup.text = carrotSoupAmount.ToString();
                 break;
 
-            case "Sandwich01":
+            case "Sanduche":
                 sandwich01Amount++;
                 sandwich01.text = sandwich01Amount.ToString();
                 break;
 
-            case "Sandwich02":
+            case "Sanduche Especial":
                 sandwich02Amount++;
                 sandwich02.text = sandwich02Amount.ToString();
                 break;
@@ -77,32 +77,32 @@ public class OrdersPanelUI : MonoBehaviour
     
         switch (order.OrderName)
         {
-            case "Burger01":
+            case "Hamburguesa":
                 burger01Amount--;
                 burger01.text = burger01Amount.ToString();
                 break;
 
-            case "Burger02":
+            case "Hamburguesa Especial":
                 burger02Amount--;
                 burger02.text = burger02Amount.ToString();
                 break;
 
-            case "TomatoSoup":
+            case "Sopa Tomate":
                 tomatoSoupAmount--;
                 tomatoSoup.text = tomatoSoupAmount.ToString();
                 break;
 
-            case "CarrotSoup":
+            case "Sopa Zanahoria":
                 carrotSoupAmount--;
                 carrotSoup.text = carrotSoupAmount.ToString();
                 break;
 
-            case "Sandwich01":
+            case "Sanduche":
                 sandwich01Amount--;
                 sandwich01.text = sandwich01Amount.ToString();
                 break;
 
-            case "Sandwich02":
+            case "Sanduche Especial":
                 sandwich02Amount--;
                 sandwich02.text = sandwich02Amount.ToString();
                 break;
@@ -116,32 +116,32 @@ public class OrdersPanelUI : MonoBehaviour
     {
         switch (order.OrderName)
         {
-            case "Burger01":
+            case "Hamburguesa":
                 Element burguer01 = new Element(Element.ElementType.hamburguer, 1);
                 DataManager.instance.IncreaseElement(burguer01);
                 break;
 
-            case "Burger02":
+            case "Hamburguesa Especial":
                 Element burger02 = new Element(Element.ElementType.hamburguer_2, 1);
                 DataManager.instance.IncreaseElement(burger02);
                 break;
 
-            case "TomatoSoup":
+            case "Sopa Tomate":
                 Element TomatoSoup = new Element(Element.ElementType.soup, 1);
                 DataManager.instance.IncreaseElement(TomatoSoup);
                 break;
 
-            case "CarrotSoup":
+            case "Sopa Zanahoria":
                 Element CarrotSoup = new Element(Element.ElementType.soup_2, 1);
                 DataManager.instance.IncreaseElement(CarrotSoup);
                 break;
 
-            case "Sandwich01":
+            case "Sanduche":
                 Element Sandwich01 = new Element(Element.ElementType.sandwich, 1);
                 DataManager.instance.IncreaseElement(Sandwich01); 
                 break;
 
-            case "Sandwich02":
+            case "Sanduche Especial":
                 Element Sandwich02 = new Element(Element.ElementType.sandwich_2, 1);
                 DataManager.instance.IncreaseElement(Sandwich02);
                 break;

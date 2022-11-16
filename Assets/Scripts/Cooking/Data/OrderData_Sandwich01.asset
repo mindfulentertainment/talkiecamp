@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efddbfcd12e7a344d9f3e65c712d3776, type: 3}
   m_Name: OrderData_Sandwich01
   m_EditorClassIdentifier: 
-  orderName: Sandwich01
+  orderName: Sanduche
   ingredients:
   - {fileID: 11400000, guid: ea881b1152e01e3459b44bf049d88a06, type: 2}
   - {fileID: 11400000, guid: a6f0fc67fa3528e498690b7a552e6c5c, type: 2}

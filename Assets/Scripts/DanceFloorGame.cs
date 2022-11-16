@@ -30,10 +30,9 @@ public class DanceFloorGame : MonoBehaviour
     public Image guide;
     public Transform startPos;
     public Transform endPos;
-    public float speed;
     public Image patternSprite;
 
-    float timeToLerp = 4; //lerp for two seconds.
+    float timeToLerp = 3; //lerp for two seconds.
 
 
 
@@ -161,14 +160,14 @@ public class DanceFloorGame : MonoBehaviour
             if (pieces[i].State != floorPatterns[random].targetPiece[i])
             {
                 level = 0;
-                timeToLerp = 6;
+                timeToLerp = 3;
                 isPlaying = false;
 
                 return false;
             }
         }
 
-        timeToLerp -= 0.14f;
+        timeToLerp -= 0.34f;
         return true;
     }
     IEnumerator CheckPattern(int random)

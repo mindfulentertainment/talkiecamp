@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efddbfcd12e7a344d9f3e65c712d3776, type: 3}
   m_Name: OrderData_TomatoSoup
   m_EditorClassIdentifier: 
-  orderName: TomatoSoup
+  orderName: Sopa Tomate
   ingredients:
   - {fileID: 11400000, guid: e69787eb9b034a84eaa1b19e11b1d6ac, type: 2}
   - {fileID: 11400000, guid: e69787eb9b034a84eaa1b19e11b1d6ac, type: 2}

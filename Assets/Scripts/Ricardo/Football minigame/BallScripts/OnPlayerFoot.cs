@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
+using Photon.Pun.UtilityScripts;
+
 [RequireComponent(typeof(Rigidbody))]
 public class OnPlayerFoot : MonoBehaviourPun
 {
@@ -38,10 +40,9 @@ public class OnPlayerFoot : MonoBehaviourPun
     {
         if (currentPlayer == player) return;
 
-        GetComponent<PhotonRigidbodyView>().m_SynchronizeAngularVelocity = false;          //UIController.instance.pickBtn.GetComponent<Image>().sprite = ballInteractionIcon;    //cambia el icono de Ui de interaccion
-        GetComponent<PhotonRigidbodyView>().m_SynchronizeVelocity = false;          //UIController.instance.pickBtn.GetComponent<Image>().sprite = ballInteractionIcon;    //cambia el icono de Ui de interaccion
-        GetComponent<PhotonRigidbodyView>().m_TeleportEnabled = false;          //UIController.instance.pickBtn.GetComponent<Image>().sprite = ballInteractionIcon;    //cambia el icono de Ui de interaccion
-            currentPlayer = player; //determina cual es el jugador actual que tiene la pelota
+        GetComponent<SmoothSyncMovement>().enabled = false;
+        photonView.FindObservables();    //UIController.instance.pickBtn.GetComponent<Image>().sprite = ballInteractionIcon;    //cambia el icono de Ui de interaccion
+        currentPlayer = player; //determina cual es el jugador actual que tiene la pelota
             isOnPlayer = true;
             this.gameObject.transform.parent = player.transform; //vuelve la bola en hijo al jugador
             transform.position = currentPlayer.transform.GetChild(3).position; //snapea la posicion de la bola al lugar del pie
@@ -97,9 +98,9 @@ public class OnPlayerFoot : MonoBehaviourPun
     public void AddForceToBall()
     {
 
-        GetComponent<PhotonRigidbodyView>().m_SynchronizeAngularVelocity = true;          //UIController.instance.pickBtn.GetComponent<Image>().sprite = ballInteractionIcon;    //cambia el icono de Ui de interaccion
-        GetComponent<PhotonRigidbodyView>().m_SynchronizeVelocity = true;          //UIController.instance.pickBtn.GetComponent<Image>().sprite = ballInteractionIcon;    //cambia el icono de Ui de interaccion
-        GetComponent<PhotonRigidbodyView>().m_TeleportEnabled = true; 
+
+        GetComponent<SmoothSyncMovement>().enabled = true;
+        photonView.FindObservables();
         if (PhotonNetwork.IsMasterClient)
         {
             rb.AddForce(((transform.position - currentPlayer.transform.position)) * shotingForce);

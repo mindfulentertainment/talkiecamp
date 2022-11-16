@@ -2975,7 +2975,6 @@ MonoBehaviour:
   guide: {fileID: 8631762725796263763}
   startPos: {fileID: 8631762724822201778}
   endPos: {fileID: 8631762726447648719}
-  speed: 5
   patternSprite: {fileID: 8631762725910531305}
 --- !u!135 &8631762726015046990
 SphereCollider:
