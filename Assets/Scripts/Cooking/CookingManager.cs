@@ -78,10 +78,7 @@ public class CookingManager : MonoBehaviour
         }
 
         orderManager.CheckIngredientsMatchOrder(plate.Ingredients);
-        foreach(var item in plate.Ingredients)
-        {
-            Debug.Log(item.data.ToString());
-        }
+
         plate.RemoveAllIngredients();
         StartCoroutine(ReturnPlate(plate));
     }

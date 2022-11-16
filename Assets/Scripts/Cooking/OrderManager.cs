@@ -83,10 +83,7 @@ public class OrderManager : MonoBehaviourPun
         {
             var order = _orders[i];
 
-            if (!order.IsDelivered)
-            {
-                continue;
-            }
+           
 
             List<IngredientType> orderIngredients = order.Ingredients.Select(x => x.type).ToList();
             List<IngredientType> plateIngredients = ingredients.Select(x => x.Type).ToList();
