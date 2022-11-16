@@ -19,12 +19,18 @@ public class OrderManager : MonoBehaviourPun
 
     public delegate void OrderDelivered(Order order);
     public static event OrderDelivered OnOrderDelivered;
+    string role = "";
 
     private void Awake()
     {
         _orders.Clear();
     }
 
+    private void Start()
+    {
+        role = PlayerPrefs.GetString("role");
+
+    }
     private Order GetOrderFromPool()
     {
         return _poolOrders.Count > 0 ? _poolOrders.Dequeue() : Instantiate(orderPrefab, transform);
@@ -90,7 +96,11 @@ public class OrderManager : MonoBehaviourPun
 
             if (plateIngredients.Count != orderIngredients.Count)
             {
-                UIController.instance.ShowMessage("Orden Errónea");
+                if (role== "Chef")
+                {
+                    UIController.instance.ShowMessage("Orden Errónea");
+
+                }
 
                 continue;
             }
@@ -100,12 +110,22 @@ public class OrderManager : MonoBehaviourPun
             // doesn't match any plate
             if (intersection.Count != 0)
             {
-                UIController.instance.ShowMessage("Orden Errónea");
+                if (role == "Chef")
+                {
+                    UIController.instance.ShowMessage("Orden Errónea");
+
+
+                }
                 continue;
             }
 
             DeactivateSendBackToPool(order);
-            UIController.instance.ShowMessage("Orden Correcta");
+            if (role == "Chef")
+            {
+                UIController.instance.ShowMessage("Orden Correcta");
+
+
+            }
             OnOrderDelivered?.Invoke(order);
 
             

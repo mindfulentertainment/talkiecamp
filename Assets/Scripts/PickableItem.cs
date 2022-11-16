@@ -31,9 +31,10 @@ public class PickableItem : SnapZone, IPickable
     {
         if (!isTaken)
         {
-            if (GetComponent<SmoothSyncMovement>() != null)
+            if (GetComponent<PhotonRigidbodyView>() != null)
             {
-                GetComponent<SmoothSyncMovement>().enabled= false;  
+                GetComponent<PhotonRigidbodyView>().enabled= false;
+                GetComponent<PhotonView>().FindObservables();    //UIController.instance.pickBtn.GetComponent<Image>().sprite = ballInteractionIcon;    //cambia el icono de Ui de interaccion
             }
 
             rb.isKinematic = true;

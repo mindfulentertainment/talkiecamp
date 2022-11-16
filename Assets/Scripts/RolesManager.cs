@@ -238,7 +238,7 @@ public class RolesManager : MonoBehaviourPunCallbacks, IOnEventCallback
             }
             
         }
-        if(roles>=0)
+        if(roles>=1)
         {
             startGame.interactable = true;
         }

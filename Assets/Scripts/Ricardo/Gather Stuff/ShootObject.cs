@@ -29,20 +29,31 @@ public class ShootObject : MonoBehaviour
         rb.isKinematic = false;
         if (!PhotonNetwork.IsMasterClient)
         {
-            GetComponent<SmoothSyncMovement>().enabled = true;
-
+            GetComponent<PhotonRigidbodyView>().enabled = true;
+            GetComponent<PhotonView>().FindObservables();
         }
         else
         {
             rb.AddForce((movingDir.transform.position - transform.position) * force * Time.deltaTime);
-            GetComponent<SmoothSyncMovement>().enabled = false;
+            GetComponent<PhotonRigidbodyView>().enabled = true;
+            GetComponent<PhotonView>().FindObservables();
         }
 
     }
     public void Disappear()
     {
         rb.isKinematic=true;
-        
+        var player = GetComponentInParent<PlayerController>();
+        if (player != null)
+        {
+            if (player.photonView.IsMine)
+            {
+                int key = GetComponent<Token_Pick>().key;
+                player.photonView.RPC("HandleDrop", RpcTarget.AllViaServer, key, posIni.position.x, posIni.position.y, posIni.position.z);
+                player._currentPickable = null;
+            }
+           
+        }
         transform.position = posIni.position;
         transform.localScale = Vector3.zero;
     }

@@ -40,7 +40,7 @@ public class OnPlayerFoot : MonoBehaviourPun
     {
         if (currentPlayer == player) return;
 
-        GetComponent<SmoothSyncMovement>().enabled = false;
+        GetComponent<PhotonRigidbodyView>().enabled = true;
         photonView.FindObservables();    //UIController.instance.pickBtn.GetComponent<Image>().sprite = ballInteractionIcon;    //cambia el icono de Ui de interaccion
         currentPlayer = player; //determina cual es el jugador actual que tiene la pelota
             isOnPlayer = true;
@@ -61,6 +61,8 @@ public class OnPlayerFoot : MonoBehaviourPun
     {
         if (isOnPlayer == true)
         {
+            GetComponent<PhotonRigidbodyView>().enabled = true;
+            photonView.FindObservables();
             this.gameObject.transform.SetParent(null);
             rb.constraints = RigidbodyConstraints.None; // freeze rotation and pos
             UIController.instance.ResetPickSprite();
@@ -99,7 +101,7 @@ public class OnPlayerFoot : MonoBehaviourPun
     {
 
 
-        GetComponent<SmoothSyncMovement>().enabled = true;
+        GetComponent<PhotonRigidbodyView>().enabled = true;
         photonView.FindObservables();
         if (PhotonNetwork.IsMasterClient)
         {

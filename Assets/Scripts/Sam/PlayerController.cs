@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
     [SerializeField] private Transform slot;
    
     private PickAndDropNetWork pickAndDropNetWork;
-    private IPickable _currentPickable;
+    public IPickable _currentPickable;
 
     protected Camera m_Camera;
     protected Vector3 direction;
