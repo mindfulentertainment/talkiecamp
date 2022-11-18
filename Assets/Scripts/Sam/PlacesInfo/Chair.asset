@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Chair
   m_EditorClassIdentifier: 
   placeName: Silla
-  wood: 10
+  wood: 0
   stone: 0
-  fabric: 5
+  fabric: 0
   meat: 0
   hamburguers: 0
   sandwiches: 0
@@ -24,4 +24,4 @@ MonoBehaviour:
   sandwiches2: 0
   soups2: 0
   conexion: 0
-  newConexion: 5
+  newConexion: 0

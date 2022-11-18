@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ponchados
   m_EditorClassIdentifier: 
   placeName: Ponchados
-  wood: 10
+  wood: 0
   stone: 0
   fabric: 0
   meat: 0

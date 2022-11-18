@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Megaphone
   m_EditorClassIdentifier: 
   placeName: Megafono
-  wood: 10
-  stone: 10
-  fabric: 5
+  wood: 0
+  stone: 0
+  fabric: 0
   meat: 0
-  hamburguers: 2
+  hamburguers: 0
   sandwiches: 0
   soups: 0
   hamburguers2: 0

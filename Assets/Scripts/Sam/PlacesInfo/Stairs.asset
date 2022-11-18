@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Stairs
   m_EditorClassIdentifier: 
   placeName: Escaleras
-  wood: 10
+  wood: 0
   stone: 0
   fabric: 0
   meat: 0
@@ -24,4 +24,4 @@ MonoBehaviour:
   sandwiches2: 0
   soups2: 0
   conexion: 0
-  newConexion: 5
+  newConexion: 0
